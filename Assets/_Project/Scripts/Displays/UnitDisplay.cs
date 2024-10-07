@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitDisplay : Display<Unit>
+public class UnitDisplay : Display<Unit>, Poolable<UnitDisplay>
 {
     public override void Render(Unit item)
     {
@@ -19,5 +19,20 @@ public class UnitDisplay : Display<Unit>
     private void SetWorldPosition(Vector2Int coords)
     {
         transform.position = new Vector3(coords.x * VisualDataHolder.Instance.spacing, coords.y * VisualDataHolder.Instance.spacing, 0) + new Vector3(VisualDataHolder.Instance.origin.x, VisualDataHolder.Instance.origin.y, 0);
+    }
+
+    public UnitDisplay GetSelf()
+    {
+        return this;
+    }
+    bool available = false;
+    public void Reset()
+    {
+        available = false;
+    }
+
+    public bool IsAvailable()
+    {
+        return available;
     }
 }
