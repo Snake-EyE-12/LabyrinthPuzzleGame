@@ -1,0 +1,16 @@
+{
+  "Layouts":[
+    {
+      "Name":"Default",
+      "Characters":[
+        "Offensive",
+        "Defensive",
+        "Magician",
+        "Healer",
+        "Informant",
+        "Mobilizer",
+        "Agent"
+        ]
+    }
+  ]
+}

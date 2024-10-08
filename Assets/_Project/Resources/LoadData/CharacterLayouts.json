@@ -1,0 +1,35 @@
+{
+  "Layouts":[
+    {
+      "Name":"All",
+      "Characters":[
+        "Offensive",
+        "Defensive",
+        "Magician",
+        "Healer",
+        "Informant",
+        "Mobilizer",
+        "Agent"
+        ],
+      "Weight": 100
+    },
+    {
+      "Name":"MIB",
+      "Characters":[
+        "Agent",
+        "Agent",
+        "Agent",
+        "Agent"
+      ],
+      "Weight": 100
+    },
+    {
+      "Name":"Red",
+      "Characters":[
+        "Healer",
+        "Healer"
+      ],
+      "Weight": 100
+    }
+  ]
+}

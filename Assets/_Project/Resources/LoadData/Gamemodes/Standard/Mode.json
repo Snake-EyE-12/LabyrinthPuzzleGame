@@ -1,0 +1,64 @@
+{
+  "Description": "Intended Play",
+  "GridSize": 5,
+  "CharacterSelection":
+  {
+    "Type": "Draft",
+    "Choices": 3,
+    "Default": "Standard",
+    "Total": 5,
+    "InitialDegree": 1
+  },
+  "Rounds": 20,
+  "EventLayout":
+  {
+    "IncludeChance": 100,
+    "Events":
+    [
+      {
+        "Event": 
+        {
+          "Type": "Fight",
+          "Weight": 20
+        },
+        "Sequence":
+        {
+          "Range":
+          {
+            "Min": 1,
+            "Max": 20
+          },
+          "Begin": 1,
+          "Size": 1,
+          "Repeated": 1
+        }
+      }
+    ]
+  },
+  "Fights": [
+    {
+      "Degree": {
+        "Min": 1,
+        "Max": 3
+      },
+      "Weight": 20,
+      "Border": "Wrap",
+      "Enemies": [
+        "Minator"
+      ],
+      "FloorLayout": {
+        "Fill": "All",
+        "AvailableTiles": [
+          {
+            "Tile": "+",
+            "Weight": 100
+          },
+          {
+            "Tile": "-",
+            "Weight": 100
+          }
+        ]
+      }
+    }
+  ]
+}

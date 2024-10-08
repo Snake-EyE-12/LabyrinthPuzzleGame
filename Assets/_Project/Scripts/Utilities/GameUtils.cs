@@ -5,4 +5,30 @@ using UnityEngine;
 public static class GameUtils
 {
     public static int ModPositive(int val, int size) => (val % size + size) % size;
+    
+    public static int IndexByWeightedRandom(List<Weighted> list)
+    {
+        int totalWeight = 0;
+        foreach (var item in list)
+        {
+            totalWeight += item.GetWeight();
+        }
+        int random = Random.Range(0, totalWeight);
+        int currentWeight = 0;
+        for (int i = 0; i < list.Count; i++)
+        {
+            currentWeight += list[i].GetWeight();
+            if (currentWeight > random)
+            {
+                return i;
+            }
+        }
+        return 0;
+    }
+}
+
+public interface Weighted
+{
+    public int GetWeight();
+
 }
