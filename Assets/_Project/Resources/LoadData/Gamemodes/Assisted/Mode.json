@@ -3,38 +3,37 @@
   "GridSize": 3,
   "CharacterSelection":
   {
-    "Type": "Choose",
+    "Type": "Preset",
     "Choices": 3,
-    "Default": "Standard",
+    "Default": "Test",
     "Total": 0,
     "InitialDegree": 1
   },
   "Rounds": 10,
   "EventLayout":
-  {
-    "IncludeChance": 100,
-    "Events":
-    [
-      {
-        "Event": 
+  [
+    {
+      "IncludeChance": 100,
+      "Events":
+      [
         {
           "Type": "Fight",
           "Weight": 20
-        },
-        "Sequence":
-        {
-          "Range":
-          {
-            "Min": 1,
-            "Max": 20
-          },
-          "Begin": 1,
-          "Size": 1,
-          "Repeated": 1
         }
+      ],
+      "Sequence":
+      {
+        "Range":
+        {
+          "Min": 1,
+          "Max": 20
+        },
+        "Begin": 1,
+        "Size": 1,
+        "Repeated": 1
       }
-    ]
-  },
+    }
+  ],
   "Fights": [
     {
       "Degree": {

@@ -12,7 +12,6 @@ public class TeamBuilderHandler : MonoBehaviour
     [SerializeField] private Transform currentTeamParent;
     [SerializeField] private Transform optionsParent;
     
-    private List<string> team = new List<string>();
     private TeamBuilder teamBuilder;
     private void Awake()
     {
@@ -35,7 +34,9 @@ public class TeamBuilderHandler : MonoBehaviour
         teamBuilder.Load();
     }
 
-    public void SetTeam(List<string> team)
+    private string[] team;
+    private List<string> teamCreationList = new List<string>();
+    public void SetTeam(string[] team)
     {
         this.team = team;
         Finish();
@@ -43,9 +44,10 @@ public class TeamBuilderHandler : MonoBehaviour
 
     public void Pick(string character)
     {
-        team.Add(character);
-        if (team.Count >= DataHolder.currentMode.CharacterSelection.Total)
+        teamCreationList.Add(character);
+        if (teamCreationList.Count >= DataHolder.currentMode.CharacterSelection.Total)
         {
+            team = teamCreationList.ToArray();
             Finish();
             return;
         }
@@ -53,7 +55,7 @@ public class TeamBuilderHandler : MonoBehaviour
         LoadNextOption();
     }
 
-    public void PickFull(List<string> team)
+    public void PickFull(string[] team)
     {
         SetTeam(team);
     }
@@ -64,6 +66,7 @@ public class TeamBuilderHandler : MonoBehaviour
         {
             TeamOptionDisplay teamOptionDisplay = Instantiate(teamOptionDisplayPrefab, optionsParent);
             teamOptionDisplay.Set(team);
+            teamOptionDisplay.SetHandler(this);
         }
     }
 
@@ -74,7 +77,7 @@ public class TeamBuilderHandler : MonoBehaviour
 
     public void Finish()
     {
-        GameManager.Instance.SetTeam(team);
+        GameManager.Instance.SetTeam(new List<string>(team));
         Destroy(gameObject);
     }
 }
@@ -159,6 +162,6 @@ public class PresetTeam : TeamBuilder
 
     public override void Load()
     {
-        handler.SetTeam(DataHolder.characterLayoutTable.GetLayout(selection.Default));
+        handler.SetTeam((DataHolder.characterLayoutTable.GetLayout(selection.Default).ToArray()));
     }
 }

@@ -25,6 +25,10 @@ public static class GameUtils
         }
         return 0;
     }
+    public static bool PercentChance(int percent)
+    {
+        return Random.Range(0, 100) < percent;
+    }
 }
 
 public interface Weighted

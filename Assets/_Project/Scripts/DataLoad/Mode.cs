@@ -62,21 +62,19 @@ namespace Capstone.DataLoad
     public class EventLayout
     {
         public int IncludeChance;
-        public InGameEvent[] Events;
-    }
-
-    [System.Serializable]
-    public class InGameEvent
-    {
-        public EventData Event;
+        public EventData[] Events;
         public Sequence Sequence;
     }
     
     [System.Serializable]
-    public class EventData
+    public class EventData : Weighted
     {
         public string Type;
         public int Weight;
+        public int GetWeight()
+        {
+            return Weight;
+        }
     }
 
     [System.Serializable]
@@ -86,6 +84,20 @@ namespace Capstone.DataLoad
         public int Begin;
         public int Size;
         public int Repeated;
+
+        
+        public bool alignsAt(int value)
+        {
+            if (!isInRange(value)) return false;
+            if(value < Begin) return false;
+            if (value % (Repeated + 1) > Size) return false;
+            return true;
+        }
+
+        private bool isInRange(int value)
+        {
+            return value >= Range.Min && value <= Range.Max;
+        }
     }
 
     [System.Serializable]
@@ -145,5 +157,60 @@ namespace Capstone.DataLoad
             return Weight;
         }
         
+    }
+
+    [System.Serializable]
+    public class CharacterList
+    {
+        public CharacterData[] Characters;
+        
+        public List<CharacterData> FindAllOfType(string type)
+        {
+            List<CharacterData> list = new List<CharacterData>();
+            foreach (var character in Characters)
+            {
+                if (character.Type.Equals(type))
+                {
+                    list.Add(character);
+                }
+            }
+            return list;
+        }
+    }
+
+    [System.Serializable]
+    public class CharacterData : Weighted
+    {
+        public string Name;
+        public string Type;
+        public int Degree;
+        public Health[] Health;
+        public int Charge;
+        public Inventory Inventory;
+        public ActiveEffect[] ActiveEffects;
+        public Modifier[] Modifiers;
+        public int GetWeight()
+        {
+            return 10;
+        }
+    }
+    
+    [System.Serializable]
+    public class Health
+    {
+        public string Type;
+        public int Value;
+    }
+
+    [System.Serializable]
+    public class ActiveEffect
+    {
+    
+    }
+
+    [System.Serializable]
+    public class Modifier
+    {
+    
     }
 }

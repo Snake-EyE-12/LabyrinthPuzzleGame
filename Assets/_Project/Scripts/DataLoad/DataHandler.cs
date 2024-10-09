@@ -16,6 +16,14 @@ public class DataHandler : MonoBehaviour
     {
         DataHolder.characterColorEquivalenceTable = GameDataReader.ConvertToJsonObject<CharacterColorEquivalenceTable>("LoadData/CharacterEquivalence");
         DataHolder.characterLayoutTable = GameDataReader.ConvertToJsonObject<CharacterLayoutTable>("LoadData/CharacterLayouts");
+
+        DataHolder.availableCharacters = GameDataReader.ConvertToJsonObject<CharacterList>("LoadData/Characters");
+        
+        
+        
+        
+        
+        
         GamemodeManager.Instance.PrepareGamemodes(ReadGamemodes());
     }
 

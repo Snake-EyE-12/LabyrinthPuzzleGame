@@ -11,7 +11,7 @@
         "Mobilizer",
         "Agent"
         ],
-      "Weight": 100
+      "Weight": 10
     },
     {
       "Name":"MIB",
@@ -21,7 +21,7 @@
         "Agent",
         "Agent"
       ],
-      "Weight": 100
+      "Weight": 10
     },
     {
       "Name":"Red",
@@ -29,7 +29,15 @@
         "Healer",
         "Healer"
       ],
-      "Weight": 100
+      "Weight": 10
+    }
+  ,
+    {
+      "Name":"Test",
+      "Characters":[
+        "Offensive"
+      ],
+      "Weight": 1000
     }
   ]
 }

@@ -9,5 +9,6 @@ public static class DataHolder
     public static Mode currentMode;
     public static CharacterLayoutTable characterLayoutTable;
     public static CharacterColorEquivalenceTable characterColorEquivalenceTable;
-    
+    public static CharacterList availableCharacters;
+    public static List<EventsForRound> EventsForEachRound;
 }

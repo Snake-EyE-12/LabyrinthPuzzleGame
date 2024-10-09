@@ -10,4 +10,16 @@ public class MemberOptionDisplay : Display<CharacterColorData>
     {
         
     }
+    
+    
+    private TeamBuilderHandler tbh;
+    public void SetHandler(TeamBuilderHandler handler)
+    {
+        tbh = handler;
+    }
+    public void OnClick()
+    {
+        tbh.Pick(item.type);
+    }
+
 }

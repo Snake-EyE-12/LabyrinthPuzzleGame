@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class Unit : GridPositionable
 {
-    private Map localMap;
-    private string unitName;
-    private int degree;
-    private Health health;
-    private List<ActiveEffect> activeEffects = new List<ActiveEffect>();
-    private List<Modifier> modifiers = new List<Modifier>();
+     private Map localMap;
+    // private string unitName;
+    // private int degree;
+    // private Health health;
+    // private List<ActiveEffect> activeEffects = new List<ActiveEffect>();
+    // private List<Modifier> modifiers = new List<Modifier>();
     
     
 
@@ -34,18 +34,4 @@ public class Unit : GridPositionable
 }
 
 
-public class Health
-{
-    
-}
-
-public class ActiveEffect
-{
-    
-}
-
-public class Modifier
-{
-    
-}
 

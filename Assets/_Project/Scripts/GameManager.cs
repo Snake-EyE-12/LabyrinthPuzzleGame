@@ -1,12 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Capstone.DataLoad;
 using Guymon.DesignPatterns;
 using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    private GameState gameState = GameState.CharacterSelection;
+    [SerializeField] private RoundMenuDisplay roundMenuDisplayPrefab;
+    public int currentRound = 0;
+    //private GameState gameState = GameState.CharacterSelection;
 
     // private void Update()
     // {
@@ -23,10 +26,24 @@ public class GameManager : Singleton<GameManager>
     //     }
     // }
 
-    public void SetTeam(List<string> team)
+    private List<CharacterData> team = new List<CharacterData>();
+    public void SetTeam(List<string> teamLayout)
     {
-        //set team
-        //begin game - load first event options
+        for (int i = 0; i < teamLayout.Count; i++)
+        {
+            team.Add(GameComponentDealer.GetCharacterData(teamLayout[i], DataHolder.currentMode.CharacterSelection.InitialDegree));
+        }
+        ContinueMission();
+        
+
+
+    }
+
+    [SerializeField] private Transform eventMenuParent;
+    public void ContinueMission()
+    {
+        currentRound++;
+        Instantiate(roundMenuDisplayPrefab, eventMenuParent).Set(DataHolder.EventsForEachRound[currentRound]);
     }
 }
 
