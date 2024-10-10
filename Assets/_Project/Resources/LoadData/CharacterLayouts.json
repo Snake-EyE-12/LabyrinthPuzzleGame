@@ -35,6 +35,9 @@
     {
       "Name":"Test",
       "Characters":[
+        "Offensive",
+        "Offensive",
+        "Offensive",
         "Offensive"
       ],
       "Weight": 1000
