@@ -8,30 +8,17 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private RoundMenuDisplay roundMenuDisplayPrefab;
-    public int currentRound = 0;
-    //private GameState gameState = GameState.CharacterSelection;
-
-    // private void Update()
-    // {
-    //     switch (gameState)
-    //     {
-    //         case GameState.CharacterSelection:
-    //             break;
-    //         case GameState.Event:
-    //             break;
-    //         case GameState.Over:
-    //             break;
-    //         default:
-    //             break;
-    //     }
-    // }
-
-    private List<CharacterData> team = new List<CharacterData>();
+    [HideInInspector] public int currentRound = 0;
+    [SerializeField] private EventBuilder eventBuilder;
+    
+    private List<Character> team = new List<Character>();
     public void SetTeam(List<string> teamLayout)
     {
         for (int i = 0; i < teamLayout.Count; i++)
         {
-            team.Add(GameComponentDealer.GetCharacterData(teamLayout[i], DataHolder.currentMode.CharacterSelection.InitialDegree));
+            team.Add(new Character(GameComponentDealer.GetCharacterData(teamLayout[i],
+                DataHolder.currentMode.CharacterSelection.InitialDegree)));
+            eventBuilder.SetUpEventOptions();
         }
         ContinueMission();
         
@@ -43,13 +30,16 @@ public class GameManager : Singleton<GameManager>
     public void ContinueMission()
     {
         currentRound++;
-        Instantiate(roundMenuDisplayPrefab, eventMenuParent).Set(DataHolder.EventsForEachRound[currentRound]);
+        Instantiate(roundMenuDisplayPrefab, eventMenuParent).Set(DataHolder.eventsForEachRound[currentRound]);
     }
-}
 
-public enum GameState
-{
-    CharacterSelection,
-    Event,
-    Over
+    public void PrepareEvent(EventData ed)
+    {
+        eventBuilder.PrepareEvent(ed);
+    }
+
+    public List<Character> GetCurrentTeam()
+    {
+        return team;
+    }
 }

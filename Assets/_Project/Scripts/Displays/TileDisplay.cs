@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using EventArgs = Guymon.DesignPatterns.EventArgs;
 
-public class TileDisplay : Display<Tile>, Poolable<TileDisplay>
+public class TileDisplay : Display<Tile>, GridPositionable
 {
     [SerializeField] private List<WallDisplay> wallDisplays = new List<WallDisplay>();
+    [SerializeField] private MappableOrganizer mappableOrganizer;
     public override void Render(Tile tile)
     {
         int orientation = tile.GetOrientation();
@@ -16,25 +17,48 @@ public class TileDisplay : Display<Tile>, Poolable<TileDisplay>
         }
     }
 
-    private void OnDisable()
+    public void GainControl(GridPositionable unit)
     {
-        available = true;
+        mappableOrganizer.Add(unit);
+    }
+    
+
+    private Vector2Int gridPosition;
+    public Vector2Int GetGridPosition()
+    {
+        return gridPosition;
     }
 
-    public TileDisplay GetSelf()
+    public void SetGridPosition()
     {
-        return this;
+        throw new NotImplementedException();
     }
 
-    public void Reset()
+    public void SetGridPosition(Vector2Int value)
     {
-        available = false;
-        gameObject.SetActive(true);
+        transform.position = VisualDataHolder.Instance.CoordsToPosition(value);
+        gridPosition = value;
     }
-    private bool available = false;
-    public bool IsAvailable()
+
+    
+
+    public OnTileLocation GetTileLocation()
     {
-        return available;
+        return OnTileLocation.None;
+    }
+
+    public Transform GetSelfTransform()
+    {
+        return gameObject.transform;
+    }
+
+    private Map localMap;
+    public void SetOntoMap(Map map, Vector2Int position)
+    {
+        SetGridPosition(position);
+        map.SpawnTile(this, position);
+        localMap = map;
+        
     }
 }
 

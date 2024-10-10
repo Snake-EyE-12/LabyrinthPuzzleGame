@@ -10,8 +10,8 @@ public class MapHandler : MonoBehaviour
 
     private void Awake()
     {
-        map = new Map(VisualDataHolder.Instance.gridSize, new RandomFiller());
-        mapDisplay.Render(map);
+        // map = new Map(VisualDataHolder.Instance.gridSize, new RandomFiller());
+        // mapDisplay.Render(map);
     }
 
     public void Pressed(int number, bool row)

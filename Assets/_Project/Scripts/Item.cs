@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : Collectable, GridPositionable
+public class Item : Collectable
 {
     public void Collect()
     {
@@ -13,4 +13,5 @@ public class Item : Collectable, GridPositionable
     {
         return 0;
     }
+
 }

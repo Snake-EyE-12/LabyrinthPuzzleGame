@@ -16,7 +16,6 @@ namespace Capstone.DataLoad
         public CharacterSelection CharacterSelection;
         public int Rounds;
         public EventLayout[] EventLayout;
-        public Fight[] Fights;
         
         public void Load()
         {
@@ -25,13 +24,36 @@ namespace Capstone.DataLoad
     }
     
     [System.Serializable]
-    public class Fight
+    public class FightList
+    {
+        public Fight[] Fights;
+        
+        public List<Fight> FindAllOfDegree(int roundDegree)
+        {
+            List<Fight> list = new List<Fight>();
+            foreach (var fight in Fights)
+            {
+                if (fight.Degree.inRange(roundDegree))
+                {
+                    list.Add(fight);
+                }
+            }
+            return list;
+        }
+    }
+    
+    [System.Serializable]
+    public class Fight : Weighted
     {
         public Range Degree;
         public int Weight;
         public string Border;
         public string[] Enemies;
         public FloorLayout FloorLayout;
+        public int GetWeight()
+        {
+            return Weight;
+        }
     }
 
     [System.Serializable]
@@ -88,16 +110,12 @@ namespace Capstone.DataLoad
         
         public bool alignsAt(int value)
         {
-            if (!isInRange(value)) return false;
+            if (!Range.inRange(value)) return false;
             if(value < Begin) return false;
             if (value % (Repeated + 1) > Size) return false;
             return true;
         }
-
-        private bool isInRange(int value)
-        {
-            return value >= Range.Min && value <= Range.Max;
-        }
+        
     }
 
     [System.Serializable]
@@ -177,6 +195,8 @@ namespace Capstone.DataLoad
             return list;
         }
     }
+    
+    
 
     [System.Serializable]
     public class CharacterData : Weighted
@@ -184,33 +204,20 @@ namespace Capstone.DataLoad
         public string Name;
         public string Type;
         public int Degree;
-        public Health[] Health;
+        public HealthData[] Health;
         public int Charge;
         public Inventory Inventory;
-        public ActiveEffect[] ActiveEffects;
-        public Modifier[] Modifiers;
+        public ActiveEffectData[] ActiveEffects;
         public int GetWeight()
         {
             return 10;
         }
     }
     
-    [System.Serializable]
-    public class Health
-    {
-        public string Type;
-        public int Value;
-    }
-
-    [System.Serializable]
-    public class ActiveEffect
-    {
     
-    }
-
-    [System.Serializable]
-    public class Modifier
-    {
     
+    public class Inventory
+    {   
+        // TODO: Add inventory
     }
 }

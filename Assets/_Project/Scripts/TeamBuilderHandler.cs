@@ -30,7 +30,6 @@ public class TeamBuilderHandler : MonoBehaviour
                 break;
         }
 
-        Debug.Log("Loading " + teamBuilder.GetType().Name);
         teamBuilder.Load();
     }
 

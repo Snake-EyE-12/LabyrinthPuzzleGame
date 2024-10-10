@@ -5,32 +5,31 @@ using UnityEngine;
 
 public class GridUser
 {
-    private GridBox gridBox;
+    private Grid gridBox;
 
-    public GridBox GetGridBox()
+    public Grid GetGridBox()
     {
         return gridBox;
     }
-    public void InitializeGrid(int size, GridFiller fillType)
+    public void InitializeGrid(int size)
     {
-        gridBox = new GridBox(size);
-        FillGrid(fillType);
+        gridBox = new Grid(size);
     }
 
-    private void FillGrid(GridFiller fillType)
-    {
-            for (int i = 0; i < gridBox.GetSize(); i++)
-            {
-                for (int j = 0; j < gridBox.GetSize(); j++)
-                {
-                    GridSpace space = new GridSpace();
-                    Tile tile = fillType.GetFillAt(gridBox.GetSize(), i, j);
-                    space.SetTile(tile);
-                    gridBox.Set(space, i, j);
-                }
-            }
-    }
-    
+    // private void FillGrid(GridFiller fillType)
+    // {
+    //         for (int i = 0; i < gridBox.GetSize(); i++)
+    //         {
+    //             for (int j = 0; j < gridBox.GetSize(); j++)
+    //             {
+    //                 GridSpace space = new GridSpace();
+    //                 Tile tile = fillType.GetFillAt(gridBox.GetSize(), i, j);
+    //                 space.SetTile(tile);
+    //                 gridBox.Set(space, i, j);
+    //             }
+    //         }
+    // }
+    //
     public void SlideColumn(int row, bool upwards)
     {
         if (upwards)
@@ -75,7 +74,8 @@ public class GridUser
 
     private bool IsConnectedPath(Vector2Int start, Vector2Int direction)
     {
-        return gridBox.Get(start.x, start.y).GetTile().IsOpen(direction) && gridBox.Get(start.x + direction.x, start.y + direction.y).GetTile().IsOpen(-direction);
+        return false;
+        //return gridBox.Get(start.x, start.y).GetTile().IsOpen(direction) && gridBox.Get(start.x + direction.x, start.y + direction.y).GetTile().IsOpen(-direction);
     }
 
     private void ChangePosition(GridPositionable entity, Vector2Int oldPosition, Vector2Int newPosition)

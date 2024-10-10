@@ -1,14 +1,16 @@
 using System.Collections.Generic;
+using Capstone.DataLoad;
 using UnityEngine;
 
-public class Unit : GridPositionable
+public abstract class Unit
 {
-     private Map localMap;
-    // private string unitName;
-    // private int degree;
-    // private Health health;
-    // private List<ActiveEffect> activeEffects = new List<ActiveEffect>();
-    // private List<Modifier> modifiers = new List<Modifier>();
+    protected Map localMap;
+     
+     
+    public string unitName { get; protected set; }
+    public int degree { get; protected set; }
+    public Health health { get; protected set; }
+    public ActiveEffect activeEffects { get; protected set; }
     
     
 
@@ -18,7 +20,7 @@ public class Unit : GridPositionable
     }
     public void Move(Vector2Int direction)
     {
-        localMap.Move(this, direction);
+        //localMap.Move(this, direction);
     }
 
     public void Spawn(Vector2Int pos)
@@ -26,12 +28,17 @@ public class Unit : GridPositionable
         localMap.SpawnUnit(this, pos);
     }
 
-    public Vector2Int? GetPosition()
-    {
-        return localMap.GetUnitLocation(this);
-        
-    }
+    // public Vector2Int? GetPosition()
+    // {
+    //     return localMap.GetUnitLocation(this);
+    //     
+    // }
+    //
+    //
+    //
+    // public abstract OnTileLocation GetTileLocation();
+    //
+    // public Vector2Int GridPosition { get; set; }
+    //
 }
-
-
 

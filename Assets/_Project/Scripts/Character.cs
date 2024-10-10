@@ -3,13 +3,22 @@ using Capstone.DataLoad;
 
 public class Character : Unit
 {
-    private CharacterType characterType;
-    private int charge;
-    private Inventory inventory;
+    public string characterType { get; private set; }
+    public int charge { get; private set; }
+    public Inventory inventory { get; private set; }
 
 
 
-
+    public Character(CharacterData data)
+    {
+        unitName = data.Name;
+        characterType = data.Type;
+        degree = data.Degree;
+        health = new Health(data.Health);
+        charge = data.Charge;
+        inventory = data.Inventory;
+        activeEffects = new ActiveEffect(data.ActiveEffects);
+    }
 
 
 
@@ -20,7 +29,7 @@ public class Character : Unit
         cd.Name = "Generated";
         cd.Type = type;
         cd.Degree = degree;
-        cd.Health = new Health[0];
+        cd.Health = new HealthData[0];
         cd.Charge = 5;
         cd.Inventory = new Inventory();
         
@@ -39,14 +48,4 @@ public class Character : Unit
         }
         return characterOptions[GameUtils.IndexByWeightedRandom(new List<Weighted>(characterOptions))];
     }
-}
-
-public enum CharacterType
-{
-    
-}
-
-public class Inventory
-{
-    
 }

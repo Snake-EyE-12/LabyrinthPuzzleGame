@@ -33,31 +33,5 @@
         "Repeated": 1
       }
     }
-  ],
-  "Fights": [
-    {
-      "Degree": {
-        "Min": 1,
-        "Max": 3
-      },
-      "Weight": 20,
-      "Border": "Wrap",
-      "Enemies": [
-        "Minator"
-      ],
-      "FloorLayout": {
-        "Fill": "Random",
-        "AvailableTiles": [
-          {
-            "Tile": "+",
-            "Value": 100
-          },
-          {
-            "Tile": "-",
-            "Value": 100
-          }
-        ]
-      }
-    }
   ]
 }

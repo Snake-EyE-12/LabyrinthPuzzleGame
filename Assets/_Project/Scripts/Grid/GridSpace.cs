@@ -14,13 +14,13 @@ public class GridSpace
     //     return position;
     // }
     //
-    private Tile tile;
+    private GridPositionable tile;
     private List<GridPositionable> objects = new List<GridPositionable>();
-    public Tile GetTile()
+    public GridPositionable GetTile()
     {
         return tile;
     }
-    public void SetTile(Tile tile)
+    public void SetTile(GridPositionable tile)
     {
         this.tile = tile;
     }

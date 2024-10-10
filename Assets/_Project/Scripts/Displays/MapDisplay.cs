@@ -1,51 +1,56 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Capstone.DataLoad;
 using UnityEngine;
 using EventArgs = Guymon.DesignPatterns.EventArgs;
 
 public class MapDisplay : Display<Map>
 {
-    
-    private Dictionary<Vector2Int, TileDisplay> tileDisplayGrid = new Dictionary<Vector2Int, TileDisplay>();
-
-
-    private bool built;
-    private void BuildMap(Map map)
+    public override void Render(Map item)
     {
-        built = true;
-        for (int i = 0; i < map.size; i++)
+        BuildMap();
+    }
+
+    [SerializeField] private TileDisplay tilePrefab;
+    [SerializeField] private CharacterDisplay characterPrefab;
+
+
+    private void BuildMap()
+    {
+        //Map
+        int size = DataHolder.currentMode.GridSize;
+        for (int i = 0; i < size; i++)
         {
-            for (int j = 0; j < map.size; j++)
+            for (int j = 0; j < size; j++)
             {
                 BuildNewTile(new Vector2Int(i, j));
             }
+        }
+        //Units
+        foreach (var teamMember in GameManager.Instance.GetCurrentTeam())
+        {
+            CharacterDisplay c = Instantiate(characterPrefab, transform);
+            c.Set(teamMember);
+            TileDisplay t = item.GetRandomBorderTile();
+            c.SetGridPosition(t.GetGridPosition());
+            t.GainControl(c);
         }
     }
 
     private void BuildNewTile(Vector2Int coords)
     {
-        TileDisplay newTile = ObjectFactory.Instance.GetTileDisplay();
-        newTile.transform.SetParent(transform);
-        newTile.transform.position = CoordsToPosition(coords);
-        tileDisplayGrid[coords] = newTile;
+        TileDisplay newTile = Instantiate(tilePrefab, transform);
+        newTile.Set(GetTile());
+        newTile.SetOntoMap(item, coords);
     }
 
-    private Vector3 CoordsToPosition(Vector2Int coords)
+    private Tile GetTile()
     {
-        return new Vector3(coords.x * VisualDataHolder.Instance.spacing, coords.y * VisualDataHolder.Instance.spacing, 0) + new Vector3(VisualDataHolder.Instance.origin.x, VisualDataHolder.Instance.origin.y, 0);
+        // Should Use Tile Filler
+        return Tile.GenerateRandomTile();
     }
+    
 
-    public override void Render(Map map)
-    {
-        if(!built) BuildMap(map);
-        GridBox grid = map.GetMapLayout();
-        for (int i = 0; i < map.size; i++)
-        {
-            for (int j = 0; j < map.size; j++)
-            {
-                tileDisplayGrid[new Vector2Int(i, j)].Render(grid.Get(i, j).GetTile());
-            }
-        }
-    }
+    
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class Tile : GridPositionable
+public class Tile
 {
     public Path path;
     public Rotation rotation;
@@ -38,6 +38,6 @@ public class Tile : GridPositionable
         tile.rotation.Rotate(RotationDirection.Clockwise, Random.Range(0, 4));
         return tile;
     }
-    
+
 }
 

@@ -39,8 +39,9 @@ public class DeckDisplay : Display<Deck>
 
     private TileDisplay NewTileDisplay()
     {
-        TileDisplay obj = ObjectFactory.Instance.GetTileDisplay();
-        obj.transform.SetParent(handParent);
-        return obj;
+        // TileDisplay obj = ObjectFactory.Instance.GetTileDisplay();
+        // obj.transform.SetParent(handParent);
+        // return obj;
+        return null;
     }
 }

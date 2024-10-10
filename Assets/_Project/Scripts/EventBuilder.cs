@@ -1,21 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Capstone.DataLoad;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class EventOptionHandler : MonoBehaviour
+public class EventBuilder : MonoBehaviour
 {
-    private void Awake()
-    {
-        SetUpEventOptions();
-    }
-
-    private void SetUpEventOptions()
+    public void SetUpEventOptions()
     {
         EventLayout[] allPossibleGameEvents = DataHolder.currentMode.EventLayout;
-        DataHolder.EventsForEachRound = BuildEvents(GatherEvents(allPossibleGameEvents));
+        DataHolder.eventsForEachRound = BuildEvents(GatherEvents(allPossibleGameEvents));
 
     }
 
@@ -53,8 +49,40 @@ public class EventOptionHandler : MonoBehaviour
 
         return rEvents;
     }
+
+
+    [SerializeField] private MapDisplay mapDisplayPrefab;
+    public void PrepareEvent(EventData eventData)
+    {
+        switch (eventData.Type)
+        {
+            case "Fight":
+                //Load in fight
+                Map fightMap = new Map(GetRoundFight());
+                Instantiate(mapDisplayPrefab, transform).Set(fightMap);
+                break;
+            default:
+                break;
+            
+        }
+    }
+
+    private Fight GetRoundFight()
+    {
+        List<Fight> possibleFights = DataHolder.availableFights.FindAllOfDegree(GameManager.Instance.currentRound);
+        return possibleFights[GameUtils.IndexByWeightedRandom(new List<Weighted>(possibleFights))];
+    }
     
 }
+
+
+
+
+
+
+
+
+
 
 
 public class ChosenEvent

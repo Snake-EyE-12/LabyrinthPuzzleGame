@@ -5,5 +5,9 @@ namespace Capstone.DataLoad
     {
         public int Min;
         public int Max;
+        public bool inRange(int value)
+        {
+            return value >= Min && value <= Max;
+        }
     }
 }
