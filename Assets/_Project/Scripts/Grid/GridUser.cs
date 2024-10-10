@@ -58,18 +58,19 @@ public class GridUser
     }
     public void Place(GridPositionable entity, Vector2Int position)
     {
-        gridBox.Get(position.x, position.y).AddObject(entity);
+        //gridBox.Get(position.x, position.y).AddObject(entity);
     }
 
     public bool Move(GridPositionable entity, Vector2Int direction)
     {
-        Vector2Int? foundEntityPosition = gridBox.Find(entity);
-        if(foundEntityPosition == null) return false;
-        if (!IsConnectedPath(foundEntityPosition.Value, direction)) return false;
-        
-        
-        ChangePosition(entity, foundEntityPosition.Value, (foundEntityPosition + direction).Value);
-        return true;
+        // Vector2Int? foundEntityPosition = gridBox.Find(entity);
+        // if(foundEntityPosition == null) return false;
+        // if (!IsConnectedPath(foundEntityPosition.Value, direction)) return false;
+        //
+        //
+        // ChangePosition(entity, foundEntityPosition.Value, (foundEntityPosition + direction).Value);
+        // return true;
+        return false;
     }
 
     private bool IsConnectedPath(Vector2Int start, Vector2Int direction)
@@ -80,12 +81,13 @@ public class GridUser
 
     private void ChangePosition(GridPositionable entity, Vector2Int oldPosition, Vector2Int newPosition)
     {
-        gridBox.Get(oldPosition.x, oldPosition.y).RemoveObject(entity);
-        gridBox.Get(newPosition.x, newPosition.y).AddObject(entity);
+        //gridBox.Get(oldPosition.x, oldPosition.y).RemoveObject(entity);
+        //gridBox.Get(newPosition.x, newPosition.y).AddObject(entity);
     }
 
     public Vector2Int? Find(GridPositionable entity)
     {
-        return gridBox.Find(entity);
+        //return gridBox.Find(entity);
+        return null;
     }
 }

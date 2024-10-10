@@ -64,9 +64,39 @@ public class Map
 
         return gridSpaces;
     }
+    private List<GridSpace> GetCornerTiles()
+    {
+        List<GridSpace> gridSpaces = new List<GridSpace>();
+        for(int i = 0; i < grid.GetSize(); i++)
+        {
+            for(int j = 0; j < grid.GetSize(); j++)
+            {
+                if(IsCorner(i, j)) gridSpaces.Add(grid.Get(i, j));
+            }
+        }
+
+        return gridSpaces;
+    }
+    private List<GridSpace> GetCenterTiles()
+    {
+        List<GridSpace> gridSpaces = new List<GridSpace>();
+        for(int i = 0; i < grid.GetSize(); i++)
+        {
+            for(int j = 0; j < grid.GetSize(); j++)
+            {
+                if(!IsBorder(i, j)) gridSpaces.Add(grid.Get(i, j));
+            }
+        }
+
+        return gridSpaces;
+    }
     private bool IsBorder(int x, int y)
     {
         return x == 0 || y == 0 || x == grid.GetSize() - 1 || y == grid.GetSize() - 1;
+    }
+    private bool IsCorner(int x, int y)
+    {
+        return ((x == 0 || x == grid.GetSize() - 1) && (y == 0 || y == grid.GetSize() - 1));
     }
 
 }

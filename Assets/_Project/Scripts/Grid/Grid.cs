@@ -24,15 +24,15 @@ public class Grid
         return grid[ToGridSpace(x, y)];
     }
 
-    public Vector2Int? Find(GridPositionable entity)
-    {
-        foreach (var space in grid)
-        {
-            if(space.Value.Contains(entity)) return space.Key;
-        }
-
-        return null;
-    }
+    // public Vector2Int? Find(GridPositionable entity)
+    // {
+    //     foreach (var space in grid)
+    //     {
+    //         if(space.Value.Contains(entity)) return space.Key;
+    //     }
+    //
+    //     return null;
+    // }
 
     private Vector2Int ToGridSpace(int x, int y)
     {

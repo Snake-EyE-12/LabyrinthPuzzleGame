@@ -42,4 +42,21 @@ public class GameManager : Singleton<GameManager>
     {
         return team;
     }
+
+    [SerializeField] private InputSelector selector;
+    public void AddSelectable(Selectable selectable, SelectableGroupType groupType)
+    {
+        selector.AddSelectable(selectable, groupType);
+    }
+
+    private void Start() //Temp
+    {
+        SetSelectionMode(SelectableGroupType.Team);
+    }
+
+    public void SetSelectionMode(SelectableGroupType type)
+    {
+        selector.ChangeSelectionType(type);
+        
+    }
 }

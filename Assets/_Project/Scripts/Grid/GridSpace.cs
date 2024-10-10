@@ -15,7 +15,7 @@ public class GridSpace
     // }
     //
     private GridPositionable tile;
-    private List<GridPositionable> objects = new List<GridPositionable>();
+    //private List<GridPositionable> objects = new List<GridPositionable>();
     public GridPositionable GetTile()
     {
         return tile;
@@ -24,22 +24,22 @@ public class GridSpace
     {
         this.tile = tile;
     }
-    public void AddObject(GridPositionable obj)
-    {
-        objects.Add(obj);
-    }
-    public void RemoveObject(GridPositionable obj)
-    {
-        objects.Remove(obj);
-    }
-
-    public bool Contains(GridPositionable entity)
-    {
-        foreach (var obj in objects)
-        {
-            if (obj == entity) return true;
-        }
-
-        return false;
-    }
+    // public void AddObject(GridPositionable obj)
+    // {
+    //     objects.Add(obj);
+    // }
+    // public void RemoveObject(GridPositionable obj)
+    // {
+    //     objects.Remove(obj);
+    // }
+    //
+    // public bool Contains(GridPositionable entity)
+    // {
+    //     foreach (var obj in objects)
+    //     {
+    //         if (obj == entity) return true;
+    //     }
+    //
+    //     return false;
+    // }
 }
