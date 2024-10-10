@@ -7,6 +7,7 @@ public interface GridPositionable
 
     public OnTileLocation GetTileLocation();
     public Transform GetSelfTransform();
+    public void SetLocalMap(Map map);
 }
 
 

@@ -46,3 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 4097448878186737332, guid: 2b4b8b524226e0743a7167ac9a67792c, type: 3}
   characterPrefab: {fileID: 8373109335307257006, guid: 79fb7bddcc1c05a44b3d9c05c80e1208, type: 3}
+  enemyPrefab: {fileID: 4669793311155528809, guid: 0b159f224839a444fb45d75ae7233c5a, type: 3}

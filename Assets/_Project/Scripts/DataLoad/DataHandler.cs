@@ -18,6 +18,7 @@ public class DataHandler : MonoBehaviour
         DataHolder.characterLayoutTable = GameDataReader.ConvertToJsonObject<CharacterLayoutTable>("LoadData/CharacterLayouts");
 
         DataHolder.availableCharacters = GameDataReader.ConvertToJsonObject<CharacterList>("LoadData/Characters");
+        DataHolder.availableEnemies = GameDataReader.ConvertToJsonObject<EnemyList>("LoadData/Enemies");
         DataHolder.availableFights = GameDataReader.ConvertToJsonObject<FightList>("LoadData/Fights");
         
         

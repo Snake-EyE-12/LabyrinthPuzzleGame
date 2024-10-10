@@ -1,0 +1,64 @@
+{
+  "Enemies":[
+    {
+      "Name":"Minator",
+      "Degree":20,
+      "Weight":1,
+      "Health":[
+        {
+          "Blood":5
+        }
+      ],
+      "Type":"Boss",
+      "IQ":5,
+      "AttackLayout":[
+        {
+          "Weight":1,
+          "Shape":"Line",
+          "Power":2,
+          "Ability":{
+            "Value": 1,
+            "Target": "Opponent",
+            "Keys": ["Damage"]
+          }
+        }
+      ],
+      "ActiveEffects":[]
+    },
+    {
+      "Name":"Giant",
+      "Degree":20,
+      "Weight":1,
+      "Health":[
+        {
+          "Blood":9
+        }
+      ],
+      "Type":"Boss",
+      "IQ":1,
+      "AttackLayout":[
+        {
+          "Weight":1,
+          "Shape":"Square",
+          "Power":5,
+          "Ability":{
+            "Value": 2,
+            "Target": "Opponent",
+            "Keys": ["Damage"]
+          }
+        },
+        {
+          "Weight":10,
+          "Shape":"Line",
+          "Power":1,
+          "Ability":{
+            "Value": 7,
+            "Target": "Opponent",
+            "Keys": ["Damage"]
+          }
+        }
+      ],
+      "ActiveEffects":[]
+    }
+  ]
+}

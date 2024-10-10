@@ -12,14 +12,15 @@ public class Tile
     public bool IsOpen(Vector2Int direction)
     {
         int bitDirection = directionToBits(direction);
+        //Debug.Log("IsOpenDirection: " + Convert.ToString(bitDirection, 2) + " =? " + Convert.ToString((GetOrientation() & bitDirection), 2));
         return (GetOrientation() & bitDirection) == bitDirection;
     }
 
     private int directionToBits(Vector2Int direction)
     {
         if(direction == Vector2Int.up) return 1;
-        if(direction == Vector2Int.down) return 2;
-        if(direction == Vector2Int.right) return 4;
+        if(direction == Vector2Int.right) return 2;
+        if(direction == Vector2Int.down) return 4;
         if(direction == Vector2Int.left) return 8;
         return 0;
     }

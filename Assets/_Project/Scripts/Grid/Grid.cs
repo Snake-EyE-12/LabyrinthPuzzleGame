@@ -23,27 +23,24 @@ public class Grid
     {
         return grid[ToGridSpace(x, y)];
     }
-
-    // public Vector2Int? Find(GridPositionable entity)
-    // {
-    //     foreach (var space in grid)
-    //     {
-    //         if(space.Value.Contains(entity)) return space.Key;
-    //     }
-    //
-    //     return null;
-    // }
-
+    public GridSpace Get(Vector2Int xy)
+    {
+        return grid[ToGridSpace(xy)];
+    }
     private Vector2Int ToGridSpace(int x, int y)
     {
         return new Vector2Int(GameUtils.ModPositive(x, size), GameUtils.ModPositive(y, size));
+    }
+    private Vector2Int ToGridSpace(Vector2Int xy)
+    {
+        return new Vector2Int(GameUtils.ModPositive(xy.x, size), GameUtils.ModPositive(xy.y, size));
     }
     
     
     
     
     
-    public void PlaceTileAt(int x, int y, GridPositionable tile)
+    public void PlaceTileAt(int x, int y, TileDisplay tile)
     {
         Vector2Int position = ToGridSpace(x, y);
         EnsurePosition(position);
@@ -57,9 +54,10 @@ public class Grid
         }
     }
 
-    public List<GridSpace> GetAllSpaces()
+    public bool IsConnectedDirection(Vector2Int start, Vector2Int direction)
     {
-        return new List<GridSpace>(grid.Values);
-        
+        bool canMove = Get(start.x, start.y).GetTile().IsOpen(direction) && Get(start.x + direction.x, start.y + direction.y).GetTile().IsOpen(-direction);
+        Debug.Log("Can move: " + canMove + " | From: " + start + " | Direction: " + direction);
+        return canMove;
     }
 }

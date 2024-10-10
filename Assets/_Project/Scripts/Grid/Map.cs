@@ -7,10 +7,12 @@ public class Map
 {
     private Grid grid;
 
+    private Fight activeFight;
     public Map(Fight fight)
     {
         grid = new Grid(DataHolder.currentMode.GridSize);
-        
+        activeFight = fight;
+
         //Temporary
         // Unit hero = new Unit();
         // hero.SetMap(this);
@@ -19,7 +21,12 @@ public class Map
         // hero.Move(Vector2Int.up);
         // Debug.Log(gridHandler.GetGridBox().Find(hero));
     }
-    public void SpawnTile(GridPositionable tile, Vector2Int position)
+
+    public string[] GetStartingEnemyNames()
+    {
+        return activeFight.Enemies;
+    }
+    public void SpawnTile(TileDisplay tile, Vector2Int position)
     {
         grid.PlaceTileAt(position.x, position.y, tile);
     }
@@ -32,18 +39,29 @@ public class Map
 
     public void Move(GridPositionable entity, Vector2Int direction)
     {
-        //gridHandler.Move(entity, direction);
-    }
+        Vector2Int currentPos = entity.GetGridPosition();
+        Vector2Int newPosition = currentPos + direction;
 
-    public void SpawnUnit(Unit unit, Vector2Int position)
-    {
-        //gridHandler.Place(unit, position);
+        if (grid.IsConnectedDirection(currentPos, direction))
+        {
+            grid.Get(newPosition).GetTile().GainControl(entity);
+        }
     }
-
-    public Vector2Int? GetUnitLocation(Unit unit)
+    //
+    // public void SpawnUnit(Unit unit, Vector2Int position)
+    // {
+    //     //gridHandler.Place(unit, position);
+    // }
+    //
+    // public Vector2Int? GetUnitLocation(Unit unit)
+    // {
+    //     return null;
+    //     //return gridHandler.Find(unit);
+    // }
+    public TileDisplay GetRandomCenterTile()
     {
-        return null;
-        //return gridHandler.Find(unit);
+        List<GridSpace> gridSpaces = GetCenterTiles();
+        return gridSpaces[Random.Range(0, gridSpaces.Count)].GetTile() as TileDisplay;
     }
 
     public TileDisplay GetRandomBorderTile()

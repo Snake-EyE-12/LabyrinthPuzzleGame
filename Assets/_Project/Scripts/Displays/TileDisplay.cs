@@ -20,6 +20,7 @@ public class TileDisplay : Display<Tile>, GridPositionable
     public void GainControl(GridPositionable unit)
     {
         mappableOrganizer.Add(unit);
+        unit.SetGridPosition(GetGridPosition());
     }
     
 
@@ -52,13 +53,23 @@ public class TileDisplay : Display<Tile>, GridPositionable
         return gameObject.transform;
     }
 
+    public void SetLocalMap(Map map)
+    {
+        localMap = map;
+    }
+
     private Map localMap;
     public void SetOntoMap(Map map, Vector2Int position)
     {
         SetGridPosition(position);
         map.SpawnTile(this, position);
-        localMap = map;
-        
+        SetLocalMap(map);
+
+    }
+
+    public bool IsOpen(Vector2Int direction)
+    {
+        return item.IsOpen(direction);
     }
 }
 

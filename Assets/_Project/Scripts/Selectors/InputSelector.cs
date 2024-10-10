@@ -48,6 +48,17 @@ public class InputSelector : MonoBehaviour
         active.Shift();
         
     }
+    public Selectable GetSelected()
+    {
+        if (active == null) return null;
+        return active.ChooseSelected();
+    }
+
+    public void Activate(SelectableActivatorData data)
+    {
+        if (active == null) return;
+        active.Activate(data);
+    }
 }
 
 public enum SelectableGroupType
@@ -69,6 +80,12 @@ public class SelectorGroup
     public SelectorGroup(SelectableGroupType selectType)
     {
         Type = selectType;
+    }
+
+    public void Activate(SelectableActivatorData data)
+    {
+        if(currentSelectedIndex == -1) return;
+        selectables[currentSelectedIndex].Activate(data);
     }
     public void Cancel()
     {
@@ -133,4 +150,17 @@ public interface Selectable
     public void Deselect();
     public int GetOrderValue();
     public bool IsCurrentlySelectable();
+    public void Activate(SelectableActivatorData data);
+}
+public class SelectableActivatorData
+{
+    
+}
+public class DirectionalSelectableActivatorData : SelectableActivatorData
+{
+    public DirectionalSelectableActivatorData(Vector2Int value)
+    {
+        direction = value;
+    }
+    public Vector2Int direction;
 }

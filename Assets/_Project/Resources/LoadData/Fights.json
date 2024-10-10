@@ -8,7 +8,8 @@
       "Weight": 20,
       "Border": "Wrap",
       "Enemies": [
-        "Minator"
+        "Minator",
+        "Giant"
       ],
       "FloorLayout": {
         "Fill": "Random",

@@ -14,6 +14,7 @@ public class MapDisplay : Display<Map>
 
     [SerializeField] private TileDisplay tilePrefab;
     [SerializeField] private CharacterDisplay characterPrefab;
+    [SerializeField] private EnemyDisplay enemyPrefab;
 
 
     private void BuildMap()
@@ -27,12 +28,23 @@ public class MapDisplay : Display<Map>
                 BuildNewTile(new Vector2Int(i, j));
             }
         }
-        //Units
+        //Team Units
         foreach (var teamMember in GameManager.Instance.GetCurrentTeam())
         {
             CharacterDisplay c = Instantiate(characterPrefab, transform);
             c.Set(teamMember);
+            c.SetLocalMap(item);
             TileDisplay t = item.GetRandomBorderTile();
+            c.SetGridPosition(t.GetGridPosition());
+            t.GainControl(c);
+        }
+        //Villains
+        foreach (var enemy in item.GetStartingEnemyNames())
+        {
+            EnemyDisplay c = Instantiate(enemyPrefab, transform);
+            c.Set(new Enemy(Enemy.Load(enemy)));
+            c.SetLocalMap(item);
+            TileDisplay t = item.GetRandomCenterTile();
             c.SetGridPosition(t.GetGridPosition());
             t.GainControl(c);
         }

@@ -12,6 +12,22 @@ public class TestInput : MonoBehaviour
         {
             selector.SelectFirst();
         }
+        if(Input.GetKeyDown(KeyCode.W))
+        {
+            selector.Activate(new DirectionalSelectableActivatorData(Vector2Int.up));
+        }
+        if(Input.GetKeyDown(KeyCode.S))
+        {
+            selector.Activate(new DirectionalSelectableActivatorData(Vector2Int.down));
+        }
+        if(Input.GetKeyDown(KeyCode.A))
+        {
+            selector.Activate(new DirectionalSelectableActivatorData(Vector2Int.left));
+        }
+        if(Input.GetKeyDown(KeyCode.D))
+        {
+            selector.Activate(new DirectionalSelectableActivatorData(Vector2Int.right));
+        }
         
         
         

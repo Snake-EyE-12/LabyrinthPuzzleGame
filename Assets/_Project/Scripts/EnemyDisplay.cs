@@ -1,23 +1,22 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Capstone.DataLoad;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
+public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable
 {
     [SerializeField] private Image coloredImage;
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private SelectionDisplay selectionIndicator;
-    public override void Render(Character item)
+    
+    public override void Render(Enemy item)
     {
-        coloredImage.color = DataHolder.characterColorEquivalenceTable.GetColor(item.characterType);
+        //coloredImage.color = DataHolder.characterColorEquivalenceTable.GetColor(item.type);
         nameText.text = item.unitName;
     }
-
-
+    
+    
     private Vector2Int gridPosition;
     public Vector2Int GetGridPosition()
     {
@@ -31,7 +30,7 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
 
     public OnTileLocation GetTileLocation()
     {
-        return OnTileLocation.Left;
+        return OnTileLocation.Right;
     }
 
     public Transform GetSelfTransform()
@@ -67,14 +66,14 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
 
     public void Activate(SelectableActivatorData data)
     {
-        if (data is DirectionalSelectableActivatorData)
-        {
-            localMap.Move(this, (data as DirectionalSelectableActivatorData).direction);
-        }
+        
     }
 
     private void Start()
     {
-        GameManager.Instance.AddSelectable(this, SelectableGroupType.Team);
+        GameManager.Instance.AddSelectable(this, SelectableGroupType.Enemy);
     }
+    
+    
+    
 }

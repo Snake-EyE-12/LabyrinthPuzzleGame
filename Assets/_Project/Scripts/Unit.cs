@@ -13,20 +13,20 @@ public abstract class Unit
     public ActiveEffect activeEffects { get; protected set; }
     
     
-
-    public void SetMap(Map map)
-    {
-        localMap = map;
-    }
-    public void Move(Vector2Int direction)
-    {
-        //localMap.Move(this, direction);
-    }
-
-    public void Spawn(Vector2Int pos)
-    {
-        localMap.SpawnUnit(this, pos);
-    }
+    //
+    // public void SetMap(Map map)
+    // {
+    //     localMap = map;
+    // }
+    // public void Move(Vector2Int direction)
+    // {
+    //     //localMap.Move(this, direction);
+    // }
+    //
+    // public void Spawn(Vector2Int pos)
+    // {
+    //     localMap.SpawnUnit(this, pos);
+    // }
 
     // public Vector2Int? GetPosition()
     // {

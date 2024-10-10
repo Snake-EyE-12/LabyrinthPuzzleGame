@@ -195,8 +195,6 @@ namespace Capstone.DataLoad
             return list;
         }
     }
-    
-    
 
     [System.Serializable]
     public class CharacterData : Weighted
@@ -214,10 +212,73 @@ namespace Capstone.DataLoad
         }
     }
     
+    [System.Serializable]
+    public class EnemyList
+    {
+        public EnemyData[] Enemies;
+        
+        public List<EnemyData> FindAllOfType(string type)
+        {
+            List<EnemyData> list = new List<EnemyData>();
+            foreach (var character in Enemies)
+            {
+                if (character.Type.Equals(type))
+                {
+                    list.Add(character);
+                }
+            }
+            return list;
+        }
+
+        public EnemyData FindFirstOfName(string name)
+        {
+            foreach (var character in Enemies)
+            {
+                if (character.Name.Equals(name))
+                {
+                    return character;
+                }
+            }
+            return null;
+        }
+    }
+
+    [System.Serializable]
+    public class EnemyData : Weighted
+    {
+        public string Name;
+        public int Degree;
+        public int Weight;
+        public HealthData[] Health;
+        public string Type;
+        public int IQ;
+        public AttackData[] AttackLayout;
+        public ActiveEffectData[] ActiveEffects;
+        public int GetWeight()
+        {
+            return 10;
+        }
+    }
+    
     
     
     public class Inventory
     {   
         // TODO: Add inventory
+    }
+
+    public class AttackData
+    {
+        public int Weight;
+        public string Shape;
+        public int Power;
+        public AbilityData Ability;
+    }
+
+    public class AbilityData
+    {
+        public int value;
+        public string Target;
+        public string[] Keys;
     }
 }
