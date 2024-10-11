@@ -18,5 +18,6 @@ public class EventAcceptorButtonDisplay : Display<EventData>
     public void OnClick()
     {
         GameManager.Instance.PrepareEvent(item);
+        Destroy(gameObject);
     }
 }

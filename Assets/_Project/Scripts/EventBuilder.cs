@@ -72,6 +72,8 @@ public class EventBuilder : MonoBehaviour
         List<Fight> possibleFights = DataHolder.availableFights.FindAllOfDegree(GameManager.Instance.currentRound);
         return possibleFights[GameUtils.IndexByWeightedRandom(new List<Weighted>(possibleFights))];
     }
+
+    
     
 }
 

@@ -33,6 +33,12 @@ public class GameManager : Singleton<GameManager>
         Instantiate(roundMenuDisplayPrefab, eventMenuParent).Set(DataHolder.eventsForEachRound[currentRound]);
     }
 
+    public void BeginBoardFight()
+    {
+        Debug.Log("Beginning Fight");
+        SetSelectionMode(SelectableGroupType.Team);
+    }
+
     public void PrepareEvent(EventData ed)
     {
         eventBuilder.PrepareEvent(ed);
@@ -49,10 +55,7 @@ public class GameManager : Singleton<GameManager>
         selector.AddSelectable(selectable, groupType);
     }
 
-    private void Start() //Temp
-    {
-        SetSelectionMode(SelectableGroupType.Team);
-    }
+    
 
     public void SetSelectionMode(SelectableGroupType type)
     {
