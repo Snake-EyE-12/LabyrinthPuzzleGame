@@ -28,6 +28,13 @@ public class TestInput : MonoBehaviour
         {
             selector.Activate(new DirectionalSelectableActivatorData(Vector2Int.right));
         }
+        if(Input.GetKeyDown(KeyCode.Z))
+        {
+            if(Input.GetKey(KeyCode.L))
+            {
+                Debug.Log("Undo");
+            }
+        }
         
         
         
