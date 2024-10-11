@@ -2,28 +2,45 @@ using Guymon.DesignPatterns;
 
 public abstract class RoundPhase
 {
-    public virtual void StartPhase() { SkipPhase(); }
+    protected TurnManager tm;
+
+    public RoundPhase(TurnManager tm)
+    {
+        this.tm = tm;
+    }
+
+    public virtual void StartPhase()
+    {
+        SkipPhase();
+    }
     public virtual void UpdatePhase() { }
     public virtual void EndPhase() { }
-    protected void SkipPhase() { TurnManager.Instance.NextPhase();}
+    protected void SkipPhase() { tm.NextPhase();}
 }
 
 
 public class OpponentTurnPhase : RoundPhase
 {
-    
+    public OpponentTurnPhase(TurnManager tm) : base(tm)
+    {
+    }
 }
 public class DrawCardsPhase : RoundPhase
 {
+    public DrawCardsPhase(TurnManager tm) : base(tm)
+    {
+    }
+
     public override void StartPhase()
     {
+        this.tm = tm;
         EventHandler.AddListener("DrawCards/LimitReached", OnLimitReached);
         EventHandler.Invoke("Phase/DrawCards", null);
     }
 
     public void OnLimitReached(EventArgs args)
     {
-        TurnManager.Instance.NextPhase();
+        tm.NextPhase();
     }
 
     public override void EndPhase()
@@ -33,20 +50,35 @@ public class DrawCardsPhase : RoundPhase
 }
 public class PlayCardsPhase : RoundPhase
 {
+    public PlayCardsPhase(TurnManager tm) : base(tm)
+    {
+    }
+
     public override void StartPhase()
     {
-        
+        this.tm = tm;
     }
 }
 public class TeamTurnPhase : RoundPhase
 {
-    
+    public TeamTurnPhase(TurnManager tm) : base(tm)
+    {
+    }
+
+    public override void StartPhase()
+    {
+        GameManager.Instance.SetSelectionMode(SelectableGroupType.Team);
+    }
 }
 public class DamagePhase : RoundPhase
 {
-    
+    public DamagePhase(TurnManager tm) : base(tm)
+    {
+    }
 }
 public class CompletionPhase : RoundPhase
 {
-    
+    public CompletionPhase(TurnManager tm) : base(tm)
+    {
+    }
 }

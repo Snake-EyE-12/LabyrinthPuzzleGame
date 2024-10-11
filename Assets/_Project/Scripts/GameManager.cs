@@ -33,10 +33,10 @@ public class GameManager : Singleton<GameManager>
         Instantiate(roundMenuDisplayPrefab, eventMenuParent).Set(DataHolder.eventsForEachRound[currentRound]);
     }
 
+    [SerializeField] private TurnManager turnManager;
     public void BeginBoardFight()
     {
-        Debug.Log("Beginning Fight");
-        SetSelectionMode(SelectableGroupType.Team);
+        turnManager.NextPhase();
     }
 
     public void PrepareEvent(EventData ed)

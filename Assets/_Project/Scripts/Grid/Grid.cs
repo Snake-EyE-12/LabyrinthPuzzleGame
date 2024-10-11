@@ -57,7 +57,6 @@ public class Grid
     public bool IsConnectedDirection(Vector2Int start, Vector2Int direction)
     {
         bool canMove = Get(start.x, start.y).GetTile().IsOpen(direction) && Get(start.x + direction.x, start.y + direction.y).GetTile().IsOpen(-direction);
-        Debug.Log("Can move: " + canMove + " | From: " + start + " | Direction: " + direction);
         return canMove;
     }
 }
