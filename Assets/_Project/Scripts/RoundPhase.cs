@@ -33,7 +33,6 @@ public class DrawCardsPhase : RoundPhase
 
     public override void StartPhase()
     {
-        this.tm = tm;
         EventHandler.AddListener("DrawCards/LimitReached", OnLimitReached);
         EventHandler.Invoke("Phase/DrawCards", null);
     }
@@ -56,7 +55,7 @@ public class PlayCardsPhase : RoundPhase
 
     public override void StartPhase()
     {
-        this.tm = tm;
+        GameManager.Instance.SetSelectionMode(SelectableGroupType.Card);
     }
 }
 public class TeamTurnPhase : RoundPhase
