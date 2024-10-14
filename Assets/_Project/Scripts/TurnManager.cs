@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Guymon.DesignPatterns;
+using NaughtyAttributes;
 using UnityEngine;
 
 public class TurnManager : MonoBehaviour
@@ -31,7 +32,7 @@ public class TurnManager : MonoBehaviour
         GetCurrentPhase().UpdatePhase();
     }
 
-    [ContextMenu(nameof(NextPhase))]
+    [Button(nameof(NextPhase))]
     public void NextPhase()
     {
         GetCurrentPhase()?.EndPhase();

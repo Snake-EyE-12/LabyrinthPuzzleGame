@@ -23,6 +23,30 @@
         ]
       },
       "ActiveEffects":[]
+    },
+    {
+      "Name":"Bob",
+      "Type":"Healer",
+      "Degree":1,
+      "Health":[
+        {
+          "Blood":5
+        }
+      ],
+      "Charge":5,
+      "Inventory":{
+        "ItemSlots":[
+          {},
+          {},
+          {},
+          {}
+        ],
+        "TilePieces":[
+          "D",
+          "="
+        ]
+      },
+      "ActiveEffects":[]
     }
   ]
 }
