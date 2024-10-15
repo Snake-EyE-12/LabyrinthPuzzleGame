@@ -7,8 +7,10 @@ public class MappableOrganizer : MonoBehaviour
     [SerializeField] private Transform left;
     [SerializeField] private Transform right;
     [SerializeField] private Transform bottom;
+    
     public void Add(GridPositionable unit)
     {
+        mapItems.Add(unit);
         switch (unit.GetTileLocation())
         {
             case OnTileLocation.Left:
@@ -23,4 +25,20 @@ public class MappableOrganizer : MonoBehaviour
             
         }
     }
+
+    private List<GridPositionable> mapItems = new List<GridPositionable>();
+    public void Remove(GridPositionable unit)
+    {
+        mapItems.Remove(unit);
+    }
+
+    public void ResetPositions(Vector2Int pos)
+    {
+        foreach (var i in mapItems)
+        {
+            i.SetGridPosition(pos);
+        }
+    }
+
+    
 }

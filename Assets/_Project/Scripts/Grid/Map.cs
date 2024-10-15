@@ -112,6 +112,7 @@ public class Map
 
         if (grid.IsConnectedDirection(currentPos, direction))
         {
+            grid.Get(currentPos).GetTile().LoseControl(entity);
             grid.Get(newPosition).GetTile().GainControl(entity);
         }
     }

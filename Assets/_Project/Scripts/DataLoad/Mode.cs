@@ -241,6 +241,7 @@ namespace Capstone.DataLoad
         public int Charge;
         public InventoryData Inventory;
         public ActiveEffectData[] ActiveEffects;
+        public AbilityData Ability;
         public int GetWeight()
         {
             return 10;

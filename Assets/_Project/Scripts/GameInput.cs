@@ -68,3 +68,34 @@ public class TileGameInput : GameInput
     }
     
 }
+
+public class CharacterMovementGameInput : GameInput
+{
+    public CharacterMovementGameInput(InputSelector s) : base(s)
+    {
+    }
+
+    public override void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            selector.Activate(new DirectionalSelectableActivatorData(Vector2Int.up));
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            selector.Activate(new DirectionalSelectableActivatorData(Vector2Int.down));
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            selector.Activate(new DirectionalSelectableActivatorData(Vector2Int.right));
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            selector.Activate(new DirectionalSelectableActivatorData(Vector2Int.left));
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            selector.Activate(new ConfirmSelectableActivatorData());
+        }
+    }
+}

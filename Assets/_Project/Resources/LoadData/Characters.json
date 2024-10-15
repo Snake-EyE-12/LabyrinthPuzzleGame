@@ -19,10 +19,16 @@
         ],
         "TilePieces":[
           "L",
-          "="
+          "=",
+          "+1D"
         ]
       },
-      "ActiveEffects":[]
+      "ActiveEffects":[],
+      "Ability": {
+        "Value": 1,
+        "Target": "Opponent",
+        "Keys": ["Push"]
+      }
     },
     {
       "Name":"Bob",

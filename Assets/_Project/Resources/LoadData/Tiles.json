@@ -6,13 +6,7 @@
         "Path":"NE",
         "Type":"Slide"
       },
-      "Ability":{
-        "Value":1,
-        "Target":"Opponent",
-        "Keys":[
-          "Damage"
-        ]
-      }
+      "Ability":{}
     },
     {
       "Symbol":"=",
@@ -23,12 +17,26 @@
       "Ability":{}
     },
     {
-      "Symbol":"#",
+      "Symbol":"+",
       "Tile":{
         "Path":"NESW",
         "Type":"Slide"
       },
       "Ability":{}
+    },
+    {
+      "Symbol":"+1D",
+      "Tile":{
+        "Path":"NESW",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Damage"
+        ]
+      }
     }
   ]
 }

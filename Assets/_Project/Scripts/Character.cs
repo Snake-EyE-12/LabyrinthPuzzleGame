@@ -7,6 +7,7 @@ public class Character : Unit
     public string characterType { get; private set; }
     public int charge { get; private set; }
     public Inventory inventory { get; private set; }
+    public Ability ability { get; private set; }
 
 
 
@@ -20,10 +21,11 @@ public class Character : Unit
         charge = data.Charge;
         inventory = new Inventory(data.Inventory);
         activeEffects = new ActiveEffect(data.ActiveEffects);
+        ability = new Ability(data.Ability);
     }
 
 
-
+    
 
     public static CharacterData Generate(string type, int degree)
     {
@@ -34,6 +36,7 @@ public class Character : Unit
         cd.Health = new HealthData[0];
         cd.Charge = 5;
         cd.Inventory = new InventoryData();
+        cd.Ability = new AbilityData();
         
         return cd;
     }

@@ -12,7 +12,6 @@ public class TileDisplay : Display<Tile>, GridPositionable, Selectable
     [SerializeField] private List<WallDisplay> wallDisplays = new List<WallDisplay>();
     [SerializeField] private MappableOrganizer mappableOrganizer;
     [SerializeField] private SelectionDisplay selectionIndicator;
-    [SerializeField] private Image imageTest;
     public override void Render()
     {
         int orientation = item.GetOrientation();
@@ -21,15 +20,14 @@ public class TileDisplay : Display<Tile>, GridPositionable, Selectable
             wallDisplays[i].SetVisibility((orientation & j) == 0);
         }
 
-        if (!test)
-        {
-            imageTest.color = Random.ColorHSV();
-            test = true;
-        }
+        
     }
-    private bool test;
-    
 
+
+    public void LoseControl(GridPositionable unit)
+    {
+        mappableOrganizer.Remove(unit);
+    }
     public void GainControl(GridPositionable unit)
     {
         mappableOrganizer.Add(unit);
@@ -48,6 +46,7 @@ public class TileDisplay : Display<Tile>, GridPositionable, Selectable
     {
         transform.position = VisualDataHolder.Instance.CoordsToPosition(value);
         gridPosition = value;
+        mappableOrganizer.ResetPositions(gridPosition);
     }
 
     

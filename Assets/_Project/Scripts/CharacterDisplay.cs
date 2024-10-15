@@ -70,6 +70,13 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
         if (data is DirectionalSelectableActivatorData)
         {
             localMap.Move(this, (data as DirectionalSelectableActivatorData).direction);
+            return;
+        }
+
+        if (data is ConfirmSelectableActivatorData)
+        {
+            item.ability.Use();
+            return;
         }
     }
 
