@@ -7,8 +7,8 @@ public abstract class Display<T> : MonoBehaviour
     public void Set(T item)
     {
         this.item = item;
-        Render(item);
+        Render();
     }
     
-    public abstract void Render(T item);
+    public abstract void Render();
 }

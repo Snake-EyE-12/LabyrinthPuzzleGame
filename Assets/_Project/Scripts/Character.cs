@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Capstone.DataLoad;
+using UnityEngine;
 
 public class Character : Unit
 {
@@ -11,12 +12,13 @@ public class Character : Unit
 
     public Character(CharacterData data)
     {
+        Debug.Log("Inventory: " + data.Inventory);
         unitName = data.Name;
         characterType = data.Type;
         degree = data.Degree;
         health = new Health(data.Health);
         charge = data.Charge;
-        inventory = data.Inventory;
+        inventory = new Inventory(data.Inventory);
         activeEffects = new ActiveEffect(data.ActiveEffects);
     }
 
@@ -31,7 +33,7 @@ public class Character : Unit
         cd.Degree = degree;
         cd.Health = new HealthData[0];
         cd.Charge = 5;
-        cd.Inventory = new Inventory();
+        cd.Inventory = new InventoryData();
         
         return cd;
     }
@@ -47,5 +49,24 @@ public class Character : Unit
             }
         }
         return characterOptions[GameUtils.IndexByWeightedRandom(new List<Weighted>(characterOptions))];
+    }
+}
+
+public class Inventory
+{
+    private List<Card> tilePieces = new List<Card>();
+    public Inventory(InventoryData data)
+    {
+        Debug.Log("ID: " + data);
+        foreach (var tp in data.TilePieces)
+        {
+            Debug.Log("TP: " + tp);
+            tilePieces.Add(Card.Load(tp));
+        }
+    }
+
+    public List<Card> GetCards()
+    {
+        return tilePieces;
     }
 }

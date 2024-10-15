@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Capstone.DataLoad;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -38,6 +39,21 @@ public class Tile
         tile.rotation = new Rotation();
         tile.rotation.Rotate(RotationDirection.Clockwise, Random.Range(0, 4));
         return tile;
+    }
+
+    
+
+    
+
+    public Tile()
+    {
+    }
+    
+    public Tile(TileData data)
+    {
+        path = new Path(data.Path);
+        rotation = new Rotation();
+        //type
     }
 
 }

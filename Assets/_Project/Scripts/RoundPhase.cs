@@ -53,9 +53,29 @@ public class PlayCardsPhase : RoundPhase
     {
     }
 
+    private int amountOfCardsPlaced = 0;
+
     public override void StartPhase()
     {
         GameManager.Instance.SetSelectionMode(SelectableGroupType.Card);
+        amountOfCardsPlaced = 0;
+        EventHandler.AddListener("CardPlaced", CardPlaced);
+    }
+
+    private void CardPlaced(EventArgs args)
+    {
+        amountOfCardsPlaced++;
+        if (amountOfCardsPlaced >= 2)
+        {
+            tm.NextPhase();
+            return;
+        }
+        GameManager.Instance.SetSelectionMode(SelectableGroupType.Card);
+    }
+
+    public override void EndPhase()
+    {
+        EventHandler.RemoveListenerLate("CardPlaced", CardPlaced);
     }
 }
 public class TeamTurnPhase : RoundPhase

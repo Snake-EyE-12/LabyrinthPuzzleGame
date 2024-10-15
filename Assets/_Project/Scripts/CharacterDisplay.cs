@@ -11,7 +11,7 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
     [SerializeField] private Image coloredImage;
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private SelectionDisplay selectionIndicator;
-    public override void Render(Character item)
+    public override void Render()
     {
         coloredImage.color = DataHolder.characterColorEquivalenceTable.GetColor(item.characterType);
         nameText.text = item.unitName;
@@ -75,6 +75,6 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
 
     private void Start()
     {
-        GameManager.Instance.AddSelectable(this, SelectableGroupType.Team);
+        GameManager.Instance.AddSelectable(this, selectionIndicator.type);
     }
 }

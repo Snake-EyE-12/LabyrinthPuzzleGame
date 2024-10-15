@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Capstone.DataLoad;
 using Guymon.DesignPatterns;
 using UnityEngine;
 
@@ -10,28 +11,24 @@ public class Deck
     private Collection<Card> discardPile = new ListCollection<Card>();
 
 
-    public Deck()
+    public Deck(List<Card> cards)
     {
-        drawPile.Add(new Card());
-        drawPile.Add(new Card());
-        drawPile.Add(new Card());
-        drawPile.Add(new Card());
-        drawPile.Add(new Card());
-        drawPile.Add(new Card());
-        drawPile.Add(new Card());
+        foreach (var card in cards)
+        {
+            drawPile.Add(card);
+        }
+        drawPile.Shuffle();
     }
 
-    public void Draw(DeckDisplay display, int amount)
+    public void Draw(int amount)
     {
         if(drawPile.Count() < amount) Shuffle();
         if(drawPile.Count() < amount) amount = drawPile.Count();
         for (int i = 0; i < amount; i++)
         {
-            Debug.Log("Drawing 1 Card");
             Card drawnCard = drawPile.Get();
             hand.Add(drawnCard);
             drawPile.Remove();
-            display.PullCard(drawnCard);
         }
     }
 
@@ -63,6 +60,7 @@ public class Deck
         }
         return cards;
     }
+    
 }
 
 
@@ -70,8 +68,25 @@ public class Card
 {
     private Tile tile;
 
+    public Card(Tile tile)
+    {
+        this.tile = tile;
+    }
+
+    public static Card Load(string symbol)
+    {
+        CardData cardData = DataHolder.availableTiles.FindCardBySymbol(symbol);
+
+        // Tile tile = new Tile(cardData.Tile);
+        // Debug.Log("MY TILE: " + tile);
+        // Card card = new Card(tile);
+        // Debug.Log("MY CARD: " + card);
+        Card card = new Card(new Tile(cardData.Tile));
+        return card;
+    }
+
     public Tile GetTile()
     {
-        return Tile.GenerateRandomTile();
+        return tile;
     }
 }

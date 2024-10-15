@@ -2,20 +2,33 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using EventArgs = Guymon.DesignPatterns.EventArgs;
+using EventHandler = Guymon.DesignPatterns.EventHandler;
+using Random = UnityEngine.Random;
 
-public class TileDisplay : Display<Tile>, GridPositionable
+public class TileDisplay : Display<Tile>, GridPositionable, Selectable
 {
     [SerializeField] private List<WallDisplay> wallDisplays = new List<WallDisplay>();
     [SerializeField] private MappableOrganizer mappableOrganizer;
-    public override void Render(Tile tile)
+    [SerializeField] private SelectionDisplay selectionIndicator;
+    [SerializeField] private Image imageTest;
+    public override void Render()
     {
-        int orientation = tile.GetOrientation();
+        int orientation = item.GetOrientation();
         for (int i = 0, j = 1; i < 4; i++, j *= 2)
         {
             wallDisplays[i].SetVisibility((orientation & j) == 0);
         }
+
+        if (!test)
+        {
+            imageTest.color = Random.ColorHSV();
+            test = true;
+        }
     }
+    private bool test;
+    
 
     public void GainControl(GridPositionable unit)
     {
@@ -29,11 +42,7 @@ public class TileDisplay : Display<Tile>, GridPositionable
     {
         return gridPosition;
     }
-
-    public void SetGridPosition()
-    {
-        throw new NotImplementedException();
-    }
+    
 
     public void SetGridPosition(Vector2Int value)
     {
@@ -70,6 +79,41 @@ public class TileDisplay : Display<Tile>, GridPositionable
     public bool IsOpen(Vector2Int direction)
     {
         return item.IsOpen(direction);
+    }
+    private void Start()
+    {
+        GameManager.Instance.AddSelectable(this, selectionIndicator.type);
+    }
+
+    public void Select()
+    {
+        selectionIndicator.StartSelection();
+    }
+
+    public void Deselect()
+    {
+        selectionIndicator.EndSelection();
+    }
+
+    public int GetOrderValue()
+    {
+        return gridPosition.y * DataHolder.currentMode.GridSize - gridPosition.x;
+    }
+
+    public bool IsCurrentlySelectable()
+    {
+        return true;
+    }
+
+    public void Activate(SelectableActivatorData data)
+    {
+        bool onRow = GameManager.Instance.DirectionToSlide == CardinalDirection.West ||
+                     GameManager.Instance.DirectionToSlide == CardinalDirection.East;
+        bool posDirection = GameManager.Instance.DirectionToSlide == CardinalDirection.North ||
+                            GameManager.Instance.DirectionToSlide == CardinalDirection.East;
+        localMap.Slide(onRow, posDirection, ((onRow) ? gridPosition.y : gridPosition.x));
+        EventHandler.Invoke("CardPlaced", new CardEventArgs(GameManager.Instance.cardToPlace.GetCard()));
+        GameManager.Instance.cardToPlace = null;
     }
 }
 

@@ -7,7 +7,7 @@ public class TeamOptionDisplay : Display<CharacterLayout>
     [SerializeField] private TMP_Text text;
     [SerializeField] private CharacterColorDisplay prefab;
 
-    public override void Render(CharacterLayout item)
+    public override void Render()
     {
         text.text = item.Name;
         foreach (var character in item.Characters)

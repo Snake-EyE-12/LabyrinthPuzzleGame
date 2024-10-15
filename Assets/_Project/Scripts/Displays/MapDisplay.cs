@@ -7,15 +7,28 @@ using EventArgs = Guymon.DesignPatterns.EventArgs;
 
 public class MapDisplay : Display<Map>
 {
-    public override void Render(Map item)
+    public override void Render()
     {
         BuildMap();
+        BuildDeck();
     }
 
     [SerializeField] private TileDisplay tilePrefab;
     [SerializeField] private CharacterDisplay characterPrefab;
     [SerializeField] private EnemyDisplay enemyPrefab;
+    [SerializeField] private DeckDisplay deckDisplayPrefab;
 
+    private void BuildDeck()
+    {
+        List<Card> cardsForDeck = new List<Card>();
+        foreach (var c in GameManager.Instance.GetCurrentTeam())
+        {
+            Debug.Log("Inv: " + c.inventory);
+            cardsForDeck.AddRange(c.inventory.GetCards());
+        }
+
+        Instantiate(deckDisplayPrefab, GameManager.Instance.GetCanvasParent()).Set(new Deck(cardsForDeck));
+    }
 
     private void BuildMap()
     {

@@ -7,7 +7,7 @@ public class RoundMenuDisplay : Display<EventsForRound>
 {
     [SerializeField] private EventAcceptorButtonDisplay eventAcceptorButtonDisplayPrefab;
     [SerializeField] private Transform buttonParent;
-    public override void Render(EventsForRound item)
+    public override void Render()
     {
         foreach (var e in item.events)
         {

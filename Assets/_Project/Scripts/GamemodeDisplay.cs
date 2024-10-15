@@ -11,7 +11,7 @@ public class GamemodeDisplay : Display<Mode>
     [SerializeField] private Button button;
 
     
-    public override void Render(Mode item)
+    public override void Render()
     {
         buttonText.text = item.DisplayName;
         button.onClick.AddListener(() => { OnClick(); });

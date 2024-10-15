@@ -11,10 +11,21 @@ public class InputSelector : MonoBehaviour
 
     private void Awake()
     {
-        groups.Add(new SelectorGroup(SelectableGroupType.Card));
-        groups.Add(new SelectorGroup(SelectableGroupType.Tile));
-        groups.Add(new SelectorGroup(SelectableGroupType.Team));
-        groups.Add(new SelectorGroup(SelectableGroupType.Enemy));
+        groups.Add(new SelectorGroup(SelectableGroupType.Card, new CardGameInput(this)));
+        groups.Add(new SelectorGroup(SelectableGroupType.Tile, new TileGameInput(this)));
+        groups.Add(new SelectorGroup(SelectableGroupType.Team, null));
+        groups.Add(new SelectorGroup(SelectableGroupType.Enemy, null));
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab)) //Forced Keycode
+        {
+            SelectFirst();
+        }
+        
+        if (active == null) return;
+        active.UpdateInput();
     }
 
     public void ChangeSelectionType(SelectableGroupType newType)
@@ -23,7 +34,7 @@ public class InputSelector : MonoBehaviour
         {
             if (group.Type.Equals(newType))
             {
-                active = group;
+                ChangeSelectionGroup(group);
                 return;
             }
         }
@@ -33,13 +44,17 @@ public class InputSelector : MonoBehaviour
 
     private void ChangeSelectionGroup(SelectorGroup newGroup)
     {
-        active.Cancel();
+        active?.Cancel();
         active = newGroup;
     }
     
     public void AddSelectable(Selectable selectable, SelectableGroupType groupType)
     {
         groups[((int)(groupType)) - 1].Add(selectable);
+    }
+    public void RemoveSelectable(Selectable selectable, SelectableGroupType groupType)
+    {
+        groups[((int)(groupType)) - 1].Remove(selectable);
     }
 
     public void SelectFirst()
@@ -52,6 +67,12 @@ public class InputSelector : MonoBehaviour
     {
         if (active == null) return null;
         return active.ChooseSelected();
+    }
+
+    public SelectableGroupType GetActiveType()
+    {
+        if (active == null) return SelectableGroupType.None;
+        return active.Type;
     }
 
     public void Activate(SelectableActivatorData data)
@@ -77,9 +98,17 @@ public class SelectorGroup
     private List<Selectable> selectables = new List<Selectable>();
 
     public SelectableGroupType Type { get; private set; }
-    public SelectorGroup(SelectableGroupType selectType)
+    public SelectorGroup(SelectableGroupType selectType, GameInput inputType)
     {
         Type = selectType;
+        input = inputType;
+    }
+
+    private GameInput input;
+
+    public void UpdateInput()
+    {
+        if(input != null) input.Update();
     }
 
     public void Activate(SelectableActivatorData data)
@@ -104,6 +133,12 @@ public class SelectorGroup
     public void Add(Selectable selectable)
     {
         selectables.Add(selectable);
+        OrderSelectables();
+        currentSelectedIndex = -1;
+    }
+    public void Remove(Selectable selectable)
+    {
+        selectables.Remove(selectable);
         OrderSelectables();
         currentSelectedIndex = -1;
     }
@@ -140,7 +175,7 @@ public class SelectorGroup
 
     private void OrderSelectables()
     {
-        selectables.Sort((a, b) => a.GetOrderValue().CompareTo(b.GetOrderValue()));
+        selectables.Sort((a, b) => b.GetOrderValue().CompareTo(a.GetOrderValue()));
     }
 }
 
@@ -163,4 +198,9 @@ public class DirectionalSelectableActivatorData : SelectableActivatorData
         direction = value;
     }
     public Vector2Int direction;
+}
+
+public class ConfirmSelectableActivatorData : SelectableActivatorData
+{
+    
 }

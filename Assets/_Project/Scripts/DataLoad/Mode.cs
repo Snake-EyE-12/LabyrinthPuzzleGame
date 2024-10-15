@@ -197,6 +197,41 @@ namespace Capstone.DataLoad
     }
 
     [System.Serializable]
+    public class TileList
+    {
+        public CardData[] Tiles;
+
+        public CardData FindCardBySymbol(string symbol)
+        {
+            foreach (var tile in Tiles)
+            {
+                if (tile.Symbol.Equals(symbol))
+                {
+                    return tile;
+                }
+            }
+
+            return null;
+        }
+    }
+
+    [System.Serializable]
+    public class CardData
+    {
+        public string Symbol;
+        public TileData Tile;
+        public AbilityData Ability;
+    }
+
+    [System.Serializable]
+    public class TileData
+    {
+        public string Path;
+        public string Type;
+        //ability
+    }
+
+    [System.Serializable]
     public class CharacterData : Weighted
     {
         public string Name;
@@ -204,7 +239,7 @@ namespace Capstone.DataLoad
         public int Degree;
         public HealthData[] Health;
         public int Charge;
-        public Inventory Inventory;
+        public InventoryData Inventory;
         public ActiveEffectData[] ActiveEffects;
         public int GetWeight()
         {
@@ -261,12 +296,20 @@ namespace Capstone.DataLoad
     }
     
     
-    
-    public class Inventory
+    [System.Serializable]
+    public class InventoryData
     {   
-        // TODO: Add inventory
+        public ItemSlotData[] ItemSlots;
+        public string[] TilePieces;
     }
 
+    [System.Serializable]
+    public class ItemSlotData
+    {
+        
+    }
+
+    [System.Serializable]
     public class AttackData
     {
         public int Weight;
@@ -275,6 +318,7 @@ namespace Capstone.DataLoad
         public AbilityData Ability;
     }
 
+    [System.Serializable]
     public class AbilityData
     {
         public int value;

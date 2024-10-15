@@ -1,0 +1,34 @@
+{
+  "Tiles":[
+    {
+      "Symbol":"L",
+      "Tile":{
+        "Path":"NE",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Opponent",
+        "Keys":[
+          "Damage"
+        ]
+      }
+    },
+    {
+      "Symbol":"=",
+      "Tile":{
+        "Path":"EW",
+        "Type":"Slide"
+      },
+      "Ability":{}
+    },
+    {
+      "Symbol":"#",
+      "Tile":{
+        "Path":"NESW",
+        "Type":"Slide"
+      },
+      "Ability":{}
+    }
+  ]
+}

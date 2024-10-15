@@ -10,7 +10,7 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private SelectionDisplay selectionIndicator;
     
-    public override void Render(Enemy item)
+    public override void Render()
     {
         //coloredImage.color = DataHolder.characterColorEquivalenceTable.GetColor(item.type);
         nameText.text = item.unitName;
@@ -71,7 +71,7 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable
 
     private void Start()
     {
-        GameManager.Instance.AddSelectable(this, SelectableGroupType.Enemy);
+        GameManager.Instance.AddSelectable(this, selectionIndicator.type);
     }
     
     

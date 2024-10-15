@@ -20,10 +20,11 @@ public class DataHandler : MonoBehaviour
         DataHolder.availableCharacters = GameDataReader.ConvertToJsonObject<CharacterList>("LoadData/Characters");
         DataHolder.availableEnemies = GameDataReader.ConvertToJsonObject<EnemyList>("LoadData/Enemies");
         DataHolder.availableFights = GameDataReader.ConvertToJsonObject<FightList>("LoadData/Fights");
-        
-        
-        
-        
+        DataHolder.availableTiles = GameDataReader.ConvertToJsonObject<TileList>("LoadData/Tiles");
+
+
+
+        Debug.Log("I: " + DataHolder.availableTiles.Tiles);
         
         
         GamemodeManager.Instance.PrepareGamemodes(ReadGamemodes());

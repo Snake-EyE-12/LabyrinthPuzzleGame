@@ -10,7 +10,8 @@ public class Rotation
     }
     public void Rotate(RotationDirection direction, int rotationAmount)
     {
-        currentRotation += rotationAmount;
+        if (direction == RotationDirection.Clockwise) currentRotation += rotationAmount;
+        else currentRotation -= rotationAmount;
         ClampRotation();
     }
 

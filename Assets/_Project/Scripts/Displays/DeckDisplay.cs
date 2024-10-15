@@ -3,45 +3,82 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using EventArgs = Guymon.DesignPatterns.EventArgs;
+using EventHandler = Guymon.DesignPatterns.EventHandler;
+
 
 public class DeckDisplay : Display<Deck>
 {
-    private List<TileDisplay> handTiles = new List<TileDisplay>();
+    private List<CardDisplay> handTiles = new List<CardDisplay>();
     [SerializeField] private float spacing = 2;
     [SerializeField] private Transform handParent;
-    public override void Render(Deck deck)
-    {
-        // int handSize = itemToDisplay.GetHandSize();
-        // int maxForLoop = Mathf.Max(handSize, handTiles.Count);
-        // for (int i = 0; i < maxForLoop; i++)
-        // {
-        //     if (handTiles.Count < i) handTiles.Add(NewTileDisplay());
-        //     handTiles[i].Set(itemToDisplay.GetHandCards()[i].GetTile());
-        // }
-    }
+    [SerializeField] private CardDisplay cardDisplayPrefab;
 
-    public void PullCard(Card card)
+    public override void Render()
     {
-        TileDisplay newCard = NewTileDisplay();
-        newCard.Render(card.GetTile());
-        handTiles.Add(newCard);
-        RepositionCards();
-    }
-
-    private void RepositionCards()
-    {
-        for (int i = 0; i < handTiles.Count; i++)
+        int handSize = item.GetHandSize();
+        Debug.Log("Hand Size: " + handSize);
+        int maxForLoop = Mathf.Max(handSize, handTiles.Count);
+        for (int i = 0; i < maxForLoop; i++)
         {
-            handTiles[i].transform.position = handParent.position + new Vector3(i * spacing, 0, 0);
-            
+            if (handTiles.Count - 1 < i) handTiles.Add(Instantiate(cardDisplayPrefab, handParent));
+            handTiles[i].Set(item.GetHandCards()[i]);
+        }
+    }
+    private void Awake()
+    {
+        EventHandler.AddListener("Phase/DrawCards", DrawToLimit);
+        EventHandler.AddListener("CardPlaced", DiscardSpecificCard);
+    }
+    private void DrawToLimit(EventArgs args)
+    {
+        int count = GetHandLimit() - item.GetHandSize();
+        item.Draw(count);
+        EventHandler.Invoke("DrawCards/LimitReached", null);
+        Render();
+    }
+
+    private void OnDisable()
+    {
+        EventHandler.RemoveListener("Phase/DrawCards", DrawToLimit);
+    }
+
+    private int GetHandLimit()
+    {
+        return 4;
+    }
+
+    private void DiscardSpecificCard(EventArgs args)
+    {
+        if (args is CardEventArgs)
+        {
+            Card cardToDiscard = (args as CardEventArgs).card;
+            int index = -1;
+            for (int i = 0; i < item.GetHandCards().Count; i++)
+            {
+                if (item.GetHandCards()[i].Equals(cardToDiscard))
+                {
+                    index = i;
+                    break;
+                }
+            }
+            if (index == -1) return;
+            item.Discard(index);
+            handTiles[index].RemoveFromPlay();
+            handTiles.RemoveAt(index);
         }
     }
 
-    private TileDisplay NewTileDisplay()
+    
+
+    
+}
+
+public class CardEventArgs : EventArgs
+{
+    public Card card;
+
+    public CardEventArgs(Card c)
     {
-        // TileDisplay obj = ObjectFactory.Instance.GetTileDisplay();
-        // obj.transform.SetParent(handParent);
-        // return obj;
-        return null;
+        card = c;
     }
 }

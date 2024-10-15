@@ -33,8 +33,76 @@ public class Map
     
     public void Slide(bool row, bool positive, int number)
     {
-        // if (row) gridHandler.SlideRow(number, positive);
-        // else gridHandler.SlideColumn(number, positive);
+        if(row) SlideRow(number, positive, GameManager.Instance.cardToPlace.GetTile());
+        else SlideColumn(number, positive, GameManager.Instance.cardToPlace.GetTile());
+        
+    }
+    private void SlideColumn(int x, bool upwards, Tile replacer)
+    {
+        if (upwards)
+        {
+            GridSpace fallOffSpace = grid.Get(x, grid.GetSize() - 1);
+            for (int y = grid.GetSize() - 1; y > 0; y--)
+            {
+                grid.Get(x, y - 1).GetTile().SetGridPosition(new Vector2Int(x, y));
+                grid.Set(grid.Get(x, y - 1), x, y);
+            }
+
+            Vector2Int replacePos = new Vector2Int(x, 0);
+            grid.Set(fallOffSpace, replacePos.x, replacePos.y);
+            fallOffSpace.GetTile().Set(replacer);
+            fallOffSpace.GetTile().SetGridPosition(replacePos);
+            Debug.Log("UPWARDS COLUMN");
+        }
+        else
+        {
+            GridSpace fallOffSpace = grid.Get(x, 0);
+            for (int y = 0; y < grid.GetSize() - 1; y++)
+            {
+                grid.Get(x, y + 1).GetTile().SetGridPosition(new Vector2Int(x, y));
+                grid.Set(grid.Get(x, y + 1), x, y);
+            }
+            
+            Vector2Int replacePos = new Vector2Int(x, grid.GetSize() - 1);
+            grid.Set(fallOffSpace, replacePos.x, replacePos.y);
+            fallOffSpace.GetTile().Set(replacer);
+            fallOffSpace.GetTile().SetGridPosition(replacePos);
+            Debug.Log("DOWN COLUMN");
+        }
+        
+    }
+    private void SlideRow(int y, bool upwards, Tile replacer)
+    {
+        if (upwards)
+        {
+            GridSpace fallOffSpace = grid.Get(grid.GetSize() - 1, y);
+            for (int x = grid.GetSize() - 1; x > 0; x--)
+            {
+                grid.Get(x - 1, y).GetTile().SetGridPosition(new Vector2Int(x, y));
+                grid.Set(grid.Get(x - 1, y), x, y);
+            }
+
+            Vector2Int replacePos = new Vector2Int(0, y);
+            grid.Set(fallOffSpace, replacePos.x, replacePos.y);
+            fallOffSpace.GetTile().Set(replacer);
+            fallOffSpace.GetTile().SetGridPosition(replacePos);
+            Debug.Log("right ROW");
+        }
+        else
+        {
+            GridSpace fallOffSpace = grid.Get(0, y);
+            for (int x = 0; x < grid.GetSize() - 1; x++)
+            {
+                grid.Get(x + 1, y).GetTile().SetGridPosition(new Vector2Int(x, y));
+                grid.Set(grid.Get(x + 1, y), x, y);
+            }
+
+            Vector2Int replacePos = new Vector2Int(grid.GetSize() - 1, y);
+            grid.Set(fallOffSpace, replacePos.x, replacePos.y);
+            fallOffSpace.GetTile().Set(replacer);
+            fallOffSpace.GetTile().SetGridPosition(replacePos);
+            Debug.Log("Left ROW");
+        }
     }
 
     public void Move(GridPositionable entity, Vector2Int direction)

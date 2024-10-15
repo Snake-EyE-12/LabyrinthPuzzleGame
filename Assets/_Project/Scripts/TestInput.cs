@@ -28,9 +28,14 @@ public class TestInput : MonoBehaviour
         {
             selector.Activate(new DirectionalSelectableActivatorData(Vector2Int.right));
         }
+
+        if (Input.GetKeyDown(KeyCode.KeypadEnter))
+        {
+            selector.Activate(new ConfirmSelectableActivatorData());
+        }
         if(Input.GetKeyDown(KeyCode.Z))
         {
-            if(Input.GetKey(KeyCode.L))
+            if(Input.GetKey(KeyCode.LeftControl))
             {
                 Debug.Log("Undo");
             }

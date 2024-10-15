@@ -9,7 +9,7 @@ public class EventAcceptorButtonDisplay : Display<EventData>
 {
     [SerializeField] private TMP_Text btnText;
     [SerializeField] private Button btn;
-    public override void Render(EventData item)
+    public override void Render()
     {
         btnText.text = item.Type;
         btn.onClick.AddListener(OnClick);
