@@ -6,7 +6,8 @@
       "Weight":1,
       "Health":[
         {
-          "Blood":5
+          "Type":"Blood",
+          "Value":7
         }
       ],
       "Type":"Boss",
@@ -31,7 +32,8 @@
       "Weight":1,
       "Health":[
         {
-          "Blood":9
+          "Type":"Blood",
+          "Value":9
         }
       ],
       "Type":"Boss",

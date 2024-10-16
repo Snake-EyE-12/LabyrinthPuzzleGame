@@ -241,7 +241,7 @@ namespace Capstone.DataLoad
         public int Charge;
         public InventoryData Inventory;
         public ActiveEffectData[] ActiveEffects;
-        public AbilityData Ability;
+        public AbilityData[] Abilities;
         public int GetWeight()
         {
             return 10;
@@ -322,7 +322,7 @@ namespace Capstone.DataLoad
     [System.Serializable]
     public class AbilityData
     {
-        public int value;
+        public int Value;
         public string Target;
         public string[] Keys;
     }

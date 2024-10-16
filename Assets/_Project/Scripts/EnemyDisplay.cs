@@ -4,11 +4,13 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable
+public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Targetable
 {
     [SerializeField] private Image coloredImage;
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private SelectionDisplay selectionIndicator;
+    [SerializeField] private HealthbarDisplay healthBar;
+    private Damager damager;
     
     public override void Render()
     {
@@ -66,14 +68,40 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable
 
     public void Activate(SelectableActivatorData data)
     {
-        
+        GameManager.Instance.AbilityInUse.Use(this);
     }
 
     private void Start()
     {
         GameManager.Instance.AddSelectable(this, selectionIndicator.type);
+        damager = new Damager(item);
+        healthBar.Set(item.health);
     }
-    
-    
-    
+
+
+    public void HitByAbility(Ability ability)
+    {
+        ability.Use(this);
+    }
+
+    public void ChangeHealth(int amount)
+    {
+        Debug.Log("Health Lost: " + amount);
+        if (amount < 0)
+        {
+            damager.TakeDamage(-amount);
+        }
+        else damager.Heal(amount);
+        healthBar.Render();
+    }
+
+    public void ApplyEffect(ActiveEffect effect)
+    {
+        damager.ApplyEffect(effect);
+    }
+
+    public void Move(Vector2Int direction)
+    {
+        
+    }
 }

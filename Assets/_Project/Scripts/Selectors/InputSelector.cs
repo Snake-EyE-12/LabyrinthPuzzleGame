@@ -14,17 +14,23 @@ public class InputSelector : MonoBehaviour
         groups.Add(new SelectorGroup(SelectableGroupType.Card, new CardGameInput(this)));
         groups.Add(new SelectorGroup(SelectableGroupType.Tile, new TileGameInput(this)));
         groups.Add(new SelectorGroup(SelectableGroupType.Team, new CharacterMovementGameInput(this)));
-        groups.Add(new SelectorGroup(SelectableGroupType.Enemy, null));
+        groups.Add(new SelectorGroup(SelectableGroupType.Enemy, new AbilityGameInput(this)));
+        groups.Add(new SelectorGroup(SelectableGroupType.Ability, new AbilityGameInput(this)));
     }
 
     private void Update()
     {
+        if (active == null) return;
         if (Input.GetKeyDown(KeyCode.Tab)) //Forced Keycode
         {
-            SelectFirst();
+            active.Shift();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            active.Cancel();
         }
         
-        if (active == null) return;
         active.UpdateInput();
     }
 
@@ -57,12 +63,7 @@ public class InputSelector : MonoBehaviour
         groups[((int)(groupType)) - 1].Remove(selectable);
     }
 
-    public void SelectFirst()
-    {
-        if (active == null) return;
-        active.Shift();
-        
-    }
+    
     public Selectable GetSelected()
     {
         if (active == null) return null;
@@ -88,7 +89,8 @@ public enum SelectableGroupType
     Card,
     Tile,
     Team,
-    Enemy
+    Enemy,
+    Ability
     
 }
 

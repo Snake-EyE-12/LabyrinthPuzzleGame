@@ -7,13 +7,12 @@ public class Character : Unit
     public string characterType { get; private set; }
     public int charge { get; private set; }
     public Inventory inventory { get; private set; }
-    public Ability ability { get; private set; }
+    public List<Ability> abilityList = new List<Ability>();
 
 
 
     public Character(CharacterData data)
     {
-        Debug.Log("Inventory: " + data.Inventory);
         unitName = data.Name;
         characterType = data.Type;
         degree = data.Degree;
@@ -21,8 +20,15 @@ public class Character : Unit
         charge = data.Charge;
         inventory = new Inventory(data.Inventory);
         activeEffects = new ActiveEffect(data.ActiveEffects);
-        ability = new Ability(data.Ability);
+        abilityList = new List<Ability>();
+
+        foreach (var a in data.Abilities)
+        {
+            abilityList.Add(new Ability(a));
+        }
     }
+
+    
 
 
     
@@ -36,7 +42,7 @@ public class Character : Unit
         cd.Health = new HealthData[0];
         cd.Charge = 5;
         cd.Inventory = new InventoryData();
-        cd.Ability = new AbilityData();
+        cd.Abilities = new AbilityData[1];
         
         return cd;
     }
@@ -60,10 +66,8 @@ public class Inventory
     private List<Card> tilePieces = new List<Card>();
     public Inventory(InventoryData data)
     {
-        Debug.Log("ID: " + data);
         foreach (var tp in data.TilePieces)
         {
-            Debug.Log("TP: " + tp);
             tilePieces.Add(Card.Load(tp));
         }
     }

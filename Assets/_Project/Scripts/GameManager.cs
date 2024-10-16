@@ -93,5 +93,18 @@ public class GameManager : Singleton<GameManager>
 
     public CardinalDirection DirectionToSlide { get; set; }
 
+    public Ability AbilityInUse { get; set; }
+    public Targetable AbilityUser { get; set; }
+
     
+    
+}
+
+public interface Targetable
+{
+    public void HitByAbility(Ability ability);
+    public void ChangeHealth(int amount);
+    public void ApplyEffect(ActiveEffect effect);
+    public void Move(Vector2Int direction);
+    public Vector2Int GetGridPosition();
 }

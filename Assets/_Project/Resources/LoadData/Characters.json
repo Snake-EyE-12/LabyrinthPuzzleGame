@@ -6,7 +6,8 @@
       "Degree":1,
       "Health":[
         {
-          "Blood":5
+          "Type":"Blood",
+          "Value":5
         }
       ],
       "Charge":5,
@@ -24,11 +25,13 @@
         ]
       },
       "ActiveEffects":[],
-      "Ability": {
-        "Value": 1,
-        "Target": "Opponent",
-        "Keys": ["Push"]
-      }
+      "Abilities": [
+          {
+          "Value": 3,
+          "Target": "Opponent",
+          "Keys": ["Damage"]
+          }
+        ]
     },
     {
       "Name":"Bob",
@@ -36,7 +39,8 @@
       "Degree":1,
       "Health":[
         {
-          "Blood":5
+          "Type":"Blood",
+          "Value":4
         }
       ],
       "Charge":5,
@@ -52,7 +56,14 @@
           "="
         ]
       },
-      "ActiveEffects":[]
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 1,
+          "Target": "Team",
+          "Keys": ["Heal"]
+        }
+      ]
     }
   ]
 }

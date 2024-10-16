@@ -99,3 +99,14 @@ public class CharacterMovementGameInput : GameInput
         }
     }
 }
+public class AbilityGameInput : GameInput
+{
+    public AbilityGameInput(InputSelector s) : base(s)
+    {
+    }
+
+    public override void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space)) selector.Activate(new ConfirmSelectableActivatorData());
+    }
+}
