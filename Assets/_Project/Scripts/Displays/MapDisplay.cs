@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Capstone.DataLoad;
 using UnityEngine;
 using EventArgs = Guymon.DesignPatterns.EventArgs;
+using EventHandler = Guymon.DesignPatterns.EventHandler;
 
 public class MapDisplay : Display<Map>
 {
@@ -28,6 +29,17 @@ public class MapDisplay : Display<Map>
         }
 
         Instantiate(deckDisplayPrefab, GameManager.Instance.GetCanvasParent()).Set(new Deck(cardsForDeck));
+    }
+
+    private void Awake()
+    {
+        EventHandler.AddListener("Round/FightOver", OnBattleOver);
+    }
+
+    private void OnBattleOver(EventArgs args)
+    {
+        EventHandler.RemoveListenerLate("Round/FightOver", OnBattleOver);
+        Destroy(this.gameObject);
     }
 
     private void BuildMap()

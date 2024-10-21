@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -63,5 +64,10 @@ public class CardDisplay : Display<Card>, Selectable
     {
         GameManager.Instance.RemoveSelectable(this, selectionIndicator.type);
         Destroy(this.gameObject);
+    }
+
+    private void OnDisable()
+    {
+        RemoveFromPlay();
     }
 }

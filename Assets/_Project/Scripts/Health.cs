@@ -50,7 +50,10 @@ public class Health
                 healthBar.RemoveAt(i);
             }
 
-            Debug.Log("CURRENT DAMAGE VALUE: " + damage);
+            if (healthBar.Count == 0)
+            {
+                isDead = true;
+            }
             if (damage <= 0)
             {
                 return;
@@ -59,10 +62,9 @@ public class Health
         }
 
         isDead = true;
-        Debug.Log("DIED");
     }
     
-    private bool isDead = false;
+    public bool isDead = false;
 }
 
 [System.Serializable]
@@ -82,13 +84,9 @@ public abstract class HealthType
     public virtual LeftOver Remove(int amount)
     {
         value -= amount;
-        Debug.Log("LV: value: " + value);
-        Debug.Log("LV: clamp: " + Mathf.Clamp(value, Int32.MinValue, 0));
-        Debug.Log("LV: abs: " + Mathf.Abs(Mathf.Clamp(value, Int32.MinValue, 0)));
         return new LeftOver
         {
             amount = Mathf.Abs(Mathf.Clamp(value, Int32.MinValue, 0)),
-            //amount = value,
             isEmpty = value <= 0
         };
     }

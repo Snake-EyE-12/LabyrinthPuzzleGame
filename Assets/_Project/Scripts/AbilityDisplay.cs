@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -13,6 +14,12 @@ public class AbilityDisplay : Display<Ability>, Selectable
     {
         GameManager.Instance.AddSelectable(this, selectionIndicator.type);
     }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.RemoveSelectable(this, selectionIndicator.type);
+    }
+
     public override void Render()
     {
         target.text = "Target: " + item.targetDescription;

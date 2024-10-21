@@ -28,6 +28,16 @@ public class DeckDisplay : Display<Deck>
     {
         EventHandler.AddListener("Phase/DrawCards", DrawToLimit);
         EventHandler.AddListener("CardPlaced", DiscardSpecificCard);
+        EventHandler.AddListener("Round/FightOver", OnBattleOver);
+    }
+    private void OnBattleOver(EventArgs args)
+    {
+        EventHandler.RemoveListenerLate("Round/FightOver", OnBattleOver);
+        foreach (var card in handTiles)
+        {
+            card.RemoveFromPlay();
+        }
+        Destroy(this.gameObject);
     }
     private void DrawToLimit(EventArgs args)
     {

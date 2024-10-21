@@ -5,6 +5,7 @@ using Capstone.DataLoad;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using EventArgs = Guymon.DesignPatterns.EventArgs;
 using EventHandler = Guymon.DesignPatterns.EventHandler;
 
 public class CharacterDisplay : Display<Character>, GridPositionable, Selectable, Targetable
@@ -15,12 +16,36 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
     [SerializeField] private HealthbarDisplay healthBar;
     [SerializeField] private ExperienceDisplay xpBar;
     private Damager damager;
-    
 
+
+    
     public override void Render()
     {
         coloredImage.color = DataHolder.characterColorEquivalenceTable.GetColor(item.characterType);
         nameText.text = item.unitName;
+    }
+    
+    private void Awake()
+    {
+        EventHandler.AddListener("Round/FightOver", OnBattleOver);
+        GameManager.Instance.AddCharacter(this);
+    }
+
+    public void BecomeAvailable()
+    {
+        used = false;
+    }
+
+    private void OnBattleOver(EventArgs args)
+    {
+        EventHandler.RemoveListenerLate("Round/FightOver", OnBattleOver);
+        GameManager.Instance.RemoveSelectable(this, selectionIndicator.type);
+        Destroy(this.gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.RemoveCharacter(this);
     }
 
 
@@ -70,7 +95,7 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
 
     public bool IsCurrentlySelectable()
     {
-        return true;
+        return !used;
     }
 
     public void Activate(SelectableActivatorData data)
@@ -83,7 +108,7 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
 
         if (data is ConfirmSelectableActivatorData)
         {
-            EventHandler.Invoke("Destroy/AbilityList", null);
+            EventHandler.Invoke("Ability/UsedAbility", null);
             Instantiate(characterAbilityDisplayPrefab, GameManager.Instance.GetCanvasParent()).Set(item.abilityList);
             GameManager.Instance.AbilityUser = this;
             GameManager.Instance.SetSelectionMode(SelectableGroupType.Ability);
@@ -122,5 +147,11 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
     {
         SetGridPosition(GetGridPosition() + direction);
     }
+    public void BecomeUsed()
+    {
+        used = true;
+    }
+
+    private bool used = false;
 }
 

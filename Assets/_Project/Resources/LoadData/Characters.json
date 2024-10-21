@@ -26,12 +26,17 @@
       },
       "ActiveEffects":[],
       "Abilities": [
-          {
-          "Value": 3,
+        {
+        "Value": 3,
+        "Target": "Opponent",
+        "Keys": ["Damage"]
+        },
+        {
+          "Value": 1,
           "Target": "Opponent",
-          "Keys": ["Damage"]
-          }
-        ]
+          "Keys": ["Stunted", "Knockback"]
+        }
+      ]
     },
     {
       "Name":"Bob",

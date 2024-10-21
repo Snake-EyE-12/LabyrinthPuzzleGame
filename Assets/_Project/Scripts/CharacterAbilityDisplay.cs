@@ -12,7 +12,7 @@ public class CharacterAbilityDisplay : Display<List<Ability>>
 
     private void Awake()
     {
-        EventHandler.AddListener("Destroy/AbilityList", OnRemove);
+        EventHandler.AddListener("Ability/UsedAbility", OnRemove);
     }
 
     public override void Render()
@@ -30,6 +30,6 @@ public class CharacterAbilityDisplay : Display<List<Ability>>
 
     private void OnDisable()
     {
-        EventHandler.RemoveListenerLate("Destroy/AbilityList", OnRemove);
+        EventHandler.RemoveListenerLate("Ability/UsedAbility", OnRemove);
     }
 }

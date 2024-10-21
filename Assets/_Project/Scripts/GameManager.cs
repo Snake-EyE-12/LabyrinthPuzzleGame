@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using Capstone.DataLoad;
 using Guymon.DesignPatterns;
 using UnityEngine;
+using EventArgs = Guymon.DesignPatterns.EventArgs;
+using EventHandler = Guymon.DesignPatterns.EventHandler;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -25,6 +27,91 @@ public class GameManager : Singleton<GameManager>
         
 
 
+    }
+
+    private float startCheckTime = 0;
+    [SerializeField] private float checkInterval = 0.5f;
+    public void CheckForGameOver()
+    {
+        startCheckTime = Time.time;
+    }
+
+    private void CheckGameOver()
+    {
+        startCheckTime = 0;
+        if (activeTeam.Count <= 0)
+        {
+            //lose
+        }
+        else
+        {
+            turnManager.NextPhase();
+        }
+    }
+
+    private void Update()
+    {
+        if(startCheckTime == 0) return;
+        if (Time.time - startCheckTime > checkInterval)
+        {
+            CheckGameOver();
+        }
+    }
+
+    public void PrepareTeamTurnStart()
+    {
+        foreach (var member in activeTeam)
+        {
+            member.BecomeAvailable();
+        }
+    }
+
+    public void KillUnit(Unit u)
+    {
+        if (u is Enemy)
+        {
+            Enemy deadEnemy = u as Enemy;
+            foreach (var ed in activeEnemies)
+            {
+                if (ed.GetEnemy().Equals(deadEnemy))
+                {
+                    ed.Vanish();
+                    CheckFightOver();
+                    return;
+                }
+            }
+        }
+    }
+
+    private void CheckFightOver()
+    {
+        if (activeEnemies.Count <= 0)
+        {
+            EventHandler.Invoke("Round/FightOver", null);
+            EventHandler.Invoke("Ability/UsedAbility", null);
+            ContinueMission();
+        }
+        
+    }
+    
+    
+    private List<EnemyDisplay> activeEnemies = new List<EnemyDisplay>();
+    public void AddEnemey(EnemyDisplay e)
+    {
+        activeEnemies.Add(e);
+    }
+    public void RemoveEnemy(EnemyDisplay e)
+    {
+        activeEnemies.Remove(e);
+    }
+    private List<CharacterDisplay> activeTeam = new List<CharacterDisplay>();
+    public void AddCharacter(CharacterDisplay c)
+    {
+        activeTeam.Add(c);
+    }
+    public void RemoveCharacter(CharacterDisplay c)
+    {
+        activeTeam.Remove(c);
     }
 
     public Transform GetCanvasParent()
@@ -96,8 +183,18 @@ public class GameManager : Singleton<GameManager>
     public Ability AbilityInUse { get; set; }
     public Targetable AbilityUser { get; set; }
 
-    
-    
+    private void Awake()
+    {
+        EventHandler.AddListener("Ability/UsedAbility", OnAbilityUsed);
+    }
+
+    private void OnAbilityUsed(EventArgs args)
+    {
+        AbilityInUse = null;
+        AbilityUser = null;
+        selector.FullCancel();
+        SetSelectionMode(SelectableGroupType.Team);
+    }
 }
 
 public interface Targetable
@@ -107,4 +204,6 @@ public interface Targetable
     public void ApplyEffect(ActiveEffect effect);
     public void Move(Vector2Int direction);
     public Vector2Int GetGridPosition();
+
+    public void BecomeUsed();
 }

@@ -11,6 +11,11 @@ public abstract class Unit
     public int degree { get; protected set; }
     public Health health { get; protected set; }
     public ActiveEffect activeEffects { get; protected set; }
+
+    public void Die()
+    {
+        GameManager.Instance.KillUnit(this);
+    }
     
     
     //

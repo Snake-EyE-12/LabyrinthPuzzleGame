@@ -87,6 +87,18 @@ public class TeamTurnPhase : RoundPhase
     public override void StartPhase()
     {
         GameManager.Instance.SetSelectionMode(SelectableGroupType.Team);
+        EventHandler.AddListenerLate("Round/EndTurn", EndTurn);
+        GameManager.Instance.PrepareTeamTurnStart();
+    }
+
+    private void EndTurn(EventArgs args)
+    {
+        tm.NextPhase();
+    }
+
+    public override void EndPhase()
+    {
+        EventHandler.RemoveListenerLate("Round/EndTurn", EndTurn);
     }
 }
 public class DamagePhase : RoundPhase
@@ -99,5 +111,10 @@ public class CompletionPhase : RoundPhase
 {
     public CompletionPhase(TurnManager tm) : base(tm)
     {
+    }
+
+    public override void StartPhase()
+    {
+        GameManager.Instance.CheckForGameOver();
     }
 }

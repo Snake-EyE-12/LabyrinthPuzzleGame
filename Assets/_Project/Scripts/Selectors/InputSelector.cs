@@ -18,6 +18,11 @@ public class InputSelector : MonoBehaviour
         groups.Add(new SelectorGroup(SelectableGroupType.Ability, new AbilityGameInput(this)));
     }
 
+    public void FullCancel()
+    {
+        ChangeSelectionGroup(null);
+    }
+
     private void Update()
     {
         if (active == null) return;
@@ -115,7 +120,7 @@ public class SelectorGroup
 
     public void Activate(SelectableActivatorData data)
     {
-        if(currentSelectedIndex == -1) return;
+        if(currentSelectedIndex == -1 || !selectables[currentSelectedIndex].IsCurrentlySelectable()) return;
         selectables[currentSelectedIndex].Activate(data);
     }
     public void Cancel()

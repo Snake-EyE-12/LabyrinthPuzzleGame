@@ -17,12 +17,29 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
         //coloredImage.color = DataHolder.characterColorEquivalenceTable.GetColor(item.type);
         nameText.text = item.unitName;
     }
+
+    public Enemy GetEnemy()
+    {
+        return item;
+    }
+
+    public void Vanish()
+    {
+        GameManager.Instance.RemoveEnemy(this);
+        GameManager.Instance.RemoveSelectable(this, selectionIndicator.type);
+        Destroy(this.gameObject);
+    }
     
     
     private Vector2Int gridPosition;
     public Vector2Int GetGridPosition()
     {
         return gridPosition;
+    }
+
+    public void BecomeUsed()
+    {
+        
     }
 
     public void SetGridPosition(Vector2Int value)
@@ -76,6 +93,7 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
         GameManager.Instance.AddSelectable(this, selectionIndicator.type);
         damager = new Damager(item);
         healthBar.Set(item.health);
+        GameManager.Instance.AddEnemey(this);
     }
 
 

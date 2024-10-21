@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Capstone.DataLoad;
+using Guymon.DesignPatterns;
 using UnityEngine;
 
 
@@ -34,7 +35,8 @@ public class Ability
         {
             key.ModifyAction(target, value);
         }
-        
+        if (GameManager.Instance.AbilityUser != null) GameManager.Instance.AbilityUser.BecomeUsed();
+        EventHandler.Invoke("Ability/UsedAbility", null);
     }
     public Ability(AbilityData data)
     {
