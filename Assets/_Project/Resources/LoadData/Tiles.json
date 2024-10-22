@@ -5,24 +5,21 @@
       "Tile":{
         "Path":"NE",
         "Type":"Slide"
-      },
-      "Ability":{}
+      }
     },
     {
       "Symbol":"=",
       "Tile":{
         "Path":"EW",
         "Type":"Slide"
-      },
-      "Ability":{}
+      }
     },
     {
       "Symbol":"+",
       "Tile":{
         "Path":"NESW",
         "Type":"Slide"
-      },
-      "Ability":{}
+      }
     },
     {
       "Symbol":"+1D",

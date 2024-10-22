@@ -111,7 +111,7 @@ public class GameManager : Singleton<GameManager>
                 if (cd.GetCharacter().Equals(deadCharacter))
                 {
                     cd.Vanish();
-                    Lose();
+                    if(activeTeam.Count <= 0) Lose();
                     return;
                 }
             }

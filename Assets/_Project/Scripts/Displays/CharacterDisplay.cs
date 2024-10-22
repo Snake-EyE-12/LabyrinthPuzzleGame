@@ -135,6 +135,7 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
     public void Vanish()
     {
         GameManager.Instance.RemoveCharacter(this);
+        localMap.RemoveUnit(this);
         GameManager.Instance.RemoveSelectable(this, selectionIndicator.type);
         Destroy(this.gameObject);
     }

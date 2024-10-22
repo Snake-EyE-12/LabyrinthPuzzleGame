@@ -8,6 +8,7 @@ public class Tile
 {
     public Path path;
     public Rotation rotation;
+    public Ability ability;
 
 
     public bool IsOpen(Vector2Int direction)
@@ -49,11 +50,12 @@ public class Tile
     {
     }
     
-    public Tile(TileData data)
+    public Tile(TileData data, AbilityData abilityData)
     {
         path = new Path(data.Path);
         rotation = new Rotation();
         //type
+        if(!(abilityData == null || abilityData.Target == null || abilityData.Keys == null)) ability = new Ability(abilityData);
     }
 
 }

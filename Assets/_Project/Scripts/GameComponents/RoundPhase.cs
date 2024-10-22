@@ -42,6 +42,7 @@ public class DrawCardsPhase : RoundPhase
     public override void StartPhase()
     {
         Debug.Log("Round Phase : Drawing Cards");
+        EventHandler.Invoke("Ability/UsedAbility", null);
         EventHandler.AddListener("DrawCards/LimitReached", OnLimitReached);
         EventHandler.Invoke("Phase/DrawCards", null);
     }

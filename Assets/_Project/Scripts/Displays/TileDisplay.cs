@@ -45,6 +45,11 @@ public class TileDisplay : Display<Tile>, GridPositionable, Selectable
     {
         mappableOrganizer.Add(unit);
         unit.SetGridPosition(GetGridPosition());
+        if (unit is Targetable && item.ability != null)
+        {
+            item.ability.Use(unit as Targetable);
+            Debug.Log("Tile Ability Stepped On");
+        }
     }
     
 

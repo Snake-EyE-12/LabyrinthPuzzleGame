@@ -112,6 +112,11 @@ public class Map
             grid.Get(newPosition).GetTile().GainControl(entity);
         }
     }
+
+    public void RemoveUnit(GridPositionable unit)
+    {
+        grid.Get(unit.GetGridPosition()).GetTile().LoseControl(unit);
+    }
     //
     // public void SpawnUnit(Unit unit, Vector2Int position)
     // {

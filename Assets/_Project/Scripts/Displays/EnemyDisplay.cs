@@ -38,6 +38,7 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
     public void Vanish()
     {
         GameManager.Instance.RemoveEnemy(this);
+        localMap.RemoveUnit(this);
         GameManager.Instance.RemoveSelectable(this, selectionIndicator.type);
         Destroy(this.gameObject);
     }

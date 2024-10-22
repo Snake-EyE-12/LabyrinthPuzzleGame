@@ -228,7 +228,6 @@ namespace Capstone.DataLoad
     {
         public string Path;
         public string Type;
-        //ability
     }
 
     [System.Serializable]

@@ -76,7 +76,7 @@ public class Card
     public static Card Load(string symbol)
     {
         CardData cardData = DataHolder.availableTiles.FindCardBySymbol(symbol);
-        Card card = new Card(new Tile(cardData.Tile));
+        Card card = new Card(new Tile(cardData.Tile, cardData.Ability));
         return card;
     }
 
