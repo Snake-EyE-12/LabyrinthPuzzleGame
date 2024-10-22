@@ -13,6 +13,15 @@ public class Ability
     public List<ValueKey> keys = new List<ValueKey>();
     private AbilityData data;
 
+    public string GetImageName()
+    {
+        string output = "V";
+        output += value + "-" + targetDescription + "-";
+        output += GetKeywordsString();
+
+        return output;
+    }
+
     public string GetKeywordsString()
     {
         string output = "";
@@ -20,7 +29,7 @@ public class Ability
         {
             output += key + ", ";
         }
-        return output;
+        return output.Substring(0, output.Length - 2);
     }
 
 

@@ -12,6 +12,7 @@ public class TileDisplay : Display<Tile>, GridPositionable, Selectable
     [SerializeField] private List<WallDisplay> wallDisplays = new List<WallDisplay>();
     [SerializeField] private MappableOrganizer mappableOrganizer;
     [SerializeField] private SelectionDisplay selectionIndicator;
+    [SerializeField] private SpriteRenderer abilityIcon;
     public override void Render()
     {
         int orientation = item.GetOrientation();
@@ -20,6 +21,11 @@ public class TileDisplay : Display<Tile>, GridPositionable, Selectable
             wallDisplays[i].SetVisibility((orientation & j) == 0);
         }
 
+        if (item.ability != null)
+        {
+            Debug.Log("Loading Image: " + item.ability.GetImageName());
+            abilityIcon.sprite = Resources.Load<Sprite>("KeynamedSprites/" + item.ability.GetImageName());
+        }
         
     }
     
