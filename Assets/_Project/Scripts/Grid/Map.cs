@@ -52,7 +52,6 @@ public class Map
             grid.Set(fallOffSpace, replacePos.x, replacePos.y);
             fallOffSpace.GetTile().Set(replacer);
             fallOffSpace.GetTile().SetGridPosition(replacePos);
-            Debug.Log("UPWARDS COLUMN");
         }
         else
         {
@@ -67,7 +66,6 @@ public class Map
             grid.Set(fallOffSpace, replacePos.x, replacePos.y);
             fallOffSpace.GetTile().Set(replacer);
             fallOffSpace.GetTile().SetGridPosition(replacePos);
-            Debug.Log("DOWN COLUMN");
         }
         
     }
@@ -86,7 +84,6 @@ public class Map
             grid.Set(fallOffSpace, replacePos.x, replacePos.y);
             fallOffSpace.GetTile().Set(replacer);
             fallOffSpace.GetTile().SetGridPosition(replacePos);
-            Debug.Log("right ROW");
         }
         else
         {
@@ -101,7 +98,6 @@ public class Map
             grid.Set(fallOffSpace, replacePos.x, replacePos.y);
             fallOffSpace.GetTile().Set(replacer);
             fallOffSpace.GetTile().SetGridPosition(replacePos);
-            Debug.Log("Left ROW");
         }
     }
 

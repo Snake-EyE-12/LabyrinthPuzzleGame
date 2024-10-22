@@ -8,9 +8,11 @@ using Range = Capstone.DataLoad.Range;
 
 public class DataHandler : MonoBehaviour
 {
-    
-    
-    
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.I)) ReadData();
+    }
+
     [Button]
     private void ReadData()
     {
@@ -24,7 +26,6 @@ public class DataHandler : MonoBehaviour
 
 
 
-        Debug.Log("I: " + DataHolder.availableTiles.Tiles);
         
         
         GamemodeManager.Instance.PrepareGamemodes(ReadGamemodes());
@@ -45,11 +46,6 @@ public class DataHandler : MonoBehaviour
 
         return modes;
     }
-
-    [Button]
-    private void WriteData()
-    {
-        Debug.Log(JsonUtility.ToJson(Color.red));
-    }
+    
 
 }

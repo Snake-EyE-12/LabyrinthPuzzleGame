@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Capstone.DataLoad;
+using UnityEngine;
 
 public class Enemy : Unit
 {
@@ -60,16 +61,181 @@ public class AttackLayout
 {
     public AttackLayout(AttackData[] data)
     {
-        
+        attacks = new List<Attack>();
+        foreach (var d in data)
+        {
+            attacks.Add(new Attack(d));
+        }
     }
     public List<Attack> attacks { get; private set; }
+
+    public Attack Pick()
+    {
+        foreach (var a in attacks)
+        {
+            a.UpdateIntelligenceValue();
+        }
+        return attacks[GameUtils.IndexByWeightedRandom(new List<Weighted>(attacks))];
+        
+    }
     
 }
 
-public class Attack
+public class Attack : Weighted
 {
     public Attack(AttackData data)
     {
+        weight = data.Weight;
+        ability = new Ability(data.Ability);
+        switch (data.Shape)
+        {
+            case "Line":
+                shape = new LineAttack(data.Power);
+                break;
+            case "Square":
+                shape = new SquareAttack(data.Power);
+                break;
+            case "Circle":
+                shape = new CircleAttack(data.Power);
+                break;
+            case "Cross":
+                shape = new CrossAttack(data.Power);
+                break;
+
+        }
+    }
+
+    private int weight;
+    private ShapeAttack shape;
+    private Ability ability;
+    
+    public int GetWeight()
+    {
+        return weight + currentIntelligence;
+    }
+    private int currentIntelligence = 0;
+    public void UpdateIntelligenceValue()
+    {
+        currentIntelligence = 0; // update for smartness
+    }
+
+    public void Use(Map map, EnemyDisplay user)
+    {
+        GameManager.Instance.AbilityUser = user;
+        foreach (var tilePosition in shape.GetShape(user.GetGridPosition()))
+        {
+            foreach (var character in GameManager.Instance.GetActiveCharacters())
+            {
+                if(character.GetGridPosition() == tilePosition)
+                {
+                    ability.Use(character);
+                }
+            }
+            // foreach enemy - self hitting
+            // foreach item - destruction
+        }
+        GameManager.Instance.AbilityInUse = null;
+        GameManager.Instance.AbilityUser = null;
+    }
+}
+
+public abstract class ShapeAttack
+{
+    protected int power;
+    public ShapeAttack(int power)
+    {
+        this.power = power;
+    }
+
+    public abstract List<Vector2Int> GetShape(Vector2Int startLocation);
+
+    protected Vector2Int GetRandomDirection()
+    {
+        switch (Random.Range(0, 4))
+        {
+            case 0:
+                return Vector2Int.up;
+            case 1:
+                return Vector2Int.right;
+            case 2:
+                return Vector2Int.down;
+            default:
+                return Vector2Int.left;
+            
+        }
+    }
+}
+
+public class LineAttack : ShapeAttack
+{
+    public LineAttack(int power) : base(power)
+    {
         
+    }
+
+    public override List<Vector2Int> GetShape(Vector2Int startLocation)
+    {
+        List<Vector2Int> list = new List<Vector2Int>();
+        Vector2Int direction = GetRandomDirection();
+        for (int i = 0; i < power; i++)
+        {
+            list.Add(startLocation + (direction * (i + 1)));
+        }
+        
+        return list;
+    }
+}
+
+public class SquareAttack : ShapeAttack
+{
+    public SquareAttack(int power) : base(power)
+    {
+        
+    }
+
+    public override List<Vector2Int> GetShape(Vector2Int startLocation)
+    {
+        List<Vector2Int> list = new List<Vector2Int>();
+        
+        
+        
+        return list;
+    }
+}
+
+public class CircleAttack : ShapeAttack
+{
+    public CircleAttack(int power) : base(power)
+    {
+        
+    }
+    public override List<Vector2Int> GetShape(Vector2Int startLocation)
+    {
+        List<Vector2Int> list = new List<Vector2Int>();
+        
+        
+        
+        return list;
+    }
+}
+public class CrossAttack : ShapeAttack
+{
+    public CrossAttack(int power) : base(power)
+    {
+        
+    }
+    public override List<Vector2Int> GetShape(Vector2Int startLocation)
+    {
+        List<Vector2Int> list = new List<Vector2Int>();
+
+        for (int i = 1; i <= power; i++)
+        {
+            list.Add(startLocation + (Vector2Int.up * i));
+            list.Add(startLocation + (Vector2Int.down * i));
+            list.Add(startLocation + (Vector2Int.left * i));
+            list.Add(startLocation + (Vector2Int.right * i));
+        }
+        
+        return list;
     }
 }

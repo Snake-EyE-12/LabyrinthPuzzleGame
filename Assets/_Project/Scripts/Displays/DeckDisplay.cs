@@ -9,14 +9,12 @@ using EventHandler = Guymon.DesignPatterns.EventHandler;
 public class DeckDisplay : Display<Deck>
 {
     private List<CardDisplay> handTiles = new List<CardDisplay>();
-    [SerializeField] private float spacing = 2;
     [SerializeField] private Transform handParent;
     [SerializeField] private CardDisplay cardDisplayPrefab;
 
     public override void Render()
     {
         int handSize = item.GetHandSize();
-        Debug.Log("Hand Size: " + handSize);
         int maxForLoop = Mathf.Max(handSize, handTiles.Count);
         for (int i = 0; i < maxForLoop; i++)
         {
@@ -33,10 +31,6 @@ public class DeckDisplay : Display<Deck>
     private void OnBattleOver(EventArgs args)
     {
         EventHandler.RemoveListenerLate("Round/FightOver", OnBattleOver);
-        foreach (var card in handTiles)
-        {
-            card.RemoveFromPlay();
-        }
         Destroy(this.gameObject);
     }
     private void DrawToLimit(EventArgs args)
@@ -50,6 +44,11 @@ public class DeckDisplay : Display<Deck>
     private void OnDisable()
     {
         EventHandler.RemoveListener("Phase/DrawCards", DrawToLimit);
+        EventHandler.RemoveListener("CardPlaced", DiscardSpecificCard);
+        foreach (var cd in handTiles)
+        {
+            cd.RemoveFromPlay();
+        }
     }
 
     private int GetHandLimit()

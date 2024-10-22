@@ -62,12 +62,7 @@ public class CardDisplay : Display<Card>, Selectable
 
     public void RemoveFromPlay()
     {
-        GameManager.Instance.RemoveSelectable(this, selectionIndicator.type);
+        GameManager.Instance?.RemoveSelectable(this, selectionIndicator.type);
         Destroy(this.gameObject);
-    }
-
-    private void OnDisable()
-    {
-        RemoveFromPlay();
     }
 }

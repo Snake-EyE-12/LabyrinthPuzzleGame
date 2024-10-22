@@ -18,6 +18,18 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
         nameText.text = item.unitName;
     }
 
+    public void ChooseAttack()
+    {
+        chosenAttack = item.attackLayout.Pick();
+    }
+
+    private Attack chosenAttack;
+
+    public void UseAttack()
+    {
+        chosenAttack.Use(localMap, this);
+        
+    }
     public Enemy GetEnemy()
     {
         return item;
@@ -85,7 +97,7 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
 
     public void Activate(SelectableActivatorData data)
     {
-        GameManager.Instance.AbilityInUse.Use(this);
+        GameManager.Instance.UseActiveCharacterAbility(this);
     }
 
     private void Start()
@@ -104,7 +116,6 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
 
     public void ChangeHealth(int amount)
     {
-        Debug.Log("Health Lost: " + amount);
         if (amount < 0)
         {
             damager.TakeDamage(-amount);

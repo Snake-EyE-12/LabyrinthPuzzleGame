@@ -1,4 +1,5 @@
 using Guymon.DesignPatterns;
+using UnityEngine;
 
 public abstract class RoundPhase
 {
@@ -16,6 +17,7 @@ public abstract class RoundPhase
     public virtual void UpdatePhase() { }
     public virtual void EndPhase() { }
     protected void SkipPhase() { tm.NextPhase();}
+    public virtual float GetTransitionTime() { return 0.1f; }
 }
 
 
@@ -23,6 +25,12 @@ public class OpponentTurnPhase : RoundPhase
 {
     public OpponentTurnPhase(TurnManager tm) : base(tm)
     {
+    }
+
+    public override void StartPhase()
+    {
+        Debug.Log("Round Phase : Opponent Turn");
+        GameManager.Instance.PickEnemyAttacks();
     }
 }
 public class DrawCardsPhase : RoundPhase
@@ -33,6 +41,7 @@ public class DrawCardsPhase : RoundPhase
 
     public override void StartPhase()
     {
+        Debug.Log("Round Phase : Drawing Cards");
         EventHandler.AddListener("DrawCards/LimitReached", OnLimitReached);
         EventHandler.Invoke("Phase/DrawCards", null);
     }
@@ -57,6 +66,7 @@ public class PlayCardsPhase : RoundPhase
 
     public override void StartPhase()
     {
+        Debug.Log("Round Phase : Card Playing");
         GameManager.Instance.SetSelectionMode(SelectableGroupType.Card);
         amountOfCardsPlaced = 0;
         EventHandler.AddListener("CardPlaced", CardPlaced);
@@ -86,25 +96,43 @@ public class TeamTurnPhase : RoundPhase
 
     public override void StartPhase()
     {
+        Debug.Log("Round Phase : Team Turn");
         GameManager.Instance.SetSelectionMode(SelectableGroupType.Team);
-        EventHandler.AddListenerLate("Round/EndTurn", EndTurn);
+        EventHandler.AddListener("Round/EndTurn", TryEndTurn);
         GameManager.Instance.PrepareTeamTurnStart();
+    }
+
+    public override void UpdatePhase()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            EventHandler.RemoveListener("Round/EndTurn", TryEndTurn);
+            EndTurn(null);
+        }
+    }
+
+    private void TryEndTurn(EventArgs args)
+    {
+        EventHandler.RemoveListenerLate("Round/EndTurn", TryEndTurn);
+        EndTurn(null);
     }
 
     private void EndTurn(EventArgs args)
     {
         tm.NextPhase();
     }
-
-    public override void EndPhase()
-    {
-        EventHandler.RemoveListenerLate("Round/EndTurn", EndTurn);
-    }
 }
 public class DamagePhase : RoundPhase
 {
     public DamagePhase(TurnManager tm) : base(tm)
     {
+        
+    }
+
+    public override void StartPhase()
+    {
+        Debug.Log("Round Phase : Damage From Enemies");
+        GameManager.Instance.UseEnemyAttacks();
     }
 }
 public class CompletionPhase : RoundPhase
@@ -115,6 +143,6 @@ public class CompletionPhase : RoundPhase
 
     public override void StartPhase()
     {
-        GameManager.Instance.CheckForGameOver();
+        GameManager.Instance.CheckGameOver();
     }
 }

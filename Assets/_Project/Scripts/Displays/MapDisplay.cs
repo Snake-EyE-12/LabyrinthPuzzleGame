@@ -24,7 +24,6 @@ public class MapDisplay : Display<Map>
         List<Card> cardsForDeck = new List<Card>();
         foreach (var c in GameManager.Instance.GetCurrentTeam())
         {
-            Debug.Log("Inv: " + c.inventory);
             cardsForDeck.AddRange(c.inventory.GetCards());
         }
 

@@ -26,7 +26,6 @@ public class Ability
 
     public void PrepareTarget()
     {
-        Debug.Log("Preparing Target: " + targetDescription);
         target.Locate();
     }
     public void Use(Targetable target)
@@ -140,7 +139,6 @@ public class OpponentTarget : Target
     public override void Locate()
     {
         GameManager.Instance.SetSelectionMode(SelectableGroupType.Enemy);
-        Debug.Log("Enemy Selection Started");
     }
 }
 public class TileTarget : Target

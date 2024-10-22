@@ -11,7 +11,7 @@ public class TurnManager : MonoBehaviour
     private int currentPhase = -1;
 
 
-    private void Start() //Temporary
+    private void Awake() //Temporary
     {
         LoadSequence(null);
     }
@@ -28,21 +28,40 @@ public class TurnManager : MonoBehaviour
 
     private void Update()
     {
-        if (currentPhase < 0) return;
-        GetCurrentPhase().UpdatePhase();
+        if (transitioning && timeToTransition < Time.time)
+        {
+            transitioning = false;
+            GetCurrentPhase().StartPhase();
+        }
+        
+        GetCurrentPhase()?.UpdatePhase();
     }
+
+    private float timeToTransition;
+    private bool transitioning;
 
     [Button(nameof(NextPhase))]
     public void NextPhase()
     {
-        GetCurrentPhase()?.EndPhase();
-        IncrementPhase();
-        GetCurrentPhase().StartPhase();
+        //Debug.Log("NEXT");
+        if (timeToTransition > Time.time) return;
+        RoundPhase phase = GetCurrentPhase();
+        if (phase != null)
+        { 
+            timeToTransition = Time.time + phase.GetTransitionTime();
+            transitioning = true;
+            phase.EndPhase();
+            IncrementPhase();
+        }
+        else if (currentPhase == -1)
+        {
+            IncrementPhase();
+            GetCurrentPhase().StartPhase();
+        }
     }
 
     public void Reset()
     {
-        GetCurrentPhase()?.EndPhase();
         currentPhase = -1;
     }
     

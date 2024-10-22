@@ -45,7 +45,7 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
 
     private void OnDestroy()
     {
-        GameManager.Instance.RemoveCharacter(this);
+        GameManager.Instance?.RemoveCharacter(this);
     }
 
 
@@ -128,14 +128,24 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
     {
         ability.Use(this);
     }
+    public Character GetCharacter()
+    {
+        return item;
+    }
+    public void Vanish()
+    {
+        GameManager.Instance.RemoveCharacter(this);
+        GameManager.Instance.RemoveSelectable(this, selectionIndicator.type);
+        Destroy(this.gameObject);
+    }
 
     public void ChangeHealth(int amount)
     {
-        if (amount > 0)
+        if (amount < 0)
         {
-            damager.TakeDamage(amount);
+            damager.TakeDamage(-amount);
         }
-        else damager.Heal(-amount);
+        else damager.Heal(amount);
         healthBar.Render();
     }
 

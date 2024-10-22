@@ -1,6 +1,6 @@
 {
   "Description": "Assisted Play",
-  "GridSize": 5,
+  "GridSize": 4,
   "CharacterSelection":
   {
     "Type": "Preset",

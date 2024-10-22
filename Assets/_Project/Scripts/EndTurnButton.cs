@@ -8,6 +8,8 @@ public class EndTurnButton : MonoBehaviour
 {
     public void EndTurn()
     {
+        //GameObject myEventSystem = GameObject.Find("EventSystem");
+        //myEventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(null);
         EventHandler.Invoke("Round/EndTurn", null);
     }
     

@@ -76,11 +76,6 @@ public class Card
     public static Card Load(string symbol)
     {
         CardData cardData = DataHolder.availableTiles.FindCardBySymbol(symbol);
-
-        // Tile tile = new Tile(cardData.Tile);
-        // Debug.Log("MY TILE: " + tile);
-        // Card card = new Card(tile);
-        // Debug.Log("MY CARD: " + card);
         Card card = new Card(new Tile(cardData.Tile));
         return card;
     }

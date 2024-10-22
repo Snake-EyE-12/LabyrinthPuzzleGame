@@ -29,16 +29,40 @@ public class GameManager : Singleton<GameManager>
 
     }
 
-    private float startCheckTime = 0;
-    [SerializeField] private float checkInterval = 0.5f;
-    public void CheckForGameOver()
+    public void UseActiveCharacterAbility(EnemyDisplay target)
     {
-        startCheckTime = Time.time;
+        AbilityInUse.Use(target);
+        AbilityInUse = null;
+        AbilityUser = null;
+        selector.FullCancel();
+        SetSelectionMode(SelectableGroupType.Team);
     }
 
-    private void CheckGameOver()
+    public List<CharacterDisplay> GetActiveCharacters()
     {
-        startCheckTime = 0;
+        return activeTeam;
+    }
+
+    public void PickEnemyAttacks()
+    {
+        foreach (var enemy in activeEnemies)
+        {
+            enemy.ChooseAttack();
+        }
+        turnManager.NextPhase();
+    }
+    public void UseEnemyAttacks()
+    {
+        foreach (var enemy in activeEnemies)
+        {
+            enemy.UseAttack();
+        }
+        turnManager.NextPhase();
+    }
+    
+
+    public void CheckGameOver()
+    {
         if (activeTeam.Count <= 0)
         {
             //lose
@@ -49,14 +73,11 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    private void Update()
-    {
-        if(startCheckTime == 0) return;
-        if (Time.time - startCheckTime > checkInterval)
-        {
-            CheckGameOver();
-        }
-    }
+    // public IEnumerator DelayMethodCall(float time, Action action)
+    // {
+    //     yield return new WaitForSeconds(time);
+    //     action();
+    // }
 
     public void PrepareTeamTurnStart()
     {
@@ -81,6 +102,26 @@ public class GameManager : Singleton<GameManager>
                 }
             }
         }
+
+        if (u is Character)
+        {
+            Character deadCharacter = u as Character;
+            foreach (var cd in activeTeam)
+            {
+                if (cd.GetCharacter().Equals(deadCharacter))
+                {
+                    cd.Vanish();
+                    Lose();
+                    return;
+                }
+            }
+            
+        }
+    }
+
+    private void Lose()
+    {
+        Debug.Log("You Lose");
     }
 
     private void CheckFightOver()
@@ -124,11 +165,13 @@ public class GameManager : Singleton<GameManager>
     {
         currentRound++;
         Instantiate(roundMenuDisplayPrefab, eventMenuParent).Set(DataHolder.eventsForEachRound[currentRound]);
+        
     }
 
     [SerializeField] private TurnManager turnManager;
     public void BeginBoardFight()
     {
+        turnManager.Reset();
         turnManager.NextPhase();
     }
 
@@ -182,19 +225,6 @@ public class GameManager : Singleton<GameManager>
 
     public Ability AbilityInUse { get; set; }
     public Targetable AbilityUser { get; set; }
-
-    private void Awake()
-    {
-        EventHandler.AddListener("Ability/UsedAbility", OnAbilityUsed);
-    }
-
-    private void OnAbilityUsed(EventArgs args)
-    {
-        AbilityInUse = null;
-        AbilityUser = null;
-        selector.FullCancel();
-        SetSelectionMode(SelectableGroupType.Team);
-    }
 }
 
 public interface Targetable
