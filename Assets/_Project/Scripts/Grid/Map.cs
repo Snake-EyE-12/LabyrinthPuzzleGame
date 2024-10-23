@@ -13,6 +13,7 @@ public class Map
         grid = new Grid(DataHolder.currentMode.GridSize);
         activeFight = fight;
     }
+    public Fight GetFight() { return activeFight; }
 
     public string[] GetStartingEnemyNames()
     {

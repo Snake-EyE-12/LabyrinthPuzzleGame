@@ -12,7 +12,7 @@
         "E1"
       ],
       "FloorLayout": {
-        "Fill": "Random",
+        "Fill": "Row",
         "AvailableTiles": [
           {
             "Tile": "+",
@@ -38,24 +38,11 @@
         "E1",
         "E1",
         "E2"
-      ],
-      "FloorLayout": {
-        "Fill": "Random",
-        "AvailableTiles": [
-          {
-            "Tile": "+",
-            "Value": 100
-          },
-          {
-            "Tile": "-",
-            "Value": 100
-          }
-        ]
-      }
+      ]
     },
     {
       "Degree": {
-        "Min": 2,
+        "Min": 3,
         "Max": 3
       },
       "Weight": 20,

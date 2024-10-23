@@ -45,11 +45,12 @@ public class MapDisplay : Display<Map>
     {
         //Map
         int size = DataHolder.currentMode.GridSize;
+        GridFiller filler = GridFiller.GetTypeOf(item.GetFight().FloorLayout == null ? "Blank" : item.GetFight().FloorLayout.Fill);
         for (int i = 0; i < size; i++)
         {
             for (int j = 0; j < size; j++)
             {
-                BuildNewTile(new Vector2Int(i, j));
+                BuildNewTile(new Vector2Int(i, j), filler);
             }
         }
         //Team Units
@@ -74,18 +75,13 @@ public class MapDisplay : Display<Map>
         }
     }
 
-    private void BuildNewTile(Vector2Int coords)
+    private void BuildNewTile(Vector2Int coords, GridFiller fill)
     {
         TileDisplay newTile = Instantiate(tilePrefab, transform);
-        newTile.Set(GetTile());
+        newTile.Set(fill.GetFillAt(DataHolder.currentMode.GridSize, coords, item.GetFight().FloorLayout.AvailableTiles));
         newTile.SetOntoMap(item, coords);
     }
 
-    private Tile GetTile()
-    {
-        // Should Use Tile Filler
-        return Tile.GenerateRandomTile();
-    }
     
 
     

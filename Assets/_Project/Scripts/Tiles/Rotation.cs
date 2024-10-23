@@ -19,6 +19,29 @@ public class Rotation
     {
         currentRotation = GameUtils.ModPositive(currentRotation, 4);
     }
+
+    public void SetStringRotation(string rotation)
+    {
+        switch (rotation)
+        {
+            case "90":
+                currentRotation = 1;
+                break;
+            case "180":
+                currentRotation = 2;
+                break;
+            case "270":
+                currentRotation = 3;
+                break;
+            case "Random":
+                currentRotation = Random.Range(0, 4);
+                break;
+            default:
+                currentRotation = 0;
+                break;
+        }
+        
+    }
 }
 public enum RotationDirection
 {

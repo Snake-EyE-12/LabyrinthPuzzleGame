@@ -64,11 +64,15 @@ namespace Capstone.DataLoad
     }
     
     [System.Serializable]
-    public class FloorTile
+    public class FloorTile : Weighted
     {
         public string Tile;
         public int Value;
         public string Rotation;
+        public int GetWeight()
+        {
+            return Value;
+        }
     }
 
     [System.Serializable]
