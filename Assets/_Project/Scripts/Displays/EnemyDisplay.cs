@@ -137,4 +137,8 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
     {
         item.CheckDeath();
     }
+    public Map GetMap()
+    {
+        return localMap;
+    }
 }

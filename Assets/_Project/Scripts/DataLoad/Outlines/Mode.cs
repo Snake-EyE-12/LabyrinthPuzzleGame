@@ -68,6 +68,7 @@ namespace Capstone.DataLoad
     {
         public string Tile;
         public int Value;
+        public string Rotation;
     }
 
     [System.Serializable]

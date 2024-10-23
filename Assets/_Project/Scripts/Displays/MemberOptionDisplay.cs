@@ -8,7 +8,8 @@ public class MemberOptionDisplay : Display<CharacterColorData>
     [SerializeField] private Image image;
     public override void Render()
     {
-        
+        text.text = item.type;
+        image.color = item.color;
     }
     
     
@@ -19,7 +20,7 @@ public class MemberOptionDisplay : Display<CharacterColorData>
     }
     public void OnClick()
     {
-        tbh.Pick(item.type);
+        tbh.Pick(item.type, this.transform);
     }
 
 }

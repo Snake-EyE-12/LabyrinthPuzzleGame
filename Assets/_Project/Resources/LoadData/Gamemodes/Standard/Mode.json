@@ -11,53 +11,26 @@
   },
   "Rounds": 20,
   "EventLayout":
-  {
-    "IncludeChance": 100,
-    "Events":
-    [
-      {
-        "Event": 
+  [
+    {
+      "IncludeChance": 100,
+      "Events":
+      [
         {
           "Type": "Fight",
           "Weight": 20
-        },
-        "Sequence":
-        {
-          "Range":
-          {
-            "Min": 1,
-            "Max": 20
-          },
-          "Begin": 1,
-          "Size": 1,
-          "Repeated": 1
         }
-      }
-    ]
-  },
-  "Fights": [
-    {
-      "Degree": {
-        "Min": 1,
-        "Max": 3
-      },
-      "Weight": 20,
-      "Border": "Wrap",
-      "Enemies": [
-        "Minator"
       ],
-      "FloorLayout": {
-        "Fill": "All",
-        "AvailableTiles": [
-          {
-            "Tile": "+",
-            "Weight": 100
-          },
-          {
-            "Tile": "-",
-            "Weight": 100
-          }
-        ]
+      "Sequence":
+      {
+        "Range":
+        {
+          "Min": 1,
+          "Max": 20
+        },
+        "Begin": 1,
+        "Size": 1,
+        "Repeated": 1
       }
     }
   ]

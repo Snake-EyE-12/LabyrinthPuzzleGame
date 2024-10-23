@@ -117,7 +117,7 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
                 }
                 default:
                 {
-                    EventHandler.Invoke("Ability/UsedAbility", null);
+                    //EventHandler.Invoke("Ability/UsedAbility", null);
                     Instantiate(characterAbilityDisplayPrefab, GameManager.Instance.GetCanvasParent()).Set(item.abilityList);
                     GameManager.Instance.AbilityUser = this;
                     GameManager.Instance.SetSelectionMode(SelectableGroupType.Ability);
@@ -182,6 +182,11 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
     public void CheckForDeath()
     {
         item.CheckDeath();
+    }
+
+    public Map GetMap()
+    {
+        return localMap;
     }
 
     private bool used = false;

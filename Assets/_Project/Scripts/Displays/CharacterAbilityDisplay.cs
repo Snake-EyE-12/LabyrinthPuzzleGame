@@ -12,7 +12,7 @@ public class CharacterAbilityDisplay : Display<List<Ability>>
 
     private void Awake()
     {
-        EventHandler.AddListener("Ability/UsedAbility", OnRemove);
+        EventHandler.AddListener("Ability/DestroyPanel", OnRemove);
     }
 
     public override void Render()
@@ -23,13 +23,25 @@ public class CharacterAbilityDisplay : Display<List<Ability>>
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            GameManager.Instance.Phase = GamePhase.None;
+            GameManager.Instance.Clean();
+            ImmediateRemove();
+        }
+    }
+
     private void OnRemove(EventArgs args)
     {
         Destroy(this.gameObject);
+        EventHandler.RemoveListenerLate("Ability/DestroyPanel", OnRemove);
     }
 
-    private void OnDisable()
+    private void ImmediateRemove()
     {
-        EventHandler.RemoveListenerLate("Ability/UsedAbility", OnRemove);
+        Destroy(this.gameObject);
+        EventHandler.RemoveListener("Ability/DestroyPanel", OnRemove);
     }
 }

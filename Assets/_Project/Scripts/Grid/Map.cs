@@ -12,14 +12,6 @@ public class Map
     {
         grid = new Grid(DataHolder.currentMode.GridSize);
         activeFight = fight;
-
-        //Temporary
-        // Unit hero = new Unit();
-        // hero.SetMap(this);
-        // SpawnUnit(hero, new Vector2Int(0, 0));
-        // hero.Move(Vector2Int.up);
-        // hero.Move(Vector2Int.up);
-        // Debug.Log(gridHandler.GetGridBox().Find(hero));
     }
 
     public string[] GetStartingEnemyNames()
@@ -30,12 +22,27 @@ public class Map
     {
         grid.PlaceTileAt(position.x, position.y, tile);
     }
+
+    public void RotateTile(Vector2Int pos, int rotationAmount)
+    {
+        TileDisplay tileAtPos = grid.Get(pos).GetTile();
+        tileAtPos.GetTile().rotation.Rotate(RotationDirection.Clockwise, rotationAmount);
+        tileAtPos.Render();
+    }
     
     public void Slide(bool row, bool positive, int number)
     {
         if(row) SlideRow(number, positive, GameManager.Instance.cardToPlace.GetTile());
         else SlideColumn(number, positive, GameManager.Instance.cardToPlace.GetTile());
-        
+    }
+
+    public void Swap(Vector2Int gridPos)
+    {
+        Swap(gridPos, GameManager.Instance.cardToPlace.GetTile());
+    }
+    private void Swap(Vector2Int pos, Tile replacer)
+    {
+        grid.Get(pos).GetTile().Set(replacer);
     }
     private void SlideColumn(int x, bool upwards, Tile replacer)
     {

@@ -11,28 +11,33 @@ public class Ability
     private Target target;
     public string targetDescription;
     public List<ValueKey> keys = new List<ValueKey>();
-    private AbilityData data;
-
-    public string GetImageName()
-    {
-        string output = "V";
-        output += value + "-" + targetDescription + "-";
-        output += GetKeywordsString();
-
-        return output;
-    }
-
+    
     public string GetKeywordsString()
     {
         string output = "";
-        foreach (var key in data.Keys)
+        foreach (var key in keys)
         {
-            output += key + ", ";
+            output += key.GetKeywordName().name + ",";
         }
-        return output.Substring(0, output.Length - 2);
+        return output.Substring(0, output.Length - 1);
+    }
+    
+    
+    public static Sprite GetAbilityIcon(Ability ability)
+    {
+        string output = "V";
+        output += ability.value + "-" + ability.targetDescription + "-";
+        output += ability.GetKeywordsString();
+        Sprite sprite = Resources.Load<Sprite>("KeynamedSprites/" + output);
+        return sprite;
     }
 
+    public static void OrderAbilityKeywords(List<ValueKey> keywords)
+    {
+        keywords.Sort((a, b) => b.Order().CompareTo(a.Order()));
+    }
 
+    
     public void PrepareTarget()
     {
         target.Locate();
@@ -44,12 +49,11 @@ public class Ability
             key.ModifyAction(target, value);
         }
         if (GameManager.Instance.AbilityUser != null) GameManager.Instance.AbilityUser.BecomeUsed();
-        EventHandler.Invoke("Ability/UsedAbility", null);
+        if(GameManager.Instance.Phase == GamePhase.UsingActiveAbility) EventHandler.Invoke("Ability/DestroyPanel", null);
     }
     public Ability(AbilityData data)
     {
         value = data.Value;
-        this.data = data;
         targetDescription = data.Target;
         switch (data.Target)
         {
@@ -76,44 +80,134 @@ public class Ability
             switch (keyword)
             {
                 case "Stunted":
-                    vk = new StuntedKeyword();
+                    vk = new StuntedKeyword(new KeywordName(){color = Color.red, name = keyword});
                     break;
                 case "Knockback":
-                    vk = new KnockbackKeyword();
+                    vk = new KnockbackKeyword(new KeywordName(){color = Color.green, name = keyword});
                     break;
                 case "Damage":
-                    vk = new DamageKeyword();
+                    vk = new DamageKeyword(new KeywordName(){color = Color.blue, name = keyword});
                     break;
                 case "Heal":
-                    vk = new HealKeyword();
+                    vk = new HealKeyword(new KeywordName(){color = Color.yellow, name = keyword});
+                    break;
+                case "Discard":
+                    vk = new DiscardKeyword(new KeywordName(){color = Color.magenta, name = keyword});
+                    break;
+                case "Rotate":
+                    vk = new RotateKeyword(new KeywordName(){color = Color.cyan, name = keyword});
                     break;
                 default:
-                    vk = new ValueKey();
+                    vk = new ValueKey(new KeywordName(){color = Color.black, name = null});
                     break;
                 
             }
             keys.Add(vk);
         }
+        Ability.OrderAbilityKeywords(keys);
     }
 }
 
 
 
+
+
+
+
+
+
+public struct KeywordName
+{
+    public Color color;
+    public string name;
+}
+
+public enum KeywordOrder
+{
+    None,
+    Selection,
+    Movement,
+    Effect
+}
+
+
 public class ValueKey
 {
+    protected KeywordName keywordName;
+    public ValueKey(KeywordName keyName)
+    {
+        keywordName = keyName;
+    }
+    public KeywordName GetKeywordName()
+    {
+        return keywordName;
+    }
+
+    public virtual int Order()
+    {
+        return 0;
+    }
     public virtual void ModifyAction(Targetable t, int value)
     {}
 }
 
+public class RotateKeyword : ValueKey
+{
+    public override void ModifyAction(Targetable t, int value)
+    {
+        t.GetMap().RotateTile(t.GetGridPosition(), value);
+    }
+
+    public RotateKeyword(KeywordName keyName) : base(keyName)
+    {
+    }
+
+    public override int Order()
+    {
+        return (int)KeywordOrder.Movement;
+    }
+}
+
+public class DiscardKeyword : ValueKey
+{
+    // Discard first card in deck
+    public DiscardKeyword(KeywordName keyName) : base(keyName)
+    {
+    }
+    public override int Order()
+    {
+        return (int)KeywordOrder.None;
+    }
+
+    public override void ModifyAction(Targetable t, int value)
+    {
+        EventHandler.Invoke("Deck/DiscardFirst", null);
+    }
+}
+
 public class StuntedKeyword : ValueKey
 {
-    
+    public StuntedKeyword(KeywordName keyName) : base(keyName)
+    {
+    }
+    public override int Order()
+    {
+        return (int)KeywordOrder.Selection;
+    }
 }
 public class KnockbackKeyword : ValueKey
 {
     public override void ModifyAction(Targetable t, int value)
     {
         t.Move(t.GetGridPosition() - GameManager.Instance.AbilityUser.GetGridPosition());
+    }
+
+    public KnockbackKeyword(KeywordName keyName) : base(keyName)
+    {
+    }
+    public override int Order()
+    {
+        return (int)KeywordOrder.Movement;
     }
 }
 public class DamageKeyword : ValueKey
@@ -122,6 +216,14 @@ public class DamageKeyword : ValueKey
     {
         t.ChangeHealth(-value);
     }
+
+    public DamageKeyword(KeywordName keyName) : base(keyName)
+    {
+    }
+    public override int Order()
+    {
+        return (int)KeywordOrder.Effect;
+    }
 }
 public class HealKeyword : ValueKey
 {
@@ -129,7 +231,23 @@ public class HealKeyword : ValueKey
     {
         t.ChangeHealth(value);
     }
+
+    public HealKeyword(KeywordName keyName) : base(keyName)
+    {
+    }
+    public override int Order()
+    {
+        return (int)KeywordOrder.Effect;
+    }
 }
+
+
+
+
+
+
+
+
 
 public abstract class Target
 {
@@ -140,6 +258,8 @@ public class SelfTarget : Target
     public override void Locate()
     {
         GameManager.Instance.AbilityUser.HitByAbility(GameManager.Instance.AbilityInUse);
+        GameManager.Instance.SetSelectionMode(SelectableGroupType.Team);
+        GameManager.Instance.Phase = GamePhase.None;
     }
 }
 

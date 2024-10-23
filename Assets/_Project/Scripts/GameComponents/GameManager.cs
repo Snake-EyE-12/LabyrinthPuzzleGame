@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Capstone.DataLoad;
 using Guymon.DesignPatterns;
 using UnityEngine;
+using UnityEngine.Serialization;
 using EventArgs = Guymon.DesignPatterns.EventArgs;
 using EventHandler = Guymon.DesignPatterns.EventHandler;
 
@@ -13,18 +14,19 @@ public class GameManager : Singleton<GameManager>
     [HideInInspector] public int currentRound = 0;
     [SerializeField] private EventBuilder eventBuilder;
     [SerializeField] private Transform canvasTransform;
-    [SerializeField] private DirectorDisplay slideDisplay;
+    [FormerlySerializedAs("slideDisplay")] [SerializeField] private Director slide;
 
-    public void DisplaySlideDirection(Vector2Int gridPos)
+    public void DisplayDirection(Vector2Int gridPos, bool sliding)
     {
-        slideDisplay.Display(DirectionToSlide, DataHolder.currentMode.GridSize, gridPos);
+        slide.Display(DirectionToSlide, DataHolder.currentMode.GridSize, gridPos, sliding);
     }
 
     public void HideSliderDisplay()
     {
-        slideDisplay.Hide(null);
+        slide.Hide(null);
     }
-    
+
+
     
     
     
@@ -47,15 +49,16 @@ public class GameManager : Singleton<GameManager>
     public void UseActiveCharacterAbility(EnemyDisplay target)
     {
         AbilityInUse.Use(target);
-        AbilityInUse = null;
-        AbilityUser = null;
-        selector.FullCancel();
-        SetSelectionMode(SelectableGroupType.Team);
-        Phase = GamePhase.None;
+        Clean();
     }
     public void UseActiveCharacterAbility(CharacterDisplay target)
     {
         AbilityInUse.Use(target);
+        Clean();
+    }
+
+    public void Clean()
+    {
         AbilityInUse = null;
         AbilityUser = null;
         selector.FullCancel();
@@ -146,7 +149,7 @@ public class GameManager : Singleton<GameManager>
     private void FightOver()
     {
         EventHandler.Invoke("Round/FightOver", null);
-        EventHandler.Invoke("Ability/UsedAbility", null);
+        //EventHandler.Invoke("Ability/UsedAbility", null);
         AttackIndicator.Instance.ClearAttacks();
         selector.Empty();
     }
@@ -256,7 +259,7 @@ public class GameManager : Singleton<GameManager>
         set
         {
             directionToSlide = value;
-            slideDisplay.ChangeRotation(value);
+            slide.ChangeRotation(value);
         }
     }
 
@@ -281,4 +284,5 @@ public interface Targetable
 
     public void BecomeUsed();
     public void CheckForDeath();
+    public Map GetMap();
 }

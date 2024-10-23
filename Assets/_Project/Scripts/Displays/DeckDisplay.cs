@@ -27,6 +27,13 @@ public class DeckDisplay : Display<Deck>
         EventHandler.AddListener("Phase/DrawCards", DrawToLimit);
         EventHandler.AddListener("CardPlaced", DiscardSpecificCard);
         EventHandler.AddListener("Round/FightOver", OnBattleOver);
+        EventHandler.AddListener("Deck/DiscardFirst", DiscardOldest);
+    }
+    private void DiscardOldest(EventArgs args)
+    {
+        if(handTiles.Count <= 0) return;
+        DiscardAt(handTiles.Count - 1);
+        Debug.Log("DISCARD FIRST");
     }
     private void OnBattleOver(EventArgs args)
     {
@@ -71,10 +78,15 @@ public class DeckDisplay : Display<Deck>
                 }
             }
             if (index == -1) return;
-            item.Discard(index);
-            handTiles[index].RemoveFromPlay();
-            handTiles.RemoveAt(index);
+            DiscardAt(index);
         }
+    }
+
+    private void DiscardAt(int index)
+    {
+        item.Discard(index);
+        handTiles[index].RemoveFromPlay();
+        handTiles.RemoveAt(index);
     }
 
     

@@ -36,7 +36,6 @@ public class Deck
     {
         discardPile.Add(hand.GetAt(index));
         hand.RemoveAt(index);
-        
     }
 
     public void Shuffle()

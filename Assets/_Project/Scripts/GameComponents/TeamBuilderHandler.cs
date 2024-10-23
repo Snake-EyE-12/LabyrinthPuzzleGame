@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Capstone.DataLoad;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class TeamBuilderHandler : MonoBehaviour
 {
@@ -41,8 +42,13 @@ public class TeamBuilderHandler : MonoBehaviour
         Finish();
     }
 
-    public void Pick(string character)
+    public void Pick(string character, Transform selectedCharacterObject)
     {
+        selectedCharacterObject.SetParent(currentTeamParent);
+        foreach (Transform child in optionsParent)
+        {
+            Destroy(child.gameObject);
+        }
         teamCreationList.Add(character);
         if (teamCreationList.Count >= DataHolder.currentMode.CharacterSelection.Total)
         {
@@ -66,6 +72,16 @@ public class TeamBuilderHandler : MonoBehaviour
             TeamOptionDisplay teamOptionDisplay = Instantiate(teamOptionDisplayPrefab, optionsParent);
             teamOptionDisplay.Set(team);
             teamOptionDisplay.SetHandler(this);
+        }
+    }
+
+    public void DisplayDraftCharactersOptions(List<CharacterColorData> options)
+    {
+        foreach (var member in options)
+        {
+            MemberOptionDisplay memberOptionDisplay = Instantiate(memberOptionDisplayPrefab, optionsParent);
+            memberOptionDisplay.Set(member);
+            memberOptionDisplay.SetHandler(this);
         }
     }
 
@@ -115,12 +131,23 @@ public class DraftTeam : TeamBuilder
 
     public override void Next()
     {
-        throw new NotImplementedException();
+        Load();
     }
 
     public override void Load()
     {
-        
+        List<CharacterColorData> ccdList = new();
+        for (int i = 0; i < selection.Choices; i++)
+        {
+            ccdList.Add(GetRandomMember());
+        }
+        handler.DisplayDraftCharactersOptions(ccdList);
+    }
+
+    private CharacterColorData GetRandomMember()
+    {
+        CharacterColorEquivalence cce = DataHolder.characterColorEquivalenceTable.Equivalences[Random.Range(0, 6)];
+        return new CharacterColorData(cce.Color, cce.Type);
     }
 }
 public class ChooseTeam : TeamBuilder

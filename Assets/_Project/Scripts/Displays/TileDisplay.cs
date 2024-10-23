@@ -23,13 +23,16 @@ public class TileDisplay : Display<Tile>, GridPositionable, Selectable
 
         if (item.ability != null)
         {
-            Debug.Log("Loading Image: " + item.ability.GetImageName());
-            abilityIcon.sprite = Resources.Load<Sprite>("KeynamedSprites/" + item.ability.GetImageName());
+            abilityIcon.sprite = Ability.GetAbilityIcon(item.ability);
         }
-        
+        else abilityIcon.sprite = null;
+
     }
-    
-    
+
+    public Tile GetTile()
+    {
+        return item;
+    }
     private void Awake()
     {
         EventHandler.AddListener("Round/FightOver", OnBattleOver);
@@ -113,7 +116,7 @@ public class TileDisplay : Display<Tile>, GridPositionable, Selectable
     public void Select()
     {
         selectionIndicator.StartSelection();
-        GameManager.Instance.DisplaySlideDirection(gridPosition);
+        GameManager.Instance.DisplayDirection(gridPosition, GameManager.Instance.cardToPlace.GetCard().GetTile().type == "Slide");
     }
 
     public void Deselect()
@@ -133,9 +136,16 @@ public class TileDisplay : Display<Tile>, GridPositionable, Selectable
 
     public void Activate(SelectableActivatorData data)
     {
-        bool onRow = GameUtils.IsDirectionRow(GameManager.Instance.DirectionToSlide);
-        bool posDirection = GameUtils.IsDirectionPositive(GameManager.Instance.DirectionToSlide);
-        localMap.Slide(onRow, posDirection, ((onRow) ? gridPosition.y : gridPosition.x));
+        if(GameManager.Instance.cardToPlace.GetCard().GetTile().type == "Slide")
+        {
+            bool onRow = GameUtils.IsDirectionRow(GameManager.Instance.DirectionToSlide);
+            bool posDirection = GameUtils.IsDirectionPositive(GameManager.Instance.DirectionToSlide);
+            localMap.Slide(onRow, posDirection, ((onRow) ? gridPosition.y : gridPosition.x));
+        }
+        else
+        {
+            localMap.Swap(gridPosition);
+        }
         EventHandler.Invoke("CardPlaced", new CardEventArgs(GameManager.Instance.cardToPlace.GetCard()));
         GameManager.Instance.cardToPlace = null;
     }

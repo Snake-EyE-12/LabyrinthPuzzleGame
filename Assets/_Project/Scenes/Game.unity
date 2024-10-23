@@ -598,7 +598,7 @@ MonoBehaviour:
   currentRound: 0
   eventBuilder: {fileID: 1044629136}
   canvasTransform: {fileID: 474008700}
-  slideDisplay: {fileID: 1296903031}
+  slide: {fileID: 1296903031}
   eventMenuParent: {fileID: 1024877060}
   turnManager: {fileID: 1044629140}
   selector: {fileID: 1044629139}
@@ -630,7 +630,6 @@ MonoBehaviour:
   spacing: 2
   origin: {x: -5, y: -2}
   cam: {fileID: 269498367}
-  bonus: 3
 --- !u!114 &1044629139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -732,7 +731,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1296903031 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4906020786010610430, guid: 1f329ff0682676d4f8a058a7cfdc638b, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4490546664948708000, guid: 1f329ff0682676d4f8a058a7cfdc638b, type: 3}
   m_PrefabInstance: {fileID: 1296903029}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

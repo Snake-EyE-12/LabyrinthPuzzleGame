@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 public class Tile
 {
     public Path path;
+    public string type;
     public Rotation rotation;
     public Ability ability;
 
@@ -54,6 +55,7 @@ public class Tile
     {
         path = new Path(data.Path);
         rotation = new Rotation();
+        type = data.Type;
         //type
         if(!(abilityData == null || abilityData.Target == null || abilityData.Keys == null)) ability = new Ability(abilityData);
     }

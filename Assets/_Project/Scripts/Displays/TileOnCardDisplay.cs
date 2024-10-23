@@ -18,7 +18,7 @@ public class TileOnCardDisplay : Display<Tile>
 
         if (item.ability != null)
         {
-            abilityIcon.sprite = Resources.Load<Sprite>("KeynamedSprites/" + item.ability.GetImageName());
+            abilityIcon.sprite = Ability.GetAbilityIcon(item.ability);
             abilityIcon.gameObject.SetActive(true);
         }
         else

@@ -15,7 +15,7 @@ public class AttackIndicator : Singleton<AttackIndicator>
     public void RemoveAttack(EnemyAttackVisual attack)
     {
         activeAttacks.Remove(attack);
-        VisualizeAttacks();
+        Recalculate();
     }
 
     public void Recalculate()

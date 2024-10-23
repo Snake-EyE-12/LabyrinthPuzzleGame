@@ -50,7 +50,7 @@ public class AbilityDisplay : Display<Ability>, Selectable
     public void Activate(SelectableActivatorData data)
     {
         GameManager.Instance.AbilityInUse = item;
-        item.PrepareTarget();
         GameManager.Instance.Phase = GamePhase.UsingActiveAbility;
+        item.PrepareTarget();
     }
 }
