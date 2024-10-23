@@ -17,7 +17,6 @@ public class Damager
     public void TakeDamage(int amount)
     {
         unit.health.Damage(amount);
-        if (unit.health.isDead) unit.Die();
     }
     public void ApplyEffect(ActiveEffect effect)
     {

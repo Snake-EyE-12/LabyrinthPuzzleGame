@@ -29,6 +29,17 @@ public static class GameUtils
     {
         return Random.Range(0, 100) < percent;
     }
+
+    public static bool IsDirectionRow(CardinalDirection direction)
+    {
+        return direction == CardinalDirection.West ||
+               direction == CardinalDirection.East;
+    }
+    public static bool IsDirectionPositive(CardinalDirection direction)
+    {
+        return direction == CardinalDirection.North ||
+               direction == CardinalDirection.East;
+    }
 }
 
 public interface Weighted

@@ -16,6 +16,11 @@ public abstract class Unit
     {
         GameManager.Instance.KillUnit(this);
     }
+
+    public void CheckDeath()
+    {
+        if (health.isDead) Die();
+    }
     
     
     //

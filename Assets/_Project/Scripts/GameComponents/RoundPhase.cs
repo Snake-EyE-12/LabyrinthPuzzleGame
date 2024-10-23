@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Guymon.DesignPatterns;
 using UnityEngine;
 
@@ -30,7 +31,9 @@ public class OpponentTurnPhase : RoundPhase
     public override void StartPhase()
     {
         Debug.Log("Round Phase : Opponent Turn");
+        AttackIndicator.Instance.ClearAttacks();
         GameManager.Instance.PickEnemyAttacks();
+        AttackIndicator.Instance.VisualizeAttacks();
     }
 }
 public class DrawCardsPhase : RoundPhase
@@ -86,6 +89,7 @@ public class PlayCardsPhase : RoundPhase
 
     public override void EndPhase()
     {
+        GameManager.Instance.HideSliderDisplay();
         EventHandler.RemoveListenerLate("CardPlaced", CardPlaced);
     }
 }
@@ -133,7 +137,13 @@ public class DamagePhase : RoundPhase
     public override void StartPhase()
     {
         Debug.Log("Round Phase : Damage From Enemies");
-        GameManager.Instance.UseEnemyAttacks();
+        AttackIndicator.Instance.ExecuteAttacks();
+        List<CharacterDisplay> characterList = GameManager.Instance.GetActiveCharacters();
+        for (int i = characterList.Count - 1; i >= 0; i--)
+        {
+            characterList[i].CheckDie();
+        }
+        tm.NextPhase();
     }
 }
 public class CompletionPhase : RoundPhase

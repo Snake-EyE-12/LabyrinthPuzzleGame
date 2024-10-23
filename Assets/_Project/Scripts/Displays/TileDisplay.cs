@@ -111,6 +111,7 @@ public class TileDisplay : Display<Tile>, GridPositionable, Selectable
     public void Select()
     {
         selectionIndicator.StartSelection();
+        GameManager.Instance.DisplaySlideDirection(gridPosition);
     }
 
     public void Deselect()
@@ -130,10 +131,8 @@ public class TileDisplay : Display<Tile>, GridPositionable, Selectable
 
     public void Activate(SelectableActivatorData data)
     {
-        bool onRow = GameManager.Instance.DirectionToSlide == CardinalDirection.West ||
-                     GameManager.Instance.DirectionToSlide == CardinalDirection.East;
-        bool posDirection = GameManager.Instance.DirectionToSlide == CardinalDirection.North ||
-                            GameManager.Instance.DirectionToSlide == CardinalDirection.East;
+        bool onRow = GameUtils.IsDirectionRow(GameManager.Instance.DirectionToSlide);
+        bool posDirection = GameUtils.IsDirectionPositive(GameManager.Instance.DirectionToSlide);
         localMap.Slide(onRow, posDirection, ((onRow) ? gridPosition.y : gridPosition.x));
         EventHandler.Invoke("CardPlaced", new CardEventArgs(GameManager.Instance.cardToPlace.GetCard()));
         GameManager.Instance.cardToPlace = null;

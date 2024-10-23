@@ -140,6 +140,11 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
         Destroy(this.gameObject);
     }
 
+    public void CheckDie()
+    {
+        item.CheckDeath();
+    }
+
     public void ChangeHealth(int amount)
     {
         if (amount < 0)

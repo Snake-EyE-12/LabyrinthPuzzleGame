@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EventArgs = Guymon.DesignPatterns.EventArgs;
+using EventHandler = Guymon.DesignPatterns.EventHandler;
 
 public class InputSelector : MonoBehaviour
 {
@@ -16,6 +18,7 @@ public class InputSelector : MonoBehaviour
         groups.Add(new SelectorGroup(SelectableGroupType.Team, new CharacterMovementGameInput(this)));
         groups.Add(new SelectorGroup(SelectableGroupType.Enemy, new AbilityGameInput(this)));
         groups.Add(new SelectorGroup(SelectableGroupType.Ability, new AbilityGameInput(this)));
+        EventHandler.AddListener("CardPlaced", Reorder);
     }
 
     public void FullCancel()
@@ -57,6 +60,11 @@ public class InputSelector : MonoBehaviour
     {
         active?.Cancel();
         active = newGroup;
+    }
+
+    private void Reorder(EventArgs args)
+    {
+        active?.OrderSelectables();
     }
     
     public void AddSelectable(Selectable selectable, SelectableGroupType groupType)
@@ -169,18 +177,38 @@ public class SelectorGroup
         }
 
         selectables[currentSelectedIndex].Deselect();
-        currentSelectedIndex = (currentSelectedIndex + 1) % selectables.Count;
+        currentSelectedIndex = FindNextSelectable();
+        if(currentSelectedIndex == -1) return;
         selectables[currentSelectedIndex].Select();
     }
 
+    private int FindNextSelectable()
+    {
+        int traverseCount = 0;
+        do
+        {
+            traverseCount++;
+            currentSelectedIndex = (currentSelectedIndex + 1) % selectables.Count;
+        } while (!selectables[currentSelectedIndex].IsCurrentlySelectable() && traverseCount <= selectables.Count);
+
+        if (traverseCount > selectables.Count) return -1;
+        return currentSelectedIndex;
+    }
     private void AttemptStartSelection()
     {
         if(selectables.Count == 0) return;
-        currentSelectedIndex = 0;
-        selectables[currentSelectedIndex].Select();
+        for (int i = 0; i < selectables.Count; i++)
+        {
+            if (selectables[i].IsCurrentlySelectable())
+            {
+                currentSelectedIndex = i;
+                selectables[currentSelectedIndex].Select();
+                return;
+            }
+        }
     }
 
-    private void OrderSelectables()
+    public void OrderSelectables()
     {
         selectables.Sort((a, b) => b.GetOrderValue().CompareTo(a.GetOrderValue()));
     }

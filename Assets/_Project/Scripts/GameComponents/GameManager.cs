@@ -13,6 +13,21 @@ public class GameManager : Singleton<GameManager>
     [HideInInspector] public int currentRound = 0;
     [SerializeField] private EventBuilder eventBuilder;
     [SerializeField] private Transform canvasTransform;
+    [SerializeField] private DirectorDisplay slideDisplay;
+
+    public void DisplaySlideDirection(Vector2Int gridPos)
+    {
+        slideDisplay.Display(DirectionToSlide, DataHolder.currentMode.GridSize, gridPos);
+    }
+
+    public void HideSliderDisplay()
+    {
+        slideDisplay.Hide(null);
+    }
+    
+    
+    
+    
     
     private List<Character> team = new List<Character>();
     public void SetTeam(List<string> teamLayout)
@@ -48,14 +63,6 @@ public class GameManager : Singleton<GameManager>
         foreach (var enemy in activeEnemies)
         {
             enemy.ChooseAttack();
-        }
-        turnManager.NextPhase();
-    }
-    public void UseEnemyAttacks()
-    {
-        foreach (var enemy in activeEnemies)
-        {
-            enemy.UseAttack();
         }
         turnManager.NextPhase();
     }
@@ -221,7 +228,19 @@ public class GameManager : Singleton<GameManager>
         cardToPlace.RotateTile(d, i);
     }
 
-    public CardinalDirection DirectionToSlide { get; set; }
+    private CardinalDirection directionToSlide = CardinalDirection.North;
+    public CardinalDirection DirectionToSlide
+    {
+        get
+        {
+            return directionToSlide;
+        }
+        set
+        {
+            directionToSlide = value;
+            slideDisplay.ChangeRotation(value);
+        }
+    }
 
     public Ability AbilityInUse { get; set; }
     public Targetable AbilityUser { get; set; }

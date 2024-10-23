@@ -282,6 +282,7 @@ MonoBehaviour:
   nameText: {fileID: 1978531599711108661}
   selectionIndicator: {fileID: 7459480398658686606}
   healthBar: {fileID: 5352440467926993696}
+  attackDisplayPrefab: {fileID: 1633570805558340453, guid: f2b4a4dec04794641a778952083353ed, type: 3}
 --- !u!114 &7459480398658686606
 MonoBehaviour:
   m_ObjectHideFlags: 0

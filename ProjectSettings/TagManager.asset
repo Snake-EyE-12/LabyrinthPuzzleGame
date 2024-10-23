@@ -45,6 +45,12 @@ TagManager:
   - name: Tile
     uniqueID: 3282607781
     locked: 0
+  - name: TileAbility
+    uniqueID: 1248173983
+    locked: 0
   - name: Component
     uniqueID: 3467329053
+    locked: 0
+  - name: AttackIndication
+    uniqueID: 2346289331
     locked: 0

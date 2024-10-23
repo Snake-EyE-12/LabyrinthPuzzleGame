@@ -55,4 +55,5 @@ public enum CardinalDirection
     East = 2,
     South = 4,
     West = 8
+    
 }

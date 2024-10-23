@@ -18,18 +18,14 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
         nameText.text = item.unitName;
     }
 
+    private EnemyAttackVisual choosenAttack;
     public void ChooseAttack()
     {
-        chosenAttack = item.attackLayout.Pick();
+        choosenAttack = new EnemyAttackVisual(){attack = item.attackLayout.Pick(), user = this};
+        AttackIndicator.Instance.AddAttack(choosenAttack);
     }
 
-    private Attack chosenAttack;
 
-    public void UseAttack()
-    {
-        chosenAttack.Use(localMap, this);
-        
-    }
     public Enemy GetEnemy()
     {
         return item;
@@ -39,6 +35,7 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
     {
         GameManager.Instance.RemoveEnemy(this);
         localMap.RemoveUnit(this);
+        AttackIndicator.Instance.RemoveAttack(choosenAttack);
         GameManager.Instance.RemoveSelectable(this, selectionIndicator.type);
         Destroy(this.gameObject);
     }
@@ -58,6 +55,7 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
     public void SetGridPosition(Vector2Int value)
     {
         gridPosition = value;
+        AttackIndicator.Instance.Recalculate();
     }
 
     public OnTileLocation GetTileLocation()
@@ -120,6 +118,7 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
         if (amount < 0)
         {
             damager.TakeDamage(-amount);
+            if (item.health.isDead) item.Die();
         }
         else damager.Heal(amount);
         healthBar.Render();

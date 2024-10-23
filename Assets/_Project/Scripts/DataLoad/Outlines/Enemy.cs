@@ -75,8 +75,9 @@ public class AttackLayout
         {
             a.UpdateIntelligenceValue();
         }
-        return attacks[GameUtils.IndexByWeightedRandom(new List<Weighted>(attacks))];
-        
+        Attack choosen = attacks[GameUtils.IndexByWeightedRandom(new List<Weighted>(attacks))];
+        choosen.Prepare();
+        return choosen;
     }
     
 }
@@ -105,6 +106,30 @@ public class Attack : Weighted
         }
     }
 
+    private List<Vector2Int> presetShape;
+    public void Prepare()
+    {
+        presetShape = PresetShape();
+    }
+
+    public List<Vector2Int> GetActiveShape(Vector2Int originPoint)
+    {
+        List<Vector2Int> list = new List<Vector2Int>();
+        foreach (var shape in presetShape)
+        {
+            list.Add(shape + originPoint);
+        }
+
+        return list;
+    }
+
+    public string GetDescription()
+    {
+        string output = "";
+        output += ability.value;
+        return output;
+    }
+
     private int weight;
     private ShapeAttack shape;
     private Ability ability;
@@ -118,11 +143,15 @@ public class Attack : Weighted
     {
         currentIntelligence = 0; // update for smartness
     }
+    public List<Vector2Int> PresetShape()
+    {
+        return shape.GetShape();
+    }
 
-    public void Use(Map map, EnemyDisplay user)
+    public void Use(EnemyDisplay user)
     {
         GameManager.Instance.AbilityUser = user;
-        foreach (var tilePosition in shape.GetShape(user.GetGridPosition()))
+        foreach (var tilePosition in GetActiveShape(user.GetGridPosition()))
         {
             foreach (var character in GameManager.Instance.GetActiveCharacters())
             {
@@ -147,7 +176,7 @@ public abstract class ShapeAttack
         this.power = power;
     }
 
-    public abstract List<Vector2Int> GetShape(Vector2Int startLocation);
+    public abstract List<Vector2Int> GetShape();
 
     protected Vector2Int GetRandomDirection()
     {
@@ -173,13 +202,13 @@ public class LineAttack : ShapeAttack
         
     }
 
-    public override List<Vector2Int> GetShape(Vector2Int startLocation)
+    public override List<Vector2Int> GetShape()
     {
         List<Vector2Int> list = new List<Vector2Int>();
         Vector2Int direction = GetRandomDirection();
         for (int i = 0; i < power; i++)
         {
-            list.Add(startLocation + (direction * (i + 1)));
+            list.Add((direction * (i + 1)));
         }
         
         return list;
@@ -193,7 +222,7 @@ public class SquareAttack : ShapeAttack
         
     }
 
-    public override List<Vector2Int> GetShape(Vector2Int startLocation)
+    public override List<Vector2Int> GetShape()
     {
         List<Vector2Int> list = new List<Vector2Int>();
         
@@ -209,7 +238,7 @@ public class CircleAttack : ShapeAttack
     {
         
     }
-    public override List<Vector2Int> GetShape(Vector2Int startLocation)
+    public override List<Vector2Int> GetShape()
     {
         List<Vector2Int> list = new List<Vector2Int>();
         
@@ -224,16 +253,16 @@ public class CrossAttack : ShapeAttack
     {
         
     }
-    public override List<Vector2Int> GetShape(Vector2Int startLocation)
+    public override List<Vector2Int> GetShape()
     {
         List<Vector2Int> list = new List<Vector2Int>();
 
         for (int i = 1; i <= power; i++)
         {
-            list.Add(startLocation + (Vector2Int.up * i));
-            list.Add(startLocation + (Vector2Int.down * i));
-            list.Add(startLocation + (Vector2Int.left * i));
-            list.Add(startLocation + (Vector2Int.right * i));
+            list.Add((Vector2Int.up * i));
+            list.Add((Vector2Int.down * i));
+            list.Add((Vector2Int.left * i));
+            list.Add((Vector2Int.right * i));
         }
         
         return list;
