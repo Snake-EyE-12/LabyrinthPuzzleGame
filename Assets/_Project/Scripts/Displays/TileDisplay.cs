@@ -53,8 +53,10 @@ public class TileDisplay : Display<Tile>, GridPositionable, Selectable
         unit.SetGridPosition(GetGridPosition());
         if (unit is Targetable && item.ability != null)
         {
-            item.ability.Use(unit as Targetable);
+            Targetable targeted = unit as Targetable;
+            item.ability.Use(targeted);
             Debug.Log("Tile Ability Stepped On");
+            targeted.CheckForDeath();
         }
     }
     

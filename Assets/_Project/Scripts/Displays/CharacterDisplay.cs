@@ -168,6 +168,11 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
         used = true;
     }
 
+    public void CheckForDeath()
+    {
+        item.CheckDeath();
+    }
+
     private bool used = false;
 }
 

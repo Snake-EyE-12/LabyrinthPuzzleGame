@@ -26,6 +26,14 @@ public class InputSelector : MonoBehaviour
         ChangeSelectionGroup(null);
     }
 
+    public void Empty()
+    {
+        foreach (var group in groups)
+        {
+            group.Clear();
+        }
+    }
+
     private void Update()
     {
         if (active == null) return;

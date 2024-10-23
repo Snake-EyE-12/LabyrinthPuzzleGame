@@ -131,6 +131,10 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
 
     public void Move(Vector2Int direction)
     {
-        
+        localMap.Move(this, direction);
+    }
+    public void CheckForDeath()
+    {
+        item.CheckDeath();
     }
 }

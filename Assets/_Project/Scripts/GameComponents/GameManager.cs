@@ -80,12 +80,6 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    // public IEnumerator DelayMethodCall(float time, Action action)
-    // {
-    //     yield return new WaitForSeconds(time);
-    //     action();
-    // }
-
     public void PrepareTeamTurnStart()
     {
         foreach (var member in activeTeam)
@@ -104,7 +98,7 @@ public class GameManager : Singleton<GameManager>
                 if (ed.GetEnemy().Equals(deadEnemy))
                 {
                     ed.Vanish();
-                    CheckFightOver();
+                    if (activeEnemies.Count <= 0) WinFight();
                     return;
                 }
             }
@@ -129,17 +123,22 @@ public class GameManager : Singleton<GameManager>
     private void Lose()
     {
         Debug.Log("You Lose");
+        FightOver();
     }
 
-    private void CheckFightOver()
+    private void WinFight()
     {
-        if (activeEnemies.Count <= 0)
-        {
-            EventHandler.Invoke("Round/FightOver", null);
-            EventHandler.Invoke("Ability/UsedAbility", null);
-            ContinueMission();
-        }
-        
+        Debug.Log("You Won Fight: " + currentRound);
+        FightOver();
+        ContinueMission();
+    }
+
+    private void FightOver()
+    {
+        EventHandler.Invoke("Round/FightOver", null);
+        EventHandler.Invoke("Ability/UsedAbility", null);
+        AttackIndicator.Instance.ClearAttacks();
+        selector.Empty();
     }
     
     
@@ -171,8 +170,17 @@ public class GameManager : Singleton<GameManager>
     public void ContinueMission()
     {
         currentRound++;
-        Instantiate(roundMenuDisplayPrefab, eventMenuParent).Set(DataHolder.eventsForEachRound[currentRound]);
-        
+        if (currentRound > DataHolder.currentMode.Rounds)
+        {
+            CompleteGame();
+            return;
+        }
+        Instantiate(roundMenuDisplayPrefab, eventMenuParent).Set(DataHolder.eventsForEachRound[currentRound - 1]);
+    }
+
+    private void CompleteGame()
+    {
+        SceneChanger.LoadScene("Win");
     }
 
     [SerializeField] private TurnManager turnManager;
@@ -255,4 +263,5 @@ public interface Targetable
     public Vector2Int GetGridPosition();
 
     public void BecomeUsed();
+    public void CheckForDeath();
 }
