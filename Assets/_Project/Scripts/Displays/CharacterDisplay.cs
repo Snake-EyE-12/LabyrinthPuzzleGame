@@ -95,7 +95,7 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
 
     public bool IsCurrentlySelectable()
     {
-        return !used;
+        return GameManager.Instance.Phase == GamePhase.UsingActiveAbility || !used;
     }
 
     public void Activate(SelectableActivatorData data)
@@ -108,11 +108,22 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
 
         if (data is ConfirmSelectableActivatorData)
         {
-            EventHandler.Invoke("Ability/UsedAbility", null);
-            Instantiate(characterAbilityDisplayPrefab, GameManager.Instance.GetCanvasParent()).Set(item.abilityList);
-            GameManager.Instance.AbilityUser = this;
-            GameManager.Instance.SetSelectionMode(SelectableGroupType.Ability);
-            return;
+            switch (GameManager.Instance.Phase)
+            {
+                case GamePhase.UsingActiveAbility :
+                {
+                    GameManager.Instance.UseActiveCharacterAbility(this);
+                    break;
+                }
+                default:
+                {
+                    EventHandler.Invoke("Ability/UsedAbility", null);
+                    Instantiate(characterAbilityDisplayPrefab, GameManager.Instance.GetCanvasParent()).Set(item.abilityList);
+                    GameManager.Instance.AbilityUser = this;
+                    GameManager.Instance.SetSelectionMode(SelectableGroupType.Ability);
+                    return;
+                }
+            }
         }
     }
     [SerializeField] private CharacterAbilityDisplay characterAbilityDisplayPrefab;

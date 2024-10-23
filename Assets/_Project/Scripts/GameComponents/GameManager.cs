@@ -51,6 +51,16 @@ public class GameManager : Singleton<GameManager>
         AbilityUser = null;
         selector.FullCancel();
         SetSelectionMode(SelectableGroupType.Team);
+        Phase = GamePhase.None;
+    }
+    public void UseActiveCharacterAbility(CharacterDisplay target)
+    {
+        AbilityInUse.Use(target);
+        AbilityInUse = null;
+        AbilityUser = null;
+        selector.FullCancel();
+        SetSelectionMode(SelectableGroupType.Team);
+        Phase = GamePhase.None;
     }
 
     public List<CharacterDisplay> GetActiveCharacters()
@@ -252,6 +262,13 @@ public class GameManager : Singleton<GameManager>
 
     public Ability AbilityInUse { get; set; }
     public Targetable AbilityUser { get; set; }
+    public GamePhase Phase { get; set; }
+}
+
+public enum GamePhase
+{
+    None,
+    UsingActiveAbility
 }
 
 public interface Targetable

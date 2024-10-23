@@ -51,5 +51,6 @@ public class AbilityDisplay : Display<Ability>, Selectable
     {
         GameManager.Instance.AbilityInUse = item;
         item.PrepareTarget();
+        GameManager.Instance.Phase = GamePhase.UsingActiveAbility;
     }
 }

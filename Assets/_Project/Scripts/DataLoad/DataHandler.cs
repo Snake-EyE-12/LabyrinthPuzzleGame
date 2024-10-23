@@ -8,27 +8,28 @@ using Range = Capstone.DataLoad.Range;
 
 public class DataHandler : MonoBehaviour
 {
-    private void Update()
+    private void Awake()
     {
-        if(Input.GetKeyDown(KeyCode.I)) ReadData();
+        ReadData();
     }
 
     [Button]
     private void ReadData()
     {
-        DataHolder.characterColorEquivalenceTable = GameDataReader.ConvertToJsonObject<CharacterColorEquivalenceTable>("LoadData/CharacterEquivalence");
-        DataHolder.characterLayoutTable = GameDataReader.ConvertToJsonObject<CharacterLayoutTable>("LoadData/CharacterLayouts");
+        GamemodeManager.Instance.PrepareGamemodes(ReadGamemodes(), this);
+    }
 
-        DataHolder.availableCharacters = GameDataReader.ConvertToJsonObject<CharacterList>("LoadData/Characters");
-        DataHolder.availableEnemies = GameDataReader.ConvertToJsonObject<EnemyList>("LoadData/Enemies");
-        DataHolder.availableFights = GameDataReader.ConvertToJsonObject<FightList>("LoadData/Fights");
-        DataHolder.availableTiles = GameDataReader.ConvertToJsonObject<TileList>("LoadData/Tiles");
-
-
-
+    public void ReadDataFromMode(Mode mode)
+    {
+        DataHolder.currentMode = mode;
         
-        
-        GamemodeManager.Instance.PrepareGamemodes(ReadGamemodes());
+        DataHolder.characterColorEquivalenceTable = GameDataReader.ConvertToJsonObject<CharacterColorEquivalenceTable>("LoadData/Gamemodes/" + mode.DisplayName + "/CharacterEquivalence");
+        DataHolder.characterLayoutTable = GameDataReader.ConvertToJsonObject<CharacterLayoutTable>("LoadData/Gamemodes/" + mode.DisplayName + "/CharacterLayouts");
+
+        DataHolder.availableCharacters = GameDataReader.ConvertToJsonObject<CharacterList>("LoadData/Gamemodes/" + mode.DisplayName + "/Characters");
+        DataHolder.availableEnemies = GameDataReader.ConvertToJsonObject<EnemyList>("LoadData/Gamemodes/" + mode.DisplayName + "/Enemies");
+        DataHolder.availableFights = GameDataReader.ConvertToJsonObject<FightList>("LoadData/Gamemodes/" + mode.DisplayName + "/Fights");
+        DataHolder.availableTiles = GameDataReader.ConvertToJsonObject<TileList>("LoadData/Gamemodes/" + mode.DisplayName + "/Tiles");
     }
 
     private List<Mode> ReadGamemodes()

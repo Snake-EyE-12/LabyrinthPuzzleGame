@@ -629,6 +629,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spacing: 2
   origin: {x: -5, y: -2}
+  cam: {fileID: 269498367}
+  bonus: 3
 --- !u!114 &1044629139
 MonoBehaviour:
   m_ObjectHideFlags: 0

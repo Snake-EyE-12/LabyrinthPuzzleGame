@@ -8,8 +8,10 @@ public class GamemodeManager : Singleton<GamemodeManager>
 {
     [SerializeField] private GamemodeDisplay modeDisplayPrefab;
     [SerializeField] private Transform modeDisplayParent;
-    public void PrepareGamemodes(List<Mode> modes)
+    private DataHandler handler;
+    public void PrepareGamemodes(List<Mode> modes, DataHandler handler)
     {
+        this.handler = handler;
         foreach (var mode in modes)
         {
             CreateGamemode(mode);
@@ -24,7 +26,7 @@ public class GamemodeManager : Singleton<GamemodeManager>
     
     public void Load(Mode mode)
     {
-        DataHolder.currentMode = mode;
+        handler.ReadDataFromMode(mode);
         SceneChanger.LoadScene("Game");
     }
 }
