@@ -1,4 +1,4 @@
 public interface Collectable
 {
-    public void Collect();
+    public void Collect(CharacterDisplay collector);
 }

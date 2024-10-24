@@ -23,6 +23,7 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
     {
         coloredImage.color = DataHolder.characterColorEquivalenceTable.GetColor(item.characterType);
         nameText.text = item.unitName;
+        xpBar.Set(item.XP);
     }
     
     private void Awake()
@@ -76,6 +77,14 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
     public void SetLocalMap(Map map)
     {
         localMap = map;
+    }
+
+    public void OnPassOverLoot(List<LootDisplay> loot)
+    {
+        foreach (var collectable in loot)
+        {
+            collectable.Collect(this);
+        }
     }
 
     public void Select()
@@ -146,7 +155,7 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
     public void Vanish()
     {
         GameManager.Instance.RemoveCharacter(this);
-        localMap.RemoveUnit(this);
+        localMap.RemoveGridPositionable(this);
         GameManager.Instance.RemoveSelectable(this, selectionIndicator.type);
         Destroy(this.gameObject);
     }
@@ -189,6 +198,14 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
         return localMap;
     }
 
+    public void GainXP(int amount)
+    {
+        item.XP.value += amount;
+        xpBar.Render();
+        Debug.Log("Gained " + amount + " XP");
+    }
+
     private bool used = false;
+    
 }
 

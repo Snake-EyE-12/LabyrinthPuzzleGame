@@ -34,10 +34,23 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
     public void Vanish()
     {
         GameManager.Instance.RemoveEnemy(this);
-        localMap.RemoveUnit(this);
+        localMap.RemoveGridPositionable(this);
         AttackIndicator.Instance.RemoveAttack(choosenAttack);
         GameManager.Instance.RemoveSelectable(this, selectionIndicator.type);
+        SpawnLootDrop();
         Destroy(this.gameObject);
+    }
+
+    [SerializeField] private LootDisplay lootDisplayPrefab;
+    private void SpawnLootDrop()
+    {
+        foreach (var loot in item.loot)
+        {
+            var lootDisplay = Instantiate(lootDisplayPrefab);
+            lootDisplay.Set(loot);
+            lootDisplay.SetLocalMap(localMap);
+            localMap.SpawnLoot(lootDisplay, gridPosition);
+        }
     }
     
     
@@ -72,6 +85,11 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
     public void SetLocalMap(Map map)
     {
         localMap = map;
+    }
+
+    public void OnPassOverLoot(List<LootDisplay> loot)
+    {
+        
     }
 
     public void Select()
@@ -140,5 +158,10 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
     public Map GetMap()
     {
         return localMap;
+    }
+
+    public void GainXP(int amount)
+    {
+        
     }
 }

@@ -8,7 +8,8 @@ public static class DataHolder
 {
     public static Mode currentMode;
     public static CharacterLayoutTable characterLayoutTable;
-    public static CharacterColorEquivalenceTable characterColorEquivalenceTable;
+    public static StringColorEquivalenceTable characterColorEquivalenceTable;
+    public static StringColorEquivalenceTable keywordColorEquivalenceTable;
     public static CharacterList availableCharacters;
     public static EnemyList availableEnemies;
     public static FightList availableFights;

@@ -77,28 +77,32 @@ public class Ability
         foreach (var keyword in data.Keys)
         {
             ValueKey vk;
+            KeywordName keyName = new KeywordName(){color = DataHolder.keywordColorEquivalenceTable.GetColor(keyword), name = keyword};
             switch (keyword)
             {
                 case "Stunted":
-                    vk = new StuntedKeyword(new KeywordName(){color = Color.red, name = keyword});
+                    vk = new StuntedKeyword(keyName);
                     break;
                 case "Knockback":
-                    vk = new KnockbackKeyword(new KeywordName(){color = Color.green, name = keyword});
+                    vk = new KnockbackKeyword(keyName);
                     break;
                 case "Damage":
-                    vk = new DamageKeyword(new KeywordName(){color = Color.blue, name = keyword});
+                    vk = new DamageKeyword(keyName);
                     break;
                 case "Heal":
-                    vk = new HealKeyword(new KeywordName(){color = Color.yellow, name = keyword});
+                    vk = new HealKeyword(keyName);
                     break;
                 case "Discard":
-                    vk = new DiscardKeyword(new KeywordName(){color = Color.magenta, name = keyword});
+                    vk = new DiscardKeyword(keyName);
                     break;
                 case "Rotate":
-                    vk = new RotateKeyword(new KeywordName(){color = Color.cyan, name = keyword});
+                    vk = new RotateKeyword(keyName);
+                    break;
+                case "Charge":
+                    vk = new ChargeKeyword(keyName);
                     break;
                 default:
-                    vk = new ValueKey(new KeywordName(){color = Color.black, name = null});
+                    vk = new ValueKey(keyName);
                     break;
                 
             }
@@ -233,6 +237,21 @@ public class HealKeyword : ValueKey
     }
 
     public HealKeyword(KeywordName keyName) : base(keyName)
+    {
+    }
+    public override int Order()
+    {
+        return (int)KeywordOrder.Effect;
+    }
+}
+public class ChargeKeyword : ValueKey
+{
+    public override void ModifyAction(Targetable t, int value)
+    {
+        t.GainXP(value);
+    }
+
+    public ChargeKeyword(KeywordName keyName) : base(keyName)
     {
     }
     public override int Order()

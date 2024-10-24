@@ -5,7 +5,7 @@ using UnityEngine;
 public class Character : Unit
 {
     public string characterType { get; private set; }
-    public int charge { get; private set; }
+    public XPBar XP { get; private set; }
     public Inventory inventory { get; private set; }
     public List<Ability> abilityList = new List<Ability>();
 
@@ -17,7 +17,7 @@ public class Character : Unit
         characterType = data.Type;
         degree = data.Degree;
         health = new Health(data.Health);
-        charge = data.Charge;
+        XP = new XPBar(data.Charge);
         inventory = new Inventory(data.Inventory);
         activeEffects = new ActiveEffect(data.ActiveEffects);
         abilityList = new List<Ability>();

@@ -8,6 +8,7 @@ public class Enemy : Unit
     public string type { get; private set; }
     public int IQ { get; private set; }
     public AttackLayout attackLayout { get; private set; }
+    public List<Loot> loot = new List<Loot>();
 
 
 
@@ -21,6 +22,10 @@ public class Enemy : Unit
         IQ = data.IQ;
         attackLayout = new AttackLayout(data.AttackLayout);
         activeEffects = new ActiveEffect(data.ActiveEffects);
+        foreach (var lootPiece in data.Loot)
+        {
+            loot.Add(Loot.Load(lootPiece));
+        }
     }
 
 

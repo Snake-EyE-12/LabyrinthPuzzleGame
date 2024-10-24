@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public interface GridPositionable
@@ -8,6 +9,7 @@ public interface GridPositionable
     public OnTileLocation GetTileLocation();
     public Transform GetSelfTransform();
     public void SetLocalMap(Map map);
+    public void OnPassOverLoot(List<LootDisplay> loot);
 }
 
 

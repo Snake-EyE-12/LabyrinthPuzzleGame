@@ -58,9 +58,9 @@ public class TileDisplay : Display<Tile>, GridPositionable, Selectable
         {
             Targetable targeted = unit as Targetable;
             item.ability.Use(targeted);
-            Debug.Log("Tile Ability Stepped On");
             targeted.CheckForDeath();
         }
+        unit.OnPassOverLoot(mappableOrganizer.GetLoot());
     }
     
 
@@ -94,6 +94,12 @@ public class TileDisplay : Display<Tile>, GridPositionable, Selectable
     {
         localMap = map;
     }
+
+    public void OnPassOverLoot(List<LootDisplay> loot)
+    {
+        
+    }
+
 
     private Map localMap;
     public void SetOntoMap(Map map, Vector2Int position)

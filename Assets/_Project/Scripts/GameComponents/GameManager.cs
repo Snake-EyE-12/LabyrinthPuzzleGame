@@ -266,6 +266,7 @@ public class GameManager : Singleton<GameManager>
     public Ability AbilityInUse { get; set; }
     public Targetable AbilityUser { get; set; }
     public GamePhase Phase { get; set; }
+    public int CoinCount { get; set; }
 }
 
 public enum GamePhase
@@ -285,4 +286,5 @@ public interface Targetable
     public void BecomeUsed();
     public void CheckForDeath();
     public Map GetMap();
+    public void GainXP(int amount);
 }

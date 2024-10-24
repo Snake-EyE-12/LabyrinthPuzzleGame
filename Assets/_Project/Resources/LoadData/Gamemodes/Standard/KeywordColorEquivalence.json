@@ -1,0 +1,32 @@
+{
+  "Equivalences":[
+    {
+      "Type":"Stunted",
+      "Color":{"r":0.0,"g":0.0,"b":1.0,"a":1.0}
+    },
+    {
+      "Type":"Knockback",
+      "Color":{"r":0.0,"g":0.0,"b":1.0,"a":1.0}
+    },
+    {
+      "Type":"Damage",
+      "Color":{"r":1.0,"g":0.6,"b":0.0,"a":1.0}
+    },
+    {
+      "Type":"Heal",
+      "Color":{"r":1.0,"g":0.0,"b":0.0,"a":1.0}
+    },
+    {
+      "Type":"Discard",
+      "Color":{"r":0.0,"g":0.0,"b":1.0,"a":1.0}
+    },
+    {
+      "Type":"Rotate",
+      "Color":{"r":0.3,"g":0.3,"b":0.3,"a":1.0}
+    },
+    {
+      "Type":"Charge",
+      "Color":{"r":1.0,"g":0.0,"b":1.0,"a":1.0}
+    }
+  ]
+}

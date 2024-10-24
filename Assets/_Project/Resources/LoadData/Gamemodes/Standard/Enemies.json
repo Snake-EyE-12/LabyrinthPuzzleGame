@@ -24,7 +24,25 @@
           }
         }
       ],
-      "ActiveEffects":[]
+      "ActiveEffects":[],
+      "Loot":[
+        {
+          "Type": "XP",
+          "Value": 1
+        },
+        {
+          "Type": "Coin",
+          "Value": 1
+        },
+        {
+          "Type": "Coin",
+          "Value": 4
+        },
+        {
+          "Type": "Item",
+          "Value": -1
+        }
+      ] 
     },
     {
       "Name":"E2",

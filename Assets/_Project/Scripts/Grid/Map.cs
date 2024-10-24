@@ -15,6 +15,11 @@ public class Map
     }
     public Fight GetFight() { return activeFight; }
 
+    public void SpawnLoot(GridPositionable loot, Vector2Int position)
+    {
+        grid.Get(position).GetTile().GainControl(loot);
+    }
+    
     public string[] GetStartingEnemyNames()
     {
         return activeFight.Enemies;
@@ -121,21 +126,11 @@ public class Map
         }
     }
 
-    public void RemoveUnit(GridPositionable unit)
+    public void RemoveGridPositionable(GridPositionable unit)
     {
         grid.Get(unit.GetGridPosition()).GetTile().LoseControl(unit);
     }
-    //
-    // public void SpawnUnit(Unit unit, Vector2Int position)
-    // {
-    //     //gridHandler.Place(unit, position);
-    // }
-    //
-    // public Vector2Int? GetUnitLocation(Unit unit)
-    // {
-    //     return null;
-    //     //return gridHandler.Find(unit);
-    // }
+    
     public TileDisplay GetRandomCenterTile()
     {
         List<GridSpace> gridSpaces = GetCenterTiles();

@@ -26,6 +26,17 @@ public class MappableOrganizer : MonoBehaviour
         }
     }
 
+    public List<LootDisplay> GetLoot()
+    {
+        List<LootDisplay> lootDisplays = new List<LootDisplay>();
+        foreach (var i in mapItems)
+        {
+            if(i is LootDisplay) lootDisplays.Add(i as LootDisplay);
+        }
+
+        return lootDisplays;
+    }
+
     private List<GridPositionable> mapItems = new List<GridPositionable>();
     public void Remove(GridPositionable unit)
     {

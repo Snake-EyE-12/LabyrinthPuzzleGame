@@ -146,7 +146,7 @@ public class DraftTeam : TeamBuilder
 
     private CharacterColorData GetRandomMember()
     {
-        CharacterColorEquivalence cce = DataHolder.characterColorEquivalenceTable.Equivalences[Random.Range(0, 6)];
+        StringColorEquivalence cce = DataHolder.characterColorEquivalenceTable.Equivalences[Random.Range(0, 6)];
         return new CharacterColorData(cce.Color, cce.Type);
     }
 }

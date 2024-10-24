@@ -124,9 +124,9 @@ namespace Capstone.DataLoad
     }
 
     [System.Serializable]
-    public class CharacterColorEquivalenceTable
+    public class StringColorEquivalenceTable
     {
-        public CharacterColorEquivalence[] Equivalences;
+        public StringColorEquivalence[] Equivalences;
 
         public Color GetColor(string type)
         {
@@ -142,7 +142,7 @@ namespace Capstone.DataLoad
     }
     
     [System.Serializable]
-    public class CharacterColorEquivalence
+    public class StringColorEquivalence
     {
         public string Type;
         public Color Color;
@@ -294,10 +294,18 @@ namespace Capstone.DataLoad
         public int IQ;
         public AttackData[] AttackLayout;
         public ActiveEffectData[] ActiveEffects;
+        public LootData[] Loot;
         public int GetWeight()
         {
-            return 10;
+            return Weight;
         }
+    }
+    
+    [System.Serializable]
+    public class LootData
+    {
+        public string Type;
+        public int Value;
     }
     
     
