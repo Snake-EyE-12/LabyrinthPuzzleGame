@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class WrapView : MonoBehaviour
 {
@@ -15,6 +16,21 @@ public class WrapView : MonoBehaviour
     [Button]
     private void ChangeGridSize()
     {
-        
+        foreach (var rt in renderTextures)
+        {
+            Resize(rt, gridSize * squareResolution, squareResolution);
+        }
+
+        foreach (var wm in wrapMirrors)
+        {
+            wm.Resize(gridSize, spacing);
+        }
+    }
+    private void Resize(RenderTexture renderTexture, int width, int height) {
+        if (renderTexture) {
+            renderTexture.Release();
+            renderTexture.width = width;
+            renderTexture.height = height; 
+        }
     }
 }
