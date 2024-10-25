@@ -1,12 +1,16 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using Capstone.DataLoad;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Enemy : Unit
 {
     public int weight { get; private set; }
     public string type { get; private set; }
-    public int IQ { get; private set; }
+    public int AttackIQ { get; private set; }
+    public int MovementIQ { get; private set; }
     public AttackLayout attackLayout { get; private set; }
     public List<Loot> loot = new List<Loot>();
 
@@ -19,7 +23,8 @@ public class Enemy : Unit
         weight = data.Weight;
         health = new Health(data.Health);
         type = data.Type;
-        IQ = data.IQ;
+        AttackIQ = data.AttackIQ;
+        MovementIQ = data.MovementIQ;
         attackLayout = new AttackLayout(data.AttackLayout);
         activeEffects = new ActiveEffect(data.ActiveEffects);
         foreach (var lootPiece in data.Loot)
@@ -30,7 +35,10 @@ public class Enemy : Unit
 
 
 
-
+    public bool IsInBackLine()
+    {
+        return type == "Healer" || type == "Ranged" || type == "Backline";
+    }
     public static EnemyData Generate(string type, int degree)
     {
         EnemyData cd = new EnemyData();
@@ -39,7 +47,8 @@ public class Enemy : Unit
         cd.Weight = 1;
         cd.Health = new HealthData[0];
         cd.Type = type;
-        cd.IQ = 5;
+        cd.AttackIQ = 5;
+        cd.MovementIQ = 5;
         
         return cd;
     }
@@ -74,15 +83,14 @@ public class AttackLayout
     }
     public List<Attack> attacks { get; private set; }
 
-    public Attack Pick()
+    public Attack Pick(List<Vector2Int> pos, Vector2Int attackPos, int baseIQ)
     {
+        
         foreach (var a in attacks)
         {
-            a.UpdateIntelligenceValue();
+            a.Prepare(pos, attackPos, baseIQ);
         }
-        Attack choosen = attacks[GameUtils.IndexByWeightedRandom(new List<Weighted>(attacks))];
-        choosen.Prepare();
-        return choosen;
+        return attacks[GameUtils.IndexByWeightedRandom(new List<Weighted>(attacks))];
     }
     
 }
@@ -111,18 +119,25 @@ public class Attack : Weighted
         }
     }
 
-    private List<Vector2Int> presetShape;
-    public void Prepare()
+    private List<Vector2Int> preparedShapePosition;
+    public void Prepare(List<Vector2Int> characterPositions, Vector2Int attackerPosition, int baseIQ)
     {
-        presetShape = PresetShape();
+        shape.Prepare(characterPositions, attackerPosition);
+        preparedShapePosition = shape.GetShape();
+        UpdateIntelligenceValue(characterPositions, attackerPosition, baseIQ);
+    }
+
+    public int GetShapeSize()
+    {
+        return shape.Size();
     }
 
     public List<Vector2Int> GetActiveShape(Vector2Int originPoint)
     {
         List<Vector2Int> list = new List<Vector2Int>();
-        foreach (var shape in presetShape)
+        foreach (var pos in preparedShapePosition)
         {
-            list.Add(shape + originPoint);
+            list.Add(pos + originPoint);
         }
 
         return list;
@@ -141,18 +156,28 @@ public class Attack : Weighted
     
     public int GetWeight()
     {
-        return weight + currentIntelligence;
+        return currentIntelligenceWeightBonus;
     }
-    private int currentIntelligence = 0;
-    public void UpdateIntelligenceValue()
+    private int currentIntelligenceWeightBonus = 0;
+    public void UpdateIntelligenceValue(List<Vector2Int> characterPositions, Vector2Int attackerPosition, int baseIQ)
     {
-        currentIntelligence = 0; // update for smartness
-    }
-    public List<Vector2Int> PresetShape()
-    {
-        return shape.GetShape();
-    }
+        int hits = 0;
+        foreach (var shapePos in GetActiveShape(attackerPosition))
+        {
+            foreach (var cPos in characterPositions)
+            {
+                if (shapePos == cPos)
+                {
+                    hits++;
+                }
+            }
+        }
 
+        hits *= ability.value;
+        int intel = hits * hits;
+
+        currentIntelligenceWeightBonus = (int)(Mathf.Lerp(weight, intel, baseIQ * 1.0f / DataHolder.currentMode.MaximumIQ) * 100);
+    }
     public void Use(EnemyDisplay user)
     {
         GameManager.Instance.AbilityUser = user;
@@ -181,23 +206,13 @@ public abstract class ShapeAttack
         this.power = power;
     }
 
+    public abstract int Size();
     public abstract List<Vector2Int> GetShape();
 
-    protected Vector2Int GetRandomDirection()
+    public virtual void Prepare(List<Vector2Int> characterPositions, Vector2Int attackerPosition)
     {
-        switch (Random.Range(0, 4))
-        {
-            case 0:
-                return Vector2Int.up;
-            case 1:
-                return Vector2Int.right;
-            case 2:
-                return Vector2Int.down;
-            default:
-                return Vector2Int.left;
-            
-        }
     }
+
 }
 
 public class LineAttack : ShapeAttack
@@ -207,16 +222,87 @@ public class LineAttack : ShapeAttack
         
     }
 
+    public override int Size()
+    {
+        return power;
+    }
+
     public override List<Vector2Int> GetShape()
     {
         List<Vector2Int> list = new List<Vector2Int>();
-        Vector2Int direction = GetRandomDirection();
+        Vector2Int direction = RandomDirection;
         for (int i = 0; i < power; i++)
         {
             list.Add((direction * (i + 1)));
         }
         
         return list;
+    }
+
+    public override void Prepare(List<Vector2Int> characterPositions, Vector2Int attackerPosition)
+    {
+        RandomDirection = BestLineDirection(characterPositions, attackerPosition);
+    }
+    private static CardinalDirection[] directions = {
+        CardinalDirection.North,
+        CardinalDirection.East,
+        CardinalDirection.South,
+        CardinalDirection.West};
+    private Vector2Int BestLineDirection(List<Vector2Int> charactersPositions, Vector2Int attackerPosition)
+    {
+        int[] matches = new int[4];
+        foreach (var pos in charactersPositions)
+        {
+            if(pos.x != attackerPosition.x && pos.y != attackerPosition.y) continue;
+
+            if(pos.x == attackerPosition.x)
+            {
+                if(pos.y < attackerPosition.y)
+                {
+                    matches[2]++;
+                }
+                else
+                {
+                    matches[0]++;
+                }
+            }
+            else
+            {
+                if(pos.x < attackerPosition.x)
+                {
+                    matches[3]++;
+                }
+                else
+                {
+                    matches[1]++;
+                }
+            }
+        }
+        int maxValue = matches.Max();
+        if(maxValue == 0) return Vector2Int.zero;
+        List<int> indexesOfMaximums = new List<int>();
+        for (int i = 0; i < matches.Length; i++)
+        {
+            if (matches[i] == maxValue)
+            {
+                indexesOfMaximums.Add(i);
+            }
+        }
+        return GameUtils.DirectionToVector(directions[indexesOfMaximums[Random.Range(0, indexesOfMaximums.Count)]]);
+    }
+    
+
+    private Vector2Int rd = Vector2Int.zero;
+    private Vector2Int RandomDirection {
+        get
+        {
+            if (rd == Vector2Int.zero) return GameUtils.GetRandomDirection();
+            return rd;
+        }
+        set
+        {
+            rd = value;
+        }
     }
 }
 
@@ -225,6 +311,10 @@ public class SquareAttack : ShapeAttack
     public SquareAttack(int power) : base(power)
     {
         
+    }
+    public override int Size()
+    {
+        return power * power;
     }
 
     public override List<Vector2Int> GetShape()
@@ -243,6 +333,10 @@ public class CircleAttack : ShapeAttack
     {
         
     }
+    public override int Size()
+    {
+        return ((power * power * 3) / 4) + 1;
+    }
     public override List<Vector2Int> GetShape()
     {
         List<Vector2Int> list = new List<Vector2Int>();
@@ -257,6 +351,10 @@ public class CrossAttack : ShapeAttack
     public CrossAttack(int power) : base(power)
     {
         
+    }
+    public override int Size()
+    {
+        return power * 4;
     }
     public override List<Vector2Int> GetShape()
     {

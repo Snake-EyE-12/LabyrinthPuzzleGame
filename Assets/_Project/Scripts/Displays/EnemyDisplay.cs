@@ -21,8 +21,20 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
     private EnemyAttackVisual choosenAttack;
     public void ChooseAttack()
     {
-        choosenAttack = new EnemyAttackVisual(){attack = item.attackLayout.Pick(), user = this};
+        choosenAttack = new EnemyAttackVisual(){attack = item.attackLayout.Pick(GetAttackTargetLocations(), gridPosition, item.AttackIQ), user = this};
         AttackIndicator.Instance.AddAttack(choosenAttack);
+    }
+
+    private List<Vector2Int> GetAttackTargetLocations()
+    {
+        List<CharacterDisplay> characters = GameManager.Instance.GetActiveCharacters();
+        List<Vector2Int> positions = new();
+        foreach (var character in characters)
+        {
+            positions.Add(character.GetGridPosition());
+        }
+
+        return positions;
     }
 
 
@@ -109,7 +121,7 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
 
     public bool IsCurrentlySelectable()
     {
-        return true;
+        return GameManager.Instance.Phase == GamePhase.UsingActiveAbility && GameManager.Instance.InActiveSelectionRange(gridPosition);
     }
 
     public void Activate(SelectableActivatorData data)
@@ -151,6 +163,53 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
     {
         localMap.Move(this, direction);
     }
+
+    public Vector2Int FindSmartDirectionToMove(Vector2Int center, Vector2Int closestOpponent, Vector2Int closestAlly, Vector2Int averageOpponent, Vector2Int averageAlly)
+    {//                                          has big attacks           has small attacks            is low health      is big attacks & high health    is enemy helpful
+        
+        // Should but doesnt - avoid traps
+        // closest ally is self
+        
+        bool lowHealth = CheckLowHealth();
+        int averageAttackSize = GetAverageAttackSize();
+        bool backline = item.IsInBackLine();
+        bool IsMakingSmartMove = PassIQ() || PassIQ();
+
+        if (lowHealth && PassIQ()) return GetDirectionTowards(closestAlly);
+        if(averageAttackSize <= 2 && PassIQ()) return GetDirectionTowards(closestOpponent);
+        if (averageAttackSize >= 5 && PassIQ())
+        {
+            if (!lowHealth) return GetDirectionTowards(averageOpponent);
+            return GetDirectionTowards(center);
+        }
+        if (backline && PassIQ()) return GetDirectionTowards(averageAlly);
+        return GameUtils.GetRandomDirection();
+    }
+
+    private Vector2Int GetDirectionTowards(Vector2Int destination)
+    {
+        return (destination - gridPosition).Normalize(); // Should use some pathfinding
+    }
+
+    private bool PassIQ()
+    {
+        return GameUtils.PercentChance(item.MovementIQ, DataHolder.currentMode.MaximumIQ);
+    }
+    private int GetAverageAttackSize()
+    {
+        if(item.attackLayout.attacks.Count == 0) return 0;
+        int sum = 0;
+        foreach (Attack a in item.attackLayout.attacks)
+        {
+            sum += a.GetShapeSize();
+        }
+        return sum / item.attackLayout.attacks.Count;
+    }
+    private bool CheckLowHealth()
+    {
+        return damager.GetHealthPercent() * 100 < DataHolder.currentMode.LowHealthPercent;
+    }
+    
     public void CheckForDeath()
     {
         item.CheckDeath();

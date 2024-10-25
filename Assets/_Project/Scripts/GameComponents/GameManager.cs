@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using EventArgs = Guymon.DesignPatterns.EventArgs;
 using EventHandler = Guymon.DesignPatterns.EventHandler;
+using Random = UnityEngine.Random;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -27,8 +28,56 @@ public class GameManager : Singleton<GameManager>
     }
 
 
+    public void MoveEnemies()
+    {
+        Vector2Int center = GetCenter();
+        Vector2Int averageTeamPos = GetAverageTeamPos();
+        Vector2Int averageEnemyPos = GetAverageEnemyPos();
+        foreach (var enemy in activeEnemies)
+        {
+            enemy.Move(enemy.FindSmartDirectionToMove(center, GetClosestUnit(enemy.GetGridPosition(), new List<GridPositionable>(activeTeam)), GetClosestUnit(enemy.GetGridPosition(), new List<GridPositionable>(activeEnemies)), averageTeamPos, averageEnemyPos));
+        }
+    }
+
+    private Vector2Int GetClosestUnit(Vector2Int pos, List<GridPositionable> units)
+    {
+        if(units.Count <= 0) return pos;
+        units.Sort((a, b) => (a.GetGridPosition() - pos).sqrMagnitude.CompareTo((b.GetGridPosition() - pos).sqrMagnitude));
+        return units[0].GetGridPosition();
+    }
     
-    
+    private Vector2Int GetCenter()
+    {
+        int size = DataHolder.currentMode.GridSize;
+        return new Vector2Int(size / 2 + BonusSizeIncrease(size), size / 2 + BonusSizeIncrease(size));
+    }
+
+    private Vector2Int GetAverageTeamPos()
+    {
+        Vector2Int pos = Vector2Int.zero;
+        foreach (var character in activeTeam)
+        {
+            pos += character.GetGridPosition();
+        }
+        pos /= activeTeam.Count;
+        return pos;
+    }
+    private Vector2Int GetAverageEnemyPos()
+    {
+        Vector2Int pos = Vector2Int.zero;
+        foreach (var enemy in activeEnemies)
+        {
+            pos += enemy.GetGridPosition();
+        }
+        pos /= activeTeam.Count;
+        return pos;
+    }
+
+    private int BonusSizeIncrease(int size)
+    {
+        if(size == 1 || size % 2 == 1) return 0;
+        return Random.Range(0, 2) - 1;
+    }
     
     
     private List<Character> team = new List<Character>();
@@ -152,6 +201,8 @@ public class GameManager : Singleton<GameManager>
         //EventHandler.Invoke("Ability/UsedAbility", null);
         AttackIndicator.Instance.ClearAttacks();
         selector.Empty();
+        Phase = GamePhase.None;
+        ;
     }
     
     
@@ -267,6 +318,13 @@ public class GameManager : Singleton<GameManager>
     public Targetable AbilityUser { get; set; }
     public GamePhase Phase { get; set; }
     public int CoinCount { get; set; }
+    public TargetRadius TargetRadius { get; set; }
+
+    public bool InActiveSelectionRange(Vector2Int pos)
+    {
+        if (TargetRadius == null) return true;
+        return TargetRadius.InCircleRange(pos);
+    }
 }
 
 public enum GamePhase

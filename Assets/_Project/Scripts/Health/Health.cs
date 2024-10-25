@@ -8,16 +8,38 @@ public class Health
 {
     
     private List<HealthType> healthBar = new List<HealthType>();
+    private int maxHealth;
     public Health(HealthData[] hd)
     {
         foreach (var hp in hd)
         {
             AddHealthType(hp.Type, hp.Value);
+            maxHealth += hp.Value;
         }
     }
-    public List<HealthType> GetHealth()
+    public List<HealthType> GetHealthBarSegments()
     {
         return healthBar;
+    }
+
+    public int GetHealthValue()
+    {
+        int sum = 0;
+        foreach (var hp in healthBar)
+        {
+            sum += hp.value;
+        }
+        return sum;
+    }
+
+    public int GetMaxHealthValue()
+    {
+        return maxHealth;
+    }
+
+    private int GetMissingHealthValue()
+    {
+        return maxHealth - GetHealthValue();
     }
 
     public void AddHealthType(string type, int value)
@@ -34,6 +56,7 @@ public class Health
 
     public void Heal(HealthType health)
     {
+        health.value = Mathf.Min(health.value, GetMissingHealthValue());
         healthBar.Add(health);
         isDead = false;
     }

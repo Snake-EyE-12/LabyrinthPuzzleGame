@@ -40,13 +40,15 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
     private void OnBattleOver(EventArgs args)
     {
         EventHandler.RemoveListenerLate("Round/FightOver", OnBattleOver);
+        Vanish();
+    }
+    
+    public void Vanish()
+    {
+        GameManager.Instance.RemoveCharacter(this);
+        localMap.RemoveGridPositionable(this);
         GameManager.Instance.RemoveSelectable(this, selectionIndicator.type);
         Destroy(this.gameObject);
-    }
-
-    private void OnDestroy()
-    {
-        GameManager.Instance?.RemoveCharacter(this);
     }
 
 
@@ -104,7 +106,7 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
 
     public bool IsCurrentlySelectable()
     {
-        return GameManager.Instance.Phase == GamePhase.UsingActiveAbility || !used;
+        return (GameManager.Instance.Phase == GamePhase.UsingActiveAbility && GameManager.Instance.InActiveSelectionRange(gridPosition)) || !used;
     }
 
     public void Activate(SelectableActivatorData data)
@@ -151,13 +153,6 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
     public Character GetCharacter()
     {
         return item;
-    }
-    public void Vanish()
-    {
-        GameManager.Instance.RemoveCharacter(this);
-        localMap.RemoveGridPositionable(this);
-        GameManager.Instance.RemoveSelectable(this, selectionIndicator.type);
-        Destroy(this.gameObject);
     }
 
     public void CheckDie()

@@ -11,7 +11,8 @@
         }
       ],
       "Type":"Simple",
-      "IQ":5,
+      "AttackIQ":5,
+      "MovementIQ":5,
       "AttackLayout":[
         {
           "Weight":1,
@@ -55,7 +56,8 @@
         }
       ],
       "Type":"Simple",
-      "IQ":5,
+      "AttackIQ":5,
+      "MovementIQ":5,
       "AttackLayout":[
         {
           "Weight":1,
@@ -91,7 +93,8 @@
         }
       ],
       "Type":"Boss",
-      "IQ":5,
+      "AttackIQ":5,
+      "MovementIQ":5,
       "AttackLayout":[
         {
           "Weight":1,
@@ -117,7 +120,8 @@
         }
       ],
       "Type":"Boss",
-      "IQ":1,
+      "AttackIQ":5,
+      "MovementIQ":5,
       "AttackLayout":[
         {
           "Weight":1,

@@ -22,4 +22,9 @@ public class Damager
     {
         
     }
+
+    public float GetHealthPercent()
+    {
+        return unit.health.GetHealthValue() * 1.0f / unit.health.GetMaxHealthValue();
+    }
 }

@@ -40,7 +40,7 @@ public class Ability
     
     public void PrepareTarget()
     {
-        target.Locate();
+        target.Locate(this);
     }
     public void Use(Targetable target)
     {
@@ -49,7 +49,11 @@ public class Ability
             key.ModifyAction(target, value);
         }
         if (GameManager.Instance.AbilityUser != null) GameManager.Instance.AbilityUser.BecomeUsed();
-        if(GameManager.Instance.Phase == GamePhase.UsingActiveAbility) EventHandler.Invoke("Ability/DestroyPanel", null);
+        if (GameManager.Instance.Phase == GamePhase.UsingActiveAbility)
+        {
+            EventHandler.Invoke("Ability/DestroyPanel", null);
+            GameManager.Instance.TargetRadius = null;
+        }
     }
     public Ability(AbilityData data)
     {
@@ -151,8 +155,8 @@ public class ValueKey
     {
         return 0;
     }
-    public virtual void ModifyAction(Targetable t, int value)
-    {}
+    public virtual void ModifyAction(Targetable t, int value) {}
+    public virtual void ModifyRange(int value) {}
 }
 
 public class RotateKeyword : ValueKey
@@ -197,6 +201,12 @@ public class StuntedKeyword : ValueKey
     public override int Order()
     {
         return (int)KeywordOrder.Selection;
+    }
+
+    public override void ModifyRange(int value)
+    {
+        GameManager.Instance.TargetRadius = new TargetRadius() { radius = 1, squareRadius = 1, center = GameManager.Instance.AbilityUser.GetGridPosition()};
+        Debug.Log("Range Modified to: " + GameManager.Instance.TargetRadius.radius);
     }
 }
 public class KnockbackKeyword : ValueKey
@@ -267,14 +277,39 @@ public class ChargeKeyword : ValueKey
 
 
 
+public class TargetRadius
+{
+    public int radius;
+    public int squareRadius;
+    public Vector2Int center;
+
+    public bool InCircleRange(Vector2Int pos)
+    {
+        return (pos - center).sqrMagnitude <= radius * radius;
+    }
+    public bool InSquareRange(Vector2Int pos)
+    {
+        Vector2Int difference = new Vector2Int(Mathf.Abs((pos - center).x), Mathf.Abs((pos - center).y));
+        return difference.x <= radius && difference.y <= radius;
+    }
+}
 
 public abstract class Target
 {
-    public abstract void Locate();
+    public abstract void Locate(Ability currentAbility);
+
+    protected void TestRange(Ability currentAbility)
+    {
+        foreach (var k in currentAbility.keys)
+        {
+            k.ModifyRange(currentAbility.value);
+        }
+    }
 }
+
 public class SelfTarget : Target
 {
-    public override void Locate()
+    public override void Locate(Ability currentAbility)
     {
         GameManager.Instance.AbilityUser.HitByAbility(GameManager.Instance.AbilityInUse);
         GameManager.Instance.SetSelectionMode(SelectableGroupType.Team);
@@ -284,14 +319,15 @@ public class SelfTarget : Target
 
 public class OpponentTarget : Target
 {
-    public override void Locate()
+    public override void Locate(Ability currentAbility)
     {
+        TestRange(currentAbility);
         GameManager.Instance.SetSelectionMode(SelectableGroupType.Enemy);
     }
 }
 public class TileTarget : Target
 {
-    public override void Locate()
+    public override void Locate(Ability currentAbility)
     {
         
     }
@@ -299,7 +335,7 @@ public class TileTarget : Target
 
 public class TeamTarget : Target
 {
-    public override void Locate()
+    public override void Locate(Ability currentAbility)
     {
         GameManager.Instance.SetSelectionMode(SelectableGroupType.Team);
     }
@@ -307,7 +343,7 @@ public class TeamTarget : Target
 
 public class AnyTarget : Target
 {
-    public override void Locate()
+    public override void Locate(Ability currentAbility)
     {
         
     }

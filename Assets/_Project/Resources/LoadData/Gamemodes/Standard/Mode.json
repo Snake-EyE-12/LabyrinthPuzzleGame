@@ -33,5 +33,9 @@
         "Repeated": 1
       }
     }
-  ]
+  ],
+  "LowHealthPercent": 25,
+  "MaximumIQ": 100,
+  "CardsToPlacePerTurn": 2,
+  "HandSize": 4
 }

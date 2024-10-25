@@ -32,6 +32,7 @@ public class OpponentTurnPhase : RoundPhase
     {
         Debug.Log("Round Phase : Opponent Turn");
         AttackIndicator.Instance.ClearAttacks();
+        GameManager.Instance.MoveEnemies();
         GameManager.Instance.PickEnemyAttacks();
         AttackIndicator.Instance.VisualizeAttacks();
     }

@@ -10,7 +10,7 @@ public class HealthbarDisplay : Display<Health>
     public override void Render()
     {
         int heartIndex = 0;
-        foreach (var hpSection in item.GetHealth())
+        foreach (var hpSection in item.GetHealthBarSegments())
         {
             for (int i = 0; i < hpSection.value; i++, heartIndex++)
             {

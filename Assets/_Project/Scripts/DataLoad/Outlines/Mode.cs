@@ -16,6 +16,10 @@ namespace Capstone.DataLoad
         public CharacterSelection CharacterSelection;
         public int Rounds;
         public EventLayout[] EventLayout;
+        public int LowHealthPercent;
+        public int MaximumIQ;
+        public int CardsToPlacePerTurn;
+        public int HandSize;
         
         public void Load()
         {
@@ -291,7 +295,8 @@ namespace Capstone.DataLoad
         public int Weight;
         public HealthData[] Health;
         public string Type;
-        public int IQ;
+        public int AttackIQ;
+        public int MovementIQ;
         public AttackData[] AttackLayout;
         public ActiveEffectData[] ActiveEffects;
         public LootData[] Loot;
