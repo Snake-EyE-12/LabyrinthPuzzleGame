@@ -72,7 +72,7 @@ public class ShopEvent : EventAcceptor
 
 public class ChallengeEvent : EventAcceptor
 {
-    private int challengeCap = 4;
+    private int challengeCap = 4; // Number
     public ChallengeEvent(EventData data, RoundMenuDisplay displayBox) : base(data, displayBox)
     {
     }

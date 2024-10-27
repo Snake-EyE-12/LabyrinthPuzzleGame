@@ -33,10 +33,10 @@ RectTransform:
   - {fileID: 1979186619211720621}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 291, y: 0}
-  m_SizeDelta: {x: -1004, y: -372}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1104, y: 472}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3849888238971946338
 MonoBehaviour:
@@ -84,10 +84,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 251940729312271450}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 193.3262, y: 193.3262}
+  m_SizeDelta: {x: -12.156, y: -13.3179}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9010293549524702748
 CanvasRenderer:
@@ -163,8 +163,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 103.3262, y: 103.3262}
+  m_AnchoredPosition: {x: 297.5782, y: -3.0204926}
+  m_SizeDelta: {x: -868.2042, y: -252.7567}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6827399044006068638
 CanvasRenderer:
@@ -240,7 +240,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 78.2, y: -92.1}
+  m_AnchoredPosition: {x: 78.2, y: -89.3}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5715031546931487159
@@ -386,8 +386,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 20.615}
-  m_SizeDelta: {x: 340.2213, y: 298.9912}
+  m_AnchoredPosition: {x: 297.58, y: 30}
+  m_SizeDelta: {x: 388.4855, y: 298.9912}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &847624784277287400
 MonoBehaviour:
@@ -409,7 +409,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 100, y: 100}
-  m_Spacing: {x: 0, y: 0}
+  m_CellSize: {x: 130, y: 130}
+  m_Spacing: {x: 50, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
