@@ -10,6 +10,7 @@ public static class DataHolder
     public static CharacterLayoutTable characterLayoutTable;
     public static StringColorEquivalenceTable characterColorEquivalenceTable;
     public static StringColorEquivalenceTable keywordColorEquivalenceTable;
+    public static StringColorEquivalenceTable eventColorEquivalenceTable;
     public static CharacterList availableCharacters;
     public static EnemyList availableEnemies;
     public static FightList availableFights;

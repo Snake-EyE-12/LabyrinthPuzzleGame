@@ -28,9 +28,8 @@ public class VisualDataHolder : Singleton<VisualDataHolder>
     [Button]
     private void SetCameraPosition()
     {
-        int size = DataHolder.currentMode.GridSize;
-        cam.transform.position = Center(size, -10) + new Vector3(0, -spacing * 0.5f, 0);
-        cam.orthographicSize = size + 1;
+        cam.transform.position = Center(DataHolder.currentMode.GridSize, -10) + new Vector3(-3, 0, 0);
+        cam.orthographicSize = DataHolder.currentMode.GridSize * 1.5f;
     }
 
 }

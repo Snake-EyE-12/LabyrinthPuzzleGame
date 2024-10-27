@@ -4,12 +4,12 @@ using UnityEngine.UI;
 
 public class MemberOptionDisplay : Display<CharacterColorData>
 {
-    [SerializeField] private TMP_Text text;
-    [SerializeField] private Image image;
+    [SerializeField] private Image colorRing;
+    [SerializeField] private Image characterIconImage;
     public override void Render()
     {
-        text.text = item.type;
-        image.color = item.color;
+        colorRing.color = item.color;
+        characterIconImage.sprite = Resources.Load<Sprite>("KeynamedSprites/CharacterIcons/" + item.type);
     }
     
     
@@ -18,8 +18,12 @@ public class MemberOptionDisplay : Display<CharacterColorData>
     {
         tbh = handler;
     }
+
+    private bool addedToTeam = false;
     public void OnClick()
     {
+        if (addedToTeam) return;
+        addedToTeam = true;
         tbh.Pick(item.type, this.transform);
     }
 

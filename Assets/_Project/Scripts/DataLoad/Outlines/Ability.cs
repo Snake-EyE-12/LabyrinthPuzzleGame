@@ -11,6 +11,7 @@ public class Ability
     private Target target;
     public string targetDescription;
     public List<ValueKey> keys = new List<ValueKey>();
+    public string owner;
     
     public string GetKeywordsString()
     {
@@ -124,10 +125,14 @@ public class Ability
 
 
 
-public struct KeywordName
+public class KeywordName
 {
     public Color color;
     public string name;
+    public string ConvertToString()
+    { //We are <color=#ff0000ff>colorfully</color> amused - Example
+        return $"<color=#{ColorUtility.ToHtmlStringRGB(color)}FF>{name}</color> ";
+    }
 }
 
 public enum KeywordOrder
@@ -157,6 +162,7 @@ public class ValueKey
     }
     public virtual void ModifyAction(Targetable t, int value) {}
     public virtual void ModifyRange(int value) {}
+    
 }
 
 public class RotateKeyword : ValueKey

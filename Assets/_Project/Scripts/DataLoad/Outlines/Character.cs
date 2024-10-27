@@ -18,13 +18,15 @@ public class Character : Unit
         degree = data.Degree;
         health = new Health(data.Health);
         XP = new XPBar(data.Charge);
-        inventory = new Inventory(data.Inventory);
+        inventory = new Inventory(data.Inventory, characterType);
         activeEffects = new ActiveEffect(data.ActiveEffects);
         abilityList = new List<Ability>();
 
         foreach (var a in data.Abilities)
         {
-            abilityList.Add(new Ability(a));
+            Ability newAbility = new Ability(a);
+            newAbility.owner = characterType;
+            abilityList.Add(newAbility);
         }
     }
 
@@ -64,11 +66,13 @@ public class Character : Unit
 public class Inventory
 {
     private List<Card> tilePieces = new List<Card>();
-    public Inventory(InventoryData data)
+    public Inventory(InventoryData data, string owner)
     {
         foreach (var tp in data.TilePieces)
         {
-            tilePieces.Add(Card.Load(tp));
+            Card c = Card.Load(tp);
+            c.owner = owner;
+            tilePieces.Add(c);
         }
     }
 

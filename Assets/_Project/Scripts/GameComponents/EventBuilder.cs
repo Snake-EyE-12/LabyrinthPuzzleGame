@@ -52,19 +52,10 @@ public class EventBuilder : MonoBehaviour
 
 
     [SerializeField] private MapDisplay mapDisplayPrefab;
-    public void PrepareEvent(EventData eventData)
+    public void PrepareFight()
     {
-        switch (eventData.Type)
-        {
-            case "Fight":
-                //Load in fight
-                Map fightMap = new Map(GetRoundFight());
-                Instantiate(mapDisplayPrefab, transform).Set(fightMap);
-                break;
-            default:
-                break;
-            
-        }
+        Map fightMap = new Map(GetRoundFight());
+        Instantiate(mapDisplayPrefab, transform).Set(fightMap);
     }
 
     private Fight GetRoundFight()
@@ -76,10 +67,6 @@ public class EventBuilder : MonoBehaviour
     
     
 }
-
-
-
-
 
 
 

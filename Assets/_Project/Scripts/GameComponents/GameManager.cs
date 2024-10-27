@@ -15,7 +15,7 @@ public class GameManager : Singleton<GameManager>
     [HideInInspector] public int currentRound = 0;
     [SerializeField] private EventBuilder eventBuilder;
     [SerializeField] private Transform canvasTransform;
-    [FormerlySerializedAs("slideDisplay")] [SerializeField] private Director slide;
+    [SerializeField] private Director slide;
 
     public void DisplayDirection(Vector2Int gridPos, bool sliding)
     {
@@ -230,7 +230,6 @@ public class GameManager : Singleton<GameManager>
         return canvasTransform;
     }
 
-    [SerializeField] private Transform eventMenuParent;
     public void ContinueMission()
     {
         currentRound++;
@@ -239,7 +238,7 @@ public class GameManager : Singleton<GameManager>
             CompleteGame();
             return;
         }
-        Instantiate(roundMenuDisplayPrefab, eventMenuParent).Set(DataHolder.eventsForEachRound[currentRound - 1]);
+        Instantiate(roundMenuDisplayPrefab, canvasTransform).Set(DataHolder.eventsForEachRound[currentRound - 1]);
     }
 
     private void CompleteGame()
@@ -254,9 +253,9 @@ public class GameManager : Singleton<GameManager>
         turnManager.NextPhase();
     }
 
-    public void PrepareEvent(EventData ed)
+    public void LoadFight()
     {
-        eventBuilder.PrepareEvent(ed);
+        eventBuilder.PrepareFight();
     }
 
     public List<Character> GetCurrentTeam()

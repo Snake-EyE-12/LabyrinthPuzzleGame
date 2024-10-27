@@ -1,0 +1,201 @@
+{
+  "Characters":[
+    {
+      "Name":"Executioner",
+      "Type":"Offensive",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":3
+        }
+      ],
+      "Charge":5,
+      "Inventory":{
+        "ItemSlots":[
+          {},
+          {},
+          {},
+          {}
+        ],
+        "TilePieces":[
+          "|1D",
+          "!",
+          "."
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+        "Value": 2,
+        "Target": "Opponent",
+        "Keys": ["Damage"]
+        }
+      ]
+    },
+    {
+      "Name":"Brute",
+      "Type":"Defensive",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":4
+        }
+      ],
+      "Charge":5,
+      "Inventory":{
+        "ItemSlots":[
+          {},
+          {},
+          {},
+          {}
+        ],
+        "TilePieces":[
+          "T",
+          "T",
+          "."
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 1,
+          "Target": "Opponent",
+          "Keys": ["Stunted", "Knockback"]
+        }
+      ]
+    },
+    {
+      "Name":"Mage",
+      "Type":"Magician",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":2
+        }
+      ],
+      "Charge":7,
+      "Inventory":{
+        "ItemSlots":[
+          {},
+          {},
+          {},
+          {}
+        ],
+        "TilePieces":[
+          "T",
+          "|",
+          "|"
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 1,
+          "Target": "Team",
+          "Keys": ["Charge"]
+        }
+      ]
+    },
+    {
+      "Name":"Healer",
+      "Type":"Healer",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":5
+        }
+      ],
+      "Charge":5,
+      "Inventory":{
+        "ItemSlots":[
+          {},
+          {},
+          {},
+          {}
+        ],
+        "TilePieces":[
+          "|"
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 1,
+          "Target": "Team",
+          "Keys": ["Heal"]
+        }
+      ]
+    },
+    {
+      "Name":"Spy",
+      "Type":"Informant",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":1
+        }
+      ],
+      "Charge":5,
+      "Inventory":{
+        "ItemSlots":[
+          {},
+          {},
+          {},
+          {}
+        ],
+        "TilePieces":[
+          "L",
+          "!",
+          "!",
+          "."
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 1,
+          "Target": "Self",
+          "Keys": ["Discard"]
+        }
+      ]
+    },
+    {
+      "Name":"Twister",
+      "Type":"Mobilizer",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":5
+        }
+      ],
+      "Charge":5,
+      "Inventory":{
+        "ItemSlots":[
+          {},
+          {},
+          {},
+          {}
+        ],
+        "TilePieces":[
+          "T1R",
+          "L1R",
+          "L"
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 1,
+          "Target": "Team",
+          "Keys": ["Heal"]
+        }
+      ]
+    }
+  ]
+}

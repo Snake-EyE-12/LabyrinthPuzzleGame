@@ -1,0 +1,66 @@
+{
+  "Description": "Test",
+  "GridSize": 5,
+  "CharacterSelection":
+  {
+    "Type": "Choose",
+    "Choices": 3,
+    "Default": "Standard",
+    "Total": 5,
+    "InitialDegree": 1
+  },
+  "Rounds": 20,
+  "EventLayout":
+  [
+    {
+      "IncludeChance": 100,
+      "Events":
+      [
+        {
+          "Type": "Fight",
+          "Weight": 20
+        }
+      ],
+      "Sequence":
+      {
+        "Range":
+        {
+          "Min": 1,
+          "Max": 20
+        },
+        "Begin": 1,
+        "Size": 1,
+        "Repeated": 1
+      }
+    },
+    {
+      "IncludeChance": 100,
+      "Events": 
+      [
+        {
+          "Type": "Shop",
+          "Weight": 20
+        },
+        {
+          "Type": "None",
+          "Weight": 20
+        }
+      ],
+      "Sequence":
+      {
+        "Range":
+        {
+          "Min": 1,
+          "Max": 20
+        },
+        "Begin": 1,
+        "Size": 1,
+        "Repeated": 1
+      }
+    }
+  ],
+  "LowHealthPercent": 25,
+  "MaximumIQ": 100,
+  "CardsToPlacePerTurn": 2,
+  "HandSize": 4
+}

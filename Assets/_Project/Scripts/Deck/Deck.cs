@@ -66,6 +66,7 @@ public class Deck
 public class Card
 {
     private Tile tile;
+    public string owner;
 
     public Card(Tile tile)
     {
