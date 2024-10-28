@@ -3,7 +3,7 @@
   "GridSize": 5,
   "CharacterSelection":
   {
-    "Type": "Choose",
+    "Type": "Draft",
     "Choices": 3,
     "Default": "Standard",
     "Total": 5,
@@ -39,10 +39,6 @@
       [
         {
           "Type": "Shop",
-          "Weight": 20
-        },
-        {
-          "Type": "None",
           "Weight": 20
         }
       ],

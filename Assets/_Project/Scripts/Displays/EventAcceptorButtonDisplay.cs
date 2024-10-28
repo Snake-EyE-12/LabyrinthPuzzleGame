@@ -54,6 +54,7 @@ public class FightEvent : EventAcceptor
 
     public override bool OnClick()
     {
+        displayBox.ActivateButton();
         GameManager.Instance.LoadFight();
         return IsOver();
     }

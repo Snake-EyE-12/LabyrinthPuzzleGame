@@ -52,6 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventAcceptorButtonDisplayPrefab: {fileID: 765946506322729649, guid: 03555713a2f55a04c9c9a4e4931bbf03, type: 3}
   buttonParent: {fileID: 1979186619211720621}
+  arrowButton: {fileID: 411384732964611146}
 --- !u!1 &7249745068559398031
 GameObject:
   m_ObjectHideFlags: 0

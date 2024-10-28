@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using Capstone.DataLoad;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class RoundMenuDisplay : Display<EventsForRound>
 {
     [SerializeField] private EventAcceptorButtonDisplay eventAcceptorButtonDisplayPrefab;
     [SerializeField] private Transform buttonParent;
+    [SerializeField] private Button arrowButton;
     
     
     
-    private bool fightExists;
+    private FightEvent fightExists;
     private bool challengeExists;
     private bool shopExists;
     public override void Render()
@@ -28,9 +30,10 @@ public class RoundMenuDisplay : Display<EventsForRound>
         switch (e.Type)
         {
             case "Fight":
-                if (fightExists) return null;
-                fightExists = true;
-                return new FightEvent(e, this);
+                if (fightExists != null) return null;
+                fightExists = new FightEvent(e, this);
+                arrowButton.gameObject.SetActive(false);
+                return fightExists;
             case "Challenge":
                 if (challengeExists) return null;
                 challengeExists = true;
@@ -46,9 +49,12 @@ public class RoundMenuDisplay : Display<EventsForRound>
 
     public void ContinueClick()
     {
-        if (buttonParent.childCount > 0) return;
-        if (fightExists) GameManager.Instance.BeginBoardFight();
-        else GameManager.Instance.ContinueMission();
+        if(fightExists == null) GameManager.Instance.ContinueMission();
         Destroy(gameObject);
+    }
+
+    public void ActivateButton()
+    {
+        arrowButton.gameObject.SetActive(true);
     }
 }
