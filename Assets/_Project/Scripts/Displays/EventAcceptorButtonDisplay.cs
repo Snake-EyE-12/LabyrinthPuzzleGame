@@ -19,6 +19,7 @@ public class EventAcceptorButtonDisplay : Display<EventAcceptor>
 
     public void OnClick()
     {
+        Debug.Log("Event: " + item.data.Type);
         if (item.OnClick())
         {
             Destroy(gameObject);

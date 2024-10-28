@@ -27,6 +27,8 @@ public class MapDisplay : Display<Map>
             cardsForDeck.AddRange(c.inventory.GetCards());
         }
 
+        //Debug.Log("CardCount: " + cardsForDeck.Count);
+
         Instantiate(deckDisplayPrefab, GameManager.Instance.GetCanvasParent()).Set(new Deck(cardsForDeck));
     }
 

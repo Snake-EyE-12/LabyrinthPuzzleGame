@@ -49,7 +49,11 @@ public class RoundMenuDisplay : Display<EventsForRound>
 
     public void ContinueClick()
     {
-        if(fightExists == null) GameManager.Instance.ContinueMission();
+        if (fightExists == null)
+        {
+            GameManager.Instance.ContinueMission();
+        }
+        else GameManager.Instance.BeginBoardFight();
         Destroy(gameObject);
     }
 
