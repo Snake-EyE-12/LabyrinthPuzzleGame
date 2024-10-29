@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ColorShiftImage : ColorShift
 {
     [SerializeField] private Image image;
-    private void Update()
+    private new void Update()
     {
         base.Update();
         image.color = GetColor(lightColor, darkColor, t / duration);

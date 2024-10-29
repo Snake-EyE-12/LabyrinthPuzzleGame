@@ -10,12 +10,10 @@ public class RoundMenuDisplay : Display<EventsForRound>
     [SerializeField] private EventAcceptorButtonDisplay eventAcceptorButtonDisplayPrefab;
     [SerializeField] private Transform buttonParent;
     [SerializeField] private Button arrowButton;
+    [SerializeField] private Transform teamParent;
+    [SerializeField] private PostBattleCharacterDisplay postBattleCharacterDisplayPrefab;
+    [SerializeField] private CoinDisplay coins;
     
-    
-    
-    private FightEvent fightExists;
-    private bool challengeExists;
-    private bool shopExists;
     public override void Render()
     {
         foreach (var e in item.events)
@@ -23,7 +21,18 @@ public class RoundMenuDisplay : Display<EventsForRound>
             EventAcceptor ea = CreateEventAcceptor(e);
             if(ea != null) Instantiate(eventAcceptorButtonDisplayPrefab, buttonParent).Set(ea);
         }
+
+        foreach (var c in GameManager.Instance.GetCurrentTeam())
+        {
+            Instantiate(postBattleCharacterDisplayPrefab, teamParent).Set(c);
+        }
+        SetCoinValue(GameManager.Instance.CoinCount);
     }
+    
+    
+    private FightEvent fightExists;
+    private bool challengeExists;
+    private bool shopExists;
 
     private EventAcceptor CreateEventAcceptor(EventData e)
     {
@@ -60,5 +69,15 @@ public class RoundMenuDisplay : Display<EventsForRound>
     public void ActivateButton()
     {
         arrowButton.gameObject.SetActive(true);
+    }
+    public void SetCoinValue(int value)
+    {
+        coins.Set(value);
+    }
+
+    public void UpTheAnte()
+    {
+        if(fightExists == null) return;
+        fightExists.UpTheAnte(1); // Number (enemies to add to fight)
     }
 }

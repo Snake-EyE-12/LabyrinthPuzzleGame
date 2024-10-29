@@ -33,7 +33,6 @@ public class DeckDisplay : Display<Deck>
     {
         if(handTiles.Count <= 0) return;
         DiscardAt(handTiles.Count - 1);
-        Debug.Log("DISCARD FIRST");
     }
     private void OnBattleOver(EventArgs args)
     {

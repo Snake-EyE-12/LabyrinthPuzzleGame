@@ -21,6 +21,9 @@ public class InputSelector : MonoBehaviour
         EventHandler.AddListener("CardPlaced", Reorder);
     }
 
+    public bool SelectionEnabled { get; set; }
+    
+
     public void FullCancel()
     {
         ChangeSelectionGroup(null);
@@ -36,7 +39,7 @@ public class InputSelector : MonoBehaviour
 
     private void Update()
     {
-        if (active == null) return;
+        if (active == null || !SelectionEnabled) return;
         if (Input.GetKeyDown(KeyCode.Tab)) //Forced Keycode
         {
             active.Shift();
@@ -52,6 +55,7 @@ public class InputSelector : MonoBehaviour
 
     public void ChangeSelectionType(SelectableGroupType newType)
     {
+        if (!SelectionEnabled) return;
         foreach (var group in groups)
         {
             if (group.Type.Equals(newType))

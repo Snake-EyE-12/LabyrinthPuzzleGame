@@ -19,8 +19,7 @@ public class EventAcceptorButtonDisplay : Display<EventAcceptor>
 
     public void OnClick()
     {
-        Debug.Log("Event: " + item.data.Type);
-        if (item.OnClick())
+        if (item.OnClick(this))
         {
             Destroy(gameObject);
         }
@@ -43,20 +42,25 @@ public abstract class EventAcceptor
         this.data = data;
         this.displayBox = displayBox;
     }
-    public abstract bool OnClick();
+    public abstract bool OnClick(EventAcceptorButtonDisplay button);
     protected virtual bool IsOver() {return true;}
 }
 
 public class FightEvent : EventAcceptor
 {
+    private int additionalEnemyCount = 0;
+    public void UpTheAnte(int value)
+    {
+        additionalEnemyCount++;
+    }
     public FightEvent(EventData data, RoundMenuDisplay displayBox) : base(data, displayBox)
     {
     }
 
-    public override bool OnClick()
+    public override bool OnClick(EventAcceptorButtonDisplay button)
     {
         displayBox.ActivateButton();
-        GameManager.Instance.LoadFight();
+        GameManager.Instance.LoadFight(additionalEnemyCount);
         return IsOver();
     }
 }
@@ -66,7 +70,7 @@ public class ShopEvent : EventAcceptor
     {
     }
 
-    public override bool OnClick()
+    public override bool OnClick(EventAcceptorButtonDisplay button)
     {
         throw new System.NotImplementedException();
     }
@@ -74,20 +78,20 @@ public class ShopEvent : EventAcceptor
 
 public class ChallengeEvent : EventAcceptor
 {
-    private int challengeCap = 4; // Number
     public ChallengeEvent(EventData data, RoundMenuDisplay displayBox) : base(data, displayBox)
     {
     }
 
     private int clickCount = 0;
-    public override bool OnClick()
+    public override bool OnClick(EventAcceptorButtonDisplay button)
     {
         clickCount++;
+        displayBox.UpTheAnte();
         return IsOver();
     }
 
     protected override bool IsOver()
     {
-        return (clickCount >= challengeCap);
+        return (clickCount >= DataHolder.currentMode.MaxChallengeAdditions);
     }
 }

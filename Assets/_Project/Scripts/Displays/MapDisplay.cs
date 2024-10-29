@@ -11,26 +11,11 @@ public class MapDisplay : Display<Map>
     public override void Render()
     {
         BuildMap();
-        BuildDeck();
     }
 
     [SerializeField] private TileDisplay tilePrefab;
     [SerializeField] private CharacterDisplay characterPrefab;
     [SerializeField] private EnemyDisplay enemyPrefab;
-    [SerializeField] private DeckDisplay deckDisplayPrefab;
-
-    private void BuildDeck()
-    {
-        List<Card> cardsForDeck = new List<Card>();
-        foreach (var c in GameManager.Instance.GetCurrentTeam())
-        {
-            cardsForDeck.AddRange(c.inventory.GetCards());
-        }
-
-        //Debug.Log("CardCount: " + cardsForDeck.Count);
-
-        Instantiate(deckDisplayPrefab, GameManager.Instance.GetCanvasParent()).Set(new Deck(cardsForDeck));
-    }
 
     private void Awake()
     {

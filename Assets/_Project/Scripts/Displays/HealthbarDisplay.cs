@@ -18,8 +18,17 @@ public class HealthbarDisplay : Display<Health>
                 {
                     hearts.Add(Instantiate(heartPrefab, transform));
                 }
-                hearts[heartIndex].SetColor(hpSection.GetColor());
+                hearts[heartIndex].Fill(hpSection.GetColor());
             }
+        }
+
+        for (int i = heartIndex; i < item.GetMaxHealthValue(); i++, heartIndex++)
+        {
+            if (heartIndex >= hearts.Count)
+            {
+                hearts.Add(Instantiate(heartPrefab, transform));
+            }
+            hearts[heartIndex].Empty();
         }
         for(int i = hearts.Count - 1; i >= heartIndex; i--)
         {

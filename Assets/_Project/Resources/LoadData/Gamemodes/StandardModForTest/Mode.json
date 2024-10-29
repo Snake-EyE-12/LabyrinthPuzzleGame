@@ -1,6 +1,6 @@
 {
   "Description": "Test",
-  "GridSize": 5,
+  "GridSize": 3,
   "CharacterSelection":
   {
     "Type": "Draft",
@@ -40,6 +40,10 @@
         {
           "Type": "Shop",
           "Weight": 20
+        },
+        {
+          "Type": "Challenge",
+          "Weight": 20
         }
       ],
       "Sequence":
@@ -58,5 +62,7 @@
   "LowHealthPercent": 25,
   "MaximumIQ": 100,
   "CardsToPlacePerTurn": 2,
-  "HandSize": 4
+  "HandSize": 4,
+  "MaxChallengeAdditions": 4,
+  "ChallengeRange": {"Min": -1, "Max": 1}
 }

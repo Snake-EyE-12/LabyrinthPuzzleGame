@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro.Examples;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Capstone.DataLoad
 {
@@ -20,6 +21,8 @@ namespace Capstone.DataLoad
         public int MaximumIQ;
         public int CardsToPlacePerTurn;
         public int HandSize;
+        public int MaxChallengeAdditions;
+        public Range ChallengeRange;
         
         public void Load()
         {
@@ -57,6 +60,22 @@ namespace Capstone.DataLoad
         public int GetWeight()
         {
             return Weight;
+        }
+
+        public void AddEnemies(int amount, Range degree)
+        {
+            for (int a = 0; a < amount; a++)
+            {
+                extraEnemies.Add(DataHolder.availableEnemies.RandomOfDegreeRange(degree).Name);
+            }
+        }
+        private List<string> extraEnemies = new List<string>();
+
+        public string[] GetEnemies()
+        {
+            List<string> fightEnemies = new List<string>(Enemies);
+            fightEnemies.AddRange(extraEnemies);
+            return fightEnemies.ToArray();
         }
     }
 
@@ -284,6 +303,18 @@ namespace Capstone.DataLoad
                 }
             }
             return null;
+        }
+
+        public EnemyData RandomOfDegreeRange(Range range)
+        {
+            List<EnemyData> list = new List<EnemyData>();
+            foreach (var ed in Enemies)
+            {
+                if(range.inRange(ed.Degree)) list.Add(ed);
+            }
+            if(list.Count < 0) return null;
+            list.Sort((a, b) => Random.Range(0, 100).CompareTo(Random.Range(0, 100)));
+            return list[0];
         }
     }
 

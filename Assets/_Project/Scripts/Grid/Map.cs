@@ -22,7 +22,7 @@ public class Map
     
     public string[] GetStartingEnemyNames()
     {
-        return activeFight.Enemies;
+        return activeFight.GetEnemies();
     }
     public void SpawnTile(TileDisplay tile, Vector2Int position)
     {

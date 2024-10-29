@@ -30,6 +30,8 @@ public class TurnManager : MonoBehaviour
     {
         if (transitioning && timeToTransition < Time.time)
         {
+            //Enable Selector
+            GameManager.Instance.SetSelectionEnabled(true);
             transitioning = false;
             GetCurrentPhase().StartPhase();
         }
@@ -43,8 +45,9 @@ public class TurnManager : MonoBehaviour
     [Button(nameof(NextPhase))]
     public void NextPhase()
     {
-        //Debug.Log("NEXT");
         if (timeToTransition > Time.time) return;
+        //Disable Selector
+        GameManager.Instance.SetSelectionEnabled(false);
         RoundPhase phase = GetCurrentPhase();
         if (phase != null)
         { 

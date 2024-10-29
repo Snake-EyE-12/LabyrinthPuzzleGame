@@ -5,6 +5,7 @@ using System.Linq;
 using Capstone.DataLoad;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using Range = Capstone.DataLoad.Range;
 
 public class EventBuilder : MonoBehaviour
 {
@@ -52,9 +53,11 @@ public class EventBuilder : MonoBehaviour
 
 
     [SerializeField] private MapDisplay mapDisplayPrefab;
-    public void PrepareFight()
+    public void PrepareFight(int additionalEnemies)
     {
-        Map fightMap = new Map(GetRoundFight());
+        Fight fight = GetRoundFight();
+        fight.AddEnemies(additionalEnemies, DataHolder.currentMode.ChallengeRange + GameManager.Instance.currentRound);
+        Map fightMap = new Map(fight);
         Instantiate(mapDisplayPrefab, transform).Set(fightMap);
     }
 

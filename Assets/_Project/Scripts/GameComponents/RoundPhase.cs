@@ -30,7 +30,6 @@ public class OpponentTurnPhase : RoundPhase
 
     public override void StartPhase()
     {
-        Debug.Log("Round Phase : Opponent Turn");
         AttackIndicator.Instance.ClearAttacks();
         GameManager.Instance.MoveEnemies();
         GameManager.Instance.PickEnemyAttacks();
@@ -45,7 +44,6 @@ public class DrawCardsPhase : RoundPhase
 
     public override void StartPhase()
     {
-        Debug.Log("Round Phase : Drawing Cards");
         EventHandler.Invoke("Ability/DestroyPanel", null);
         EventHandler.AddListener("DrawCards/LimitReached", OnLimitReached);
         EventHandler.Invoke("Phase/DrawCards", null);
@@ -71,7 +69,6 @@ public class PlayCardsPhase : RoundPhase
 
     public override void StartPhase()
     {
-        Debug.Log("Round Phase : Card Playing");
         GameManager.Instance.SetSelectionMode(SelectableGroupType.Card);
         amountOfCardsPlaced = 0;
         EventHandler.AddListener("CardPlaced", CardPlaced);
@@ -102,7 +99,6 @@ public class TeamTurnPhase : RoundPhase
 
     public override void StartPhase()
     {
-        Debug.Log("Round Phase : Team Turn");
         GameManager.Instance.SetSelectionMode(SelectableGroupType.Team);
         EventHandler.AddListener("Round/EndTurn", TryEndTurn);
         GameManager.Instance.PrepareTeamTurnStart();
@@ -137,7 +133,6 @@ public class DamagePhase : RoundPhase
 
     public override void StartPhase()
     {
-        Debug.Log("Round Phase : Damage From Enemies");
         AttackIndicator.Instance.ExecuteAttacks();
         List<CharacterDisplay> characterList = GameManager.Instance.GetActiveCharacters();
         for (int i = characterList.Count - 1; i >= 0; i--)

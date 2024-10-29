@@ -212,7 +212,6 @@ public class StuntedKeyword : ValueKey
     public override void ModifyRange(int value)
     {
         GameManager.Instance.TargetRadius = new TargetRadius() { radius = 1, squareRadius = 1, center = GameManager.Instance.AbilityUser.GetGridPosition()};
-        Debug.Log("Range Modified to: " + GameManager.Instance.TargetRadius.radius);
     }
 }
 public class KnockbackKeyword : ValueKey

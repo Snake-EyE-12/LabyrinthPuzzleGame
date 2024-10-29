@@ -61,7 +61,7 @@ public class Coin : Loot
 {
     public override void Collect(CharacterDisplay collector)
     {
-        //GM.addcoins
+        GameManager.Instance.CoinCount += val;
     }
     public override string GetImageName()
     {

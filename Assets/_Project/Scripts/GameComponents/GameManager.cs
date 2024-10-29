@@ -27,6 +27,18 @@ public class GameManager : Singleton<GameManager>
         slide.Hide(null);
     }
 
+    
+    [SerializeField] private DeckDisplay deckDisplayPrefab;
+
+    private void BuildDeck()
+    {
+        List<Card> cardsForDeck = new List<Card>();
+        foreach (var c in GetCurrentTeam())
+        {
+            cardsForDeck.AddRange(c.inventory.GetCards());
+        }
+        Instantiate(deckDisplayPrefab, canvasTransform).Set(new Deck(cardsForDeck));
+    }
 
     public void MoveEnemies()
     {
@@ -115,6 +127,11 @@ public class GameManager : Singleton<GameManager>
         Phase = GamePhase.None;
     }
 
+    public void SetSelectionEnabled(bool enabled)
+    {
+        selector.SelectionEnabled = enabled;
+    }
+
     public List<CharacterDisplay> GetActiveCharacters()
     {
         return activeTeam;
@@ -198,11 +215,10 @@ public class GameManager : Singleton<GameManager>
     private void FightOver()
     {
         EventHandler.Invoke("Round/FightOver", null);
-        //EventHandler.Invoke("Ability/UsedAbility", null);
+        EventHandler.Invoke("Ability/DestroyPanel", null);
         AttackIndicator.Instance.ClearAttacks();
         selector.Empty();
         Phase = GamePhase.None;
-        ;
     }
     
     
@@ -249,13 +265,14 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private TurnManager turnManager;
     public void BeginBoardFight()
     {
+        BuildDeck();
         turnManager.Reset();
         turnManager.NextPhase();
     }
 
-    public void LoadFight()
+    public void LoadFight(int additions)
     {
-        eventBuilder.PrepareFight();
+        eventBuilder.PrepareFight(additions);
     }
 
     public List<Character> GetCurrentTeam()

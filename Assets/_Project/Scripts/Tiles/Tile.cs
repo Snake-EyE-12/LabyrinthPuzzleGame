@@ -15,7 +15,6 @@ public class Tile
     public bool IsOpen(Vector2Int direction)
     {
         int bitDirection = directionToBits(direction);
-        //Debug.Log("IsOpenDirection: " + Convert.ToString(bitDirection, 2) + " =? " + Convert.ToString((GetOrientation() & bitDirection), 2));
         return (GetOrientation() & bitDirection) == bitDirection;
     }
 

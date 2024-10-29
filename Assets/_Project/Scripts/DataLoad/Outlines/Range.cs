@@ -9,5 +9,15 @@ namespace Capstone.DataLoad
         {
             return value >= Min && value <= Max;
         }
+
+        public Range(int min, int max)
+        {
+            Min = min;
+            Max = max;
+        }
+        public static Range operator +(Range range, int baseValue)
+        {
+            return new Range(baseValue + range.Min, baseValue + range.Max);
+        }
     }
 }

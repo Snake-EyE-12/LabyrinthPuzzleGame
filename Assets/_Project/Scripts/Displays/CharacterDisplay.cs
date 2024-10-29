@@ -11,6 +11,7 @@ using EventHandler = Guymon.DesignPatterns.EventHandler;
 public class CharacterDisplay : Display<Character>, GridPositionable, Selectable, Targetable
 {
     [SerializeField] private Image coloredImage;
+    [SerializeField] private Image characterFace;
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private SelectionDisplay selectionIndicator;
     [SerializeField] private HealthbarDisplay healthBar;
@@ -21,8 +22,10 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
     
     public override void Render()
     {
-        coloredImage.color = DataHolder.characterColorEquivalenceTable.GetColor(item.characterType);
+        Color solidColor = DataHolder.characterColorEquivalenceTable.GetColor(item.characterType);
+        coloredImage.color = new Color(solidColor.r, solidColor.g, solidColor.b, 200.0f/255.0f);
         nameText.text = item.unitName;
+        characterFace.sprite = Resources.Load<Sprite>("KeynamedSprites/Faces/" + item.unitName);
         xpBar.Set(item.XP);
     }
     
@@ -197,7 +200,6 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
     {
         item.XP.value += amount;
         xpBar.Render();
-        Debug.Log("Gained " + amount + " XP");
     }
 
     private bool used = false;
