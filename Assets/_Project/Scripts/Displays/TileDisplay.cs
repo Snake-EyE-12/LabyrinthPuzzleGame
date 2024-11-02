@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 
 public class TileDisplay : Display<Tile>, GridPositionable, Selectable
 {
-    [SerializeField] private List<WallDisplay> wallDisplays = new List<WallDisplay>();
+    [SerializeField] protected List<WallDisplay> wallDisplays = new List<WallDisplay>();
     [SerializeField] private MappableOrganizer mappableOrganizer;
     [SerializeField] private SelectionDisplay selectionIndicator;
     [SerializeField] private SpriteRenderer abilityIcon;
@@ -89,7 +89,7 @@ public class TileDisplay : Display<Tile>, GridPositionable, Selectable
         }
         else destinator.MoveTo(VisualDataHolder.Instance.CoordsToPosition(value), false);
         gridPosition = value;
-        mappableOrganizer.ResetPositions(gridPosition);
+        mappableOrganizer?.ResetPositions(gridPosition);
     }
 
     

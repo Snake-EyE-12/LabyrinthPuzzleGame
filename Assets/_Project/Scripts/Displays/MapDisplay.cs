@@ -13,11 +13,11 @@ public class MapDisplay : Display<Map>
         BuildMap();
     }
 
-    [SerializeField] private TileDisplay tilePrefab;
+    [SerializeField] protected TileDisplay tilePrefab;
     [SerializeField] private CharacterDisplay characterPrefab;
     [SerializeField] private EnemyDisplay enemyPrefab;
 
-    private void Awake()
+    protected void Awake()
     {
         EventHandler.AddListener("Round/FightOver", OnBattleOver);
     }
@@ -29,7 +29,7 @@ public class MapDisplay : Display<Map>
         Destroy(this.gameObject);
     }
 
-    private void BuildMap()
+    protected void BuildMap()
     {
         //Map
         int size = DataHolder.currentMode.GridSize;

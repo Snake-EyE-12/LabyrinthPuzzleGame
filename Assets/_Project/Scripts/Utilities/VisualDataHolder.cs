@@ -32,8 +32,17 @@ public class VisualDataHolder : Singleton<VisualDataHolder>
     [Button]
     private void SetCameraPosition()
     {
-        cam.transform.position = Center(DataHolder.currentMode.GridSize, -10) + new Vector3(-3, 0, 0);
-        cam.orthographicSize = DataHolder.currentMode.GridSize * 1.5f;
+        cam.transform.position = Center(GetSize(), -10) + new Vector3(-3, 0, 0);
+        cam.orthographicSize = GetSize() * 1.5f;
     }
+
+    private int GetSize()
+    {
+        if (useSpecificSize) return specificSize;
+        return DataHolder.currentMode.GridSize;
+    }
+    
+    [SerializeField] private bool useSpecificSize = false;
+    [SerializeField] private int specificSize;
 
 }

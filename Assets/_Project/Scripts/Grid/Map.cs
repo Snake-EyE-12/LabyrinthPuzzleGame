@@ -5,9 +5,19 @@ using UnityEngine;
 
 public class Map
 {
-    private Grid grid;
+    protected Grid grid;
 
     private Fight activeFight;
+
+    public Map()
+    {
+    }
+
+    public int GetSize()
+    {
+        return grid.GetSize();
+    }
+
     public Map(Fight fight)
     {
         grid = new Grid(DataHolder.currentMode.GridSize);
