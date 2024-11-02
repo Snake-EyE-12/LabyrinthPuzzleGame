@@ -14,6 +14,10 @@ public class VisualDataHolder : Singleton<VisualDataHolder>
     {
         return new Vector3(coords.x * spacing, coords.y * spacing, 0) + new Vector3(origin.x, origin.y, 0);
     }
+    public Vector2Int PositionToCoords(Vector3 position)
+    {
+        return new Vector2Int(Mathf.RoundToInt(position.x / spacing), Mathf.RoundToInt(position.y / spacing));
+    }
 
     public Vector3 Center(int size, int z = 0)
     {

@@ -1,9 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Capstone.DataLoad;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using EventArgs = Guymon.DesignPatterns.EventArgs;
+using EventHandler = Guymon.DesignPatterns.EventHandler;
 
 public class RoundMenuDisplay : Display<EventsForRound>
 {
@@ -12,7 +16,7 @@ public class RoundMenuDisplay : Display<EventsForRound>
     [SerializeField] private Button arrowButton;
     [SerializeField] private Transform teamParent;
     [SerializeField] private PostBattleCharacterDisplay postBattleCharacterDisplayPrefab;
-    [SerializeField] private CoinDisplay coins;
+    [SerializeField] private TMP_Text coins;
     
     public override void Render()
     {
@@ -26,7 +30,8 @@ public class RoundMenuDisplay : Display<EventsForRound>
         {
             Instantiate(postBattleCharacterDisplayPrefab, teamParent).Set(c);
         }
-        SetCoinValue(GameManager.Instance.CoinCount);
+
+        coins.text = GameManager.Instance.CoinCount + "";
     }
     
     
@@ -70,9 +75,9 @@ public class RoundMenuDisplay : Display<EventsForRound>
     {
         arrowButton.gameObject.SetActive(true);
     }
-    public void SetCoinValue(int value)
+    private void SetCoinValue(EventArgs args)
     {
-        coins.Set(value);
+        coins.text = (args as IntEventArgs).value + "";
     }
 
     public void UpTheAnte()
@@ -80,4 +85,19 @@ public class RoundMenuDisplay : Display<EventsForRound>
         if(fightExists == null) return;
         fightExists.UpTheAnte(1); // Number (enemies to add to fight)
     }
+
+    private void OnEnable()
+    {
+        EventHandler.AddListener("Coins/Change", SetCoinValue);
+    }
+
+    private void OnDisable()
+    {
+        EventHandler.RemoveListener("Coins/Change", SetCoinValue);
+    }
+}
+
+public class IntEventArgs : EventArgs
+{
+    public int value;
 }

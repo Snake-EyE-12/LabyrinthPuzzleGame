@@ -218,7 +218,7 @@ public class KnockbackKeyword : ValueKey
 {
     public override void ModifyAction(Targetable t, int value)
     {
-        t.Move(t.GetGridPosition() - GameManager.Instance.AbilityUser.GetGridPosition());
+        t.MoveToPlace(t.GetGridPosition() - GameManager.Instance.AbilityUser.GetGridPosition());
     }
 
     public KnockbackKeyword(KeywordName keyName) : base(keyName)

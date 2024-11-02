@@ -7,6 +7,7 @@ public class TileOnCardDisplay : Display<Tile>
 {
     [SerializeField] private List<WallDisplay> wallDisplays = new List<WallDisplay>();
     [SerializeField] private Image abilityIcon;
+    [SerializeField] private GameObject fire;
 
     public override void Render()
     {
@@ -25,5 +26,6 @@ public class TileOnCardDisplay : Display<Tile>
         {
             abilityIcon.gameObject.SetActive(false);
         }
+        fire.SetActive(item.type != "Slide");
     }
 }

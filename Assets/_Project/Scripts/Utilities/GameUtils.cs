@@ -95,6 +95,42 @@ public static class GameUtils
         if (max == 0) return Vector2Int.zero;
         return new Vector2Int(vector.x / max, vector.y / max);
     }
+    public static CardinalDirection Cardnialize(this Vector2 v)
+    {
+        v.Normalize();
+        bool xIsLargerThanY = Mathf.Abs(v.x) > Mathf.Abs(v.y);
+        if (v.x > 0)
+        {
+            if (v.y > 0)
+            {
+                return xIsLargerThanY ? CardinalDirection.East : CardinalDirection.North;
+            }
+            else
+            {
+                return xIsLargerThanY ? CardinalDirection.East : CardinalDirection.South;
+            }
+        }
+        else
+        {
+            if (v.y > 0)
+            {
+                return xIsLargerThanY ? CardinalDirection.West : CardinalDirection.North;
+            }
+            else
+            {
+                return xIsLargerThanY ? CardinalDirection.West : CardinalDirection.South;
+            }
+        }
+    }
+
+    // private static CardinalDirection VectorToDirection(Vector2Int vector)
+    // {
+    //     if (vector == Vector2Int.up) return CardinalDirection.North;
+    //     if (vector == Vector2Int.right) return CardinalDirection.East;
+    //     if (vector == Vector2Int.down) return CardinalDirection.South;
+    //     if (vector == Vector2Int.left) return CardinalDirection.West;
+    //     return CardinalDirection.None;
+    // }
 
     public static Vector2Int GetRandomDirection()
     {

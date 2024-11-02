@@ -15,5 +15,6 @@ public static class DataHolder
     public static EnemyList availableEnemies;
     public static FightList availableFights;
     public static TileList availableTiles;
+    public static ItemList availableItems;
     public static List<EventsForRound> eventsForEachRound;
 }

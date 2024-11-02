@@ -40,13 +40,22 @@ Material:
         m_Texture: {fileID: 2800000, guid: b6964410ca537a74bbc424cdf2738e82, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_99373e3e3d5b4a7d8b7e6ffedb30b9f3_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 6f1031b8e172a1b4bbbc258649d23c8b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
     - _Rotation: 0
     - _Scale: 1
-    - _Speed: 0.14
+    - _Speed: 1
     m_Colors:
-    - _Direction: {r: 1, g: 1, b: 0, a: 0}
+    - _Color: {r: 0, g: 0.022832239, b: 0.90588236, a: 0.050980393}
+    - _Direction: {r: 0, g: -1, b: 0, a: 0}
   m_BuildTextureStacks: []

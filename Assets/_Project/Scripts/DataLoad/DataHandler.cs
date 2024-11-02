@@ -32,6 +32,7 @@ public class DataHandler : MonoBehaviour
         DataHolder.availableEnemies = GameDataReader.ConvertToJsonObject<EnemyList>("LoadData/Gamemodes/" + mode.DisplayName + "/Enemies");
         DataHolder.availableFights = GameDataReader.ConvertToJsonObject<FightList>("LoadData/Gamemodes/" + mode.DisplayName + "/Fights");
         DataHolder.availableTiles = GameDataReader.ConvertToJsonObject<TileList>("LoadData/Gamemodes/" + mode.DisplayName + "/Tiles");
+        DataHolder.availableItems = GameDataReader.ConvertToJsonObject<ItemList>("LoadData/Gamemodes/" + mode.DisplayName + "/Charms");
     }
 
     private List<Mode> ReadGamemodes()

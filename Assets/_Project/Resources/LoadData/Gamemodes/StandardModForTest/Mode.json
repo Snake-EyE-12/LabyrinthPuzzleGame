@@ -43,7 +43,7 @@
         },
         {
           "Type": "Challenge",
-          "Weight": 20
+          "Weight": 0
         }
       ],
       "Sequence":
@@ -64,5 +64,7 @@
   "CardsToPlacePerTurn": 2,
   "HandSize": 4,
   "MaxChallengeAdditions": 4,
-  "ChallengeRange": {"Min": -1, "Max": 1}
+  "ChallengeRange": {"Min": -1, "Max": 1},
+  "PostBattleHealPercent": 100,
+  "ProductsPerShop": 3
 }

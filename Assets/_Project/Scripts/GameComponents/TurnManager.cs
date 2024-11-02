@@ -15,7 +15,7 @@ public class TurnManager : MonoBehaviour
     {
         LoadSequence(null);
     }
-
+    
     public void LoadSequence(string[] sequence)
     {
         roundSquence.Add(new OpponentTurnPhase(this));

@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using Capstone.DataLoad;
 using UnityEngine;
 
-public class Item : Loot
+public class PickupItem : Loot
 {
-    private ItemData data;
     public override void Collect(CharacterDisplay collector)
     {
-        
+        GameManager.Instance.GainCharm(val);
     }
 
     public override string GetImageName()
@@ -26,16 +25,11 @@ public class Item : Loot
         return val == -1 ? GameManager.Instance.currentRound : val;
     }
 
-    public Item(int value) : base(value)
+    public PickupItem(int value) : base(value)
     {
-        data = new ItemData(); //Insert correct value & load data
     }
 }
 
-public class ItemData
-{
-    
-}
 
 public class XP : Loot
 {
@@ -100,7 +94,7 @@ public abstract class Loot : Collectable
             case "Coin":
                 return new Coin(data.Value);
             default:
-                return new Item(data.Value);
+                return new PickupItem(data.Value);
         }
     }
 }

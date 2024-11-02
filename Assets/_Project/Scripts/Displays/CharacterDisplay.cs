@@ -25,8 +25,12 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
         Color solidColor = DataHolder.characterColorEquivalenceTable.GetColor(item.characterType);
         coloredImage.color = new Color(solidColor.r, solidColor.g, solidColor.b, 200.0f/255.0f);
         nameText.text = item.unitName;
-        characterFace.sprite = Resources.Load<Sprite>("KeynamedSprites/Faces/" + item.unitName);
+        characterFace.sprite = Resources.Load<Sprite>("KeynamedSprites/Faces/Heros/" + item.unitName);
         xpBar.Set(item.XP);
+    }
+    public void SelectViaClick()
+    {
+        if(IsCurrentlySelectable()) Activate(null);
     }
     
     private void Awake()
@@ -51,7 +55,8 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
         GameManager.Instance.RemoveCharacter(this);
         localMap.RemoveGridPositionable(this);
         GameManager.Instance.RemoveSelectable(this, selectionIndicator.type);
-        Destroy(this.gameObject);
+        Debug.Log("Character Attempted To Vanish");
+        if(this != null && this.gameObject != null) Destroy(this.gameObject);
     }
 
 
@@ -63,7 +68,7 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
         return gridPosition;
     }
 
-    public void SetGridPosition(Vector2Int value)
+    public void SetGridPosition(Vector2Int value, bool wrapping = false)
     {
         gridPosition = value;
     }
@@ -94,6 +99,7 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
 
     public void Select()
     {
+        if (!IsCurrentlySelectable()) return;
         selectionIndicator.StartSelection();
     }
 
@@ -109,7 +115,7 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
 
     public bool IsCurrentlySelectable()
     {
-        return (GameManager.Instance.Phase == GamePhase.UsingActiveAbility && GameManager.Instance.InActiveSelectionRange(gridPosition)) || !used;
+        return (GameManager.Instance.Phase == GamePhase.UsingActiveAbility && GameManager.Instance.InActiveSelectionRange(gridPosition)) || (!used && GameManager.Instance.GetSelectionType() == SelectableGroupType.Team);
     }
 
     public void Activate(SelectableActivatorData data)
@@ -119,8 +125,7 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
             localMap.Move(this, (data as DirectionalSelectableActivatorData).direction);
             return;
         }
-
-        if (data is ConfirmSelectableActivatorData)
+        else
         {
             switch (GameManager.Instance.Phase)
             {
@@ -131,7 +136,7 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
                 }
                 default:
                 {
-                    //EventHandler.Invoke("Ability/UsedAbility", null);
+                    Active(true);
                     Instantiate(characterAbilityDisplayPrefab, GameManager.Instance.GetCanvasParent()).Set(item.abilityList);
                     GameManager.Instance.AbilityUser = this;
                     GameManager.Instance.SetSelectionMode(SelectableGroupType.Ability);
@@ -177,7 +182,7 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
     {
         damager.ApplyEffect(effect);
     }
-    public void Move(Vector2Int direction)
+    public void MoveToPlace(Vector2Int direction)
     {
         SetGridPosition(GetGridPosition() + direction);
     }
@@ -200,6 +205,11 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
     {
         item.XP.value += amount;
         xpBar.Render();
+    }
+
+    public void Active(bool active)
+    {
+        selectionIndicator.Activated(active);
     }
 
     private bool used = false;

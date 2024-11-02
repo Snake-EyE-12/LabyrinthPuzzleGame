@@ -25,6 +25,7 @@ public class MapDisplay : Display<Map>
     private void OnBattleOver(EventArgs args)
     {
         EventHandler.RemoveListenerLate("Round/FightOver", OnBattleOver);
+        GameManager.Instance.ActiveMap = null;
         Destroy(this.gameObject);
     }
 
@@ -60,6 +61,8 @@ public class MapDisplay : Display<Map>
             c.SetGridPosition(t.GetGridPosition());
             t.GainControl(c);
         }
+
+        GameManager.Instance.ActiveMap = item;
     }
 
     private void BuildNewTile(Vector2Int coords, GridFiller fill)

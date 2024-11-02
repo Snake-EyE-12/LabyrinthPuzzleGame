@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class CardDisplay : Display<Card>, Selectable
@@ -60,7 +61,15 @@ public class CardDisplay : Display<Card>, Selectable
         tileForDisplay.Set(item.GetTile());
     }
 
-    
+    public void SetAsActiveSelection(bool active)
+    {
+        selectionIndicator.Activated(active);
+    }
+
+    public void SelectViaClick()
+    {
+        if(IsCurrentlySelectable()) Activate(null);
+    }
 
     public void RotateTile(RotationDirection direction, int amount)
     {
@@ -80,6 +89,7 @@ public class CardDisplay : Display<Card>, Selectable
 
     public void Select()
     {
+        if (!IsCurrentlySelectable()) return;
         selectionIndicator.StartSelection();
     }
 
@@ -95,7 +105,7 @@ public class CardDisplay : Display<Card>, Selectable
 
     public bool IsCurrentlySelectable()
     {
-        return true;
+        return GameManager.Instance.GetSelectionType() == SelectableGroupType.Card;
     }
 
     public void Activate(SelectableActivatorData data)
@@ -112,4 +122,10 @@ public class CardDisplay : Display<Card>, Selectable
         GameManager.Instance?.RemoveSelectable(this, selectionIndicator.type);
         Destroy(this.gameObject);
     }
+
+}
+
+public interface Pointer : IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
+{
+    
 }

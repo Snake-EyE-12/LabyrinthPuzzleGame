@@ -17,9 +17,40 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private Transform canvasTransform;
     [SerializeField] private Director slide;
 
+
+
+
+    private List<Item> inventoryCharms = new();
+    public void GainCharm(Item charm)
+    {
+        inventoryCharms.Add(charm);
+    }
+    public void GainCharm(int degree)
+    {
+        inventoryCharms.Add(new Item(Item.Load(degree))); //convert degree to random charm
+    }
+    
+    
     public void DisplayDirection(Vector2Int gridPos, bool sliding)
     {
         slide.Display(DirectionToSlide, DataHolder.currentMode.GridSize, gridPos, sliding);
+    }
+
+    [SerializeField] private ShopDisplay shopDisplayPrefab;
+    private ShopDisplay activeShop;
+    public void ShowShop()
+    {
+        if (activeShop != null) activeShop.Open();
+        else
+        {
+            activeShop = Instantiate(shopDisplayPrefab, canvasTransform);
+            activeShop.Set(GetRoundShopData());
+        }
+    }
+
+    private ShopData GetRoundShopData()
+    {
+        return new ShopData(currentRound);
     }
 
     public void HideSliderDisplay()
@@ -47,7 +78,7 @@ public class GameManager : Singleton<GameManager>
         Vector2Int averageEnemyPos = GetAverageEnemyPos();
         foreach (var enemy in activeEnemies)
         {
-            enemy.Move(enemy.FindSmartDirectionToMove(center, GetClosestUnit(enemy.GetGridPosition(), new List<GridPositionable>(activeTeam)), GetClosestUnit(enemy.GetGridPosition(), new List<GridPositionable>(activeEnemies)), averageTeamPos, averageEnemyPos));
+            enemy.MoveToPlace(enemy.FindSmartDirectionToMove(center, GetClosestUnit(enemy.GetGridPosition(), new List<GridPositionable>(activeTeam)), GetClosestUnit(enemy.GetGridPosition(), new List<GridPositionable>(activeEnemies)), averageTeamPos, averageEnemyPos));
         }
     }
 
@@ -208,8 +239,17 @@ public class GameManager : Singleton<GameManager>
     private void WinFight()
     {
         Debug.Log("You Won Fight: " + currentRound);
+        HealCharacters();
         FightOver();
         ContinueMission();
+    }
+
+    private void HealCharacters()
+    {
+        foreach (var member in team)
+        {
+            member.health.Reset(DataHolder.currentMode.PostBattleHealPercent);
+        }
     }
 
     private void FightOver()
@@ -307,8 +347,15 @@ public class GameManager : Singleton<GameManager>
 
     public void SetCardToPlace(CardDisplay cd)
     {
+        cd.SetAsActiveSelection((cd != null));
+        if (cd == null) return;
         cardToPlace = cd;
         SetSelectionMode(SelectableGroupType.Tile);
+    }
+
+    public SelectableGroupType GetSelectionType()
+    {
+        return selector.GetActiveType();
     }
 
     public void RotateSelectedTile(RotationDirection d, int i)
@@ -331,10 +378,29 @@ public class GameManager : Singleton<GameManager>
     }
 
     public Ability AbilityInUse { get; set; }
-    public Targetable AbilityUser { get; set; }
+    private Targetable abilityUser;
+    public Targetable AbilityUser
+    {
+        get { return abilityUser; }
+        set
+        {
+            abilityUser?.Active(false);
+            abilityUser = value;
+        }
+    }
     public GamePhase Phase { get; set; }
-    public int CoinCount { get; set; }
+    private int money = 100;
+    public int CoinCount
+    {
+        get { return money;}
+        set
+        {
+            money = value;
+            EventHandler.Invoke("Coins/Change", new IntEventArgs() { value = value });
+        }
+    }
     public TargetRadius TargetRadius { get; set; }
+    public Map ActiveMap { get; set; }
 
     public bool InActiveSelectionRange(Vector2Int pos)
     {
@@ -354,11 +420,12 @@ public interface Targetable
     public void HitByAbility(Ability ability);
     public void ChangeHealth(int amount);
     public void ApplyEffect(ActiveEffect effect);
-    public void Move(Vector2Int direction);
+    public void MoveToPlace(Vector2Int direction);
     public Vector2Int GetGridPosition();
 
     public void BecomeUsed();
     public void CheckForDeath();
     public Map GetMap();
     public void GainXP(int amount);
+    public void Active(bool active);
 }

@@ -29,7 +29,7 @@ public class LootDisplay : Display<Loot>, GridPositionable
         return gridPosition;
     }
 
-    public void SetGridPosition(Vector2Int value)
+    public void SetGridPosition(Vector2Int value, bool wrapping = false)
     {
         gridPosition = value;
     }

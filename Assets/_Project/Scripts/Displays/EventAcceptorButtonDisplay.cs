@@ -9,6 +9,7 @@ public class EventAcceptorButtonDisplay : Display<EventAcceptor>
 {
     [SerializeField] private TMP_Text displayText;
     [SerializeField] private Image iconImage;
+    [SerializeField] private Floater burnAfterImage;
     public override void Render()
     {
         Color color = DataHolder.eventColorEquivalenceTable.GetColor(item.data.Type);
@@ -24,6 +25,15 @@ public class EventAcceptorButtonDisplay : Display<EventAcceptor>
             Destroy(gameObject);
         }
     }
+
+    public void Burn(float percent)
+    {
+        Floater e = Instantiate(burnAfterImage, GameManager.Instance.GetCanvasParent());
+        e.Set(percent);
+        e.transform.position = transform.position;
+        iconImage.color = new Color(iconImage.color.r, iconImage.color.g, iconImage.color.b, percent);
+    }
+    
 }
 
 
@@ -72,7 +82,13 @@ public class ShopEvent : EventAcceptor
 
     public override bool OnClick(EventAcceptorButtonDisplay button)
     {
-        throw new System.NotImplementedException();
+        GameManager.Instance.ShowShop();
+        return IsOver();
+    }
+
+    protected override bool IsOver()
+    {
+        return false;
     }
 }
 
@@ -86,6 +102,7 @@ public class ChallengeEvent : EventAcceptor
     public override bool OnClick(EventAcceptorButtonDisplay button)
     {
         clickCount++;
+        button.Burn(1 - (clickCount * 1.0f / DataHolder.currentMode.MaxChallengeAdditions));
         displayBox.UpTheAnte();
         return IsOver();
     }

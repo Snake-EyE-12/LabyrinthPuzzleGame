@@ -23,6 +23,8 @@ namespace Capstone.DataLoad
         public int HandSize;
         public int MaxChallengeAdditions;
         public Range ChallengeRange;
+        public int PostBattleHealPercent;
+        public int ProductsPerShop;
         
         public void Load()
         {
@@ -374,4 +376,53 @@ namespace Capstone.DataLoad
         public string Target;
         public string[] Keys;
     }
+
+    [System.Serializable]
+    public class ItemList
+    {
+        public ItemData[] Charms;
+        public ItemData RandomOfDegreeRange(Range range)
+        {
+            List<ItemData> list = new List<ItemData>();
+            foreach (var ed in Charms)
+            {
+                if(range.inRange(ed.Degree)) list.Add(ed);
+            }
+            if(list.Count < 0) return null;
+            return list[GameUtils.IndexByWeightedRandom(new List<Weighted>(list))];
+        }
+
+        public ItemData RandomByDegree(int degree)
+        {
+            return RandomOfDegreeRange(new Range(degree, degree));
+        }
+    }
+
+    [System.Serializable]
+    public class ItemData : Weighted
+    {
+        public string Name;
+        public string Description;
+        public int Degree;
+        public Range Price;
+        public int Weight;
+        public ManipulationData[] Manipulations;
+
+
+        public int GetWeight()
+        {
+            return Weight;
+        }
+    }
+    
+    [System.Serializable]
+    public class ManipulationData
+    {
+        public string Change;
+        public string Condition;
+        public string Modification;
+        public string With;
+    }
+    
+    
 }

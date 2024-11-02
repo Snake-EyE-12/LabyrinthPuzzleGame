@@ -64,7 +64,7 @@ public class Map
             Vector2Int replacePos = new Vector2Int(x, 0);
             grid.Set(fallOffSpace, replacePos.x, replacePos.y);
             fallOffSpace.GetTile().Set(replacer);
-            fallOffSpace.GetTile().SetGridPosition(replacePos);
+            fallOffSpace.GetTile().SetGridPosition(replacePos, true);
         }
         else
         {
@@ -78,7 +78,7 @@ public class Map
             Vector2Int replacePos = new Vector2Int(x, grid.GetSize() - 1);
             grid.Set(fallOffSpace, replacePos.x, replacePos.y);
             fallOffSpace.GetTile().Set(replacer);
-            fallOffSpace.GetTile().SetGridPosition(replacePos);
+            fallOffSpace.GetTile().SetGridPosition(replacePos, true);
         }
         
     }
@@ -96,7 +96,7 @@ public class Map
             Vector2Int replacePos = new Vector2Int(0, y);
             grid.Set(fallOffSpace, replacePos.x, replacePos.y);
             fallOffSpace.GetTile().Set(replacer);
-            fallOffSpace.GetTile().SetGridPosition(replacePos);
+            fallOffSpace.GetTile().SetGridPosition(replacePos, true);
         }
         else
         {
@@ -110,9 +110,10 @@ public class Map
             Vector2Int replacePos = new Vector2Int(grid.GetSize() - 1, y);
             grid.Set(fallOffSpace, replacePos.x, replacePos.y);
             fallOffSpace.GetTile().Set(replacer);
-            fallOffSpace.GetTile().SetGridPosition(replacePos);
+            fallOffSpace.GetTile().SetGridPosition(replacePos, true);
         }
     }
+    public TileDisplay GetTileAtPosition(Vector2Int pos) => grid.Get(pos).GetTile();
 
     public void Move(GridPositionable entity, Vector2Int direction)
     {

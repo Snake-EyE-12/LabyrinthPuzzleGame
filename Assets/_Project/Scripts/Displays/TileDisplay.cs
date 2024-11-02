@@ -29,6 +29,10 @@ public class TileDisplay : Display<Tile>, GridPositionable, Selectable
 
     }
 
+    public void SelectViaClick()
+    {
+        if(IsCurrentlySelectable()) Activate(null);
+    }
     public Tile GetTile()
     {
         return item;
@@ -69,11 +73,21 @@ public class TileDisplay : Display<Tile>, GridPositionable, Selectable
     {
         return gridPosition;
     }
-    
 
-    public void SetGridPosition(Vector2Int value)
+
+    [SerializeField] private Destinator destinator;
+    public void SetGridPosition(Vector2Int value, bool wrapping = false)
     {
-        transform.position = VisualDataHolder.Instance.CoordsToPosition(value);
+        if (wrapping)
+        {
+            List<DestinationData> positionSet = new();
+            Vector2Int direction = (value - gridPosition).Normalize();
+            //positionSet.Add(new DestinationData(VisualDataHolder.Instance.CoordsToPosition(gridPosition - direction), 0.5f));
+            positionSet.Add(new DestinationData(VisualDataHolder.Instance.CoordsToPosition(value + direction), 0.0001f, false));
+            positionSet.Add(new DestinationData(VisualDataHolder.Instance.CoordsToPosition(value), 0.5f, false));
+            destinator.MoveTo(positionSet);
+        }
+        else destinator.MoveTo(VisualDataHolder.Instance.CoordsToPosition(value), false);
         gridPosition = value;
         mappableOrganizer.ResetPositions(gridPosition);
     }
@@ -121,8 +135,8 @@ public class TileDisplay : Display<Tile>, GridPositionable, Selectable
 
     public void Select()
     {
+        if (!IsCurrentlySelectable()) return;
         selectionIndicator.StartSelection();
-        GameManager.Instance.DisplayDirection(gridPosition, GameManager.Instance.cardToPlace.GetCard().GetTile().type == "Slide");
     }
 
     public void Deselect()
@@ -137,7 +151,7 @@ public class TileDisplay : Display<Tile>, GridPositionable, Selectable
 
     public bool IsCurrentlySelectable()
     {
-        return true;
+        return GameManager.Instance.GetSelectionType() == SelectableGroupType.Tile;;
     }
 
     public void Activate(SelectableActivatorData data)

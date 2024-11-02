@@ -718,6 +718,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7145153148788906096}
   - component: {fileID: 6239000155175232985}
+  - component: {fileID: 7904952421994996058}
   m_Layer: 3
   m_Name: Background
   m_TagString: Untagged
@@ -792,6 +793,63 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7904952421994996058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6558884628383611954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d25097cadc3c4df9acd1e8cd8288ccab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4097448878186737332}
+        m_TargetAssemblyTypeName: TileDisplay, Assembly-CSharp
+        m_MethodName: SelectViaClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnHover:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4097448878186737332}
+        m_TargetAssemblyTypeName: TileDisplay, Assembly-CSharp
+        m_MethodName: Select
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnEndHover:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4097448878186737332}
+        m_TargetAssemblyTypeName: TileDisplay, Assembly-CSharp
+        m_MethodName: Deselect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6936682402870019981
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,6 +923,7 @@ GameObject:
   - component: {fileID: 6925521392727404983}
   - component: {fileID: 4097448878186737332}
   - component: {fileID: 8950600671035931638}
+  - component: {fileID: 3939452299285721226}
   m_Layer: 0
   m_Name: Tile
   m_TagString: Untagged
@@ -910,6 +969,7 @@ MonoBehaviour:
   mappableOrganizer: {fileID: 2919229769817231578}
   selectionIndicator: {fileID: 8950600671035931638}
   abilityIcon: {fileID: 7904930010678466164}
+  destinator: {fileID: 3939452299285721226}
 --- !u!114 &8950600671035931638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -924,6 +984,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   onDisplay: {fileID: 7357896771989140528}
+--- !u!114 &3939452299285721226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7348625236369839609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06ef35e5a90c445eb3b67883c6b7cdda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseTime: 0.5
 --- !u!1 &7357896771989140528
 GameObject:
   m_ObjectHideFlags: 0
@@ -934,13 +1007,14 @@ GameObject:
   m_Component:
   - component: {fileID: 8083607979544293056}
   - component: {fileID: 7989287749502507390}
+  - component: {fileID: 7029031908291925887}
   m_Layer: 0
   m_Name: Selector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8083607979544293056
 Transform:
   m_ObjectHideFlags: 0
@@ -998,7 +1072,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 10
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.15924989, g: 0.76052874, b: 0.8301887, a: 0.40392157}
+  m_Color: {r: 0, g: 0.0323627, b: 0.90588236, a: 0.40392157}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1008,6 +1082,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &7029031908291925887
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7357896771989140528}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e360f401d48065c4ebb9366d40359c9c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7789317663540917680
 GameObject:
   m_ObjectHideFlags: 0

@@ -51,6 +51,7 @@ public class AbilityDisplay : Display<Ability>, Selectable
 
     public void Select()
     {
+        if (!IsCurrentlySelectable()) return;
         selectionIndicator.StartSelection();
     }
 
@@ -66,11 +67,17 @@ public class AbilityDisplay : Display<Ability>, Selectable
 
     public bool IsCurrentlySelectable()
     {
-        return true;
+        return GameManager.Instance.GetSelectionType() == SelectableGroupType.Ability;;
+    }
+
+    public void SelectViaClick()
+    {
+        if(IsCurrentlySelectable()) Activate(null);
     }
 
     public void Activate(SelectableActivatorData data)
     {
+        selectionIndicator.Activated(true);
         GameManager.Instance.AbilityInUse = item;
         GameManager.Instance.Phase = GamePhase.UsingActiveAbility;
         item.PrepareTarget();

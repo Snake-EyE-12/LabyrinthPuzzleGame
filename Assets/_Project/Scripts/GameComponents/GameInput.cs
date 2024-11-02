@@ -103,6 +103,35 @@ public class AbilityGameInput : GameInput
 {
     public AbilityGameInput(InputSelector s) : base(s)
     {
+        
+    }
+
+    public override void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space)) selector.Activate(new ConfirmSelectableActivatorData());
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            GameManager.Instance.AbilityUser.GetMap().Move(GameManager.Instance.AbilityUser as GridPositionable, Vector2Int.up);
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            GameManager.Instance.AbilityUser.GetMap().Move(GameManager.Instance.AbilityUser as GridPositionable, Vector2Int.down);
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            GameManager.Instance.AbilityUser.GetMap().Move(GameManager.Instance.AbilityUser as GridPositionable, Vector2Int.right);
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            GameManager.Instance.AbilityUser.GetMap().Move(GameManager.Instance.AbilityUser as GridPositionable, Vector2Int.left);
+        }
+    }
+}
+public class EnemyGameInput : GameInput
+{
+    public EnemyGameInput(InputSelector s) : base(s)
+    {
+        
     }
 
     public override void Update()

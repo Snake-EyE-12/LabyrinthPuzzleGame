@@ -4,7 +4,7 @@ using UnityEngine;
 public interface GridPositionable
 {
     public Vector2Int GetGridPosition();
-    public void SetGridPosition(Vector2Int position);
+    public void SetGridPosition(Vector2Int position, bool wrapping = false);
 
     public OnTileLocation GetTileLocation();
     public Transform GetSelfTransform();

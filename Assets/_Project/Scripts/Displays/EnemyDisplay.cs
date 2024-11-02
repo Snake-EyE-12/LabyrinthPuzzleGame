@@ -6,8 +6,10 @@ using UnityEngine.UI;
 
 public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Targetable
 {
-    [SerializeField] private Image coloredImage;
+    [SerializeField] private Image faceImage;
     [SerializeField] private TMP_Text nameText;
+    [SerializeField] private Image overlayImage;
+    
     [SerializeField] private SelectionDisplay selectionIndicator;
     [SerializeField] private HealthbarDisplay healthBar;
     private Damager damager;
@@ -16,6 +18,8 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
     {
         //coloredImage.color = DataHolder.characterColorEquivalenceTable.GetColor(item.type);
         nameText.text = item.unitName;
+        faceImage.sprite = Resources.Load<Sprite>("KeynamedSprites/Faces/Villains/" + item.unitName);
+        overlayImage.sprite = Resources.Load<Sprite>("KeynamedSprites/Overlays/" + item.type);
     }
 
     private EnemyAttackVisual choosenAttack;
@@ -23,6 +27,10 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
     {
         choosenAttack = new EnemyAttackVisual(){attack = item.attackLayout.Pick(GetAttackTargetLocations(), gridPosition, item.AttackIQ), user = this};
         AttackIndicator.Instance.AddAttack(choosenAttack);
+    }
+    public void SelectViaClick()
+    {
+        if(IsCurrentlySelectable()) Activate(null);
     }
 
     private List<Vector2Int> GetAttackTargetLocations()
@@ -77,7 +85,7 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
         
     }
 
-    public void SetGridPosition(Vector2Int value)
+    public void SetGridPosition(Vector2Int value, bool wrapping = false)
     {
         gridPosition = value;
         AttackIndicator.Instance.Recalculate();
@@ -106,6 +114,7 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
 
     public void Select()
     {
+        if (!IsCurrentlySelectable()) return;
         selectionIndicator.StartSelection();
     }
 
@@ -159,7 +168,7 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
         damager.ApplyEffect(effect);
     }
 
-    public void Move(Vector2Int direction)
+    public void MoveToPlace(Vector2Int direction)
     {
         localMap.Move(this, direction);
     }
@@ -222,5 +231,10 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
     public void GainXP(int amount)
     {
         
+    }
+
+    public void Active(bool active)
+    {
+        selectionIndicator.Activated(active);
     }
 }

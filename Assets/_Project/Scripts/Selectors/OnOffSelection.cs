@@ -22,4 +22,10 @@ public class OnOffSelection : SelectionDisplay
     {
         onDisplay.SetActive(false);
     }
+
+    [SerializeField] private GameObject onActive;
+    public override void Activated(bool active)
+    {
+        onActive.SetActive(active);
+    }
 }

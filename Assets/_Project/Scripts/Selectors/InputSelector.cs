@@ -16,7 +16,7 @@ public class InputSelector : MonoBehaviour
         groups.Add(new SelectorGroup(SelectableGroupType.Card, new CardGameInput(this)));
         groups.Add(new SelectorGroup(SelectableGroupType.Tile, new TileGameInput(this)));
         groups.Add(new SelectorGroup(SelectableGroupType.Team, new CharacterMovementGameInput(this)));
-        groups.Add(new SelectorGroup(SelectableGroupType.Enemy, new AbilityGameInput(this)));
+        groups.Add(new SelectorGroup(SelectableGroupType.Enemy, new EnemyGameInput(this)));
         groups.Add(new SelectorGroup(SelectableGroupType.Ability, new AbilityGameInput(this)));
         EventHandler.AddListener("CardPlaced", Reorder);
     }

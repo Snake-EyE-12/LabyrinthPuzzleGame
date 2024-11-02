@@ -35,6 +35,7 @@ public class OpponentTurnPhase : RoundPhase
         GameManager.Instance.PickEnemyAttacks();
         AttackIndicator.Instance.VisualizeAttacks();
     }
+    
 }
 public class DrawCardsPhase : RoundPhase
 {

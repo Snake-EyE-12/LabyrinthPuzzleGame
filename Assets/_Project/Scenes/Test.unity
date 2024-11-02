@@ -790,6 +790,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   onDisplay: {fileID: 1448983912}
+  onActive: {fileID: 0}
 --- !u!114 &38121838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -810,6 +811,7 @@ MonoBehaviour:
   mappableOrganizer: {fileID: 46206063}
   selectionIndicator: {fileID: 38121837}
   abilityIcon: {fileID: 1506919333}
+  destinator: {fileID: 0}
 --- !u!1 &40307081
 GameObject:
   m_ObjectHideFlags: 0
@@ -1797,6 +1799,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   onDisplay: {fileID: 1051297032}
+  onActive: {fileID: 0}
 --- !u!114 &71887020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1817,6 +1820,7 @@ MonoBehaviour:
   mappableOrganizer: {fileID: 1723344861}
   selectionIndicator: {fileID: 71887019}
   abilityIcon: {fileID: 1991596479}
+  destinator: {fileID: 0}
 --- !u!1 &72887240
 GameObject:
   m_ObjectHideFlags: 0
@@ -4924,6 +4928,7 @@ MonoBehaviour:
   - {fileID: 96540769}
   - {fileID: 1528830702}
   abilityIcon: {fileID: 2032221350}
+  fire: {fileID: 0}
 --- !u!1 &165459012
 GameObject:
   m_ObjectHideFlags: 0
@@ -5713,6 +5718,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   onDisplay: {fileID: 1521669206}
+  onActive: {fileID: 0}
 --- !u!114 &174650716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5733,6 +5739,7 @@ MonoBehaviour:
   mappableOrganizer: {fileID: 1981298530}
   selectionIndicator: {fileID: 174650715}
   abilityIcon: {fileID: 1764133610}
+  destinator: {fileID: 0}
 --- !u!1 &174875276
 GameObject:
   m_ObjectHideFlags: 0
@@ -7303,6 +7310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   onDisplay: {fileID: 1440110954}
+  onActive: {fileID: 0}
 --- !u!114 &231422436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7323,6 +7331,7 @@ MonoBehaviour:
   mappableOrganizer: {fileID: 684575483}
   selectionIndicator: {fileID: 231422435}
   abilityIcon: {fileID: 837491464}
+  destinator: {fileID: 0}
 --- !u!1 &232109616
 GameObject:
   m_ObjectHideFlags: 0
@@ -8557,6 +8566,7 @@ MonoBehaviour:
   - {fileID: 611658914}
   - {fileID: 529231610}
   abilityIcon: {fileID: 523225491}
+  fire: {fileID: 0}
 --- !u!1 &293122479
 GameObject:
   m_ObjectHideFlags: 0
@@ -8924,6 +8934,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   onDisplay: {fileID: 1453387725}
+  onActive: {fileID: 0}
 --- !u!114 &297335654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9609,6 +9620,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heartImage: {fileID: 318784458}
+  fullHeart: {fileID: 0}
+  emptyHeart: {fileID: 0}
 --- !u!114 &318784458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10072,6 +10085,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   onDisplay: {fileID: 908332534}
+  onActive: {fileID: 0}
 --- !u!114 &337778679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10092,6 +10106,7 @@ MonoBehaviour:
   mappableOrganizer: {fileID: 875633702}
   selectionIndicator: {fileID: 337778678}
   abilityIcon: {fileID: 432481921}
+  destinator: {fileID: 0}
 --- !u!1 &350450990
 GameObject:
   m_ObjectHideFlags: 0
@@ -10375,6 +10390,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 3
   onDisplay: {fileID: 1653751413}
+  onActive: {fileID: 0}
 --- !u!114 &359305088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10388,6 +10404,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coloredImage: {fileID: 1716375025}
+  characterFace: {fileID: 0}
   nameText: {fileID: 174875278}
   selectionIndicator: {fileID: 359305087}
   healthBar: {fileID: 959578937}
@@ -11042,6 +11059,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   onDisplay: {fileID: 1095267697}
+  onActive: {fileID: 0}
 --- !u!114 &387281757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11062,6 +11080,7 @@ MonoBehaviour:
   mappableOrganizer: {fileID: 424855611}
   selectionIndicator: {fileID: 387281756}
   abilityIcon: {fileID: 1946405061}
+  destinator: {fileID: 0}
 --- !u!1 &388629745
 GameObject:
   m_ObjectHideFlags: 0
@@ -11272,6 +11291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   onDisplay: {fileID: 1737702652}
+  onActive: {fileID: 0}
 --- !u!114 &392792039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11292,6 +11312,7 @@ MonoBehaviour:
   mappableOrganizer: {fileID: 1387701828}
   selectionIndicator: {fileID: 392792038}
   abilityIcon: {fileID: 1879208368}
+  destinator: {fileID: 0}
 --- !u!1 &394359288
 GameObject:
   m_ObjectHideFlags: 0
@@ -11342,6 +11363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   onDisplay: {fileID: 1854771336}
+  onActive: {fileID: 0}
 --- !u!114 &394359291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11362,6 +11384,7 @@ MonoBehaviour:
   mappableOrganizer: {fileID: 849936148}
   selectionIndicator: {fileID: 394359290}
   abilityIcon: {fileID: 146659250}
+  destinator: {fileID: 0}
 --- !u!1 &401056779
 GameObject:
   m_ObjectHideFlags: 0
@@ -11931,6 +11954,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heartImage: {fileID: 415782656}
+  fullHeart: {fileID: 0}
+  emptyHeart: {fileID: 0}
 --- !u!114 &415782656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12868,6 +12893,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 3
   onDisplay: {fileID: 927897967}
+  onActive: {fileID: 0}
 --- !u!114 &443051514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12881,6 +12907,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coloredImage: {fileID: 1635371920}
+  characterFace: {fileID: 0}
   nameText: {fileID: 1071769360}
   selectionIndicator: {fileID: 443051513}
   healthBar: {fileID: 1156658314}
@@ -15662,6 +15689,8 @@ RectTransform:
   - {fileID: 1922546380}
   - {fileID: 637689586}
   - {fileID: 2007523651}
+  - {fileID: 1947244306}
+  - {fileID: 937884725}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -16186,6 +16215,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heartImage: {fileID: 579821829}
+  fullHeart: {fileID: 0}
+  emptyHeart: {fileID: 0}
 --- !u!114 &579821829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18639,6 +18670,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   onDisplay: {fileID: 1086100882}
+  onActive: {fileID: 0}
 --- !u!114 &675633325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18659,6 +18691,7 @@ MonoBehaviour:
   mappableOrganizer: {fileID: 12652802}
   selectionIndicator: {fileID: 675633324}
   abilityIcon: {fileID: 81919757}
+  destinator: {fileID: 0}
 --- !u!1 &676080072
 GameObject:
   m_ObjectHideFlags: 0
@@ -19948,6 +19981,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   onDisplay: {fileID: 1583186030}
+  onActive: {fileID: 0}
 --- !u!114 &710278571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19968,6 +20002,7 @@ MonoBehaviour:
   mappableOrganizer: {fileID: 541683413}
   selectionIndicator: {fileID: 710278570}
   abilityIcon: {fileID: 436384053}
+  destinator: {fileID: 0}
 --- !u!1 &711820099
 GameObject:
   m_ObjectHideFlags: 0
@@ -20555,6 +20590,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   onDisplay: {fileID: 2043918570}
+  onActive: {fileID: 0}
 --- !u!114 &737697213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20575,6 +20611,7 @@ MonoBehaviour:
   mappableOrganizer: {fileID: 308026203}
   selectionIndicator: {fileID: 737697212}
   abilityIcon: {fileID: 85098329}
+  destinator: {fileID: 0}
 --- !u!1 &737758508
 GameObject:
   m_ObjectHideFlags: 0
@@ -20625,6 +20662,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   onDisplay: {fileID: 178910901}
+  onActive: {fileID: 0}
 --- !u!114 &737758511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20645,6 +20683,7 @@ MonoBehaviour:
   mappableOrganizer: {fileID: 989615768}
   selectionIndicator: {fileID: 737758510}
   abilityIcon: {fileID: 859392057}
+  destinator: {fileID: 0}
 --- !u!1 &739756396
 GameObject:
   m_ObjectHideFlags: 0
@@ -21313,6 +21352,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   onDisplay: {fileID: 1358908640}
+  onActive: {fileID: 0}
 --- !u!114 &768963062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21333,6 +21373,7 @@ MonoBehaviour:
   mappableOrganizer: {fileID: 467054800}
   selectionIndicator: {fileID: 768963061}
   abilityIcon: {fileID: 1753119795}
+  destinator: {fileID: 0}
 --- !u!1 &770602241
 GameObject:
   m_ObjectHideFlags: 0
@@ -22858,6 +22899,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heartImage: {fileID: 823338176}
+  fullHeart: {fileID: 0}
+  emptyHeart: {fileID: 0}
 --- !u!114 &823338176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24123,6 +24166,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heartImage: {fileID: 850763057}
+  fullHeart: {fileID: 0}
+  emptyHeart: {fileID: 0}
 --- !u!114 &850763057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25728,6 +25773,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 3
   onDisplay: {fileID: 922248392}
+  onActive: {fileID: 0}
 --- !u!114 &924867523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25741,6 +25787,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coloredImage: {fileID: 1761027452}
+  characterFace: {fileID: 0}
   nameText: {fileID: 824821038}
   selectionIndicator: {fileID: 924867522}
   healthBar: {fileID: 1828904832}
@@ -25948,6 +25995,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heartImage: {fileID: 929120442}
+  fullHeart: {fileID: 0}
+  emptyHeart: {fileID: 0}
 --- !u!114 &929120442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26142,6 +26191,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!224 &937884725 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4851946964884769467, guid: 237e4be0cc9ea3d4bac50d485b071bbb, type: 3}
+  m_PrefabInstance: {fileID: 4785719520494359468}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &938930169
 GameObject:
   m_ObjectHideFlags: 0
@@ -27192,6 +27246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   onDisplay: {fileID: 1010098458}
+  onActive: {fileID: 0}
 --- !u!114 &979060712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27212,6 +27267,7 @@ MonoBehaviour:
   mappableOrganizer: {fileID: 1922449542}
   selectionIndicator: {fileID: 979060711}
   abilityIcon: {fileID: 271003959}
+  destinator: {fileID: 0}
 --- !u!1 &979650880
 GameObject:
   m_ObjectHideFlags: 0
@@ -28268,6 +28324,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heartImage: {fileID: 1002906508}
+  fullHeart: {fileID: 0}
+  emptyHeart: {fileID: 0}
 --- !u!114 &1002906508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29245,6 +29303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   onDisplay: {fileID: 661695094}
+  onActive: {fileID: 0}
 --- !u!114 &1030484832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29842,6 +29901,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   onDisplay: {fileID: 119599260}
+  onActive: {fileID: 0}
 --- !u!114 &1064900988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31483,6 +31543,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   onDisplay: {fileID: 1101666279}
+  onActive: {fileID: 0}
 --- !u!114 &1118388860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31503,6 +31564,7 @@ MonoBehaviour:
   mappableOrganizer: {fileID: 1663932471}
   selectionIndicator: {fileID: 1118388859}
   abilityIcon: {fileID: 1278368522}
+  destinator: {fileID: 0}
 --- !u!1 &1118466991
 GameObject:
   m_ObjectHideFlags: 0
@@ -31941,6 +32003,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heartImage: {fileID: 1128191847}
+  fullHeart: {fileID: 0}
+  emptyHeart: {fileID: 0}
 --- !u!114 &1128191847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32034,6 +32098,7 @@ MonoBehaviour:
   - {fileID: 676080074}
   - {fileID: 1384155750}
   abilityIcon: {fileID: 488225748}
+  fire: {fileID: 0}
 --- !u!1 &1137826263
 GameObject:
   m_ObjectHideFlags: 0
@@ -32789,6 +32854,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heartImage: {fileID: 1167867330}
+  fullHeart: {fileID: 0}
+  emptyHeart: {fileID: 0}
 --- !u!114 &1167867330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34828,6 +34895,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 3
   onDisplay: {fileID: 1197355432}
+  onActive: {fileID: 0}
 --- !u!114 &1268184421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34841,6 +34909,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coloredImage: {fileID: 998306749}
+  characterFace: {fileID: 0}
   nameText: {fileID: 73153102}
   selectionIndicator: {fileID: 1268184420}
   healthBar: {fileID: 2089204359}
@@ -35888,6 +35957,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   onDisplay: {fileID: 1406763483}
+  onActive: {fileID: 0}
 --- !u!114 &1296977262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35908,6 +35978,7 @@ MonoBehaviour:
   mappableOrganizer: {fileID: 93039448}
   selectionIndicator: {fileID: 1296977261}
   abilityIcon: {fileID: 176638340}
+  destinator: {fileID: 0}
 --- !u!1 &1298625849
 GameObject:
   m_ObjectHideFlags: 0
@@ -36314,6 +36385,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   onDisplay: {fileID: 1977215826}
+  onActive: {fileID: 0}
 --- !u!114 &1317004220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36334,6 +36406,7 @@ MonoBehaviour:
   mappableOrganizer: {fileID: 160988771}
   selectionIndicator: {fileID: 1317004219}
   abilityIcon: {fileID: 1723706652}
+  destinator: {fileID: 0}
 --- !u!1 &1320355894
 GameObject:
   m_ObjectHideFlags: 0
@@ -36834,6 +36907,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heartImage: {fileID: 1343724384}
+  fullHeart: {fileID: 0}
+  emptyHeart: {fileID: 0}
 --- !u!114 &1343724384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37049,6 +37124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 4
   onDisplay: {fileID: 878751569}
+  onActive: {fileID: 0}
 --- !u!114 &1357230189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37061,8 +37137,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7799d6f6041e338449fe8c448c392307, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coloredImage: {fileID: 950522612}
+  faceImage: {fileID: 0}
   nameText: {fileID: 1081684059}
+  overlayImage: {fileID: 0}
   selectionIndicator: {fileID: 1357230188}
   healthBar: {fileID: 1542883010}
   lootDisplayPrefab: {fileID: 8579758375376238872, guid: eb037f8d50589364eacf9a1bc563955b, type: 3}
@@ -38580,6 +38657,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   onDisplay: {fileID: 411075914}
+  onActive: {fileID: 0}
 --- !u!114 &1397707355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38600,6 +38678,7 @@ MonoBehaviour:
   mappableOrganizer: {fileID: 1163931825}
   selectionIndicator: {fileID: 1397707354}
   abilityIcon: {fileID: 517410560}
+  destinator: {fileID: 0}
 --- !u!1 &1399019945
 GameObject:
   m_ObjectHideFlags: 0
@@ -39902,6 +39981,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   onDisplay: {fileID: 909520849}
+  onActive: {fileID: 0}
 --- !u!114 &1460395313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39922,6 +40002,7 @@ MonoBehaviour:
   mappableOrganizer: {fileID: 295530336}
   selectionIndicator: {fileID: 1460395312}
   abilityIcon: {fileID: 1056728211}
+  destinator: {fileID: 0}
 --- !u!1 &1462566449
 GameObject:
   m_ObjectHideFlags: 0
@@ -40620,6 +40701,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heartImage: {fileID: 1486632222}
+  fullHeart: {fileID: 0}
+  emptyHeart: {fileID: 0}
 --- !u!114 &1486632222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41694,6 +41777,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   onDisplay: {fileID: 1273025885}
+  onActive: {fileID: 0}
 --- !u!114 &1521206031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41714,6 +41798,7 @@ MonoBehaviour:
   mappableOrganizer: {fileID: 1237739702}
   selectionIndicator: {fileID: 1521206030}
   abilityIcon: {fileID: 245773537}
+  destinator: {fileID: 0}
 --- !u!1 &1521669206
 GameObject:
   m_ObjectHideFlags: 0
@@ -43397,6 +43482,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heartImage: {fileID: 1568435907}
+  fullHeart: {fileID: 0}
+  emptyHeart: {fileID: 0}
 --- !u!114 &1568435907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45656,6 +45743,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   onDisplay: {fileID: 968410338}
+  onActive: {fileID: 0}
 --- !u!114 &1646472997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45676,6 +45764,7 @@ MonoBehaviour:
   mappableOrganizer: {fileID: 1907948838}
   selectionIndicator: {fileID: 1646472996}
   abilityIcon: {fileID: 2058788533}
+  destinator: {fileID: 0}
 --- !u!1 &1647140107
 GameObject:
   m_ObjectHideFlags: 0
@@ -46724,6 +46813,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   onDisplay: {fileID: 999293208}
+  onActive: {fileID: 0}
 --- !u!114 &1705375925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46744,6 +46834,7 @@ MonoBehaviour:
   mappableOrganizer: {fileID: 466899046}
   selectionIndicator: {fileID: 1705375924}
   abilityIcon: {fileID: 1560211369}
+  destinator: {fileID: 0}
 --- !u!1 &1706340643
 GameObject:
   m_ObjectHideFlags: 0
@@ -47237,6 +47328,8 @@ MonoBehaviour:
   eventBuilder: {fileID: 1718428183}
   canvasTransform: {fileID: 542291129}
   slide: {fileID: 450977728}
+  shopDisplayPrefab: {fileID: 0}
+  deckDisplayPrefab: {fileID: 0}
   turnManager: {fileID: 1718428180}
   selector: {fileID: 1718428181}
 --- !u!1 &1718538193
@@ -48368,6 +48461,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heartImage: {fileID: 1740072980}
+  fullHeart: {fileID: 0}
+  emptyHeart: {fileID: 0}
 --- !u!114 &1740072980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49682,6 +49777,7 @@ MonoBehaviour:
   - {fileID: 247764954}
   - {fileID: 473434581}
   abilityIcon: {fileID: 1303861553}
+  fire: {fileID: 0}
 --- !u!1 &1791220578
 GameObject:
   m_ObjectHideFlags: 0
@@ -49808,6 +49904,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heartImage: {fileID: 1792910997}
+  fullHeart: {fileID: 0}
+  emptyHeart: {fileID: 0}
 --- !u!114 &1792910997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50456,6 +50554,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heartImage: {fileID: 1814141225}
+  fullHeart: {fileID: 0}
+  emptyHeart: {fileID: 0}
 --- !u!114 &1814141225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50680,6 +50780,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   onDisplay: {fileID: 1590840810}
+  onActive: {fileID: 0}
 --- !u!114 &1819108392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50700,6 +50801,7 @@ MonoBehaviour:
   mappableOrganizer: {fileID: 1996943856}
   selectionIndicator: {fileID: 1819108391}
   abilityIcon: {fileID: 814967669}
+  destinator: {fileID: 0}
 --- !u!1 &1821030090
 GameObject:
   m_ObjectHideFlags: 0
@@ -50934,6 +51036,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   onDisplay: {fileID: 1152478449}
+  onActive: {fileID: 0}
 --- !u!114 &1827151443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52941,6 +53044,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heartImage: {fileID: 1891699947}
+  fullHeart: {fileID: 0}
+  emptyHeart: {fileID: 0}
 --- !u!114 &1891699947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54185,6 +54290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 3
   onDisplay: {fileID: 293122479}
+  onActive: {fileID: 0}
 --- !u!114 &1935585792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54198,6 +54304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coloredImage: {fileID: 424357840}
+  characterFace: {fileID: 0}
   nameText: {fileID: 746277076}
   selectionIndicator: {fileID: 1935585791}
   healthBar: {fileID: 1282605270}
@@ -54470,7 +54577,6 @@ MonoBehaviour:
   tilePrefab: {fileID: 4097448878186737332, guid: 2b4b8b524226e0743a7167ac9a67792c, type: 3}
   characterPrefab: {fileID: 8373109335307257006, guid: 79fb7bddcc1c05a44b3d9c05c80e1208, type: 3}
   enemyPrefab: {fileID: 4669793311155528809, guid: 0b159f224839a444fb45d75ae7233c5a, type: 3}
-  deckDisplayPrefab: {fileID: 3379573642732179169, guid: 4bc215eb6934cde44ab719326c8e1541, type: 3}
 --- !u!1 &1943902597
 GameObject:
   m_ObjectHideFlags: 0
@@ -54590,6 +54696,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!224 &1947244306 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4752794812594743193, guid: 46e3a7ea114c87145b01c3e85699afe5, type: 3}
+  m_PrefabInstance: {fileID: 1638358750496485974}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1947262610
 GameObject:
   m_ObjectHideFlags: 0
@@ -54738,6 +54849,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heartImage: {fileID: 1949299518}
+  fullHeart: {fileID: 0}
+  emptyHeart: {fileID: 0}
 --- !u!114 &1949299518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55079,6 +55192,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heartImage: {fileID: 1967681272}
+  fullHeart: {fileID: 0}
+  emptyHeart: {fileID: 0}
 --- !u!114 &1967681272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55251,6 +55366,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   onDisplay: {fileID: 147235404}
+  onActive: {fileID: 0}
 --- !u!114 &1969857144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55271,6 +55387,7 @@ MonoBehaviour:
   mappableOrganizer: {fileID: 1959886749}
   selectionIndicator: {fileID: 1969857143}
   abilityIcon: {fileID: 1234621776}
+  destinator: {fileID: 0}
 --- !u!1 &1969949853
 GameObject:
   m_ObjectHideFlags: 0
@@ -56030,6 +56147,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heartImage: {fileID: 1990045988}
+  fullHeart: {fileID: 0}
+  emptyHeart: {fileID: 0}
 --- !u!114 &1990045988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57847,6 +57966,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 4
   onDisplay: {fileID: 1562317454}
+  onActive: {fileID: 0}
 --- !u!114 &2055592359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57859,8 +57979,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7799d6f6041e338449fe8c448c392307, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coloredImage: {fileID: 680381735}
+  faceImage: {fileID: 0}
   nameText: {fileID: 357848002}
+  overlayImage: {fileID: 0}
   selectionIndicator: {fileID: 2055592358}
   healthBar: {fileID: 510254368}
   lootDisplayPrefab: {fileID: 8579758375376238872, guid: eb037f8d50589364eacf9a1bc563955b, type: 3}
@@ -59227,6 +59348,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   onDisplay: {fileID: 1137826263}
+  onActive: {fileID: 0}
 --- !u!114 &2123833995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59247,6 +59369,7 @@ MonoBehaviour:
   mappableOrganizer: {fileID: 2033024166}
   selectionIndicator: {fileID: 2123833994}
   abilityIcon: {fileID: 1284804232}
+  destinator: {fileID: 0}
 --- !u!1 &2125736772
 GameObject:
   m_ObjectHideFlags: 0
@@ -59966,6 +60089,200 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2145055503}
   m_CullTransparentMesh: 1
+--- !u!1001 &1638358750496485974
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 542291129}
+    m_Modifications:
+    - target: {fileID: 4752794812594743193, guid: 46e3a7ea114c87145b01c3e85699afe5, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4752794812594743193, guid: 46e3a7ea114c87145b01c3e85699afe5, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4752794812594743193, guid: 46e3a7ea114c87145b01c3e85699afe5, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4752794812594743193, guid: 46e3a7ea114c87145b01c3e85699afe5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4752794812594743193, guid: 46e3a7ea114c87145b01c3e85699afe5, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4752794812594743193, guid: 46e3a7ea114c87145b01c3e85699afe5, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4752794812594743193, guid: 46e3a7ea114c87145b01c3e85699afe5, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4752794812594743193, guid: 46e3a7ea114c87145b01c3e85699afe5, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4752794812594743193, guid: 46e3a7ea114c87145b01c3e85699afe5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4752794812594743193, guid: 46e3a7ea114c87145b01c3e85699afe5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4752794812594743193, guid: 46e3a7ea114c87145b01c3e85699afe5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4752794812594743193, guid: 46e3a7ea114c87145b01c3e85699afe5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4752794812594743193, guid: 46e3a7ea114c87145b01c3e85699afe5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4752794812594743193, guid: 46e3a7ea114c87145b01c3e85699afe5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4752794812594743193, guid: 46e3a7ea114c87145b01c3e85699afe5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4752794812594743193, guid: 46e3a7ea114c87145b01c3e85699afe5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4752794812594743193, guid: 46e3a7ea114c87145b01c3e85699afe5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4752794812594743193, guid: 46e3a7ea114c87145b01c3e85699afe5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4752794812594743193, guid: 46e3a7ea114c87145b01c3e85699afe5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4752794812594743193, guid: 46e3a7ea114c87145b01c3e85699afe5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9086352814217580814, guid: 46e3a7ea114c87145b01c3e85699afe5, type: 3}
+      propertyPath: m_Name
+      value: ChallengeBurn
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 46e3a7ea114c87145b01c3e85699afe5, type: 3}
+--- !u!1001 &4785719520494359468
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 542291129}
+    m_Modifications:
+    - target: {fileID: 4851946964884769467, guid: 237e4be0cc9ea3d4bac50d485b071bbb, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851946964884769467, guid: 237e4be0cc9ea3d4bac50d485b071bbb, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851946964884769467, guid: 237e4be0cc9ea3d4bac50d485b071bbb, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851946964884769467, guid: 237e4be0cc9ea3d4bac50d485b071bbb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851946964884769467, guid: 237e4be0cc9ea3d4bac50d485b071bbb, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851946964884769467, guid: 237e4be0cc9ea3d4bac50d485b071bbb, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851946964884769467, guid: 237e4be0cc9ea3d4bac50d485b071bbb, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851946964884769467, guid: 237e4be0cc9ea3d4bac50d485b071bbb, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851946964884769467, guid: 237e4be0cc9ea3d4bac50d485b071bbb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851946964884769467, guid: 237e4be0cc9ea3d4bac50d485b071bbb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851946964884769467, guid: 237e4be0cc9ea3d4bac50d485b071bbb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851946964884769467, guid: 237e4be0cc9ea3d4bac50d485b071bbb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851946964884769467, guid: 237e4be0cc9ea3d4bac50d485b071bbb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851946964884769467, guid: 237e4be0cc9ea3d4bac50d485b071bbb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851946964884769467, guid: 237e4be0cc9ea3d4bac50d485b071bbb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851946964884769467, guid: 237e4be0cc9ea3d4bac50d485b071bbb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851946964884769467, guid: 237e4be0cc9ea3d4bac50d485b071bbb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 477
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851946964884769467, guid: 237e4be0cc9ea3d4bac50d485b071bbb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851946964884769467, guid: 237e4be0cc9ea3d4bac50d485b071bbb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851946964884769467, guid: 237e4be0cc9ea3d4bac50d485b071bbb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685472170863725255, guid: 237e4be0cc9ea3d4bac50d485b071bbb, type: 3}
+      propertyPath: m_Name
+      value: Shop
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 237e4be0cc9ea3d4bac50d485b071bbb, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
