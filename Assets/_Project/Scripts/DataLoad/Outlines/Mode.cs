@@ -11,7 +11,7 @@ namespace Capstone.DataLoad
     public class Mode
     {
         public string DisplayName;
-        public Color displayColor;
+        public Color DisplayColor;
         public string Description;
         public int GridSize;
         public CharacterSelection CharacterSelection;

@@ -56,8 +56,8 @@ public class TileDisplay : Display<Tile>, GridPositionable, Selectable
     }
     public void GainControl(GridPositionable unit)
     {
-        mappableOrganizer.Add(unit);
         unit.SetGridPosition(GetGridPosition());
+        mappableOrganizer.Add(unit);
         if (unit is Targetable && item.ability != null)
         {
             Targetable targeted = unit as Targetable;
@@ -82,7 +82,6 @@ public class TileDisplay : Display<Tile>, GridPositionable, Selectable
         {
             List<DestinationData> positionSet = new();
             Vector2Int direction = (value - gridPosition).Normalize();
-            //positionSet.Add(new DestinationData(VisualDataHolder.Instance.CoordsToPosition(gridPosition - direction), 0.5f));
             positionSet.Add(new DestinationData(VisualDataHolder.Instance.CoordsToPosition(value + direction), 0.0001f, false));
             positionSet.Add(new DestinationData(VisualDataHolder.Instance.CoordsToPosition(value), 0.5f, false));
             destinator.MoveTo(positionSet);
@@ -114,11 +113,18 @@ public class TileDisplay : Display<Tile>, GridPositionable, Selectable
         
     }
 
+    public void MoveVisually(Vector3 position)
+    {
+        
+    }
+
 
     private Map localMap;
     public void SetOntoMap(Map map, Vector2Int position)
     {
-        SetGridPosition(position);
+        //SetGridPosition(position, false);
+        gridPosition = position;
+        transform.position = VisualDataHolder.Instance.CoordsToPosition(position);
         map.SpawnTile(this, position);
         SetLocalMap(map);
 

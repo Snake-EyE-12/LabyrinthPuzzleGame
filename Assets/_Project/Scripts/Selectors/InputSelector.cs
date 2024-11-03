@@ -45,7 +45,7 @@ public class InputSelector : MonoBehaviour
             active.Shift();
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1))
         {
             active.Cancel();
         }

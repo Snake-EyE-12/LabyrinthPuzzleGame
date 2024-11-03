@@ -980,7 +980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06ef35e5a90c445eb3b67883c6b7cdda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseTime: 0.5
+  baseTime: 0.3
 --- !u!114 &8314544113741108084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -998,9 +998,6 @@ MonoBehaviour:
   - {fileID: 7482622491340097318}
   - {fileID: 6902594973258648050}
   - {fileID: 928418077090489542}
-  mappableOrganizer: {fileID: 0}
-  selectionIndicator: {fileID: 0}
-  abilityIcon: {fileID: 0}
   destinator: {fileID: 6768957425343988742}
 --- !u!1 &7800227146997780643
 GameObject:

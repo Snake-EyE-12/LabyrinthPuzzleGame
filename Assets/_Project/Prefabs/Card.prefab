@@ -320,6 +320,7 @@ GameObject:
   - component: {fileID: 8108410006889511861}
   - component: {fileID: 4909283073906307309}
   - component: {fileID: 8248873929852883380}
+  - component: {fileID: 6663715312740577556}
   m_Layer: 5
   m_Name: Card
   m_TagString: Untagged
@@ -368,6 +369,8 @@ MonoBehaviour:
   descriptionTextbox: {fileID: 6403165677498494357}
   selectionIndicator: {fileID: 8248873929852883380}
   tileForDisplay: {fileID: 4393633651205924950}
+  destinator: {fileID: 6663715312740577556}
+  xDistanceToOffScreen: 202.45
 --- !u!114 &8248873929852883380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -383,6 +386,19 @@ MonoBehaviour:
   type: 1
   onDisplay: {fileID: 5058126982367435959}
   onActive: {fileID: 7371818174117930427}
+--- !u!114 &6663715312740577556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4892304321100326019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06ef35e5a90c445eb3b67883c6b7cdda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseTime: 0.25
 --- !u!1 &5058126982367435959
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,6 +19,11 @@ public class Destinator : MonoBehaviour
             MoveTo(location);
         }
     }
+
+    public float GetBaseTime()
+    {
+        return baseTime;
+    }
     public void MoveTo(DestinationData location)
     {
         forwardDestinations.Enqueue(location);

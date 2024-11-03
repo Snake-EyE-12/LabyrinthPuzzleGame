@@ -25,7 +25,7 @@ public class CharacterAbilityDisplay : Display<List<Ability>>
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1))
         {
             GameManager.Instance.Phase = GamePhase.None;
             GameManager.Instance.Clean();

@@ -691,6 +691,7 @@ GameObject:
   - component: {fileID: 2894321508144815535}
   - component: {fileID: 8373109335307257006}
   - component: {fileID: 294783904760740701}
+  - component: {fileID: 2367197723969479788}
   m_Layer: 0
   m_Name: MappedCharacter
   m_TagString: Untagged
@@ -738,6 +739,7 @@ MonoBehaviour:
   selectionIndicator: {fileID: 294783904760740701}
   healthBar: {fileID: 440411836385835758}
   xpBar: {fileID: 4036021203860767368}
+  destinator: {fileID: 2367197723969479788}
   characterAbilityDisplayPrefab: {fileID: 3993613175125816632, guid: 05f4569d8f0346e40873282b00a23fd7, type: 3}
 --- !u!114 &294783904760740701
 MonoBehaviour:
@@ -754,6 +756,19 @@ MonoBehaviour:
   type: 3
   onDisplay: {fileID: 542848830434597180}
   onActive: {fileID: 4680069247562189237}
+--- !u!114 &2367197723969479788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6277168452608845829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06ef35e5a90c445eb3b67883c6b7cdda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseTime: 0.5
 --- !u!1 &8207796009034086853
 GameObject:
   m_ObjectHideFlags: 0

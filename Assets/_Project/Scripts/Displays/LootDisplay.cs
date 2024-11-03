@@ -54,4 +54,10 @@ public class LootDisplay : Display<Loot>, GridPositionable
     {
         
     }
+
+    [SerializeField] private Destinator destinator;
+    public void MoveVisually(Vector3 position)
+    {
+        destinator.MoveTo(position, false);
+    }
 }

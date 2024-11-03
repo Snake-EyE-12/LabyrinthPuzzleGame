@@ -66,7 +66,7 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
     {
         foreach (var loot in item.loot)
         {
-            var lootDisplay = Instantiate(lootDisplayPrefab);
+            var lootDisplay = Instantiate(lootDisplayPrefab, transform.position, Quaternion.identity);
             lootDisplay.Set(loot);
             lootDisplay.SetLocalMap(localMap);
             localMap.SpawnLoot(lootDisplay, gridPosition);
@@ -110,6 +110,12 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
     public void OnPassOverLoot(List<LootDisplay> loot)
     {
         
+    }
+
+    [SerializeField] private Destinator destinator;
+    public void MoveVisually(Vector3 position)
+    {
+        destinator.MoveTo(position, false);
     }
 
     public void Select()

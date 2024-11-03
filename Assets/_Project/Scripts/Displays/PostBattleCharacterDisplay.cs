@@ -15,8 +15,10 @@ public class PostBattleCharacterDisplay : Display<Character>
     [SerializeField] private PostBattleAbilityDisplay abilityDisplayPrefab;
     [SerializeField] private Transform cardParent;
     [SerializeField] private TileOnCardDisplay cardDisplayPrefab;
+    [SerializeField] private GameObject upgradeButton;
     public override void Render()
     {
+        RemoveExtras();
         Color color = DataHolder.characterColorEquivalenceTable.GetColor(item.characterType);
         colorRing.color = color;
         nameText.text = $"<color=#{ColorUtility.ToHtmlStringRGB(color)}FF>{item.unitName}</color> ";
@@ -25,12 +27,38 @@ public class PostBattleCharacterDisplay : Display<Character>
         xpBar.Set(item.XP);
         foreach (var a in item.abilityList)
         {
-            Instantiate(abilityDisplayPrefab, abilityParent).Set(a);
+            PostBattleAbilityDisplay pbad = Instantiate(abilityDisplayPrefab, abilityParent);
+            pbad.Set(a);
+            abilities.Add(pbad);
         }
 
         foreach (var card in item.inventory.GetCards())
         {
-            Instantiate(cardDisplayPrefab, cardParent).Set(card.GetTile());
+            TileOnCardDisplay tocd = Instantiate(cardDisplayPrefab, cardParent);
+            tocd.Set(card.GetTile());
+            cards.Add(tocd);
         }
+        upgradeButton.SetActive(item.XP.value >= item.XP.max);
+    }
+
+    private List<TileOnCardDisplay> cards = new();
+    private List<PostBattleAbilityDisplay> abilities = new();
+
+    private void RemoveExtras()
+    {
+        foreach (var card in cards)
+        {
+            Destroy(card.gameObject);
+        }
+        cards.Clear();
+        foreach (var ability in abilities)
+        {
+            Destroy(ability.gameObject);
+        }
+        abilities.Clear();
+    }
+    public void Upgrade()
+    {
+        Set(GameManager.Instance.UpgradeCharacter(item));
     }
 }

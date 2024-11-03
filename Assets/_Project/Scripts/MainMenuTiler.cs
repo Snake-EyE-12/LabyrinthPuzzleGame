@@ -9,7 +9,6 @@ public class MainMenuTiler : MonoBehaviour
 {
     [SerializeField] private int size;
     [SerializeField] private ShowTile tilePrefab;
-    [SerializeField] private int camSize;
     private Dictionary<Vector2Int, ShowTile> grid = new();
     private void Awake()
     {
@@ -25,7 +24,6 @@ public class MainMenuTiler : MonoBehaviour
         }
 
         cam.transform.position = new Vector3(size - 1, size - 1, -10);
-        cam.orthographicSize = camSize;
     }
 
     [SerializeField] private Camera cam;
@@ -53,6 +51,7 @@ public class MainMenuTiler : MonoBehaviour
         bool row = Random.Range(0, 2) == 0;
         bool positive = Random.Range(0, 2) == 0;
         ShowTile firstToMove = null;
+        int last = size - 1;
 
         Vector2Int myPos = Vector2Int.zero;
         if (row)
@@ -60,24 +59,24 @@ public class MainMenuTiler : MonoBehaviour
             if (positive)
             {
                 Vector2Int direction = Vector2Int.right;
-                for (int x = size - 1; x <= 0; x--)
+                firstToMove = grid[new Vector2Int(last, yPos)];
+                for (int x = last; x >= 0; x--)
                 {
                     myPos = new Vector2Int(x, yPos);
-                    if (x == size - 1) firstToMove = grid[myPos];
                     MoveTile(grid[myPos], myPos + direction);
                 }
-                MoveTile(firstToMove, new Vector2Int(size - 1, yPos), true);
+                MoveTile(firstToMove, new Vector2Int(0, yPos), true);
             }
             else
             {
                 Vector2Int direction = Vector2Int.left;
-                for (int x = 0; x < size; x++)
+                firstToMove = grid[new Vector2Int(0, yPos)];
+                for (int x = 0; x <= last; x++)
                 {
                     myPos = new Vector2Int(x, yPos);
-                    if (x == 0) firstToMove = grid[myPos];
                     MoveTile(grid[myPos], myPos + direction);
                 }
-                MoveTile(firstToMove, new Vector2Int(size - 1, yPos), true);
+                MoveTile(firstToMove, new Vector2Int(last, yPos), true);
             }
         }
         else
@@ -85,24 +84,24 @@ public class MainMenuTiler : MonoBehaviour
             if (positive)
             {
                 Vector2Int direction = Vector2Int.up;
-                for (int y = size - 1; y <= 0; y--)
+                firstToMove = grid[new Vector2Int(xPos, last)];
+                for (int y = last; y >= 0; y--)
                 {
                     myPos = new Vector2Int(xPos, y);
-                    if (y == size - 1) firstToMove = grid[myPos];
                     MoveTile(grid[myPos], myPos + direction);
                 }
-                MoveTile(firstToMove, new Vector2Int(xPos, size - 1), true);
+                MoveTile(firstToMove, new Vector2Int(xPos, 0), true);
             }
             else
             {
                 Vector2Int direction = Vector2Int.down;
-                for (int y = 0; y < size; y++)
+                firstToMove = grid[new Vector2Int(xPos, 0)];
+                for (int y = 0; y <= last; y++)
                 {
                     myPos = new Vector2Int(xPos, y);
-                    if (y == 0) firstToMove = grid[myPos];
                     MoveTile(grid[myPos], myPos + direction);
                 }
-                MoveTile(firstToMove, new Vector2Int(xPos, size - 1), true);
+                MoveTile(firstToMove, new Vector2Int(xPos, last), true);
                 
             }
         }
@@ -110,8 +109,13 @@ public class MainMenuTiler : MonoBehaviour
 
     private void MoveTile(ShowTile tile, Vector2Int newPos, bool instant = false)
     {
-        grid[newPos] = tile;
+        //Vector2Int actualPos = new Vector2Int(GameUtils.ModPositive(newPos.x, size), GameUtils.ModPositive(newPos.y, size));
+        if(WithinGrid(newPos)) grid[newPos] = tile;
         tile.Move(newPos, instant);
+    }
+    private bool WithinGrid(Vector2Int pos)
+    {
+        return pos.x >= 0 && pos.x < size && pos.y >= 0 && pos.y < size;
     }
 }
 

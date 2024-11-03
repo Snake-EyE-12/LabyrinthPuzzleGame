@@ -43,9 +43,9 @@ public class AttackIndicator : Singleton<AttackIndicator>
     public void VisualizeAttacks()
     {
         ClearVisuals();
-        foreach (var a in activeAttacks)
+        foreach (var eav in activeAttacks)
         {
-            AddAttackToGrid(a.attack, a.attack.GetActiveShape(a.user.GetGridPosition()));
+            AddAttackToGrid(eav);
         }
 
         foreach (var key in grid.Keys)
@@ -55,33 +55,24 @@ public class AttackIndicator : Singleton<AttackIndicator>
         
     }
 
-    private Dictionary<Vector2Int, List<Attack>> grid = new Dictionary<Vector2Int, List<Attack>>();
-    private void AddAttackToGrid(Attack a, List<Vector2Int> pos)
+    private Dictionary<Vector2Int, List<EnemyAttackVisual>> grid = new();
+    private void AddAttackToGrid(EnemyAttackVisual visualData)
     {
-        foreach (var position in pos)
+        foreach (var position in visualData.attack.GetActiveShape(visualData.user.GetGridPosition()))
         {
-            if(grid.ContainsKey(position)) grid[position].Add(a);
-            else grid[position] = new List<Attack>(){a};
+            if(grid.ContainsKey(position)) grid[position].Add(visualData);
+            else grid[position] = new List<EnemyAttackVisual>(){visualData};
         }
     }
 
-    private void SpawnBox(List<Attack> a, Vector2Int pos)
+    private void SpawnBox(List<EnemyAttackVisual> eavList, Vector2Int pos)
     {
         AttackBoxDisplay abd = Instantiate(attackBoxDisplayPrefab, transform);
         abd.transform.position = VisualDataHolder.Instance.CoordsToPosition(pos);
-        abd.Set(GetBoxString(a));
+        abd.Set(eavList);
         visuals.Add(abd);
     }
-
-    private string GetBoxString(List<Attack> a)
-    {
-        string output = "";
-        foreach (var attack in a)
-        {
-            output += attack.GetDescription() + "\n";
-        }
-        return output;
-    }
+    
 
     public void ExecuteAttacks()
     {

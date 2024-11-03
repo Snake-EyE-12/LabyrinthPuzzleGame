@@ -117,10 +117,23 @@ public class CardDisplay : Display<Card>, Selectable
         GameManager.Instance.AddSelectable(this, selectionIndicator.type);
     }
 
-    public void RemoveFromPlay()
+    [SerializeField] private Destinator destinator;
+    [SerializeField] private float xDistanceToOffScreen;
+    public void DiscardFromPlay()
     {
-        GameManager.Instance?.RemoveSelectable(this, selectionIndicator.type);
-        Destroy(this.gameObject);
+        MoveVisually(transform.position + Vector3.left * xDistanceToOffScreen, 1);
+        RemoveCard(destinator.GetBaseTime());
+    }
+
+    public void RemoveCard(float time = 0)
+    {
+        GameManager.Instance.RemoveSelectable(this, selectionIndicator.type);
+        Destroy(this.gameObject, time);
+    }
+    
+    public void MoveVisually(Vector3 position, float speedModifier)
+    {
+        destinator.MoveTo(new DestinationData(position, destinator.GetBaseTime() * speedModifier, false));
     }
 
 }

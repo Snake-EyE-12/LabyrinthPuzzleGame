@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class MappableOrganizer : MonoBehaviour
 {
-    [SerializeField] private Transform left;
-    [SerializeField] private Transform right;
-    [SerializeField] private Transform bottom;
+    [SerializeField] private ItemLayout left;
+    [SerializeField] private ItemLayout right;
+    [SerializeField] private ItemLayout bottom;
     
     public void Add(GridPositionable unit)
     {
@@ -14,13 +14,13 @@ public class MappableOrganizer : MonoBehaviour
         switch (unit.GetTileLocation())
         {
             case OnTileLocation.Left:
-                unit.GetSelfTransform().SetParent(left);
+                left.Add(unit);
                 break;
             case OnTileLocation.Right:
-                unit.GetSelfTransform().SetParent(right);
+                right.Add(unit);
                 break;
             case OnTileLocation.Bottom:
-                unit.GetSelfTransform().SetParent(bottom);
+                bottom.Add(unit);
                 break;
             
         }
@@ -41,6 +41,19 @@ public class MappableOrganizer : MonoBehaviour
     public void Remove(GridPositionable unit)
     {
         mapItems.Remove(unit);
+        switch (unit.GetTileLocation())
+        {
+            case OnTileLocation.Left:
+                left.Remove(unit);
+                break;
+            case OnTileLocation.Right:
+                right.Remove(unit);
+                break;
+            case OnTileLocation.Bottom:
+                bottom.Remove(unit);
+                break;
+            
+        }
     }
 
     public void ResetPositions(Vector2Int pos)

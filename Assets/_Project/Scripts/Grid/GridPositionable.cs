@@ -10,6 +10,7 @@ public interface GridPositionable
     public Transform GetSelfTransform();
     public void SetLocalMap(Map map);
     public void OnPassOverLoot(List<LootDisplay> loot);
+    public void MoveVisually(Vector3 position);
 }
 
 

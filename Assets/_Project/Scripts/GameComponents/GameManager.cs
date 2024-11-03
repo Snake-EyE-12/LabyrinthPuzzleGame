@@ -29,7 +29,26 @@ public class GameManager : Singleton<GameManager>
     {
         inventoryCharms.Add(new Item(Item.Load(degree))); //convert degree to random charm
     }
-    
+
+
+
+
+
+    public Character UpgradeCharacter(Character c)
+    {
+        for (int i = 0; i < team.Count; i++)
+        {
+            if (team[i] == c)
+            {
+                team[i] = new Character(GameComponentDealer.GetCharacterData(c.characterType,
+                    c.degree + 1));
+                
+                return team[i];
+            }
+        }
+
+        return null;
+    }
     
     public void DisplayDirection(Vector2Int gridPos, bool sliding)
     {

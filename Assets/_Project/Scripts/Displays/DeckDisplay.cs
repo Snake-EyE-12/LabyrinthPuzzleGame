@@ -8,20 +8,9 @@ using EventHandler = Guymon.DesignPatterns.EventHandler;
 
 public class DeckDisplay : Display<Deck>
 {
-    private List<CardDisplay> handTiles = new List<CardDisplay>();
-    [SerializeField] private Transform handParent;
     [SerializeField] private CardDisplay cardDisplayPrefab;
-
-    public override void Render()
-    {
-        int handSize = item.GetHandSize();
-        int maxForLoop = Mathf.Max(handSize, handTiles.Count);
-        for (int i = 0; i < maxForLoop; i++)
-        {
-            if (handTiles.Count - 1 < i) handTiles.Add(Instantiate(cardDisplayPrefab, handParent));
-            handTiles[i].Set(item.GetHandCards()[i]);
-        }
-    }
+    [SerializeField] private CardLayout handLayout;
+    
     private void Awake()
     {
         EventHandler.AddListener("Phase/DrawCards", DrawToLimit);
@@ -29,15 +18,39 @@ public class DeckDisplay : Display<Deck>
         EventHandler.AddListener("Round/FightOver", OnBattleOver);
         EventHandler.AddListener("Deck/DiscardFirst", DiscardOldest);
     }
-    private void DiscardOldest(EventArgs args)
-    {
-        if(handTiles.Count <= 0) return;
-        DiscardAt(handTiles.Count - 1);
-    }
     private void OnBattleOver(EventArgs args)
     {
         EventHandler.RemoveListenerLate("Round/FightOver", OnBattleOver);
         Destroy(this.gameObject);
+    }
+    private void OnDisable()
+    {
+        EventHandler.RemoveListener("Phase/DrawCards", DrawToLimit);
+        EventHandler.RemoveListener("CardPlaced", DiscardSpecificCard);
+        handLayout.Clear();
+    }
+
+    [SerializeField] private Vector3 spawnPoint;
+    public override void Render()
+    {
+        // int handSize = item.GetHandSize();
+        // int maxForLoop = Mathf.Max(handSize, handLayout.GetCount());
+        // for (int i = 0; i < maxForLoop; i++)
+        // {
+        //     if (handLayout.GetCount() - 1 < i)
+        //     {
+        //         CardDisplay newCard = Instantiate(cardDisplayPrefab, handLayout.transform);
+        //         handLayout.Add();
+        //     }
+        //     handTiles[i].Set(item.GetHandCards()[i]);
+        // }
+        //DrawToLimit(null);
+        for (int i = handLayout.GetHandCardDisplays().Count; i < item.GetHandSize(); i++)
+        {
+            CardDisplay newCard = Instantiate(cardDisplayPrefab, spawnPoint, Quaternion.identity, handLayout.transform);
+            newCard.Set(item.GetHandCards()[i]);
+            handLayout.Add(newCard, i);
+        }
     }
     private void DrawToLimit(EventArgs args)
     {
@@ -47,19 +60,10 @@ public class DeckDisplay : Display<Deck>
         Render();
     }
 
-    private void OnDisable()
-    {
-        EventHandler.RemoveListener("Phase/DrawCards", DrawToLimit);
-        EventHandler.RemoveListener("CardPlaced", DiscardSpecificCard);
-        foreach (var cd in handTiles)
-        {
-            cd.RemoveFromPlay();
-        }
-    }
 
     private int GetHandLimit()
     {
-        return 4;
+        return DataHolder.currentMode.HandSize;
     }
 
     private void DiscardSpecificCard(EventArgs args)
@@ -80,12 +84,16 @@ public class DeckDisplay : Display<Deck>
             DiscardAt(index);
         }
     }
+    private void DiscardOldest(EventArgs args)
+    {
+        if(handLayout.GetHandCardDisplays().Count <= 0) return;
+        DiscardAt(0);
+    }
 
     private void DiscardAt(int index)
     {
+        handLayout.Remove(index);
         item.Discard(index);
-        handTiles[index].RemoveFromPlay();
-        handTiles.RemoveAt(index);
     }
 
     

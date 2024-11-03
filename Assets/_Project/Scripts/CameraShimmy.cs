@@ -11,6 +11,7 @@ public class CameraShimmy : MonoBehaviour
     [SerializeField] private float sizeSpeed;
     [SerializeField] private float minDistance;
     [SerializeField] private float maxDistance;
+    [SerializeField] private float minAngle;
     [SerializeField] private float maxAngle;
     [SerializeField] private float distanceSpeed;
     [SerializeField] private float angleSpeed;
@@ -24,10 +25,11 @@ public class CameraShimmy : MonoBehaviour
 
     private void Update()
     {
-        cam.orthographicSize = Mathf.PingPong(Time.time * sizeSpeed, maxSize - minSize) + minSize;
-        transform.position = new Vector3(startingPosition.x + Mathf.PingPong(Time.time * distanceSpeed, maxDistance - minDistance) + minDistance,
-            startingPosition.y + Mathf.PingPong(Time.time * distanceSpeed, maxDistance - minDistance) + minDistance,
+        
+        cam.orthographicSize = Mathf.SmoothStep(minSize, maxSize, Mathf.PingPong(Time.time * sizeSpeed, 1));
+        transform.position = new Vector3(startingPosition.x + Mathf.SmoothStep(minDistance, maxDistance, Mathf.PingPong(Time.time * distanceSpeed, 1)),
+            startingPosition.y + Mathf.SmoothStep(minDistance, maxDistance,Mathf.PingPong(Time.time * distanceSpeed, 1)),
             transform.position.z);
-        transform.rotation = Quaternion.Euler(0, 0, Mathf.PingPong(Time.time * angleSpeed, maxAngle));
+        transform.rotation = Quaternion.Euler(0, 0, Mathf.SmoothStep(minAngle, maxAngle,Mathf.PingPong(Time.time * angleSpeed, 1)));
     }
 }

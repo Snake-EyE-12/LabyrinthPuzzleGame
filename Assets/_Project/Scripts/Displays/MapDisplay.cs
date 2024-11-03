@@ -48,7 +48,7 @@ public class MapDisplay : Display<Map>
             c.Set(teamMember);
             c.SetLocalMap(item);
             TileDisplay t = item.GetRandomBorderTile();
-            c.SetGridPosition(t.GetGridPosition());
+            //c.SetGridPosition(t.GetGridPosition());
             t.GainControl(c);
         }
         //Villains
@@ -58,7 +58,7 @@ public class MapDisplay : Display<Map>
             c.Set(new Enemy(Enemy.Load(enemy)));
             c.SetLocalMap(item);
             TileDisplay t = item.GetRandomCenterTile();
-            c.SetGridPosition(t.GetGridPosition());
+            //c.SetGridPosition(t.GetGridPosition());
             t.GainControl(c);
         }
 

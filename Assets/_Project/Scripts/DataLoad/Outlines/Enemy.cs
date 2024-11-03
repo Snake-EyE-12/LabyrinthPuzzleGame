@@ -147,11 +147,9 @@ public class Attack : Weighted
         return list;
     }
 
-    public string GetDescription()
+    public int GetAbilityValue()
     {
-        string output = "";
-        output += ability.value;
-        return output;
+        return ability.value;
     }
 
     private int weight;

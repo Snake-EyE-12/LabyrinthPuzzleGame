@@ -68,8 +68,18 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
         return gridPosition;
     }
 
+    [SerializeField] private Destinator destinator;
     public void SetGridPosition(Vector2Int value, bool wrapping = false)
     {
+        // if (wrapping)
+        // {
+        //     List<DestinationData> positionSet = new();
+        //     Vector2Int direction = (value - gridPosition).Normalize();
+        //     positionSet.Add(new DestinationData(VisualDataHolder.Instance.CoordsToPosition(value + direction), 0.0001f, true));
+        //     positionSet.Add(new DestinationData(VisualDataHolder.Instance.CoordsToPosition(value), 0.5f, true));
+        //     destinator.MoveTo(positionSet);
+        // }
+        // else destinator.MoveTo(VisualDataHolder.Instance.CoordsToPosition(value), true);
         gridPosition = value;
     }
 
@@ -95,6 +105,11 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
         {
             collectable.Collect(this);
         }
+    }
+
+    public void MoveVisually(Vector3 position)
+    {
+        destinator.MoveTo(position, false);
     }
 
     public void Select()
@@ -184,7 +199,10 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
     }
     public void MoveToPlace(Vector2Int direction)
     {
-        SetGridPosition(GetGridPosition() + direction);
+        Vector2Int newPos = GetGridPosition() + direction;
+        SetGridPosition(newPos);
+        destinator.MoveTo(new DestinationData(VisualDataHolder.Instance.CoordsToPosition(newPos), 0.5f, true));
+        Debug.Log("USING MOVE TO PLACE");
     }
     public void BecomeUsed()
     {

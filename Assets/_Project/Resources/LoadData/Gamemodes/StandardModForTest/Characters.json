@@ -34,6 +34,38 @@
       ]
     },
     {
+      "Name":"Swordsman",
+      "Type":"Offensive",
+      "Degree":2,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":4
+        }
+      ],
+      "Charge":3,
+      "Inventory":{
+        "ItemSlots":[
+          {},
+          {},
+          {},
+          {}
+        ],
+        "TilePieces":[
+          "|1D",
+          "|"
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 3,
+          "Target": "Opponent",
+          "Keys": ["Damage", "Stunted"]
+        }
+      ]
+    },
+    {
       "Name":"Brute",
       "Type":"Defensive",
       "Degree":1,

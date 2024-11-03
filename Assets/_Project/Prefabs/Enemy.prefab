@@ -552,6 +552,7 @@ GameObject:
   - component: {fileID: 4341822321540310236}
   - component: {fileID: 4669793311155528809}
   - component: {fileID: 7459480398658686606}
+  - component: {fileID: 5094951448683050461}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -599,6 +600,7 @@ MonoBehaviour:
   selectionIndicator: {fileID: 7459480398658686606}
   healthBar: {fileID: 5352440467926993696}
   lootDisplayPrefab: {fileID: 8579758375376238872, guid: eb037f8d50589364eacf9a1bc563955b, type: 3}
+  destinator: {fileID: 5094951448683050461}
 --- !u!114 &7459480398658686606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -614,6 +616,19 @@ MonoBehaviour:
   type: 4
   onDisplay: {fileID: 1093091813888574861}
   onActive: {fileID: 1327541169962313060}
+--- !u!114 &5094951448683050461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4477777094728930497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06ef35e5a90c445eb3b67883c6b7cdda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseTime: 0.5
 --- !u!1 &6017776758122046548
 GameObject:
   m_ObjectHideFlags: 0
