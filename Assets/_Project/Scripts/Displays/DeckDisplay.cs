@@ -27,7 +27,7 @@ public class DeckDisplay : Display<Deck>
     {
         EventHandler.RemoveListener("Phase/DrawCards", DrawToLimit);
         EventHandler.RemoveListener("CardPlaced", DiscardSpecificCard);
-        handLayout.Clear();
+        //handLayout.Clear();
     }
 
     [SerializeField] private Vector3 spawnPoint;

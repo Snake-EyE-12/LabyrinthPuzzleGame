@@ -40,11 +40,11 @@
       [
         {
           "Type": "Shop",
-          "Weight": 20
+          "Weight": 0
         },
         {
           "Type": "Challenge",
-          "Weight": 0
+          "Weight": 20
         }
       ],
       "Sequence":

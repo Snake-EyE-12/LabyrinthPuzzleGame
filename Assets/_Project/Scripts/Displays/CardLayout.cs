@@ -5,8 +5,8 @@ using UnityEngine;
 public class CardLayout : MonoBehaviour
 {
     private List<CardDisplayPosData> cards = new();
-    [SerializeField] private Vector3 initPoint;
-    [SerializeField] private Vector3 finalPoint;
+    [SerializeField] private RectTransform init;
+    [SerializeField] private RectTransform final;
     public void Add(CardDisplay card, int position)
     {
         card.transform.SetParent(transform);
@@ -42,16 +42,12 @@ public class CardLayout : MonoBehaviour
     {
         for (int i = 0; i < cards.Count; i++)
         {
-            cards[i].card.MoveVisually(Vector3.Lerp(transform.position + initPoint,
-                transform.position + finalPoint, i * 1.0f / cards.Count), Mathf.Pow(0.9f, i + 1));
+            
+            cards[i].card.MoveVisually(Vector3.Lerp(init.position,
+                final.position, i * 1.0f / cards.Count), Mathf.Pow(0.9f, i + 1));
         }
     }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawLine(initPoint + transform.position, finalPoint + transform.position);
-    }
+    
 }
 
 public class CardDisplayPosData

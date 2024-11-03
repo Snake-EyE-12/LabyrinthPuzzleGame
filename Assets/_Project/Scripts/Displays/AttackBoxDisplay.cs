@@ -18,7 +18,7 @@ public class AttackBoxDisplay : Display<List<EnemyAttackVisual>>
             attackSegments.Add(attack.attack);
             total += attack.attack.GetAbilityValue();;
         }
-        CreateLines();
+        //CreateLines();
         RenderHitPoints();
         RenderCorners();
     }
@@ -32,8 +32,8 @@ public class AttackBoxDisplay : Display<List<EnemyAttackVisual>>
         {
             hitPoints[i].Set(new HitPointData(
                 GetHitPointState(i),
-                GetHitPointColor(),
-                GetHitPointSeparator(),
+                GetHitPointAttack(i),
+                GetHitPointSeparator(i),
                 total
                 ));
         }
@@ -43,25 +43,45 @@ public class AttackBoxDisplay : Display<List<EnemyAttackVisual>>
     {
         if (index == total) return HitPointState.Empty;
         if (index == total + 1) return HitPointState.End;
+        if(index + 1 > total) return HitPointState.Off;
         return HitPointState.Full;
     }
 
-    private Color GetHitPointColor()
+    private Attack GetHitPointAttack(int index)
     {
-        return Color.white; //TODO:
+        int difference = index;
+        for(int i = 0; i < attackSegments.Count; i++)
+        {
+            if (difference < attackSegments[i].GetAbilityValue())
+            {
+                return attackSegments[i];
+            }
+            difference -= attackSegments[i].GetAbilityValue();
+        }
+
+        return null;
     }
 
-    private bool GetHitPointSeparator()
+    private bool GetHitPointSeparator(int index)
     {
-        return false; //TODO:
+        int counter = 0;
+        foreach (var a in attackSegments)
+        {
+            counter += a.GetAbilityValue();
+            if (counter == index + 1) return true;
+        }
+        return false;
     }
 
     private void RenderCorners()
     {
-        for (int i = 0; i < corners.Length; i++)
-        {
-            corners[i].SetActive(total + 1 / 5 <= i);
-        }
+        // for (int i = 0; i < corners.Length; i++)
+        // {
+        //     corners[i].SetActive(total + 1 / 5 <= i);
+        // }
+        corners[0].SetActive(total <= 3);
+        corners[1].SetActive(total <= 8);
+        corners[2].SetActive(total <= 13);
     }
     
     private void CreateLines()
@@ -95,15 +115,15 @@ public class AttackBoxDisplay : Display<List<EnemyAttackVisual>>
 
 public class HitPointData
 {
-    public HitPointData(HitPointState state, Color color, bool separator, int total)
+    public HitPointData(HitPointState state, Attack attack, bool separator, int total)
     {
         this.state = state;
-        this.color = color;
+        this.Attack = attack;
         this.isSeparator = separator;
         this.total = total;
     }
     public HitPointState state;
-    public Color color;
+    public Attack Attack;
     public bool isSeparator;
     public int total;
 }
@@ -112,5 +132,6 @@ public enum HitPointState
 {
     Full,
     End,
-    Empty
+    Empty,
+    Off
 }
