@@ -7,8 +7,8 @@ public class AttackBoxDisplay : Display<List<EnemyAttackVisual>>
 {
     [SerializeField] private AttackBoxHitPointDisplay[] hitPoints = new AttackBoxHitPointDisplay[20];
     [SerializeField] private GameObject[] corners = new GameObject[3];
-    [SerializeField] private List<LineRenderer> activeLines = new();
-    [SerializeField] private LineRenderer lineToOwnerPrefab;
+    [SerializeField] private List<AttackLineDisplay> activeLines = new();
+    [SerializeField] private AttackLineDisplay lineToOwnerPrefab;
     public override void Render()
     {
         total = 0;
@@ -18,7 +18,7 @@ public class AttackBoxDisplay : Display<List<EnemyAttackVisual>>
             attackSegments.Add(attack.attack);
             total += attack.attack.GetAbilityValue();;
         }
-        //CreateLines();
+        CreateLines();
         RenderHitPoints();
         RenderCorners();
     }
@@ -89,9 +89,8 @@ public class AttackBoxDisplay : Display<List<EnemyAttackVisual>>
         List<EnemyDisplay> uniqueEnemies = item.Select(x => x.user).Distinct().ToList();
         for(int i = 0; i < uniqueEnemies.Count; i++)
         {
-            LineRenderer lineToOwner = Instantiate(lineToOwnerPrefab, transform);
-            Vector3[] positions = new[] { uniqueEnemies[i].transform.position, transform.position };
-            lineToOwner.SetPositions(positions);
+            AttackLineDisplay lineToOwner = Instantiate(lineToOwnerPrefab, transform);
+            lineToOwner.Set(new LineRendererData(){follower = uniqueEnemies[i].transform, start = transform.position + new Vector3(0, 0.8f, 0)});
             activeLines.Add(lineToOwner);
         }
     }

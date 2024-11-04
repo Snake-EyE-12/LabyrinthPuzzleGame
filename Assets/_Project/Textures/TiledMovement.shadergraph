@@ -933,7 +933,7 @@
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
-    "m_Value": 0.0,
+    "m_Value": -90.0,
     "m_FloatType": 0,
     "m_RangeValues": {
         "x": 0.0,
@@ -1686,9 +1686,9 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "r": 0.8588235378265381,
-        "g": 0.9058823585510254,
-        "b": 0.0,
+        "r": 1.0,
+        "g": 0.0,
+        "b": 0.020209312438964845,
         "a": 0.13333334028720857
     },
     "isMainColor": false,
@@ -1851,7 +1851,7 @@
     "m_StageCapability": 3,
     "m_BareResource": false,
     "m_Texture": {
-        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"6f1031b8e172a1b4bbbc258649d23c8b\",\"type\":3}}",
+        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"aee7d08624e9d694780533c943e6c7fb\",\"type\":3}}",
         "m_Guid": ""
     },
     "m_DefaultType": 0
@@ -1955,7 +1955,7 @@
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
-    "m_Value": 0.8199999928474426,
+    "m_Value": 1.309999942779541,
     "m_FloatType": 0,
     "m_RangeValues": {
         "x": 0.0,
