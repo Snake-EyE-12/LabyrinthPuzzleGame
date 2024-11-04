@@ -30,8 +30,14 @@ public class Character : Unit
         }
     }
 
-    
-
+    public void AddInventoryCardSpaceUpTo(int index)
+    {
+        inventory.Expand(index);
+    }
+    public void EquipCharm(Item charm)
+    {
+        charm.ApplyTo(this);
+    }
 
     
 
@@ -73,6 +79,15 @@ public class Inventory
             Card c = Card.Load(tp);
             c.owner = owner;
             tilePieces.Add(c);
+        }
+    }
+
+    public void Expand(int index)
+    {
+
+        for (int i = tilePieces.Count - 1; i < index; i++)
+        {
+            tilePieces.Add(null);
         }
     }
 

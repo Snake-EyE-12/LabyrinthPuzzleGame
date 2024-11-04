@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 9029927346005957570}
   - component: {fileID: 1571820025616960069}
   - component: {fileID: 4426534827478606557}
+  - component: {fileID: 6771437580460065304}
   m_Layer: 5
   m_Name: Inventory
   m_TagString: Untagged
@@ -151,6 +152,30 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6771437580460065304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919157456643489564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 3
+    m_Right: 0
+    m_Top: 8
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 15, y: 15}
+  m_Spacing: {x: 0, y: -10}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!1 &3599401810550918064
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,6 +232,8 @@ MonoBehaviour:
   teamParent: {fileID: 8820490869028380130}
   postBattleCharacterDisplayPrefab: {fileID: 214684012782700337, guid: 687306b28b884984ba925912d2ea5237, type: 3}
   coins: {fileID: 776243407394388487}
+  inventoryCharmDisplayPrefab: {fileID: 8700389482980061066, guid: d04c657eee393ee49a18367a97739860, type: 3}
+  inventoryCharmParent: {fileID: 9029927346005957570}
 --- !u!1 &4648335290116217871
 GameObject:
   m_ObjectHideFlags: 0

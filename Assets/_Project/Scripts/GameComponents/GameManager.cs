@@ -20,16 +20,28 @@ public class GameManager : Singleton<GameManager>
 
 
 
+    private RoundMenuDisplay activeRoundMenuDisplay;
     private List<Item> inventoryCharms = new();
+
+    public void RemoveCharm(Item charm)
+    {
+        inventoryCharms.Remove(charm);
+    }
     public void GainCharm(Item charm)
     {
         inventoryCharms.Add(charm);
+        if (activeRoundMenuDisplay != null) activeRoundMenuDisplay.UpdateCharms();
     }
     public void GainCharm(int degree)
     {
-        inventoryCharms.Add(new Item(Item.Load(degree))); //convert degree to random charm
+        if (degree == -1) degree = currentRound;
+        GainCharm(new Item(Item.Load(degree)));
     }
 
+    public List<Item> GetAllInventoryCharms()
+    {
+        return inventoryCharms;
+    }
 
 
 
@@ -313,7 +325,8 @@ public class GameManager : Singleton<GameManager>
             CompleteGame();
             return;
         }
-        Instantiate(roundMenuDisplayPrefab, canvasTransform).Set(DataHolder.eventsForEachRound[currentRound - 1]);
+        activeRoundMenuDisplay = Instantiate(roundMenuDisplayPrefab, canvasTransform);
+        activeRoundMenuDisplay.Set(DataHolder.eventsForEachRound[currentRound - 1]);
     }
 
     private void CompleteGame()
@@ -324,6 +337,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private TurnManager turnManager;
     public void BeginBoardFight()
     {
+        activeRoundMenuDisplay = null;
         BuildDeck();
         turnManager.Reset();
         turnManager.NextPhase();

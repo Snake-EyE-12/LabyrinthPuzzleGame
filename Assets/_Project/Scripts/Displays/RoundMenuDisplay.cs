@@ -17,6 +17,8 @@ public class RoundMenuDisplay : Display<EventsForRound>
     [SerializeField] private Transform teamParent;
     [SerializeField] private PostBattleCharacterDisplay postBattleCharacterDisplayPrefab;
     [SerializeField] private TMP_Text coins;
+    [SerializeField] private InventoryCharmDisplay inventoryCharmDisplayPrefab;
+    [SerializeField] private Transform inventoryCharmParent;
     
     public override void Render()
     {
@@ -32,6 +34,27 @@ public class RoundMenuDisplay : Display<EventsForRound>
         }
 
         coins.text = GameManager.Instance.CoinCount + "";
+        UpdateCharms();
+        
+    }
+
+    public void UpdateCharms()
+    {
+        foreach (var c in charms)
+        {
+            Destroy(c.gameObject);
+        }
+        foreach (var iCharm in GameManager.Instance.GetAllInventoryCharms())
+        {
+            CreateCharm(iCharm);
+        }
+    }
+    private List<InventoryCharmDisplay> charms = new List<InventoryCharmDisplay>();
+    private void CreateCharm(Item charm)
+    {
+        InventoryCharmDisplay icd = Instantiate(inventoryCharmDisplayPrefab, inventoryCharmParent);
+        icd.Set(charm);
+        charms.Add(icd);
     }
     
     

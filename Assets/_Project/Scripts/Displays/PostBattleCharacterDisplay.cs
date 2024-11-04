@@ -44,6 +44,10 @@ public class PostBattleCharacterDisplay : Display<Character>
     private List<TileOnCardDisplay> cards = new();
     private List<PostBattleAbilityDisplay> abilities = new();
 
+    public Character GetCharacter()
+    {
+        return item;
+    }
     private void RemoveExtras()
     {
         foreach (var card in cards)

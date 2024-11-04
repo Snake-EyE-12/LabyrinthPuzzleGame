@@ -12,7 +12,43 @@
       "Manipulations": [
         {
           "Change": "Card",
-          "Condition": "Any",
+          "Condition": "None",
+          "Modification": "Append",
+          "With": "+"
+        }
+      ]
+    },
+    {
+      "Name" : "Extra Pathing",
+      "Description": "Append an Intersection Pathway",
+      "Degree": 2,
+      "Price": {
+        "Min": 10,
+        "Max": 100
+      },
+      "Weight": 10,
+      "Manipulations": [
+        {
+          "Change": "Card",
+          "Condition": "None",
+          "Modification": "Append",
+          "With": "+"
+        }
+      ]
+    },
+    {
+      "Name" : "Extra Pathing",
+      "Description": "Append an Intersection Pathway",
+      "Degree": 3,
+      "Price": {
+        "Min": 10,
+        "Max": 100
+      },
+      "Weight": 10,
+      "Manipulations": [
+        {
+          "Change": "Card",
+          "Condition": "None",
           "Modification": "Append",
           "With": "+"
         }

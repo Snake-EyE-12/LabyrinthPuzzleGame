@@ -388,7 +388,7 @@ namespace Capstone.DataLoad
             {
                 if(range.inRange(ed.Degree)) list.Add(ed);
             }
-            if(list.Count < 0) return null;
+            if(list.Count <= 0) return null;
             return list[GameUtils.IndexByWeightedRandom(new List<Weighted>(list))];
         }
 
