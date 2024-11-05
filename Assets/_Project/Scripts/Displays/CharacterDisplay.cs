@@ -57,6 +57,11 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
         {
             a.usedThisCombat = false;
         }
+
+        foreach (var card in item.inventory.GetCards())
+        {
+            card.GetTile().rotation.SetStringRotation("Reset");
+        }
         EventHandler.RemoveListenerLate("Round/FightOver", OnBattleOver);
         Vanish();
     }
@@ -203,6 +208,12 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
     {
         item.ActiveEffectsList.AddEffect(effect);
     }
+
+    public List<ActiveEffectType> GetEffects()
+    {
+        return item.ActiveEffectsList.GetActiveEffects();
+    }
+
     public void MoveToPlace(Vector2Int direction)
     {
         Vector2Int newPos = GetGridPosition() + direction;

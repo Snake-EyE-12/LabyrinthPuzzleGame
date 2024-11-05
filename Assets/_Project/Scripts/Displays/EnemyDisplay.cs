@@ -23,6 +23,10 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
     {
         item.ActiveEffectsList.EndOfTurn(this);
     }
+    public List<ActiveEffectType> GetEffects()
+    {
+        return item.ActiveEffectsList.GetActiveEffects();
+    }
     public override void Render()
     {
         //coloredImage.color = DataHolder.characterColorEquivalenceTable.GetColor(item.type);

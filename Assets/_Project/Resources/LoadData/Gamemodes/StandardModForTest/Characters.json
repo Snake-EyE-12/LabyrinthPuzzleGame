@@ -1,7 +1,7 @@
 {
   "Characters":[
     {
-      "Name":"O1",
+      "Name":"Boxer",
       "Type":"Offensive",
       "Degree":1,
       "Health":[
@@ -30,7 +30,7 @@
       ]
     },
     {
-      "Name":"O2",
+      "Name":"Executer",
       "Type":"Offensive",
       "Degree":1,
       "Health":[
@@ -59,7 +59,7 @@
       ]
     },
     {
-      "Name":"O3",
+      "Name":"Shifty",
       "Type":"Offensive",
       "Degree":1,
       "Health":[
@@ -88,7 +88,7 @@
       ]
     },
     {
-      "Name":"O4",
+      "Name":"Sideburns",
       "Type":"Offensive",
       "Degree":1,
       "Health":[
@@ -109,7 +109,7 @@
       "Abilities": []
     },
     {
-      "Name":"O5",
+      "Name":"Dartist",
       "Type":"Offensive",
       "Degree":1,
       "Health":[
@@ -235,7 +235,7 @@
       ]
     },
     {
-      "Name":"R1",
+      "Name":"Zeus",
       "Type":"Healer",
       "Degree":1,
       "Health":[
@@ -263,7 +263,7 @@
       ]
     },
     {
-      "Name":"R2",
+      "Name":"Medic",
       "Type":"Healer",
       "Degree":1,
       "Health":[
@@ -295,7 +295,7 @@
       ]
     },
     {
-      "Name":"R3",
+      "Name":"Healer",
       "Type":"Healer",
       "Degree":1,
       "Health":[
@@ -323,7 +323,7 @@
       ]
     },
     {
-      "Name":"R4",
+      "Name":"Necro",
       "Type":"Healer",
       "Degree":1,
       "Health":[
@@ -354,7 +354,7 @@
       ]
     },
     {
-      "Name":"R5",
+      "Name":"Angel",
       "Type":"Healer",
       "Degree":1,
       "Health":[

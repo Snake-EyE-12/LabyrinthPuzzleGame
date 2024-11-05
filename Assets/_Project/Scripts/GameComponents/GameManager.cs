@@ -457,6 +457,7 @@ public interface Targetable
     public void HitByAbility(Ability ability);
     public void ChangeHealth(int amount);
     public void ApplyEffect(ActiveEffectType effect);
+    public List<ActiveEffectType> GetEffects();
     public void MoveToPlace(Vector2Int direction);
     public Vector2Int GetGridPosition();
 

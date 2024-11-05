@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Capstone.DataLoad;
+using UnityEngine;
 
 
 public class ActiveEffectList
@@ -70,6 +71,11 @@ public class ActiveEffectList
         }
         return -1;
     }
+
+    public List<ActiveEffectType> GetActiveEffects()
+    {
+        return effectBar;
+    }
 }
 
 [System.Serializable]
@@ -86,9 +92,14 @@ public abstract class ActiveEffectType
         this.value = value;
     }
 
-    public void AddValue(int value)
+    public virtual void AddValue(int value)
     {
         this.value += value;
+    }
+
+    public virtual bool IsDOT()
+    {
+        return false;
     }
 
     public virtual void OnEffectGained(Targetable u)
@@ -114,6 +125,10 @@ public class PoisonActiveEffect : ActiveEffectType
     {
         u.ChangeHealth(-value);
     }
+    public override bool IsDOT()
+    {
+        return true;
+    }
 }
 public class BurnActiveEffect : ActiveEffectType
 {
@@ -128,6 +143,10 @@ public class BurnActiveEffect : ActiveEffectType
     public override void OnEndOfTurn(Targetable u)
     {
         value--;
+    }
+    public override bool IsDOT()
+    {
+        return true;
     }
     
 }
@@ -145,5 +164,14 @@ public class BleedActiveEffect : ActiveEffectType
     public override void OnDamagePhase(Targetable u)
     {
         u.ChangeHealth(-1);
+    }
+    public override bool IsDOT()
+    {
+        return true;
+    }
+    public override void AddValue(int value)
+    {
+        this.value = Mathf.Clamp(this.value + value, 0, 1);
+
     }
 }

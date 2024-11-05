@@ -62,9 +62,10 @@ public class Ability
     }
     public void Use(Targetable target)
     {
+        int startingAbilityValue = value;
         foreach (var key in keys)
         {
-            key.ModifyAction(target, value);
+            key.ModifyAction(target, ref startingAbilityValue);
             if (key is SingularKeyword) usedThisCombat = true;
         }
         if (GameManager.Instance.AbilityUser != null) GameManager.Instance.AbilityUser.BecomeUsed();
@@ -74,6 +75,7 @@ public class Ability
             GameManager.Instance.TargetRadius = null;
         }
 
+        value = startingAbilityValue;
     }
 
     private Ability()
@@ -236,14 +238,14 @@ public class ValueKey
     {
         return 9;
     }
-    public virtual void ModifyAction(Targetable t, int value) {}
+    public virtual void ModifyAction(Targetable t, ref int value) {}
     public virtual void ModifyRange(int value) {}
     
 }
 
 public class RotateKeyword : ValueKey
 {
-    public override void ModifyAction(Targetable t, int value)
+    public override void ModifyAction(Targetable t, ref int value)
     {
         t.GetMap().RotateTile(t.GetGridPosition(), value);
     }
@@ -269,7 +271,7 @@ public class DiscardKeyword : ValueKey
         return KeywordOrder.Board;
     }
 
-    public override void ModifyAction(Targetable t, int value)
+    public override void ModifyAction(Targetable t, ref int value)
     {
         EventHandler.Invoke("Deck/DiscardFirst", null);
     }
@@ -292,7 +294,7 @@ public class StuntedKeyword : ValueKey
 }
 public class KnockbackKeyword : ValueKey
 {
-    public override void ModifyAction(Targetable t, int value)
+    public override void ModifyAction(Targetable t, ref int value)
     {
         t.MoveToPlace(t.GetGridPosition() - GameManager.Instance.AbilityUser.GetGridPosition());
     }
@@ -307,7 +309,7 @@ public class KnockbackKeyword : ValueKey
 }
 public class DamageKeyword : ValueKey
 {
-    public override void ModifyAction(Targetable t, int value)
+    public override void ModifyAction(Targetable t, ref int value)
     {
         t.ChangeHealth(-value);
     }
@@ -322,7 +324,7 @@ public class DamageKeyword : ValueKey
 }
 public class HealKeyword : ValueKey
 {
-    public override void ModifyAction(Targetable t, int value)
+    public override void ModifyAction(Targetable t, ref int value)
     {
         t.ChangeHealth(value);
     }
@@ -342,7 +344,7 @@ public class HealKeyword : ValueKey
 }
 public class ChargeKeyword : ValueKey
 {
-    public override void ModifyAction(Targetable t, int value)
+    public override void ModifyAction(Targetable t, ref int value)
     {
         t.GainXP(value);
     }
@@ -365,7 +367,7 @@ public class BleedKeyword : ValueKey
         return KeywordOrder.Effect;
     }
 
-    public override void ModifyAction(Targetable t, int value)
+    public override void ModifyAction(Targetable t, ref int value)
     {
         t.ApplyEffect(new BleedActiveEffect(value));
     }
@@ -382,7 +384,7 @@ public class PoisonKeyword : ValueKey
         return KeywordOrder.Effect;
     }
 
-    public override void ModifyAction(Targetable t, int value)
+    public override void ModifyAction(Targetable t, ref int value)
     {
         t.ApplyEffect(new PoisonActiveEffect(value));
     }
@@ -399,7 +401,7 @@ public class BurnKeyword : ValueKey
         return KeywordOrder.Effect;
     }
 
-    public override void ModifyAction(Targetable t, int value)
+    public override void ModifyAction(Targetable t, ref int value)
     {
         t.ApplyEffect(new BurnActiveEffect(value));
     }
@@ -416,7 +418,7 @@ public class FreezeKeyword : ValueKey
         return KeywordOrder.Effect;
     }
 
-    public override void ModifyAction(Targetable t, int value)
+    public override void ModifyAction(Targetable t, ref int value)
     {
         t.ApplyEffect(new FreezeActiveEffect(value));
     }
@@ -540,6 +542,17 @@ public class EffectedKeyword : ValueKey // TODO
     public override KeywordOrder GetKeyOrder()
     {
         return KeywordOrder.Addition;
+    }
+
+    public override void ModifyAction(Targetable t, ref int value)
+    {
+        int count = 0;
+        foreach (var aet in t.GetEffects())
+        {
+            if (aet.IsDOT()) count += aet.value;
+        }
+
+        value += count;
     }
 }
 public class CleanseKeyword : ValueKey // TODO
