@@ -34,16 +34,16 @@ public class ActiveEffectList
         switch (type)
         {
             case "Poison":
-                effectBar.Add(new PoisonActiveEffect(value));
+                AddEffect(new PoisonActiveEffect(value));
                 break;
             case "Burn":
-                effectBar.Add(new BurnActiveEffect(value));
+                AddEffect(new BurnActiveEffect(value));
                 break;
             case "Freeze":
-                effectBar.Add(new FreezeActiveEffect(value));
+                AddEffect(new FreezeActiveEffect(value));
                 break;
             case "Bleed":
-                effectBar.Add(new BleedActiveEffect(value));
+                AddEffect(new BleedActiveEffect(value));
                 break;
             default:
                 break;

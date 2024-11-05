@@ -65,7 +65,7 @@ public class Ability
         int startingAbilityValue = value;
         foreach (var key in keys)
         {
-            key.ModifyAction(target, ref startingAbilityValue);
+            key.ModifyAction(target, this);
             if (key is SingularKeyword) usedThisCombat = true;
         }
         if (GameManager.Instance.AbilityUser != null) GameManager.Instance.AbilityUser.BecomeUsed();
@@ -238,16 +238,16 @@ public class ValueKey
     {
         return 9;
     }
-    public virtual void ModifyAction(Targetable t, ref int value) {}
+    public virtual void ModifyAction(Targetable t, Ability abilityInUse) {}
     public virtual void ModifyRange(int value) {}
     
 }
 
 public class RotateKeyword : ValueKey
 {
-    public override void ModifyAction(Targetable t, ref int value)
+    public override void ModifyAction(Targetable t, Ability abilityInUse)
     {
-        t.GetMap().RotateTile(t.GetGridPosition(), value);
+        t.GetMap().RotateTile(t.GetGridPosition(), abilityInUse.value);
     }
 
     public RotateKeyword(KeywordName keyName) : base(keyName)
@@ -271,7 +271,7 @@ public class DiscardKeyword : ValueKey
         return KeywordOrder.Board;
     }
 
-    public override void ModifyAction(Targetable t, ref int value)
+    public override void ModifyAction(Targetable t, Ability abilityInUse)
     {
         EventHandler.Invoke("Deck/DiscardFirst", null);
     }
@@ -294,7 +294,7 @@ public class StuntedKeyword : ValueKey
 }
 public class KnockbackKeyword : ValueKey
 {
-    public override void ModifyAction(Targetable t, ref int value)
+    public override void ModifyAction(Targetable t, Ability abilityInUse)
     {
         t.MoveToPlace(t.GetGridPosition() - GameManager.Instance.AbilityUser.GetGridPosition());
     }
@@ -309,9 +309,9 @@ public class KnockbackKeyword : ValueKey
 }
 public class DamageKeyword : ValueKey
 {
-    public override void ModifyAction(Targetable t, ref int value)
+    public override void ModifyAction(Targetable t, Ability abilityInUse)
     {
-        t.ChangeHealth(-value);
+        t.ChangeHealth(-abilityInUse.value);
     }
 
     public DamageKeyword(KeywordName keyName) : base(keyName)
@@ -324,9 +324,9 @@ public class DamageKeyword : ValueKey
 }
 public class HealKeyword : ValueKey
 {
-    public override void ModifyAction(Targetable t, ref int value)
+    public override void ModifyAction(Targetable t, Ability abilityInUse)
     {
-        t.ChangeHealth(value);
+        t.ChangeHealth(abilityInUse.value);
     }
 
     public HealKeyword(KeywordName keyName) : base(keyName)
@@ -344,9 +344,9 @@ public class HealKeyword : ValueKey
 }
 public class ChargeKeyword : ValueKey
 {
-    public override void ModifyAction(Targetable t, ref int value)
+    public override void ModifyAction(Targetable t, Ability abilityInUse)
     {
-        t.GainXP(value);
+        t.GainXP(abilityInUse.value);
     }
 
     public ChargeKeyword(KeywordName keyName) : base(keyName)
@@ -367,9 +367,9 @@ public class BleedKeyword : ValueKey
         return KeywordOrder.Effect;
     }
 
-    public override void ModifyAction(Targetable t, ref int value)
+    public override void ModifyAction(Targetable t, Ability abilityInUse)
     {
-        t.ApplyEffect(new BleedActiveEffect(value));
+        t.ApplyEffect(new BleedActiveEffect(abilityInUse.value));
     }
 }
 
@@ -384,9 +384,9 @@ public class PoisonKeyword : ValueKey
         return KeywordOrder.Effect;
     }
 
-    public override void ModifyAction(Targetable t, ref int value)
+    public override void ModifyAction(Targetable t, Ability abilityInUse)
     {
-        t.ApplyEffect(new PoisonActiveEffect(value));
+        t.ApplyEffect(new PoisonActiveEffect(abilityInUse.value));
     }
 
 }
@@ -401,9 +401,9 @@ public class BurnKeyword : ValueKey
         return KeywordOrder.Effect;
     }
 
-    public override void ModifyAction(Targetable t, ref int value)
+    public override void ModifyAction(Targetable t, Ability abilityInUse)
     {
-        t.ApplyEffect(new BurnActiveEffect(value));
+        t.ApplyEffect(new BurnActiveEffect(abilityInUse.value));
     }
 }
 
@@ -418,9 +418,9 @@ public class FreezeKeyword : ValueKey
         return KeywordOrder.Effect;
     }
 
-    public override void ModifyAction(Targetable t, ref int value)
+    public override void ModifyAction(Targetable t, Ability abilityInUse)
     {
-        t.ApplyEffect(new FreezeActiveEffect(value));
+        t.ApplyEffect(new FreezeActiveEffect(abilityInUse.value));
     }
 }
 public class RangedKeyword : ValueKey // TODO
@@ -544,15 +544,18 @@ public class EffectedKeyword : ValueKey // TODO
         return KeywordOrder.Addition;
     }
 
-    public override void ModifyAction(Targetable t, ref int value)
+    public override void ModifyAction(Targetable t, Ability abilityInUse)
     {
         int count = 0;
-        foreach (var aet in t.GetEffects())
+        foreach (var aet in GameManager.Instance.AbilityUser.GetEffects())
         {
-            if (aet.IsDOT()) count += aet.value;
+            Debug.Log("Effect Is: " + aet.GetType());
+            if (aet.IsDOT()) count++;
         }
 
-        value += count;
+        Debug.Log("Amount of DOT was: " + count);
+        abilityInUse.value += count;
+        Debug.Log("New Value Becuase of Effected: " + abilityInUse.value);
     }
 }
 public class CleanseKeyword : ValueKey // TODO
