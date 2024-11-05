@@ -19,7 +19,7 @@ public class CharacterAbilityDisplay : Display<List<Ability>>
     {
         foreach (var a in item)
         {
-            Instantiate(abilityDisplayPrefab, transform).Set(a);
+            if(!a.usedThisCombat) Instantiate(abilityDisplayPrefab, transform).Set(a);
         }
     }
 

@@ -7,6 +7,12 @@ public class Path
     public Path()
     {
     }
+    public static Path Copy(Path path)
+    {
+        Path newPath = new Path();
+        newPath.SetOpenPaths(path.openPathways);
+        return newPath;
+    }
 
     public Path(string paths)
     {

@@ -134,12 +134,48 @@ public class DamagePhase : RoundPhase
 
     public override void StartPhase()
     {
+        // Enemy Damage
         AttackIndicator.Instance.ExecuteAttacks();
         List<CharacterDisplay> characterList = GameManager.Instance.GetActiveCharacters();
         for (int i = characterList.Count - 1; i >= 0; i--)
         {
-            characterList[i].CheckDie();
+            characterList[i].CheckForDeath();
         }
+        // Enemy Effects
+        List<EnemyDisplay> activeEnemies = GameManager.Instance.GetActiveEnemies();
+        for (int i = activeEnemies.Count - 1; i >= 0; i--)
+        {
+            activeEnemies[i].ApplyDamagePhaseEffects();
+        }
+        // Team Effects
+        characterList = GameManager.Instance.GetActiveCharacters();
+        for (int i = characterList.Count - 1; i >= 0; i--)
+        {
+            characterList[i].ApplyDamagePhaseEffects();
+        }
+        // Enemy Die From Effects
+        for (int i = activeEnemies.Count - 1; i >= 0; i--)
+        {
+            activeEnemies[i].CheckForDeath();
+        }
+        // Team Die From Effects
+        for (int i = characterList.Count - 1; i >= 0; i--)
+        {
+            characterList[i].CheckForDeath();
+        }
+        // Enemy Effects Altering
+        activeEnemies = GameManager.Instance.GetActiveEnemies();
+        for (int i = activeEnemies.Count - 1; i >= 0; i--)
+        {
+            activeEnemies[i].ApplyEndOfTurnPhaseEffects();
+        }
+        // Team Effects Altering
+        characterList = GameManager.Instance.GetActiveCharacters();
+        for (int i = characterList.Count - 1; i >= 0; i--)
+        {
+            characterList[i].ApplyEndOfTurnPhaseEffects();
+        }
+        
         tm.NextPhase();
     }
 }

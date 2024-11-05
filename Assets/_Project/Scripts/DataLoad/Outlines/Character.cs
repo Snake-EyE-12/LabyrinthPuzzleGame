@@ -19,7 +19,7 @@ public class Character : Unit
         health = new Health(data.Health);
         XP = new XPBar(data.Charge);
         inventory = new Inventory(data.Inventory, characterType);
-        activeEffects = new ActiveEffect(data.ActiveEffects);
+        ActiveEffectsList = new ActiveEffectList(data.ActiveEffects);
         abilityList = new List<Ability>();
 
         foreach (var a in data.Abilities)

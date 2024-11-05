@@ -350,15 +350,10 @@ namespace Capstone.DataLoad
     [System.Serializable]
     public class InventoryData
     {   
-        public ItemSlotData[] ItemSlots;
+        public int ItemSlots;
         public string[] TilePieces;
     }
 
-    [System.Serializable]
-    public class ItemSlotData
-    {
-        
-    }
 
     [System.Serializable]
     public class AttackData

@@ -51,6 +51,7 @@ public class DeckDisplay : Display<Deck>
             newCard.Set(item.GetHandCards()[i]);
             handLayout.Add(newCard, i);
         }
+        handLayout.Refresh();
     }
     private void DrawToLimit(EventArgs args)
     {
@@ -93,6 +94,7 @@ public class DeckDisplay : Display<Deck>
     private void DiscardAt(int index)
     {
         handLayout.Remove(index);
+        handLayout.Refresh();
         item.Discard(index);
     }
 

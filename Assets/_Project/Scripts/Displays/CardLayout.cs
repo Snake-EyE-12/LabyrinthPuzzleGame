@@ -11,7 +11,6 @@ public class CardLayout : MonoBehaviour
     {
         card.transform.SetParent(transform);
         cards.Add(new CardDisplayPosData() { card = card, pos = position });
-        Refresh();
     }
 
     public void Remove(int index)
@@ -22,7 +21,6 @@ public class CardLayout : MonoBehaviour
         {
             cards[i].pos = i;
         }
-        if(cards.Count > 0) Refresh();
     }
 
     public void Clear()
@@ -38,13 +36,14 @@ public class CardLayout : MonoBehaviour
         return cards;
     }
 
-    private void Refresh()
+    public void Refresh()
     {
+        if(cards.Count <= 0) return;
         for (int i = 0; i < cards.Count; i++)
         {
-            
+            cards[i].card.MoveVisually(cards[i].card.transform.position, 1 + i);
             cards[i].card.MoveVisually(Vector3.Lerp(init.position,
-                final.position, i * 1.0f / cards.Count), Mathf.Pow(0.9f, i + 1));
+                final.position, i * 1.0f / cards.Count), Mathf.Pow(0.9f, 1 + i));
         }
     }
     

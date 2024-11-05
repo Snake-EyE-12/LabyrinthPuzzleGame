@@ -43,7 +43,7 @@
       }
     },
     {
-      "Symbol":"|1D",
+      "Symbol":"|1D-",
       "Tile":{
         "Path":"NS",
         "Type":"Slide"
@@ -52,7 +52,161 @@
         "Value":1,
         "Target":"Any",
         "Keys":[
+          "Damage", "Singular"
+        ]
+      }
+    },
+    {
+      "Symbol":"L1D-",
+      "Tile":{
+        "Path":"NE",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Damage", "Singular"
+        ]
+      }
+    },
+    {
+      "Symbol":"+1D",
+      "Tile":{
+        "Path":"NESW",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
           "Damage"
+        ]
+      }
+    },
+    {
+      "Symbol":"|1B-",
+      "Tile":{
+        "Path":"NS",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Burn", "Singular"
+        ]
+      }
+    },
+    {
+      "Symbol":"L1P-",
+      "Tile":{
+        "Path":"NE",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Poison", "Singular"
+        ]
+      }
+    },
+    {
+      "Symbol":"|1DP-",
+      "Tile":{
+        "Path":"NS",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Damage", "Poison", "Singular"
+        ]
+      }
+    },
+    {
+      "Symbol":"!1B-",
+      "Tile":{
+        "Path":"N",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Burn", "Singular"
+        ]
+      }
+    },
+    {
+      "Symbol":"!1P-",
+      "Tile":{
+        "Path":"N",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Poison", "Singular"
+        ]
+      }
+    },
+    {
+      "Symbol":"!1H-",
+      "Tile":{
+        "Path":"N",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Heal", "Singular"
+        ]
+      }
+    },
+    {
+      "Symbol":"|1H-",
+      "Tile":{
+        "Path":"NS",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Heal", "Singular"
+        ]
+      }
+    },
+    {
+      "Symbol":"L1H",
+      "Tile":{
+        "Path":"NE",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Heal"
+        ]
+      }
+    },
+    {
+      "Symbol":"L1H-",
+      "Tile":{
+        "Path":"NE",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Heal", "Singular"
         ]
       }
     },

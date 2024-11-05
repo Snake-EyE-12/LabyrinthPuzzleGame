@@ -17,7 +17,7 @@ public class TileOnCardDisplay : Display<Tile>
             wallDisplays[i].SetVisibility((orientation & j) == 0);
         }
 
-        if (item.ability != null)
+        if (item.ability != null && !item.ability.usedThisCombat)
         {
             abilityIcon.sprite = Ability.GetAbilityIcon(item.ability);
             abilityIcon.gameObject.SetActive(true);

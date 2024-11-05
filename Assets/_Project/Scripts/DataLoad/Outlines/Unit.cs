@@ -10,7 +10,7 @@ public abstract class Unit
     public string unitName { get; protected set; }
     public int degree { get; protected set; }
     public Health health { get; protected set; }
-    public ActiveEffect activeEffects { get; protected set; }
+    public ActiveEffectList ActiveEffectsList { get; protected set; }
 
     public void Die()
     {
@@ -21,6 +21,7 @@ public abstract class Unit
     {
         if (health.isDead) Die();
     }
+    
     
     
     //

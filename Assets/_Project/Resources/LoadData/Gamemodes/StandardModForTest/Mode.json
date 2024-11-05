@@ -4,9 +4,9 @@
   "GridSize": 3,
   "CharacterSelection":
   {
-    "Type": "Draft",
+    "Type": "Preset",
     "Choices": 3,
-    "Default": "Standard",
+    "Default": "Orange",
     "Total": 5,
     "InitialDegree": 1
   },

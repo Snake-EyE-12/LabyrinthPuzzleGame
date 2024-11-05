@@ -18,6 +18,16 @@ public class Tile
         return (GetOrientation() & bitDirection) == bitDirection;
     }
 
+    public static Tile Copy(Tile tile)
+    {
+        Tile newTile = new Tile();
+        newTile.path = Path.Copy(tile.path);
+        newTile.rotation = Rotation.Copy(tile.rotation);
+        newTile.type = tile.type;
+        if(tile.ability != null) newTile.ability = Ability.Copy(tile.ability);
+        return newTile;
+    }
+
     private int directionToBits(Vector2Int direction)
     {
         if(direction == Vector2Int.up) return 1;

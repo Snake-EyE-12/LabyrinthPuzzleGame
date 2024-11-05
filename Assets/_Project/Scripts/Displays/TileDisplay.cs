@@ -21,7 +21,7 @@ public class TileDisplay : Display<Tile>, GridPositionable, Selectable
             wallDisplays[i].SetVisibility((orientation & j) == 0);
         }
 
-        if (item.ability != null)
+        if (item.ability != null && !item.ability.usedThisCombat)
         {
             abilityIcon.sprite = Ability.GetAbilityIcon(item.ability);
         }
@@ -58,11 +58,12 @@ public class TileDisplay : Display<Tile>, GridPositionable, Selectable
     {
         unit.SetGridPosition(GetGridPosition());
         mappableOrganizer.Add(unit);
-        if (unit is Targetable && item.ability != null)
+        if (unit is Targetable && item.ability != null && !item.ability.usedThisCombat)
         {
             Targetable targeted = unit as Targetable;
             item.ability.Use(targeted);
             targeted.CheckForDeath();
+            if (item.ability.usedThisCombat) Render();
         }
         unit.OnPassOverLoot(mappableOrganizer.GetLoot());
     }

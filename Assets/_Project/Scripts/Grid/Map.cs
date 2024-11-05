@@ -48,13 +48,13 @@ public class Map
     
     public void Slide(bool row, bool positive, int number)
     {
-        if(row) SlideRow(number, positive, GameManager.Instance.cardToPlace.GetTile());
-        else SlideColumn(number, positive, GameManager.Instance.cardToPlace.GetTile());
+        if(row) SlideRow(number, positive, Tile.Copy(GameManager.Instance.cardToPlace.GetTile()));
+        else SlideColumn(number, positive, Tile.Copy(GameManager.Instance.cardToPlace.GetTile()));
     }
 
     public void Swap(Vector2Int gridPos)
     {
-        Swap(gridPos, GameManager.Instance.cardToPlace.GetTile());
+        Swap(gridPos, Tile.Copy(GameManager.Instance.cardToPlace.GetTile()));
     }
     private void Swap(Vector2Int pos, Tile replacer)
     {

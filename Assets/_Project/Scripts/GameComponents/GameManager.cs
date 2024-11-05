@@ -294,6 +294,10 @@ public class GameManager : Singleton<GameManager>
     
     
     private List<EnemyDisplay> activeEnemies = new List<EnemyDisplay>();
+    public List<EnemyDisplay> GetActiveEnemies()
+    {
+        return activeEnemies;
+    }
     public void AddEnemey(EnemyDisplay e)
     {
         activeEnemies.Add(e);
@@ -452,7 +456,7 @@ public interface Targetable
 {
     public void HitByAbility(Ability ability);
     public void ChangeHealth(int amount);
-    public void ApplyEffect(ActiveEffect effect);
+    public void ApplyEffect(ActiveEffectType effect);
     public void MoveToPlace(Vector2Int direction);
     public Vector2Int GetGridPosition();
 

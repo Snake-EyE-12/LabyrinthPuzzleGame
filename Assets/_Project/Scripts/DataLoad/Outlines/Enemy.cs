@@ -26,7 +26,7 @@ public class Enemy : Unit
         AttackIQ = data.AttackIQ;
         MovementIQ = data.MovementIQ;
         attackLayout = new AttackLayout(data.AttackLayout);
-        activeEffects = new ActiveEffect(data.ActiveEffects);
+        ActiveEffectsList = new ActiveEffectList(data.ActiveEffects);
         if(data.Loot != null)
         {
             foreach (var lootPiece in data.Loot)

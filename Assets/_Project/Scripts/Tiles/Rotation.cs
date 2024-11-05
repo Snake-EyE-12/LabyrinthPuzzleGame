@@ -4,6 +4,13 @@ public class Rotation
 {
     private int currentRotation = 0;
 
+    public static Rotation Copy(Rotation rotation)
+    {
+        return new Rotation
+        {
+            currentRotation = rotation.currentRotation
+        };
+    }
     public int GetRotationValue()
     {
         return currentRotation;

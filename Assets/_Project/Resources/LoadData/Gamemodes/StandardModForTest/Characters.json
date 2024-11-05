@@ -1,7 +1,115 @@
 {
   "Characters":[
     {
-      "Name":"Executioner",
+      "Name":"O1",
+      "Type":"Offensive",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":1
+        }
+      ],
+      "Charge":3,
+      "Inventory":{
+        "ItemSlots": 4,
+        "TilePieces":[
+          "L",
+          "L",
+          ".",
+          "."
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+        "Value": 1,
+        "Target": "Opponent",
+        "Keys": ["Damage", "Stunted"]
+        }
+      ]
+    },
+    {
+      "Name":"O2",
+      "Type":"Offensive",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":2
+        }
+      ],
+      "Charge":3,
+      "Inventory":{
+        "ItemSlots": 4,
+        "TilePieces":[
+          "L",
+          "L",
+          ".",
+          "."
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 1,
+          "Target": "Opponent",
+          "Keys": ["Damage", "Area"]
+        }
+      ]
+    },
+    {
+      "Name":"O3",
+      "Type":"Offensive",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":1
+        }
+      ],
+      "Charge":5,
+      "Inventory":{
+        "ItemSlots": 4,
+        "TilePieces":[
+          "|1D-",
+          "L1D-",
+          "L1P-",
+          "."
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 0,
+          "Target": "Opponent",
+          "Keys": ["Stunted", "Knockback"]
+        }
+      ]
+    },
+    {
+      "Name":"O4",
+      "Type":"Offensive",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":2
+        }
+      ],
+      "Charge":5,
+      "Inventory":{
+        "ItemSlots": 4,
+        "TilePieces":[
+          "|1B-",
+          "|1B-"
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": []
+    },
+    {
+      "Name":"O5",
       "Type":"Offensive",
       "Degree":1,
       "Health":[
@@ -12,24 +120,19 @@
       ],
       "Charge":5,
       "Inventory":{
-        "ItemSlots":[
-          {},
-          {},
-          {},
-          {}
-        ],
+        "ItemSlots": 4,
         "TilePieces":[
-          "|1D",
-          "!",
-          "."
+          "|1DP-",
+          "!1B-",
+          "!1P-"
         ]
       },
       "ActiveEffects":[],
       "Abilities": [
         {
-        "Value": 2,
-        "Target": "Opponent",
-        "Keys": ["Damage"]
+          "Value": 0,
+          "Target": "Opponent",
+          "Keys": ["Damage", "Effected"]
         }
       ]
     },
@@ -132,25 +235,49 @@
       ]
     },
     {
-      "Name":"Healer",
+      "Name":"R1",
       "Type":"Healer",
       "Degree":1,
       "Health":[
         {
           "Type":"Blood",
-          "Value":5
+          "Value":3
         }
       ],
-      "Charge":5,
+      "Charge":3,
       "Inventory":{
-        "ItemSlots":[
-          {},
-          {},
-          {},
-          {}
-        ],
+        "ItemSlots": 4,
         "TilePieces":[
-          "|"
+          "L1D-",
+          "!1H-",
+          "!"
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 2,
+          "Target": "Team",
+          "Keys": ["Charge", "Singular"]
+        }
+      ]
+    },
+    {
+      "Name":"R2",
+      "Type":"Healer",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":3
+        }
+      ],
+      "Charge":3,
+      "Inventory":{
+        "ItemSlots": 4,
+        "TilePieces":[
+          "+1D",
+          "T"
         ]
       },
       "ActiveEffects":[],
@@ -158,7 +285,103 @@
         {
           "Value": 1,
           "Target": "Team",
+          "Keys": ["Charge", "Singular"]
+        },
+        {
+          "Value": 1,
+          "Target": "Team",
           "Keys": ["Heal"]
+        }
+      ]
+    },
+    {
+      "Name":"R3",
+      "Type":"Healer",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":2
+        }
+      ],
+      "Charge":5,
+      "Inventory":{
+        "ItemSlots": 4,
+        "TilePieces":[
+          "L",
+          "|1H-",
+          "|1H-"
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 1,
+          "Target": "Opponent",
+          "Keys": ["Poison"]
+        }
+      ]
+    },
+    {
+      "Name":"R4",
+      "Type":"Healer",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":1
+        }
+      ],
+      "Charge":4,
+      "Inventory":{
+        "ItemSlots": 4,
+        "TilePieces":[
+          "L1H",
+          "!",
+          "!",
+          "!",
+          ".",
+          "."
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 1,
+          "Target": "Opponent",
+          "Keys": ["Poison"]
+        }
+      ]
+    },
+    {
+      "Name":"R5",
+      "Type":"Healer",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":4
+        }
+      ],
+      "Charge":5,
+      "Inventory":{
+        "ItemSlots": 4,
+        "TilePieces":[
+          "|1H-",
+          "L1H-"
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 1,
+          "Target": "Opponent",
+          "Keys": ["Damage", "Stunted", "Knockback"]
+        },
+        {
+          "Value": 2,
+          "Target": "Team",
+          "Keys": ["Heal", "Singular"]
         }
       ]
     },

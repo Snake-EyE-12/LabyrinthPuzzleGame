@@ -18,7 +18,7 @@ public class Damager
     {
         unit.health.Damage(amount);
     }
-    public void ApplyEffect(ActiveEffect effect)
+    public void ApplyEffect(ActiveEffectList effectList)
     {
         
     }

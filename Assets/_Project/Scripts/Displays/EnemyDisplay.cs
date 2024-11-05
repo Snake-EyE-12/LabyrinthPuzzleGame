@@ -13,7 +13,16 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
     [SerializeField] private SelectionDisplay selectionIndicator;
     [SerializeField] private HealthbarDisplay healthBar;
     private Damager damager;
-    
+
+
+    public void ApplyDamagePhaseEffects()
+    {
+        item.ActiveEffectsList.ApplyDamage(this);
+    }
+    public void ApplyEndOfTurnPhaseEffects()
+    {
+        item.ActiveEffectsList.EndOfTurn(this);
+    }
     public override void Render()
     {
         //coloredImage.color = DataHolder.characterColorEquivalenceTable.GetColor(item.type);
@@ -169,9 +178,9 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
         healthBar.Render();
     }
 
-    public void ApplyEffect(ActiveEffect effect)
+    public void ApplyEffect(ActiveEffectType effect)
     {
-        damager.ApplyEffect(effect);
+        item.ActiveEffectsList.AddEffect(effect);
     }
 
     public void MoveToPlace(Vector2Int direction)

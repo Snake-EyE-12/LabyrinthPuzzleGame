@@ -19,6 +19,17 @@ public class CardDisplay : Display<Card>, Selectable
     [Header("Non-Display")]
     [SerializeField] private SelectionDisplay selectionIndicator;
     [SerializeField] private TileOnCardDisplay tileForDisplay;
+    private void Update()
+    {
+        if (!selected || GameManager.Instance.GetSelectionType() != SelectableGroupType.Tile) return;
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1))
+        {
+            Deselect();
+            selected = false;
+            GameManager.Instance.SetCardToPlace(null);
+        }
+    }
+    
     public override void Render()
     {
         Color cardColor = DataHolder.characterColorEquivalenceTable.GetColor(item.owner);
@@ -53,11 +64,6 @@ public class CardDisplay : Display<Card>, Selectable
 
         }
         
-        
-        
-        
-        
-        
         tileForDisplay.Set(item.GetTile());
     }
 
@@ -70,6 +76,8 @@ public class CardDisplay : Display<Card>, Selectable
     {
         if(IsCurrentlySelectable()) Activate(null);
     }
+
+    private bool selected;
 
     public void RotateTile(RotationDirection direction, int amount)
     {

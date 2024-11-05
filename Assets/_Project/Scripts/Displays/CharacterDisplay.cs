@@ -19,7 +19,14 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
     private Damager damager;
 
 
-    
+    public void ApplyDamagePhaseEffects()
+    {
+        item.ActiveEffectsList.ApplyDamage(this);
+    }
+    public void ApplyEndOfTurnPhaseEffects()
+    {
+        item.ActiveEffectsList.EndOfTurn(this);
+    }
     public override void Render()
     {
         Color solidColor = DataHolder.characterColorEquivalenceTable.GetColor(item.characterType);
@@ -46,6 +53,10 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
 
     private void OnBattleOver(EventArgs args)
     {
+        foreach (var a in item.abilityList)
+        {
+            a.usedThisCombat = false;
+        }
         EventHandler.RemoveListenerLate("Round/FightOver", OnBattleOver);
         Vanish();
     }
@@ -178,11 +189,6 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
         return item;
     }
 
-    public void CheckDie()
-    {
-        item.CheckDeath();
-    }
-
     public void ChangeHealth(int amount)
     {
         if (amount < 0)
@@ -193,9 +199,9 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
         healthBar.Render();
     }
 
-    public void ApplyEffect(ActiveEffect effect)
+    public void ApplyEffect(ActiveEffectType effect)
     {
-        damager.ApplyEffect(effect);
+        item.ActiveEffectsList.AddEffect(effect);
     }
     public void MoveToPlace(Vector2Int direction)
     {
