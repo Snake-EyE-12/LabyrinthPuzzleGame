@@ -32,6 +32,7 @@ public class EventAcceptorButtonDisplay : Display<EventAcceptor>
         e.Set(percent);
         e.transform.position = transform.position;
         iconImage.color = new Color(iconImage.color.r, iconImage.color.g, iconImage.color.b, percent);
+        DataHolder.challengesTaken++;
     }
     
 }

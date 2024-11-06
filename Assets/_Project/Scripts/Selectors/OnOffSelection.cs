@@ -26,6 +26,7 @@ public class OnOffSelection : SelectionDisplay
     [SerializeField] private GameObject onActive;
     public override void Activated(bool active)
     {
+        if(onActive == null) return;
         onActive.SetActive(active);
     }
 }

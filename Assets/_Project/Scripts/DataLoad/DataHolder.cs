@@ -17,4 +17,14 @@ public static class DataHolder
     public static TileList availableTiles;
     public static ItemList availableItems;
     public static List<EventsForRound> eventsForEachRound;
+
+
+
+
+    public static int finalDeckSize;
+    public static int itemsCollected;
+    public static int challengesTaken;
+    public static int defeatedRound;
+    public static int coinsSpent;
+    public static int enemiesKilled;
 }

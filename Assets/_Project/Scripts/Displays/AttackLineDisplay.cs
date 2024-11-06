@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AttackLineDisplay : Display<LineRendererData>
 {
-    [SerializeField] private LineRenderer renderer;
+    [SerializeField] private LineRenderer lineRenderer;
     public override void Render()
     {
         
@@ -13,7 +13,7 @@ public class AttackLineDisplay : Display<LineRendererData>
     private void Update()
     {
         Vector3[] positions = new[] { item.follower.position, item.start };
-        renderer.SetPositions(positions);
+        lineRenderer.SetPositions(positions);
     }
 }
 

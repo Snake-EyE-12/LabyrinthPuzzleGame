@@ -4,13 +4,13 @@
   "GridSize": 3,
   "CharacterSelection":
   {
-    "Type": "Preset",
+    "Type": "Draft",
     "Choices": 3,
     "Default": "Orange",
     "Total": 5,
     "InitialDegree": 1
   },
-  "Rounds": 20,
+  "Rounds": 3,
   "EventLayout":
   [
     {

@@ -29,6 +29,7 @@ public class GameManager : Singleton<GameManager>
     }
     public void GainCharm(Item charm)
     {
+        DataHolder.itemsCollected++;
         inventoryCharms.Add(charm);
         if (activeRoundMenuDisplay != null) activeRoundMenuDisplay.UpdateCharms();
     }
@@ -99,7 +100,11 @@ public class GameManager : Singleton<GameManager>
         {
             cardsForDeck.AddRange(c.inventory.GetCards());
         }
-        Instantiate(deckDisplayPrefab, canvasTransform).Set(new Deck(cardsForDeck));
+
+        DeckDisplay deck = Instantiate(deckDisplayPrefab, canvasTransform);
+        deck.Set(new Deck(cardsForDeck));
+        deck.transform.SetSiblingIndex(0);
+        DataHolder.finalDeckSize = cardsForDeck.Count;
     }
 
     public void MoveEnemies()
@@ -211,14 +216,17 @@ public class GameManager : Singleton<GameManager>
 
     public void CheckGameOver()
     {
+        if (activeEnemies.Count <= 0)
+        {
+            WinFight();
+            return;
+        }
         if (activeTeam.Count <= 0)
         {
-            EventHandler.Invoke("OnGameLost", null);
+            Lose();
+            return;
         }
-        else
-        {
-            turnManager.NextPhase();
-        }
+        turnManager.NextPhase();
     }
 
     public void PrepareTeamTurnStart()
@@ -239,7 +247,8 @@ public class GameManager : Singleton<GameManager>
                 if (ed.GetEnemy().Equals(deadEnemy))
                 {
                     ed.Vanish();
-                    if (activeEnemies.Count <= 0) WinFight();
+                    DataHolder.enemiesKilled++;
+                    //if (activeEnemies.Count <= 0) WinFight();
                     return;
                 }
             }
@@ -253,7 +262,7 @@ public class GameManager : Singleton<GameManager>
                 if (cd.GetCharacter().Equals(deadCharacter))
                 {
                     cd.Vanish();
-                    if(activeTeam.Count <= 0) Lose();
+                    //if(activeTeam.Count <= 0) Lose(); // Immediate Lose
                     return;
                 }
             }
@@ -263,8 +272,10 @@ public class GameManager : Singleton<GameManager>
 
     private void Lose()
     {
-        Debug.Log("You Lose");
-        FightOver();
+        DataHolder.defeatedRound = currentRound;
+        EventHandler.Invoke("OnGameLost", null);
+        //Debug.Log("You Lose");
+        //FightOver();
     }
 
     private void WinFight()

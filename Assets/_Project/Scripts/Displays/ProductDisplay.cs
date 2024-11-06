@@ -22,6 +22,7 @@ public class ProductDisplay : Display<Item>
     {
         if (GameManager.Instance.CoinCount >= item.price)
         {
+            DataHolder.coinsSpent += item.price;
             GameManager.Instance.CoinCount -= item.price;
             GameManager.Instance.GainCharm(item);
             Destroy(this.gameObject);
