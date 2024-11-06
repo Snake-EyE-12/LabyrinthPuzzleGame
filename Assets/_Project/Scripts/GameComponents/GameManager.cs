@@ -213,7 +213,7 @@ public class GameManager : Singleton<GameManager>
     {
         if (activeTeam.Count <= 0)
         {
-            //lose
+            EventHandler.Invoke("OnGameLost", null);
         }
         else
         {
@@ -421,7 +421,7 @@ public class GameManager : Singleton<GameManager>
         get { return abilityUser; }
         set
         {
-            abilityUser?.Active(false);
+            if(abilityUser != null) abilityUser.Active(false);
             abilityUser = value;
         }
     }

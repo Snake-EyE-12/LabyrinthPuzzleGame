@@ -1,0 +1,33 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using EventArgs = Guymon.DesignPatterns.EventArgs;
+using EventHandler = Guymon.DesignPatterns.EventHandler;
+
+public class EventToSceneChange : MonoBehaviour
+{
+    [SerializeField] private string sceneName;
+    [SerializeField] private string eventName;
+    [SerializeField] private float time;
+    private void Awake()
+    {
+        EventHandler.AddListener(eventName, Transition);
+    }
+
+    private bool change;
+    private void Transition(EventArgs args)
+    {
+        change = true;
+    }
+
+    private float elpasedTime;
+    private void Update()
+    {
+        if(change) elpasedTime += Time.deltaTime;
+        if (elpasedTime >= time)
+        {
+            SceneChanger.LoadScene(sceneName);
+        }
+    }
+}

@@ -549,13 +549,10 @@ public class EffectedKeyword : ValueKey // TODO
         int count = 0;
         foreach (var aet in GameManager.Instance.AbilityUser.GetEffects())
         {
-            Debug.Log("Effect Is: " + aet.GetType());
-            if (aet.IsDOT()) count++;
+            if (aet.IsDOT()) count++; // Using amount of DOT effects vs total value
         }
 
-        Debug.Log("Amount of DOT was: " + count);
         abilityInUse.value += count;
-        Debug.Log("New Value Becuase of Effected: " + abilityInUse.value);
     }
 }
 public class CleanseKeyword : ValueKey // TODO
