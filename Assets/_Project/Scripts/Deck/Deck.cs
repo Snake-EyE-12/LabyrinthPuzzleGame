@@ -20,6 +20,12 @@ public class Deck
         drawPile.Shuffle();
     }
 
+    public void UnplayCard(Card c)
+    {
+        hand.Add(c);
+        discardPile.RemoveLast();
+    }
+
     public void Draw(int amount)
     {
         if(drawPile.Count() < amount) Shuffle();
@@ -28,7 +34,7 @@ public class Deck
         {
             Card drawnCard = drawPile.Get();
             hand.Add(drawnCard);
-            drawPile.Remove();
+            drawPile.RemoveFirst();
         }
     }
 

@@ -43,9 +43,9 @@ public class TurnManager : MonoBehaviour
     private bool transitioning;
 
     [Button(nameof(NextPhase))]
-    public void NextPhase()
+    public RoundPhase NextPhase()
     {
-        if (timeToTransition > Time.time) return;
+        if (timeToTransition > Time.time) return null;
         //Disable Selector
         GameManager.Instance.SetSelectionEnabled(false);
         RoundPhase phase = GetCurrentPhase();
@@ -55,12 +55,21 @@ public class TurnManager : MonoBehaviour
             transitioning = true;
             phase.EndPhase();
             IncrementPhase();
+            return GetCurrentPhase();
         }
-        else if (currentPhase == -1)
+        if (currentPhase == -1)
         {
             IncrementPhase();
             GetCurrentPhase().StartPhase();
+            return GetCurrentPhase();
         }
+
+        return null;
+    }
+
+    public void SetPhaseTo(RoundPhase phase)
+    {
+        currentPhase = roundSquence.IndexOf(phase);
     }
 
     public void Reset()

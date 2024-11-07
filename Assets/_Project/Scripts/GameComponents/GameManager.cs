@@ -19,6 +19,7 @@ public class GameManager : Singleton<GameManager>
 
 
 
+    public DeckDisplay activeDeck;
 
     private RoundMenuDisplay activeRoundMenuDisplay;
     private List<Item> inventoryCharms = new();
@@ -104,6 +105,7 @@ public class GameManager : Singleton<GameManager>
         DeckDisplay deck = Instantiate(deckDisplayPrefab, canvasTransform);
         deck.Set(new Deck(cardsForDeck));
         deck.transform.SetSiblingIndex(0);
+        activeDeck = deck;
         DataHolder.finalDeckSize = cardsForDeck.Count;
     }
 

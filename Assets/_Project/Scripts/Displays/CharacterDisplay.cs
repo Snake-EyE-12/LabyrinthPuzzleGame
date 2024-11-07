@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Capstone.DataLoad;
+using Guymon.DesignPatterns;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -154,6 +155,7 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
         if (data is DirectionalSelectableActivatorData)
         {
             localMap.Move(this, (data as DirectionalSelectableActivatorData).direction);
+            CommandHandler.Clear();
             return;
         }
         else

@@ -33,18 +33,6 @@ public class DeckDisplay : Display<Deck>
     [SerializeField] private Vector3 spawnPoint;
     public override void Render()
     {
-        // int handSize = item.GetHandSize();
-        // int maxForLoop = Mathf.Max(handSize, handLayout.GetCount());
-        // for (int i = 0; i < maxForLoop; i++)
-        // {
-        //     if (handLayout.GetCount() - 1 < i)
-        //     {
-        //         CardDisplay newCard = Instantiate(cardDisplayPrefab, handLayout.transform);
-        //         handLayout.Add();
-        //     }
-        //     handTiles[i].Set(item.GetHandCards()[i]);
-        // }
-        //DrawToLimit(null);
         for (int i = handLayout.GetHandCardDisplays().Count; i < item.GetHandSize(); i++)
         {
             CardDisplay newCard = Instantiate(cardDisplayPrefab, spawnPoint, Quaternion.identity, handLayout.transform);
@@ -61,6 +49,10 @@ public class DeckDisplay : Display<Deck>
         Render();
     }
 
+    public Deck GetDeck()
+    {
+        return item;
+    }
 
     private int GetHandLimit()
     {

@@ -18,7 +18,9 @@ public abstract class RoundPhase
     public virtual void UpdatePhase() { }
     public virtual void EndPhase() { }
     protected void SkipPhase() { tm.NextPhase();}
-    public virtual float GetTransitionTime() { return 0.1f; }
+    public virtual float GetTransitionTime() { return 0.0001f; }
+    public virtual void ReturnToThis() { }
+    public virtual void OnQuickLeave() { }
 }
 
 
@@ -66,24 +68,30 @@ public class PlayCardsPhase : RoundPhase
     {
     }
 
-    private int amountOfCardsPlaced = 0;
 
     public override void StartPhase()
     {
+        CommandHandler.Clear();
         GameManager.Instance.SetSelectionMode(SelectableGroupType.Card);
-        amountOfCardsPlaced = 0;
+        DataHolder.cardsPlacedThisRound = 0;
         EventHandler.AddListener("CardPlaced", CardPlaced);
     }
 
     private void CardPlaced(EventArgs args)
     {
-        amountOfCardsPlaced++;
-        if (amountOfCardsPlaced >= 2)
+        DataHolder.cardsPlacedThisRound++;
+        if (DataHolder.cardsPlacedThisRound >= DataHolder.currentMode.CardsToPlacePerTurn)
         {
-            tm.NextPhase();
+            CommandHandler.Execute(new ConvertToTeamPhaseCommand(tm, this));
             return;
         }
         GameManager.Instance.SetSelectionMode(SelectableGroupType.Card);
+    }
+
+    public override void ReturnToThis()
+    {
+        GameManager.Instance.SetSelectionMode(SelectableGroupType.Card);
+        EventHandler.AddListener("CardPlaced", CardPlaced);
     }
 
     public override void EndPhase()
@@ -100,6 +108,7 @@ public class TeamTurnPhase : RoundPhase
 
     public override void StartPhase()
     {
+        Debug.Log("Starting Team Turn Phase");
         GameManager.Instance.SetSelectionMode(SelectableGroupType.Team);
         EventHandler.AddListener("Round/EndTurn", TryEndTurn);
         GameManager.Instance.PrepareTeamTurnStart();
@@ -112,6 +121,11 @@ public class TeamTurnPhase : RoundPhase
             EventHandler.RemoveListener("Round/EndTurn", TryEndTurn);
             EndTurn(null);
         }
+    }
+
+    public override void OnQuickLeave()
+    {
+        EventHandler.RemoveListener("Round/EndTurn", TryEndTurn);
     }
 
     private void TryEndTurn(EventArgs args)

@@ -1,6 +1,7 @@
 
 using System.Collections.Generic;
 using Capstone.DataLoad;
+using Guymon.DesignPatterns;
 using UnityEngine;
 
 public class Map
@@ -48,23 +49,25 @@ public class Map
     
     public void Slide(bool row, bool positive, int number)
     {
-        if(row) SlideRow(number, positive, Tile.Copy(GameManager.Instance.cardToPlace.GetTile()));
-        else SlideColumn(number, positive, Tile.Copy(GameManager.Instance.cardToPlace.GetTile()));
+        CommandHandler.Execute(new SlideCommand(row, positive, number, this, GameManager.Instance.cardToPlace.GetCard(), GameManager.Instance.activeDeck));
     }
 
-    public void Swap(Vector2Int gridPos)
+    public void Swap(Vector2Int gridPos, Tile tile)
     {
-        Swap(gridPos, Tile.Copy(GameManager.Instance.cardToPlace.GetTile()));
+        SwapPosWith(gridPos, Tile.Copy(tile));
     }
-    private void Swap(Vector2Int pos, Tile replacer)
+    private void SwapPosWith(Vector2Int pos, Tile replacer)
     {
         grid.Get(pos).GetTile().Set(replacer);
     }
-    private void SlideColumn(int x, bool upwards, Tile replacer)
+    public Tile SlideColumn(int x, bool upwards, Tile replacer)
     {
+        GridSpace fallOffSpace = null;
+        Tile fallOffTile = null;
         if (upwards)
         {
-            GridSpace fallOffSpace = grid.Get(x, grid.GetSize() - 1);
+            fallOffSpace = grid.Get(x, grid.GetSize() - 1);
+            fallOffTile = Tile.Copy(fallOffSpace.GetTile().GetTile());
             for (int y = grid.GetSize() - 1; y > 0; y--)
             {
                 grid.Get(x, y - 1).GetTile().SetGridPosition(new Vector2Int(x, y));
@@ -78,7 +81,8 @@ public class Map
         }
         else
         {
-            GridSpace fallOffSpace = grid.Get(x, 0);
+            fallOffSpace = grid.Get(x, 0);
+            fallOffTile = Tile.Copy(fallOffSpace.GetTile().GetTile());
             for (int y = 0; y < grid.GetSize() - 1; y++)
             {
                 grid.Get(x, y + 1).GetTile().SetGridPosition(new Vector2Int(x, y));
@@ -90,13 +94,17 @@ public class Map
             fallOffSpace.GetTile().Set(replacer);
             fallOffSpace.GetTile().SetGridPosition(replacePos, true);
         }
-        
+
+        return fallOffTile;
     }
-    private void SlideRow(int y, bool upwards, Tile replacer)
+    public Tile SlideRow(int y, bool upwards, Tile replacer)
     {
+        Tile fallOffTile = null;
+        GridSpace fallOffSpace = null;
         if (upwards)
         {
-            GridSpace fallOffSpace = grid.Get(grid.GetSize() - 1, y);
+            fallOffSpace = grid.Get(grid.GetSize() - 1, y);
+            fallOffTile = Tile.Copy(fallOffSpace.GetTile().GetTile());
             for (int x = grid.GetSize() - 1; x > 0; x--)
             {
                 grid.Get(x - 1, y).GetTile().SetGridPosition(new Vector2Int(x, y));
@@ -110,7 +118,8 @@ public class Map
         }
         else
         {
-            GridSpace fallOffSpace = grid.Get(0, y);
+            fallOffSpace = grid.Get(0, y);
+            fallOffTile = Tile.Copy(fallOffSpace.GetTile().GetTile());
             for (int x = 0; x < grid.GetSize() - 1; x++)
             {
                 grid.Get(x + 1, y).GetTile().SetGridPosition(new Vector2Int(x, y));
@@ -122,6 +131,7 @@ public class Map
             fallOffSpace.GetTile().Set(replacer);
             fallOffSpace.GetTile().SetGridPosition(replacePos, true);
         }
+        return fallOffTile;
     }
     public TileDisplay GetTileAtPosition(Vector2Int pos) => grid.Get(pos).GetTile();
 

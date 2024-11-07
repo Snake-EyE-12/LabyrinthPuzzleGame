@@ -11,7 +11,6 @@ public class MouseToTileInput : MonoBehaviour
 
     private void PerformRotation(RotationDirection direction)
     {
-        Debug.Log("ROTATED");
         GameManager.Instance.cardToPlace.RotateTile(direction, -1);
         lastScrollTime = Time.time + scrollSpeed;
     }

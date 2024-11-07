@@ -27,4 +27,6 @@ public static class DataHolder
     public static int defeatedRound;
     public static int coinsSpent;
     public static int enemiesKilled;
+
+    public static int cardsPlacedThisRound;
 }

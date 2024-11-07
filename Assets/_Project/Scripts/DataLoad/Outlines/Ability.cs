@@ -62,6 +62,7 @@ public class Ability
     }
     public void Use(Targetable target)
     {
+        CommandHandler.Clear();
         int startingAbilityValue = value;
         foreach (var key in keys)
         {

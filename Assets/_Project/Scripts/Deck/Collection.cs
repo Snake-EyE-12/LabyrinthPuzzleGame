@@ -7,7 +7,8 @@ public abstract class Collection<T> where T : class
     public abstract void Insert(int index, T item);
     public abstract T Get();
     public abstract T GetAt(int index);
-    public abstract void Remove();
+    public abstract void RemoveFirst();
+    public abstract void RemoveLast();
     public abstract void RemoveAt(int index);
     public abstract void Shuffle();
     public abstract int Count();
@@ -89,7 +90,11 @@ public class ListCollection<T> : Collection<T> where T : class
         return list[index];
     }
 
-    public override void Remove()
+    public override void RemoveLast()
+    {
+        list.RemoveAt(list.Count - 1);
+    }
+    public override void RemoveFirst()
     {
         list.RemoveAt(0);
     }

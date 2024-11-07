@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Guymon.DesignPatterns;
 using UnityEngine;
 using UnityEngine.UI;
 using EventArgs = Guymon.DesignPatterns.EventArgs;
@@ -171,7 +172,8 @@ public class TileDisplay : Display<Tile>, GridPositionable, Selectable
         }
         else
         {
-            localMap.Swap(gridPosition);
+            CommandHandler.Execute(new SwapCommand(localMap, GameManager.Instance.cardToPlace.GetCard(), gridPosition, GameManager.Instance.activeDeck));
+            //localMap.Swap(gridPosition, GameManager.Instance.cardToPlace.GetCard().GetTile());
         }
         EventHandler.Invoke("CardPlaced", new CardEventArgs(GameManager.Instance.cardToPlace.GetCard()));
         GameManager.Instance.cardToPlace = null;
