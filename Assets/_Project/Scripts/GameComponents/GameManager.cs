@@ -16,6 +16,11 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private EventBuilder eventBuilder;
     [SerializeField] private Transform canvasTransform;
     [SerializeField] private Director slide;
+    [SerializeField] private ColorShift camColorShifter;
+    [SerializeField] private Color lightColorEventPage;
+    [SerializeField] private Color darkColorEventPage;
+    [SerializeField] private Color lightColorFight;
+    [SerializeField] private Color darkColorFight;
 
 
 
@@ -104,7 +109,7 @@ public class GameManager : Singleton<GameManager>
 
         DeckDisplay deck = Instantiate(deckDisplayPrefab, canvasTransform);
         deck.Set(new Deck(cardsForDeck));
-        deck.transform.SetSiblingIndex(0);
+        deck.transform.SetSiblingIndex(1);
         activeDeck = deck;
         DataHolder.finalDeckSize = cardsForDeck.Count;
     }
@@ -179,11 +184,13 @@ public class GameManager : Singleton<GameManager>
     public void UseActiveCharacterAbility(EnemyDisplay target)
     {
         AbilityInUse.Use(target);
+        SetSelectionMode(SelectableGroupType.Team);
         Clean();
     }
     public void UseActiveCharacterAbility(CharacterDisplay target)
     {
         AbilityInUse.Use(target);
+        SetSelectionMode(SelectableGroupType.Team);
         Clean();
     }
 
@@ -192,7 +199,6 @@ public class GameManager : Singleton<GameManager>
         AbilityInUse = null;
         AbilityUser = null;
         selector.FullCancel();
-        SetSelectionMode(SelectableGroupType.Team);
         Phase = GamePhase.None;
     }
 
@@ -276,8 +282,17 @@ public class GameManager : Singleton<GameManager>
     {
         DataHolder.defeatedRound = currentRound;
         EventHandler.Invoke("OnGameLost", null);
+        ResetGameManagerForNextGame();
         //Debug.Log("You Lose");
         //FightOver();
+    }
+
+    private void ResetGameManagerForNextGame()
+    {
+        Destroy(this.gameObject);
+        EventHandler.ClearListeners();
+        CommandHandler.Clear();
+        Clean();
     }
 
     private void WinFight()
@@ -344,6 +359,7 @@ public class GameManager : Singleton<GameManager>
         }
         activeRoundMenuDisplay = Instantiate(roundMenuDisplayPrefab, canvasTransform);
         activeRoundMenuDisplay.Set(DataHolder.eventsForEachRound[currentRound - 1]);
+        camColorShifter.SetColorSet(lightColorEventPage, darkColorEventPage);
     }
 
     private void CompleteGame()
@@ -358,6 +374,7 @@ public class GameManager : Singleton<GameManager>
         BuildDeck();
         turnManager.Reset();
         turnManager.NextPhase();
+        camColorShifter.SetColorSet(lightColorFight, darkColorFight);
     }
 
     public void LoadFight(int additions)

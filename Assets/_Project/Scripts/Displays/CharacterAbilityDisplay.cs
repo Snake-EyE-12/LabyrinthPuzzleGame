@@ -9,6 +9,7 @@ public class CharacterAbilityDisplay : Display<List<Ability>>
 {
     
     [SerializeField] private AbilityDisplay abilityDisplayPrefab;
+    [SerializeField] private Transform parent;
 
     private void Awake()
     {
@@ -19,7 +20,7 @@ public class CharacterAbilityDisplay : Display<List<Ability>>
     {
         foreach (var a in item)
         {
-            if(!a.usedThisCombat) Instantiate(abilityDisplayPrefab, transform).Set(a);
+            Instantiate(abilityDisplayPrefab, parent).Set(a);
         }
     }
 

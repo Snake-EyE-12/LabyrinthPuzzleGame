@@ -227,7 +227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventAcceptorButtonDisplayPrefab: {fileID: 765946506322729649, guid: 03555713a2f55a04c9c9a4e4931bbf03, type: 3}
-  buttonParent: {fileID: 1979186619211720621}
+  buttonParent: {fileID: 847624784277287400}
   arrowButton: {fileID: 411384732964611146}
   teamParent: {fileID: 8820490869028380130}
   postBattleCharacterDisplayPrefab: {fileID: 214684012782700337, guid: 687306b28b884984ba925912d2ea5237, type: 3}
@@ -674,8 +674,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd5476d92785444985c3c75a390f4949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lightColor: {r: 1, g: 0.43081754, b: 0.6516503, a: 1}
-  darkColor: {r: 0.54088044, g: 0, b: 0, a: 1}
+  lightColor: {r: 0.43137252, g: 0.6477512, b: 1, a: 1}
+  darkColor: {r: 0, g: 0.06402477, b: 0.5411765, a: 1}
   duration: 5
   image: {fileID: 1283795260650255507}
 --- !u!114 &411384732964611146
@@ -744,6 +744,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1979186619211720621}
   - component: {fileID: 847624784277287400}
+  - component: {fileID: 1126854531587371524}
   m_Layer: 5
   m_Name: EventButtons
   m_TagString: Untagged
@@ -794,3 +795,16 @@ MonoBehaviour:
   m_Spacing: {x: 24.31, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &1126854531587371524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8625092120612412111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0958b236bb04b7584aa4bc1f1ede59f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group: {fileID: 847624784277287400}

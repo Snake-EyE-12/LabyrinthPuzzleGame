@@ -14,6 +14,10 @@ public class AbilityDisplay : Display<Ability>, Selectable
     
     [Header("Non-Display")]
     [SerializeField] private SelectionDisplay selectionIndicator;
+
+    [SerializeField] private Wiggle wiggle;
+    [SerializeField] private Image disabledGray;
+    [SerializeField] private GameObject shadow;
     private void Start()
     {
         GameManager.Instance.AddSelectable(this, selectionIndicator.type);
@@ -26,6 +30,12 @@ public class AbilityDisplay : Display<Ability>, Selectable
 
     public override void Render()
     {
+        if (item.usedThisCombat)
+        {
+            disabledGray.gameObject.SetActive(true);
+            wiggle.enabled = false;
+            shadow.SetActive(false);
+        }
         colorRingImageRenderer.color = DataHolder.characterColorEquivalenceTable.GetColor(item.owner);
         
     

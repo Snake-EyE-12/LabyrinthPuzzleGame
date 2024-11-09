@@ -27,5 +27,11 @@ public class ColorShift : MonoBehaviour
     {
         return Color.Lerp(light, dark, t);
     }
+
+    public void SetColorSet(Color light, Color dark)
+    {
+        lightColor = light;
+        darkColor = dark;
+    }
     
 }

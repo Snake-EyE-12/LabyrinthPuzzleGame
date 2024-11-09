@@ -12,7 +12,7 @@ using EventHandler = Guymon.DesignPatterns.EventHandler;
 public class RoundMenuDisplay : Display<EventsForRound>
 {
     [SerializeField] private EventAcceptorButtonDisplay eventAcceptorButtonDisplayPrefab;
-    [SerializeField] private Transform buttonParent;
+    [SerializeField] private LayoutGroup buttonParent;
     [SerializeField] private Button arrowButton;
     [SerializeField] private Transform teamParent;
     [SerializeField] private PostBattleCharacterDisplay postBattleCharacterDisplayPrefab;
@@ -25,8 +25,10 @@ public class RoundMenuDisplay : Display<EventsForRound>
         foreach (var e in item.events)
         {
             EventAcceptor ea = CreateEventAcceptor(e);
-            if(ea != null) Instantiate(eventAcceptorButtonDisplayPrefab, buttonParent).Set(ea);
+            if(ea != null) Instantiate(eventAcceptorButtonDisplayPrefab, buttonParent.transform).Set(ea);
         }
+
+        //buttonParent.enabled = false;
 
         foreach (var c in GameManager.Instance.GetCurrentTeam())
         {
