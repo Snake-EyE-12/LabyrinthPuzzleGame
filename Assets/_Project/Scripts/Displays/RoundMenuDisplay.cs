@@ -88,6 +88,7 @@ public class RoundMenuDisplay : Display<EventsForRound>
 
     public void ContinueClick()
     {
+        AudioManager.Instance.Play("ButtonClick");
         if (fightExists == null)
         {
             GameManager.Instance.ContinueMission();

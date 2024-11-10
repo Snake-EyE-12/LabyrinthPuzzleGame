@@ -118,6 +118,7 @@ public class CardDisplay : Display<Card>, Selectable
 
     public void Activate(SelectableActivatorData data)
     {
+        AudioManager.Instance.Play("ButtonClick");
         GameManager.Instance.SetCardToPlace(this);
     }
     private void Start()

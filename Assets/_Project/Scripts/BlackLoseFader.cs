@@ -10,16 +10,17 @@ public class BlackLoseFader : MonoBehaviour
     [SerializeField] private Destinator destinator;
     [SerializeField] private ColorShift shifter;
     [SerializeField] private Transform finalPos;
+    [SerializeField] private string eventName;
 
 
     private void Awake()
     {
-        EventHandler.AddListener("OnGameLost", Fade);
+        EventHandler.AddListener(eventName, Fade);
     }
 
     private void Fade(EventArgs args)
     {
-        EventHandler.RemoveListenerLate("OnGameLost", Fade);
+        EventHandler.RemoveListenerLate(eventName, Fade);
         destinator.MoveTo(finalPos.position, false);
         shifter.enabled = true;
     }

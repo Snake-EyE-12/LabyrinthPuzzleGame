@@ -87,6 +87,7 @@ public class AbilityDisplay : Display<Ability>, Selectable
 
     public void Activate(SelectableActivatorData data)
     {
+        AudioManager.Instance.Play("ButtonClick");
         selectionIndicator.Activated(true);
         GameManager.Instance.AbilityInUse = item;
         GameManager.Instance.Phase = GamePhase.UsingActiveAbility;

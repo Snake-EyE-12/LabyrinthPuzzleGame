@@ -24,14 +24,12 @@ public class SlideCommand : Command
     }
     public void Execute()
     {
-        Debug.Log("Execute: Slide");
         if(rowOrColumn) onBoardTile = mapOfTiles.SlideRow(number, upwardsOrRight, Tile.Copy(playedCard.GetTile()));
         else onBoardTile = mapOfTiles.SlideColumn(number, upwardsOrRight, Tile.Copy(playedCard.GetTile()));
     }
 
     public void Undo()
     {
-        Debug.Log("Undo: Slide");
         deck.GetDeck().UnplayCard(playedCard);
         deck.Render();
         DataHolder.cardsPlacedThisRound--;
@@ -61,14 +59,12 @@ public class SwapCommand : Command
 
     public void Execute()
     {
-        Debug.Log("Execute: Swap");
         onBoardTile = mapOfTiles.GetTileAtPosition(newTilePosition).GetTile();
         mapOfTiles.Swap(newTilePosition, playedCard.GetTile());
     }
 
     public void Undo()
     {
-        Debug.Log("Undo: Swap");
         deck.GetDeck().UnplayCard(playedCard);
         deck.Render();
         DataHolder.cardsPlacedThisRound--;
@@ -91,14 +87,12 @@ public class ConvertToTeamPhaseCommand : Command
     }
     public void Execute()
     {
-        Debug.Log("Execute: Phase Change");
         nextPhase = tm.NextPhase();
     }
 
     public void Undo()
     {
         if (nextPhase == null) return;
-        Debug.Log("Undo: PhaseChange");
         nextPhase.OnQuickLeave();
         rp.ReturnToThis();
         tm.SetPhaseTo(rp);

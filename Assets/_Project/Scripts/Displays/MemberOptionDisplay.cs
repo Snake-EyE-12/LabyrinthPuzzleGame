@@ -25,6 +25,8 @@ public class MemberOptionDisplay : Display<CharacterColorData>
         if (addedToTeam) return;
         addedToTeam = true;
         tbh.Pick(item.type, this.transform);
+        AudioManager.Instance.Play("ButtonClick");
+
     }
 
 }

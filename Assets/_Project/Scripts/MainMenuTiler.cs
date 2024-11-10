@@ -43,6 +43,11 @@ public class MainMenuTiler : MonoBehaviour
         }
     }
 
+    private bool IsOnScreen(Vector3 pos)
+    {
+        Vector3 point = cam.WorldToViewportPoint(pos);
+        return point.x > -0.1 && point.x < 1.1 && point.y > -0.1 && point.y < 1.1;
+    }
     private void Shift()
     {
         nextInterval = Time.time + Random.Range(interval.x, interval.y);
@@ -52,7 +57,8 @@ public class MainMenuTiler : MonoBehaviour
         bool positive = Random.Range(0, 2) == 0;
         ShowTile firstToMove = null;
         int last = size - 1;
-
+        
+        bool didSound = false;
         Vector2Int myPos = Vector2Int.zero;
         if (row)
         {
@@ -64,6 +70,7 @@ public class MainMenuTiler : MonoBehaviour
                 {
                     myPos = new Vector2Int(x, yPos);
                     MoveTile(grid[myPos], myPos + direction);
+                    if(IsOnScreen(grid[myPos].transform.position) && !didSound) { AudioManager.Instance.Play("HeavySlide"); didSound = true; }
                 }
                 MoveTile(firstToMove, new Vector2Int(0, yPos), true);
             }
@@ -75,6 +82,7 @@ public class MainMenuTiler : MonoBehaviour
                 {
                     myPos = new Vector2Int(x, yPos);
                     MoveTile(grid[myPos], myPos + direction);
+                    if(IsOnScreen(grid[myPos].transform.position) && !didSound) { AudioManager.Instance.Play("HeavySlide"); didSound = true; }
                 }
                 MoveTile(firstToMove, new Vector2Int(last, yPos), true);
             }
@@ -89,6 +97,7 @@ public class MainMenuTiler : MonoBehaviour
                 {
                     myPos = new Vector2Int(xPos, y);
                     MoveTile(grid[myPos], myPos + direction);
+                    if(IsOnScreen(grid[myPos].transform.position) && !didSound) { AudioManager.Instance.Play("HeavySlide"); didSound = true; }
                 }
                 MoveTile(firstToMove, new Vector2Int(xPos, 0), true);
             }
@@ -100,6 +109,7 @@ public class MainMenuTiler : MonoBehaviour
                 {
                     myPos = new Vector2Int(xPos, y);
                     MoveTile(grid[myPos], myPos + direction);
+                    if(IsOnScreen(grid[myPos].transform.position) && !didSound) { AudioManager.Instance.Play("HeavySlide"); didSound = true; }
                 }
                 MoveTile(firstToMove, new Vector2Int(xPos, last), true);
                 

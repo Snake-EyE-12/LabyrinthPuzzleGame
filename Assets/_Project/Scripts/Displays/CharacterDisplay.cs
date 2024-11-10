@@ -72,7 +72,6 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
         GameManager.Instance.RemoveCharacter(this);
         localMap.RemoveGridPositionable(this);
         GameManager.Instance.RemoveSelectable(this, selectionIndicator.type);
-        Debug.Log("Character Attempted To Vanish");
         if(this != null && this.gameObject != null) Destroy(this.gameObject);
     }
 
@@ -155,6 +154,7 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
         if (data is DirectionalSelectableActivatorData)
         {
             localMap.Move(this, (data as DirectionalSelectableActivatorData).direction);
+            AudioManager.Instance.Play("Footsteps");
             CommandHandler.Clear();
             return;
         }
@@ -173,6 +173,7 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
                     Instantiate(characterAbilityDisplayPrefab, GameManager.Instance.GetCanvasParent()).Set(item.abilityList);
                     GameManager.Instance.AbilityUser = this;
                     GameManager.Instance.SetSelectionMode(SelectableGroupType.Ability);
+                    AudioManager.Instance.Play("ButtonClick");
                     return;
                 }
             }
@@ -221,7 +222,6 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
         Vector2Int newPos = GetGridPosition() + direction;
         SetGridPosition(newPos);
         destinator.MoveTo(new DestinationData(VisualDataHolder.Instance.CoordsToPosition(newPos), 0.5f, true));
-        Debug.Log("USING MOVE TO PLACE");
     }
     public void BecomeUsed()
     {

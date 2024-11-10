@@ -283,8 +283,10 @@ public class GameManager : Singleton<GameManager>
         DataHolder.defeatedRound = currentRound;
         EventHandler.Invoke("OnGameLost", null);
         ResetGameManagerForNextGame();
-        //Debug.Log("You Lose");
-        //FightOver();
+    }
+    private void CompleteGame()
+    {
+        SceneChanger.LoadScene("Win");
     }
 
     private void ResetGameManagerForNextGame()
@@ -297,7 +299,6 @@ public class GameManager : Singleton<GameManager>
 
     private void WinFight()
     {
-        Debug.Log("You Won Fight: " + currentRound);
         HealCharacters();
         FightOver();
         ContinueMission();
@@ -362,10 +363,6 @@ public class GameManager : Singleton<GameManager>
         camColorShifter.SetColorSet(lightColorEventPage, darkColorEventPage);
     }
 
-    private void CompleteGame()
-    {
-        SceneChanger.LoadScene("Win");
-    }
 
     [SerializeField] private TurnManager turnManager;
     public void BeginBoardFight()

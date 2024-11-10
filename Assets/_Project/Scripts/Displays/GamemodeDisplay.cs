@@ -32,5 +32,7 @@ public class GamemodeDisplay : Display<Mode>
     public void OnClick()
     {
         item.Load();
+        AudioManager.Instance.Play("ButtonClick");
+
     }
 }

@@ -108,7 +108,6 @@ public class TeamTurnPhase : RoundPhase
 
     public override void StartPhase()
     {
-        Debug.Log("Starting Team Turn Phase");
         GameManager.Instance.SetSelectionMode(SelectableGroupType.Team);
         EventHandler.AddListener("Round/EndTurn", TryEndTurn);
         GameManager.Instance.PrepareTeamTurnStart();
@@ -136,6 +135,8 @@ public class TeamTurnPhase : RoundPhase
 
     private void EndTurn(EventArgs args)
     {
+        AudioManager.Instance.Play("ButtonClick");
+        AudioManager.Instance.Play("Whoosh");
         tm.NextPhase();
     }
 }

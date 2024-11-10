@@ -71,6 +71,7 @@ public class FightEvent : EventAcceptor
     public override bool OnClick(EventAcceptorButtonDisplay button)
     {
         displayBox.ActivateButton();
+        AudioManager.Instance.Play("ButtonClick");
         GameManager.Instance.LoadFight(additionalEnemyCount);
         return IsOver();
     }
@@ -83,6 +84,7 @@ public class ShopEvent : EventAcceptor
 
     public override bool OnClick(EventAcceptorButtonDisplay button)
     {
+        AudioManager.Instance.Play("ButtonClick");
         GameManager.Instance.ShowShop();
         return IsOver();
     }
@@ -102,6 +104,7 @@ public class ChallengeEvent : EventAcceptor
     private int clickCount = 0;
     public override bool OnClick(EventAcceptorButtonDisplay button)
     {
+        AudioManager.Instance.Play("ButtonClick");
         clickCount++;
         button.Burn(1 - (clickCount * 1.0f / DataHolder.currentMode.MaxChallengeAdditions));
         displayBox.UpTheAnte();

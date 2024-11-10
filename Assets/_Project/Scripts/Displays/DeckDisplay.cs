@@ -45,8 +45,19 @@ public class DeckDisplay : Display<Deck>
     {
         int count = GetHandLimit() - item.GetHandSize();
         item.Draw(count);
+        for (int i = 0; i < count; i++)
+        {
+            StartCoroutine(SoundsForCardDraw(i * 0.1f));
+        }
         EventHandler.Invoke("DrawCards/LimitReached", null);
         Render();
+    }
+
+    private IEnumerator SoundsForCardDraw(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        AudioManager.Instance.Play("CardDraw");
+        
     }
 
     public Deck GetDeck()

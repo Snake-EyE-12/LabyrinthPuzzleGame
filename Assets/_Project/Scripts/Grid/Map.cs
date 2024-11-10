@@ -50,11 +50,13 @@ public class Map
     public void Slide(bool row, bool positive, int number)
     {
         CommandHandler.Execute(new SlideCommand(row, positive, number, this, GameManager.Instance.cardToPlace.GetCard(), GameManager.Instance.activeDeck));
+        AudioManager.Instance.Play("HeavySlide");
     }
 
     public void Swap(Vector2Int gridPos, Tile tile)
     {
         SwapPosWith(gridPos, Tile.Copy(tile));
+        AudioManager.Instance.Play("Swapping");
     }
     private void SwapPosWith(Vector2Int pos, Tile replacer)
     {
@@ -137,6 +139,7 @@ public class Map
 
     public void Move(GridPositionable entity, Vector2Int direction)
     {
+        AudioManager.Instance.Play("Footsteps");
         Vector2Int currentPos = entity.GetGridPosition();
         Vector2Int newPosition = currentPos + direction;
 
