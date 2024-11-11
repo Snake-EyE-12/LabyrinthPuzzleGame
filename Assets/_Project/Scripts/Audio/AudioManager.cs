@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Guymon.DesignPatterns;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Audio;
 using Object = System.Object;
 using Random = UnityEngine.Random;
 
@@ -53,6 +54,11 @@ public class AudioManager : Singleton<AudioManager>
 
         return null;
     }
+
+
+
+
+
 }
 
 [System.Serializable]
