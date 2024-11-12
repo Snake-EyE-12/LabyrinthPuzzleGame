@@ -226,6 +226,7 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
     public void BecomeUsed()
     {
         used = true;
+        Active(false);
     }
 
     public void CheckForDeath()

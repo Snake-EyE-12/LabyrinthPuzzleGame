@@ -33,6 +33,9 @@ public class MouseToTileInput : MonoBehaviour
         {
             Deselect();
             selectedTile = null;
+            GameManager.Instance.HideSliderDisplay();
+            GameManager.Instance.SetCardToPlace(null);
+            GameManager.Instance.SetSelectionMode(SelectableGroupType.Card);
         }
         if (selectedTile == null)
         {
@@ -102,6 +105,9 @@ public class MouseToTileInput : MonoBehaviour
 
     private void Deselect()
     {
-        if(hoveredTile != null) hoveredTile.Deselect();
+        if (hoveredTile != null)
+        {
+            hoveredTile.Deselect();
+        }
     }
 }

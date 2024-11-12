@@ -47,7 +47,7 @@ public class DeckDisplay : Display<Deck>
         item.Draw(count);
         for (int i = 0; i < count; i++)
         {
-            StartCoroutine(SoundsForCardDraw(i * 0.1f));
+            StartCoroutine(SoundsForCardDraw(i * 0.25f));
         }
         EventHandler.Invoke("DrawCards/LimitReached", null);
         Render();

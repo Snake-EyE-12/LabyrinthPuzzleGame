@@ -1,0 +1,456 @@
+{
+  "Characters":[
+    {
+      "Name":"Boxer",
+      "Type":"Offensive",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":1
+        }
+      ],
+      "Charge":3,
+      "Inventory":{
+        "ItemSlots": 4,
+        "TilePieces":[
+          "L",
+          "L",
+          ".",
+          "."
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+        "Value": 1,
+        "Target": "Opponent",
+        "Keys": ["Damage", "Stunted"]
+        }
+      ]
+    },
+    {
+      "Name":"Executer",
+      "Type":"Offensive",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":2
+        }
+      ],
+      "Charge":3,
+      "Inventory":{
+        "ItemSlots": 4,
+        "TilePieces":[
+          "L",
+          "L",
+          ".",
+          "."
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 1,
+          "Target": "Opponent",
+          "Keys": ["Damage", "Area"]
+        }
+      ]
+    },
+    {
+      "Name":"Shifty",
+      "Type":"Offensive",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":1
+        }
+      ],
+      "Charge":5,
+      "Inventory":{
+        "ItemSlots": 4,
+        "TilePieces":[
+          "|1D-",
+          "L1D-",
+          "L1P-",
+          "."
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 0,
+          "Target": "Opponent",
+          "Keys": ["Stunted", "Knockback"]
+        }
+      ]
+    },
+    {
+      "Name":"Sideburns",
+      "Type":"Offensive",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":2
+        }
+      ],
+      "Charge":5,
+      "Inventory":{
+        "ItemSlots": 4,
+        "TilePieces":[
+          "|1B-",
+          "|1B-"
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": []
+    },
+    {
+      "Name":"Dartist",
+      "Type":"Offensive",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":3
+        }
+      ],
+      "Charge":5,
+      "Inventory":{
+        "ItemSlots": 4,
+        "TilePieces":[
+          "|1DP-",
+          "!1B-",
+          "!1P-"
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 0,
+          "Target": "Opponent",
+          "Keys": ["Damage", "Effected"]
+        }
+      ]
+    },
+    {
+      "Name":"Swordsman",
+      "Type":"Offensive",
+      "Degree":2,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":4
+        }
+      ],
+      "Charge":3,
+      "Inventory":{
+        "ItemSlots":[
+          {},
+          {},
+          {},
+          {}
+        ],
+        "TilePieces":[
+          "|1D",
+          "|"
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 3,
+          "Target": "Opponent",
+          "Keys": ["Damage", "Stunted"]
+        }
+      ]
+    },
+    {
+      "Name":"Brute",
+      "Type":"Defensive",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":4
+        }
+      ],
+      "Charge":5,
+      "Inventory":{
+        "ItemSlots":[
+          {},
+          {},
+          {},
+          {}
+        ],
+        "TilePieces":[
+          "T",
+          "T",
+          "."
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 1,
+          "Target": "Opponent",
+          "Keys": ["Stunted", "Knockback"]
+        }
+      ]
+    },
+    {
+      "Name":"Mage",
+      "Type":"Magician",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":2
+        }
+      ],
+      "Charge":7,
+      "Inventory":{
+        "ItemSlots":[
+          {},
+          {},
+          {},
+          {}
+        ],
+        "TilePieces":[
+          "T",
+          "|",
+          "|"
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 1,
+          "Target": "Team",
+          "Keys": ["Charge"]
+        }
+      ]
+    },
+    {
+      "Name":"Zeus",
+      "Type":"Healer",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":3
+        }
+      ],
+      "Charge":3,
+      "Inventory":{
+        "ItemSlots": 4,
+        "TilePieces":[
+          "L1D-",
+          "!1H-",
+          "!"
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 2,
+          "Target": "Team",
+          "Keys": ["Charge", "Singular"]
+        }
+      ]
+    },
+    {
+      "Name":"Medic",
+      "Type":"Healer",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":3
+        }
+      ],
+      "Charge":3,
+      "Inventory":{
+        "ItemSlots": 4,
+        "TilePieces":[
+          "+1D",
+          "T"
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 1,
+          "Target": "Team",
+          "Keys": ["Charge", "Singular"]
+        },
+        {
+          "Value": 1,
+          "Target": "Team",
+          "Keys": ["Heal"]
+        }
+      ]
+    },
+    {
+      "Name":"Healer",
+      "Type":"Healer",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":2
+        }
+      ],
+      "Charge":5,
+      "Inventory":{
+        "ItemSlots": 4,
+        "TilePieces":[
+          "L",
+          "|1H-",
+          "|1H-"
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 1,
+          "Target": "Opponent",
+          "Keys": ["Poison"]
+        }
+      ]
+    },
+    {
+      "Name":"Necro",
+      "Type":"Healer",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":1
+        }
+      ],
+      "Charge":4,
+      "Inventory":{
+        "ItemSlots": 4,
+        "TilePieces":[
+          "L1H",
+          "!",
+          "!",
+          "!",
+          ".",
+          "."
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 1,
+          "Target": "Opponent",
+          "Keys": ["Poison"]
+        }
+      ]
+    },
+    {
+      "Name":"Angel",
+      "Type":"Healer",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":4
+        }
+      ],
+      "Charge":5,
+      "Inventory":{
+        "ItemSlots": 4,
+        "TilePieces":[
+          "|1H-",
+          "L1H-"
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 1,
+          "Target": "Opponent",
+          "Keys": ["Damage", "Stunted", "Knockback"]
+        },
+        {
+          "Value": 2,
+          "Target": "Team",
+          "Keys": ["Heal", "Singular"]
+        }
+      ]
+    },
+    {
+      "Name":"Spy",
+      "Type":"Informant",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":1
+        }
+      ],
+      "Charge":5,
+      "Inventory":{
+        "ItemSlots":[
+          {},
+          {},
+          {},
+          {}
+        ],
+        "TilePieces":[
+          "L",
+          "!",
+          "!",
+          "."
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 1,
+          "Target": "Self",
+          "Keys": ["Discard"]
+        }
+      ]
+    },
+    {
+      "Name":"Twister",
+      "Type":"Mobilizer",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":5
+        }
+      ],
+      "Charge":5,
+      "Inventory":{
+        "ItemSlots":[
+          {},
+          {},
+          {},
+          {}
+        ],
+        "TilePieces":[
+          "T1R",
+          "L1R",
+          "L"
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 1,
+          "Target": "Team",
+          "Keys": ["Heal"]
+        }
+      ]
+    }
+  ]
+}

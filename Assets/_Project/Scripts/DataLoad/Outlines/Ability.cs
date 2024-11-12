@@ -69,11 +69,9 @@ public class Ability
             key.ModifyAction(target, this);
             if (key is SingularKeyword) usedThisCombat = true;
         }
-        if (GameManager.Instance.AbilityUser != null) GameManager.Instance.AbilityUser.BecomeUsed();
         if (GameManager.Instance.Phase == GamePhase.UsingActiveAbility)
         {
-            EventHandler.Invoke("Ability/DestroyPanel", null);
-            GameManager.Instance.TargetRadius = null;
+            GameManager.Instance.EndUseOfAbility();
         }
 
         value = startingAbilityValue;

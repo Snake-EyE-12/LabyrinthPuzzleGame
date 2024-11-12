@@ -1,0 +1,56 @@
+{
+  "Layouts":[
+    {
+      "Name":"All",
+      "Characters":[
+        "Offensive",
+        "Defensive",
+        "Magician",
+        "Healer",
+        "Informant",
+        "Mobilizer",
+        "Agent"
+        ],
+      "Weight": 10
+    },
+    {
+      "Name":"MIB",
+      "Characters":[
+        "Agent",
+        "Agent",
+        "Agent",
+        "Agent"
+      ],
+      "Weight": 10
+    },
+    {
+      "Name":"Red",
+      "Characters":[
+        "Healer",
+        "Healer"
+      ],
+      "Weight": 1000
+    },
+    {
+      "Name":"Test",
+      "Characters":[
+        "Offensive",
+        "Offensive",
+        "Healer",
+        "Healer"
+      ],
+      "Weight": 1000
+    },
+    {
+      "Name":"Orange",
+      "Characters":[
+        "Offensive",
+        "Offensive",
+        "Offensive",
+        "Offensive",
+        "Healer"
+      ],
+      "Weight": 1000
+    }
+  ]
+}

@@ -184,14 +184,14 @@ public class GameManager : Singleton<GameManager>
     public void UseActiveCharacterAbility(EnemyDisplay target)
     {
         AbilityInUse.Use(target);
-        SetSelectionMode(SelectableGroupType.Team);
         Clean();
+        SetSelectionMode(SelectableGroupType.Team);
     }
     public void UseActiveCharacterAbility(CharacterDisplay target)
     {
         AbilityInUse.Use(target);
-        SetSelectionMode(SelectableGroupType.Team);
         Clean();
+        SetSelectionMode(SelectableGroupType.Team);
     }
 
     public void Clean()
@@ -400,6 +400,7 @@ public class GameManager : Singleton<GameManager>
     public void SetSelectionMode(SelectableGroupType type)
     {
         selector.ChangeSelectionType(type);
+        Debug.Log("Selection Mode: " + type + " AbilityInUse: " + (Phase == GamePhase.UsingActiveAbility));
         
     }
     
@@ -411,8 +412,12 @@ public class GameManager : Singleton<GameManager>
 
     public void SetCardToPlace(CardDisplay cd)
     {
+        if (cd == null)
+        {
+            if(cardToPlace != null) cardToPlace.SetAsActiveSelection(false);
+            return;
+        }
         cd.SetAsActiveSelection((cd != null));
-        if (cd == null) return;
         cardToPlace = cd;
         SetSelectionMode(SelectableGroupType.Tile);
     }
@@ -440,6 +445,16 @@ public class GameManager : Singleton<GameManager>
             slide.ChangeRotation(value);
         }
     }
+
+    public void EndUseOfAbility()
+    {
+        EventHandler.Invoke("Ability/DestroyPanel", null);
+        if (AbilityUser != null) AbilityUser.BecomeUsed();
+        AbilityUser = null;
+        TargetRadius = null;
+        Phase = GamePhase.None;
+    }
+    
 
     public Ability AbilityInUse { get; set; }
     private Targetable abilityUser;

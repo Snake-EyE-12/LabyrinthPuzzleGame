@@ -752,8 +752,8 @@ MonoBehaviour:
     audioType: 0
   - audioName: ButtonClick
     audioClip: {fileID: 8300000, guid: 8cc21e65a56be5c4b81338cfcbd96bf4, type: 3}
-    volume: {x: 1, y: 1}
-    pitch: {x: 1, y: 1}
+    volume: {x: 0.5, y: 0.6}
+    pitch: {x: 0.9, y: 1.1}
     audioType: 0
   - audioName: Footsteps
     audioClip: {fileID: 8300000, guid: be185e823a813e244a39bf495f5ed28e, type: 3}

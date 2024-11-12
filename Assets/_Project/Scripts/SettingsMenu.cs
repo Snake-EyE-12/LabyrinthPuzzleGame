@@ -13,13 +13,22 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField] private Slider musicVolume;
     [SerializeField] private GameObject menu;
 
-    private void Awake()
+    private void Start()
     {
         masterVolume.onValueChanged.AddListener(SetMasterVolume);
         musicVolume.onValueChanged.AddListener(SetMusicVolume);
         sfxVolume.onValueChanged.AddListener(SetSFXVolume);
+        SetSliderValues();
+        SetVolumes();
     }
 
+    private void SetVolumes()
+    {
+        SetMasterVolume(PlayerPrefs.GetFloat("Master_Volume"));
+        SetMusicVolume(PlayerPrefs.GetFloat("Music_Volume"));
+        SetSFXVolume(PlayerPrefs.GetFloat("SFX_Volume"));
+        Debug.Log("Music Volume: " + PlayerPrefs.GetFloat("Music_Volume"));
+    }
     public void SetMasterVolume(float volume)
     {
         PlayerPrefs.SetFloat("Master_Volume", volume);
@@ -38,10 +47,15 @@ public class SettingsMenu : MonoBehaviour
 
     public void Open()
     {
+        SetSliderValues();
+        menu.SetActive(true);
+    }
+
+    private void SetSliderValues()
+    {
         masterVolume.value = PlayerPrefs.GetFloat("Master_Volume");
         musicVolume.value = PlayerPrefs.GetFloat("Music_Volume");
         sfxVolume.value = PlayerPrefs.GetFloat("SFX_Volume");
-        menu.SetActive(true);
     }
 
     public void Close()

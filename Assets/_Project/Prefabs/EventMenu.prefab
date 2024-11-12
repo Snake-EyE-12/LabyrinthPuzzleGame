@@ -234,6 +234,7 @@ MonoBehaviour:
   coins: {fileID: 776243407394388487}
   inventoryCharmDisplayPrefab: {fileID: 8700389482980061066, guid: d04c657eee393ee49a18367a97739860, type: 3}
   inventoryCharmParent: {fileID: 9029927346005957570}
+  layoutDisabler: {fileID: 1126854531587371524}
 --- !u!1 &4648335290116217871
 GameObject:
   m_ObjectHideFlags: 0

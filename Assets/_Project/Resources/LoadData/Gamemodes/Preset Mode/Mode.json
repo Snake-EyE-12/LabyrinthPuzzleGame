@@ -1,10 +1,10 @@
 {
-  "Description": "5 Character Selection",
-  "DisplayColor": {"r":0.8,"g":0.7,"b":0.1,"a":1.0},
-  "GridSize": 3,
+  "Description": "4O1R",
+  "DisplayColor": {"r":0.2,"g":0.78,"b":0.145,"a":1.0},
+  "GridSize": 5,
   "CharacterSelection":
   {
-    "Type": "Draft",
+    "Type": "Preset",
     "Choices": 3,
     "Default": "Orange",
     "Total": 5,
@@ -39,8 +39,8 @@
       "Events": 
       [
         {
-          "Type": "Challenge",
-          "Weight": 4
+          "Type": "Shop",
+          "Weight": 20
         }
       ],
       "Sequence":

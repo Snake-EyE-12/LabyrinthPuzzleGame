@@ -18,7 +18,7 @@ public abstract class RoundPhase
     public virtual void UpdatePhase() { }
     public virtual void EndPhase() { }
     protected void SkipPhase() { tm.NextPhase();}
-    public virtual float GetTransitionTime() { return 0.0001f; }
+    public virtual float GetTransitionTime() { return 0.0f; }
     public virtual void ReturnToThis() { }
     public virtual void OnQuickLeave() { }
 }

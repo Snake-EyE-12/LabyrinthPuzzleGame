@@ -30,6 +30,7 @@ public class CharacterAbilityDisplay : Display<List<Ability>>
         {
             GameManager.Instance.Phase = GamePhase.None;
             GameManager.Instance.Clean();
+            GameManager.Instance.SetSelectionMode(SelectableGroupType.Team);
             ImmediateRemove();
         }
     }

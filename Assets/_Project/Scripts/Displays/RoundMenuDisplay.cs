@@ -19,6 +19,7 @@ public class RoundMenuDisplay : Display<EventsForRound>
     [SerializeField] private TMP_Text coins;
     [SerializeField] private InventoryCharmDisplay inventoryCharmDisplayPrefab;
     [SerializeField] private Transform inventoryCharmParent;
+    [SerializeField] private LayoutDisable layoutDisabler;
     
     public override void Render()
     {
@@ -27,6 +28,8 @@ public class RoundMenuDisplay : Display<EventsForRound>
             EventAcceptor ea = CreateEventAcceptor(e);
             if(ea != null) Instantiate(eventAcceptorButtonDisplayPrefab, buttonParent.transform).Set(ea);
         }
+
+        layoutDisabler.AllowDisable();
 
         //buttonParent.enabled = false;
 

@@ -8,10 +8,33 @@ public class LayoutDisable : MonoBehaviour
 {
     [SerializeField] private LayoutGroup group;
 
+    private bool canDisable = false;
+    private bool waitingTick = false;
+    private bool currentlyDisabled = false;
+    private void Awake()
+    {
+        group.enabled = true;
+        canDisable = true;
+        waitingTick = false;
+    }
+
     private void Update()
     {
-        group.enabled = false;
-        this.enabled = false;
+        if (currentlyDisabled) return;
+        if (canDisable)
+        {
+            if (waitingTick)
+            {
+                group.enabled = false;
+                currentlyDisabled = true;
+            }
+            waitingTick = true;
+        }
+    }
+
+    public void AllowDisable()
+    {
+        canDisable = true;
     }
     
 }
