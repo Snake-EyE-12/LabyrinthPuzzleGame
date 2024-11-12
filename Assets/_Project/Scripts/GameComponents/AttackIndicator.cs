@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Guymon.Components;
 using Guymon.DesignPatterns;
 using UnityEngine;
 
@@ -79,9 +80,13 @@ public class AttackIndicator : Singleton<AttackIndicator>
         foreach (var a in activeAttacks)
         {
             a.attack.Use(a.user);
+            cameraShaker.Shake(shakePerEnemy);
         }
         ClearAttacks();
     }
+
+    [SerializeField] private float shakePerEnemy;
+    [SerializeField] private Shake2D cameraShaker;
 }
 
 public struct EnemyAttackVisual

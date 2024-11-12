@@ -8954,6 +8954,8 @@ MonoBehaviour:
   descriptionTextbox: {fileID: 976554881}
   selectionIndicator: {fileID: 297335653}
   tileForDisplay: {fileID: 1789066784}
+  destinator: {fileID: 0}
+  xDistanceToOffScreen: 0
 --- !u!1 &297653355
 GameObject:
   m_ObjectHideFlags: 0
@@ -9622,6 +9624,8 @@ MonoBehaviour:
   heartImage: {fileID: 318784458}
   fullHeart: {fileID: 0}
   emptyHeart: {fileID: 0}
+  fire: {fileID: 0}
+  bleed: {fileID: 0}
 --- !u!114 &318784458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10409,6 +10413,7 @@ MonoBehaviour:
   selectionIndicator: {fileID: 359305087}
   healthBar: {fileID: 959578937}
   xpBar: {fileID: 443888409}
+  destinator: {fileID: 0}
   characterAbilityDisplayPrefab: {fileID: 3993613175125816632, guid: 05f4569d8f0346e40873282b00a23fd7, type: 3}
 --- !u!1 &363208007
 GameObject:
@@ -11956,6 +11961,8 @@ MonoBehaviour:
   heartImage: {fileID: 415782656}
   fullHeart: {fileID: 0}
   emptyHeart: {fileID: 0}
+  fire: {fileID: 0}
+  bleed: {fileID: 0}
 --- !u!114 &415782656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12912,6 +12919,7 @@ MonoBehaviour:
   selectionIndicator: {fileID: 443051513}
   healthBar: {fileID: 1156658314}
   xpBar: {fileID: 770602243}
+  destinator: {fileID: 0}
   characterAbilityDisplayPrefab: {fileID: 3993613175125816632, guid: 05f4569d8f0346e40873282b00a23fd7, type: 3}
 --- !u!1 &443888407
 GameObject:
@@ -14935,6 +14943,59 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &514761127
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 514761129}
+  - component: {fileID: 514761128}
+  m_Layer: 0
+  m_Name: EffectManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &514761128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 514761127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c600b3a7a134b48a5ddf8e1a5b7d497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effects:
+  - name: Damage
+    prefab: {fileID: 7161436230720126369, guid: 6f9bcdc38c1aa0740a979845f159e145, type: 3}
+  - name: Discard
+    prefab: {fileID: 7161436230720126369, guid: 9831c448738d20e4ebdf86e66cfbe507, type: 3}
+  - name: Rotate
+    prefab: {fileID: 7161436230720126369, guid: b30ae49c0b20ea6468c22ec52f1fdcc1, type: 3}
+  - name: Death
+    prefab: {fileID: 7161436230720126369, guid: 461a90c9df06ced478bd506ebb8d009a, type: 3}
+--- !u!4 &514761129
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 514761127}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &515556454
 GameObject:
   m_ObjectHideFlags: 0
@@ -16217,6 +16278,8 @@ MonoBehaviour:
   heartImage: {fileID: 579821829}
   fullHeart: {fileID: 0}
   emptyHeart: {fileID: 0}
+  fire: {fileID: 0}
+  bleed: {fileID: 0}
 --- !u!114 &579821829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17712,6 +17775,7 @@ GameObject:
   - component: {fileID: 645247838}
   - component: {fileID: 645247837}
   - component: {fileID: 645247836}
+  - component: {fileID: 645247840}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -17809,6 +17873,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &645247840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645247835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe804a1d42ae3084c9cd5fc48d5c1792, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &650829703
 GameObject:
   m_ObjectHideFlags: 0
@@ -22901,6 +22978,8 @@ MonoBehaviour:
   heartImage: {fileID: 823338176}
   fullHeart: {fileID: 0}
   emptyHeart: {fileID: 0}
+  fire: {fileID: 0}
+  bleed: {fileID: 0}
 --- !u!114 &823338176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24168,6 +24247,8 @@ MonoBehaviour:
   heartImage: {fileID: 850763057}
   fullHeart: {fileID: 0}
   emptyHeart: {fileID: 0}
+  fire: {fileID: 0}
+  bleed: {fileID: 0}
 --- !u!114 &850763057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25792,6 +25873,7 @@ MonoBehaviour:
   selectionIndicator: {fileID: 924867522}
   healthBar: {fileID: 1828904832}
   xpBar: {fileID: 1385606210}
+  destinator: {fileID: 0}
   characterAbilityDisplayPrefab: {fileID: 3993613175125816632, guid: 05f4569d8f0346e40873282b00a23fd7, type: 3}
 --- !u!1 &925173714
 GameObject:
@@ -25997,6 +26079,8 @@ MonoBehaviour:
   heartImage: {fileID: 929120442}
   fullHeart: {fileID: 0}
   emptyHeart: {fileID: 0}
+  fire: {fileID: 0}
+  bleed: {fileID: 0}
 --- !u!114 &929120442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28326,6 +28410,8 @@ MonoBehaviour:
   heartImage: {fileID: 1002906508}
   fullHeart: {fileID: 0}
   emptyHeart: {fileID: 0}
+  fire: {fileID: 0}
+  bleed: {fileID: 0}
 --- !u!114 &1002906508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29323,6 +29409,8 @@ MonoBehaviour:
   descriptionTextbox: {fileID: 457748211}
   selectionIndicator: {fileID: 1030484831}
   tileForDisplay: {fileID: 162989154}
+  destinator: {fileID: 0}
+  xDistanceToOffScreen: 0
 --- !u!1 &1035322433
 GameObject:
   m_ObjectHideFlags: 0
@@ -29921,6 +30009,8 @@ MonoBehaviour:
   descriptionTextbox: {fileID: 405044287}
   selectionIndicator: {fileID: 1064900987}
   tileForDisplay: {fileID: 290432950}
+  destinator: {fileID: 0}
+  xDistanceToOffScreen: 0
 --- !u!1 &1071769358
 GameObject:
   m_ObjectHideFlags: 0
@@ -32005,6 +32095,8 @@ MonoBehaviour:
   heartImage: {fileID: 1128191847}
   fullHeart: {fileID: 0}
   emptyHeart: {fileID: 0}
+  fire: {fileID: 0}
+  bleed: {fileID: 0}
 --- !u!114 &1128191847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32856,6 +32948,8 @@ MonoBehaviour:
   heartImage: {fileID: 1167867330}
   fullHeart: {fileID: 0}
   emptyHeart: {fileID: 0}
+  fire: {fileID: 0}
+  bleed: {fileID: 0}
 --- !u!114 &1167867330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34914,6 +35008,7 @@ MonoBehaviour:
   selectionIndicator: {fileID: 1268184420}
   healthBar: {fileID: 2089204359}
   xpBar: {fileID: 322276040}
+  destinator: {fileID: 0}
   characterAbilityDisplayPrefab: {fileID: 3993613175125816632, guid: 05f4569d8f0346e40873282b00a23fd7, type: 3}
 --- !u!1 &1273025885
 GameObject:
@@ -36909,6 +37004,8 @@ MonoBehaviour:
   heartImage: {fileID: 1343724384}
   fullHeart: {fileID: 0}
   emptyHeart: {fileID: 0}
+  fire: {fileID: 0}
+  bleed: {fileID: 0}
 --- !u!114 &1343724384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37143,6 +37240,7 @@ MonoBehaviour:
   selectionIndicator: {fileID: 1357230188}
   healthBar: {fileID: 1542883010}
   lootDisplayPrefab: {fileID: 8579758375376238872, guid: eb037f8d50589364eacf9a1bc563955b, type: 3}
+  destinator: {fileID: 0}
 --- !u!1 &1358908640
 GameObject:
   m_ObjectHideFlags: 0
@@ -39653,7 +39751,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 158c778977e84974ac7f14ff64fff9ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1881563414}
+  hitPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  corners:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  activeLines: []
+  lineToOwnerPrefab: {fileID: 0}
 --- !u!1 &1453319542
 GameObject:
   m_ObjectHideFlags: 0
@@ -40703,6 +40827,8 @@ MonoBehaviour:
   heartImage: {fileID: 1486632222}
   fullHeart: {fileID: 0}
   emptyHeart: {fileID: 0}
+  fire: {fileID: 0}
+  bleed: {fileID: 0}
 --- !u!114 &1486632222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43484,6 +43610,8 @@ MonoBehaviour:
   heartImage: {fileID: 1568435907}
   fullHeart: {fileID: 0}
   emptyHeart: {fileID: 0}
+  fire: {fileID: 0}
+  bleed: {fileID: 0}
 --- !u!114 &1568435907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47259,6 +47387,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackBoxDisplayPrefab: {fileID: 1179121412206958278, guid: 951e0efbb583395438d231b4a5eef150, type: 3}
+  shakePerEnemy: 0
+  cameraShaker: {fileID: 0}
 --- !u!114 &1718428180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47298,6 +47428,8 @@ MonoBehaviour:
   spacing: 2
   origin: {x: 0, y: 0}
   cam: {fileID: 645247838}
+  useSpecificSize: 0
+  specificSize: 0
 --- !u!114 &1718428183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47328,6 +47460,12 @@ MonoBehaviour:
   eventBuilder: {fileID: 1718428183}
   canvasTransform: {fileID: 542291129}
   slide: {fileID: 450977728}
+  camColorShifter: {fileID: 0}
+  lightColorEventPage: {r: 0, g: 0, b: 0, a: 0}
+  darkColorEventPage: {r: 0, g: 0, b: 0, a: 0}
+  lightColorFight: {r: 0, g: 0, b: 0, a: 0}
+  darkColorFight: {r: 0, g: 0, b: 0, a: 0}
+  activeDeck: {fileID: 0}
   shopDisplayPrefab: {fileID: 0}
   deckDisplayPrefab: {fileID: 0}
   turnManager: {fileID: 1718428180}
@@ -48463,6 +48601,8 @@ MonoBehaviour:
   heartImage: {fileID: 1740072980}
   fullHeart: {fileID: 0}
   emptyHeart: {fileID: 0}
+  fire: {fileID: 0}
+  bleed: {fileID: 0}
 --- !u!114 &1740072980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49122,7 +49262,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 158c778977e84974ac7f14ff64fff9ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 368049993}
+  hitPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  corners:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  activeLines: []
+  lineToOwnerPrefab: {fileID: 0}
 --- !u!1 &1763085499
 GameObject:
   m_ObjectHideFlags: 0
@@ -49906,6 +50072,8 @@ MonoBehaviour:
   heartImage: {fileID: 1792910997}
   fullHeart: {fileID: 0}
   emptyHeart: {fileID: 0}
+  fire: {fileID: 0}
+  bleed: {fileID: 0}
 --- !u!114 &1792910997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50556,6 +50724,8 @@ MonoBehaviour:
   heartImage: {fileID: 1814141225}
   fullHeart: {fileID: 0}
   emptyHeart: {fileID: 0}
+  fire: {fileID: 0}
+  bleed: {fileID: 0}
 --- !u!114 &1814141225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51056,6 +51226,8 @@ MonoBehaviour:
   descriptionTextbox: {fileID: 847841253}
   selectionIndicator: {fileID: 1827151442}
   tileForDisplay: {fileID: 1129321071}
+  destinator: {fileID: 0}
+  xDistanceToOffScreen: 0
 --- !u!1 &1828904829
 GameObject:
   m_ObjectHideFlags: 0
@@ -53046,6 +53218,8 @@ MonoBehaviour:
   heartImage: {fileID: 1891699947}
   fullHeart: {fileID: 0}
   emptyHeart: {fileID: 0}
+  fire: {fileID: 0}
+  bleed: {fileID: 0}
 --- !u!114 &1891699947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54309,6 +54483,7 @@ MonoBehaviour:
   selectionIndicator: {fileID: 1935585791}
   healthBar: {fileID: 1282605270}
   xpBar: {fileID: 1642711847}
+  destinator: {fileID: 0}
   characterAbilityDisplayPrefab: {fileID: 3993613175125816632, guid: 05f4569d8f0346e40873282b00a23fd7, type: 3}
 --- !u!1 &1939043875
 GameObject:
@@ -54851,6 +55026,8 @@ MonoBehaviour:
   heartImage: {fileID: 1949299518}
   fullHeart: {fileID: 0}
   emptyHeart: {fileID: 0}
+  fire: {fileID: 0}
+  bleed: {fileID: 0}
 --- !u!114 &1949299518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55194,6 +55371,8 @@ MonoBehaviour:
   heartImage: {fileID: 1967681272}
   fullHeart: {fileID: 0}
   emptyHeart: {fileID: 0}
+  fire: {fileID: 0}
+  bleed: {fileID: 0}
 --- !u!114 &1967681272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56149,6 +56328,8 @@ MonoBehaviour:
   heartImage: {fileID: 1990045988}
   fullHeart: {fileID: 0}
   emptyHeart: {fileID: 0}
+  fire: {fileID: 0}
+  bleed: {fileID: 0}
 --- !u!114 &1990045988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56538,8 +56719,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 713ac690ee634ba46a736a24c70635fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handParent: {fileID: 1020657496}
   cardDisplayPrefab: {fileID: 4909283073906307309, guid: 7790f7391d53e164e819e71460b4c8a6, type: 3}
+  handLayout: {fileID: 0}
+  spawnPoint: {x: 0, y: 0, z: 0}
 --- !u!1 &2013266941
 GameObject:
   m_ObjectHideFlags: 0
@@ -57985,6 +58167,7 @@ MonoBehaviour:
   selectionIndicator: {fileID: 2055592358}
   healthBar: {fileID: 510254368}
   lootDisplayPrefab: {fileID: 8579758375376238872, guid: eb037f8d50589364eacf9a1bc563955b, type: 3}
+  destinator: {fileID: 0}
 --- !u!1 &2057596707
 GameObject:
   m_ObjectHideFlags: 0
@@ -60291,3 +60474,4 @@ SceneRoots:
   - {fileID: 1453417192}
   - {fileID: 542291129}
   - {fileID: 645247839}
+  - {fileID: 514761129}

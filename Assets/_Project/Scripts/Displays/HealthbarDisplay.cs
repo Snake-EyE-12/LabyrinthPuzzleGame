@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthbarDisplay : Display<Health>
+public class HealthbarDisplay : Display<HealthBarHealthAndEffectsData>
 {
     [SerializeField] private Heart heartPrefab;
     private List<Heart> hearts = new List<Heart>();
@@ -10,7 +10,7 @@ public class HealthbarDisplay : Display<Health>
     public override void Render()
     {
         int heartIndex = 0;
-        foreach (var hpSection in item.GetHealthBarSegments())
+        foreach (var hpSection in item.health.GetHealthBarSegments())
         {
             for (int i = 0; i < hpSection.value; i++, heartIndex++)
             {
@@ -18,11 +18,11 @@ public class HealthbarDisplay : Display<Health>
                 {
                     hearts.Add(Instantiate(heartPrefab, transform));
                 }
-                hearts[heartIndex].Fill(hpSection.GetColor());
+                hearts[heartIndex].Fill(GetHeartData(hpSection.GetColor(), heartIndex, item.health.GetHealthValue()));
             }
         }
 
-        for (int i = heartIndex; i < item.GetMaxHealthValue(); i++, heartIndex++)
+        for (int i = heartIndex; i < item.health.GetMaxHealthValue(); i++, heartIndex++)
         {
             if (heartIndex >= hearts.Count)
             {
@@ -37,4 +37,25 @@ public class HealthbarDisplay : Display<Health>
 
         if(hearts.Count > 0) hearts.RemoveRange(heartIndex, (hearts.Count - heartIndex));
     }
+
+    private HeartState GetHeartData(Color okColor, int positionInBar, int total)
+    {
+        return new HeartState((total - item.poisonCount <= positionInBar), (total - item.bleedCount <= positionInBar),
+            (total - item.burnCount <= positionInBar), okColor);
+    }
+}
+
+public class HealthBarHealthAndEffectsData
+{
+    public HealthBarHealthAndEffectsData(Health h, int p, int burn, int bl)
+    {
+        health = h;
+        poisonCount = p;
+        burnCount = burn;
+        bleedCount = bl;
+    }
+    public Health health;
+    public int poisonCount;
+    public int burnCount;
+    public int bleedCount;
 }

@@ -23,7 +23,8 @@ public class PostBattleCharacterDisplay : Display<Character>
         colorRing.color = color;
         nameText.text = $"<color=#{ColorUtility.ToHtmlStringRGB(color)}FF>{item.unitName}</color> ";
         characterImage.sprite = Resources.Load<Sprite>("KeynamedSprites/Faces/Heros/" + item.unitName);
-        healthBar.Set(item.health);
+        int[] dots = item.GetDOTArray(item.ActiveEffectsList.GetActiveEffects());
+        healthBar.Set(new HealthBarHealthAndEffectsData(item.health, dots[0], dots[1], dots[2]));
         xpBar.Set(item.XP);
         foreach (var a in item.abilityList)
         {

@@ -27,6 +27,7 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
     public void ApplyEndOfTurnPhaseEffects()
     {
         item.ActiveEffectsList.EndOfTurn(this);
+        SetHealthBar();
     }
     public override void Render()
     {
@@ -82,6 +83,11 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
     public Vector2Int GetGridPosition()
     {
         return gridPosition;
+    }
+
+    public Transform GetTransform()
+    {
+        return transform;
     }
 
     [SerializeField] private Destinator destinator;
@@ -185,7 +191,12 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
     {
         GameManager.Instance.AddSelectable(this, selectionIndicator.type);
         damager = new Damager(item);
-        healthBar.Set(item.health);
+        SetHealthBar();
+    }
+    private void SetHealthBar()
+    {
+        int[] dots = item.GetDOTArray(item.ActiveEffectsList.GetActiveEffects());
+        healthBar.Set(new HealthBarHealthAndEffectsData(item.health, dots[0], dots[1], dots[2]));
     }
 
     public void HitByAbility(Ability ability)
@@ -210,6 +221,7 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
     public void ApplyEffect(ActiveEffectType effect)
     {
         item.ActiveEffectsList.AddEffect(effect);
+        SetHealthBar();
     }
 
     public List<ActiveEffectType> GetEffects()

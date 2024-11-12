@@ -247,6 +247,8 @@ public class RotateKeyword : ValueKey
     public override void ModifyAction(Targetable t, Ability abilityInUse)
     {
         t.GetMap().RotateTile(t.GetGridPosition(), abilityInUse.value);
+        //Transform owner = GameManager.Instance.AbilityUser != null ? GameManager.Instance.AbilityUser.GetTransform() : null;
+        EffectHolder.Instance.SpawnEffect(keywordName.name, t.GetTransform());
     }
 
     public RotateKeyword(KeywordName keyName) : base(keyName)
@@ -273,6 +275,7 @@ public class DiscardKeyword : ValueKey
     public override void ModifyAction(Targetable t, Ability abilityInUse)
     {
         EventHandler.Invoke("Deck/DiscardFirst", null);
+        EffectHolder.Instance.SpawnEffect(keywordName.name, GameManager.Instance.AbilityUser.GetTransform());
     }
 }
 
@@ -311,6 +314,7 @@ public class DamageKeyword : ValueKey
     public override void ModifyAction(Targetable t, Ability abilityInUse)
     {
         t.ChangeHealth(-abilityInUse.value);
+        EffectHolder.Instance.SpawnEffect(keywordName.name, t.GetTransform());
     }
 
     public DamageKeyword(KeywordName keyName) : base(keyName)

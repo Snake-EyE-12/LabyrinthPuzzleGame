@@ -22,6 +22,7 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
     public void ApplyEndOfTurnPhaseEffects()
     {
         item.ActiveEffectsList.EndOfTurn(this);
+        SetHealthBar();
     }
     public List<ActiveEffectType> GetEffects()
     {
@@ -161,14 +162,24 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
     {
         GameManager.Instance.AddSelectable(this, selectionIndicator.type);
         damager = new Damager(item);
-        healthBar.Set(item.health);
+        SetHealthBar();
         GameManager.Instance.AddEnemey(this);
+    }
+
+    private void SetHealthBar()
+    {
+        int[] dots = item.GetDOTArray(item.ActiveEffectsList.GetActiveEffects());
+        healthBar.Set(new HealthBarHealthAndEffectsData(item.health, dots[0], dots[1], dots[2]));
     }
 
 
     public void HitByAbility(Ability ability)
     {
         ability.Use(this);
+    }
+    public Transform GetTransform()
+    {
+        return transform;
     }
 
     public void ChangeHealth(int amount)
@@ -185,6 +196,7 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
     public void ApplyEffect(ActiveEffectType effect)
     {
         item.ActiveEffectsList.AddEffect(effect);
+        SetHealthBar();
     }
 
     public void MoveToPlace(Vector2Int direction)

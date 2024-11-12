@@ -121,6 +121,7 @@ public class GameManager : Singleton<GameManager>
         Vector2Int averageEnemyPos = GetAverageEnemyPos();
         foreach (var enemy in activeEnemies)
         {
+            if(enemy)
             enemy.MoveToPlace(enemy.FindSmartDirectionToMove(center, GetClosestUnit(enemy.GetGridPosition(), new List<GridPositionable>(activeTeam)), GetClosestUnit(enemy.GetGridPosition(), new List<GridPositionable>(activeEnemies)), averageTeamPos, averageEnemyPos));
         }
     }
@@ -270,6 +271,7 @@ public class GameManager : Singleton<GameManager>
                 if (cd.GetCharacter().Equals(deadCharacter))
                 {
                     cd.Vanish();
+                    EffectHolder.Instance.SpawnEffect("Death", cd.GetTransform().position);
                     //if(activeTeam.Count <= 0) Lose(); // Immediate Lose
                     return;
                 }
@@ -360,6 +362,7 @@ public class GameManager : Singleton<GameManager>
         }
         activeRoundMenuDisplay = Instantiate(roundMenuDisplayPrefab, canvasTransform);
         activeRoundMenuDisplay.Set(DataHolder.eventsForEachRound[currentRound - 1]);
+        activeRoundMenuDisplay.transform.SetSiblingIndex(2);
         camColorShifter.SetColorSet(lightColorEventPage, darkColorEventPage);
     }
 
@@ -502,6 +505,7 @@ public interface Targetable
     public List<ActiveEffectType> GetEffects();
     public void MoveToPlace(Vector2Int direction);
     public Vector2Int GetGridPosition();
+    public Transform GetTransform();
 
     public void BecomeUsed();
     public void CheckForDeath();

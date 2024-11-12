@@ -22,6 +22,18 @@ public abstract class Unit
         if (health.isDead) Die();
     }
     
+    public int[] GetDOTArray(List<ActiveEffectType> ae)
+    {
+        int[] poisonBurnBleed = new int[3];
+        foreach (var aet in ae)
+        {
+            if (aet is PoisonActiveEffect) poisonBurnBleed[0] = aet.value;
+            if (aet is BurnActiveEffect) poisonBurnBleed[1] = aet.value;
+            if (aet is BleedActiveEffect) poisonBurnBleed[2] = aet.value;
+        }
+        return poisonBurnBleed;
+    }
+    
     
     
     //

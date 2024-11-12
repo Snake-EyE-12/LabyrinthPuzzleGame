@@ -634,6 +634,7 @@ GameObject:
   - component: {fileID: 269498367}
   - component: {fileID: 269498366}
   - component: {fileID: 269498369}
+  - component: {fileID: 269498370}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -731,6 +732,46 @@ MonoBehaviour:
   darkColor: {r: 0.3333333, g: 0.3333333, b: 0.3333333, a: 1}
   duration: 100
   cam: {fileID: 269498367}
+--- !u!114 &269498370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 269498365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9c5bcaf176ad7d408267f0e3205759d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeable: 1
+  type: 2
+  translationalMagnitude: 1
+  rotationalMagnitude: 2.3
+  tramaCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &271721810
 GameObject:
   m_ObjectHideFlags: 0
@@ -2432,6 +2473,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackBoxDisplayPrefab: {fileID: 1179121412206958278, guid: 951e0efbb583395438d231b4a5eef150, type: 3}
+  shakePerEnemy: 0.09
+  cameraShaker: {fileID: 269498370}
 --- !u!114 &1044629142
 MonoBehaviour:
   m_ObjectHideFlags: 0

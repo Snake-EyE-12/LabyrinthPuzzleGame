@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98ee68e6b8d2cd740b6c7986e923adfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heartPrefab: {fileID: 5241918118691832930, guid: febc4ce43abc6d94e832c4a809379548, type: 3}
+  heartPrefab: {fileID: 7145635506336900775, guid: ace2e8e5af7e1c2408092c5622c6d704, type: 3}
 --- !u!114 &87312260961815682
 MonoBehaviour:
   m_ObjectHideFlags: 0
