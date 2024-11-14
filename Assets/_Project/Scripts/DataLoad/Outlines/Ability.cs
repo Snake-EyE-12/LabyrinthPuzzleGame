@@ -63,6 +63,7 @@ public class Ability
     public void Use(Targetable target)
     {
         CommandHandler.Clear();
+        if (IsImmune(target)) return;
         int startingAbilityValue = value;
         foreach (var key in keys)
         {
@@ -73,8 +74,20 @@ public class Ability
         {
             GameManager.Instance.EndUseOfAbility();
         }
-
         value = startingAbilityValue;
+        target.CheckForDeath();
+    }
+
+    private bool IsImmune(Targetable t)
+    {
+        foreach (var aet in t.GetEffects())
+        {
+            if(aet is ImmunityActiveEffect)
+                if (aet.value > 0)
+                    return true;
+        }
+
+        return false;
     }
 
     private Ability()
@@ -315,6 +328,7 @@ public class DamageKeyword : ValueKey
     {
         t.ChangeHealth(-abilityInUse.value);
         EffectHolder.Instance.SpawnEffect(keywordName.name, t.GetTransform());
+        
     }
 
     public DamageKeyword(KeywordName keyName) : base(keyName)
@@ -450,7 +464,7 @@ public class SingularKeyword : ValueKey // TODO
     }
 
 }
-public class ShieldKeyword : ValueKey // TODO
+public class ShieldKeyword : ValueKey
 {
     public ShieldKeyword(KeywordName keyName) : base(keyName)
     {
@@ -458,6 +472,10 @@ public class ShieldKeyword : ValueKey // TODO
     public override KeywordOrder GetKeyOrder()
     {
         return KeywordOrder.Effect;
+    }
+    public override void ModifyAction(Targetable t, Ability abilityInUse)
+    {
+        t.ApplyEffect(new ShieldActiveEffect(abilityInUse.value));
     }
 
     public override int GetLayerOrder()
@@ -495,6 +513,10 @@ public class IntangibleKeyword : ValueKey // TODO
     public override KeywordOrder GetKeyOrder()
     {
         return KeywordOrder.Effect;
+    }
+    public override void ModifyAction(Targetable t, Ability abilityInUse)
+    {
+        t.ApplyEffect(new ImmunityActiveEffect(abilityInUse.value));
     }
 }
 public class PenetrateKeyword : ValueKey // TODO

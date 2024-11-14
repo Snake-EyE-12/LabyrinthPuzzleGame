@@ -1,10 +1,10 @@
 {
   "Description": "5 Character Selection",
   "DisplayColor": {"r":0.8,"g":0.7,"b":0.1,"a":1.0},
-  "GridSize": 3,
+  "GridSize": 6,
   "CharacterSelection":
   {
-    "Type": "Draft",
+    "Type": "Preset",
     "Choices": 3,
     "Default": "Orange",
     "Total": 5,
@@ -62,6 +62,6 @@
   "HandSize": 4,
   "MaxChallengeAdditions": 4,
   "ChallengeRange": {"Min": -1, "Max": 1},
-  "PostBattleHealPercent": 100,
+  "PostBattleHealPercent": 50,
   "ProductsPerShop": 3
 }

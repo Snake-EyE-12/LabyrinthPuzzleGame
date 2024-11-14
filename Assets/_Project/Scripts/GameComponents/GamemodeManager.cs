@@ -27,6 +27,7 @@ public class GamemodeManager : Singleton<GamemodeManager>
     public void Load(Mode mode)
     {
         handler.ReadDataFromMode(mode);
+        EventHandler.ClearListeners();
         SceneChanger.LoadScene("Game");
     }
 }

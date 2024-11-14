@@ -150,7 +150,14 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
 
     public bool IsCurrentlySelectable()
     {
-        return GameManager.Instance.Phase == GamePhase.UsingActiveAbility && GameManager.Instance.InActiveSelectionRange(gridPosition);
+        return GameManager.Instance.Phase == GamePhase.UsingActiveAbility && GameManager.Instance.InActiveSelectionRange(gridPosition) && CanBeTargeted(GameManager.Instance.AbilityInUse.targetDescription);
+    }
+
+    private bool CanBeTargeted(string targettingType)
+    {
+        if(targettingType == "Opponent") return true;
+        if(targettingType == "Any") return true;
+        return false;
     }
 
     public void Activate(SelectableActivatorData data)
@@ -168,8 +175,7 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
 
     private void SetHealthBar()
     {
-        int[] dots = item.GetDOTArray(item.ActiveEffectsList.GetActiveEffects());
-        healthBar.Set(new HealthBarHealthAndEffectsData(item.health, dots[0], dots[1], dots[2]));
+        healthBar.Set(new HealthBarHealthAndEffectsData(item.health, item.ActiveEffectsList));
     }
 
 
@@ -186,8 +192,18 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
     {
         if (amount < 0)
         {
-            damager.TakeDamage(-amount);
-            if (item.health.isDead) item.Die();
+            amount *= -1;
+            ShieldActiveEffect shield = item.ActiveEffectsList.GetEffect<ShieldActiveEffect>();
+            if (shield == null) damager.TakeDamage(amount);
+            else if (shield.value > amount)
+            {
+                shield.value -= amount;
+            }
+            else
+            {
+                damager.TakeDamage(amount - shield.value);
+                shield.value = 0;
+            }
         }
         else damager.Heal(amount);
         healthBar.Render();
@@ -201,6 +217,8 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
 
     public void MoveToPlace(Vector2Int direction)
     {
+        FreezeActiveEffect ice = item.ActiveEffectsList.GetEffect<FreezeActiveEffect>();
+        if (ice == null || ice.value == 0) return;
         localMap.Move(this, direction);
     }
 

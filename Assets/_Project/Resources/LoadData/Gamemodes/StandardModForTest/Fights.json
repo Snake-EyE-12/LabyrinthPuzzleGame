@@ -8,11 +8,10 @@
       "Weight": 20,
       "Border": "Wrap",
       "Enemies": [
-        "E1",
         "E1"
       ],
       "FloorLayout": {
-        "Fill": "Row",
+        "Fill": "Expand",
         "AvailableTiles": [
           {
             "Tile": "+",

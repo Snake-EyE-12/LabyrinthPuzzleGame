@@ -1,7 +1,7 @@
 {
   "Description": "4O1R",
   "DisplayColor": {"r":0.2,"g":0.78,"b":0.145,"a":1.0},
-  "GridSize": 5,
+  "GridSize": 10,
   "CharacterSelection":
   {
     "Type": "Preset",

@@ -119,6 +119,21 @@ public class Attack : Weighted
             case "Cross":
                 shape = new CrossAttack(data.Power);
                 break;
+            case "Beam":
+                shape = new BeamAttack(data.Power);
+                break;
+            case "Triangle":
+                shape = new TriangleAttack(data.Power);
+                break;
+            case "Diagonal":
+                shape = new DiagonalAttack(data.Power);
+                break;
+            case "Star":
+                shape = new StarAttack(data.Power);
+                break;
+            case "Wave":
+                shape = new WaveAttack(data.Power);
+                break;
 
         }
     }
@@ -187,6 +202,7 @@ public class Attack : Weighted
         {
             foreach (var character in GameManager.Instance.GetActiveCharacters())
             {
+                if(character == null) continue; //  THIS DOES NOT SOLVE THE ISSUE TODO
                 if(character.GetGridPosition() == tilePosition)
                 {
                     ability.Use(character);
@@ -250,7 +266,7 @@ public class LineAttack : ShapeAttack
         CardinalDirection.East,
         CardinalDirection.South,
         CardinalDirection.West};
-    private Vector2Int BestLineDirection(List<Vector2Int> charactersPositions, Vector2Int attackerPosition)
+    protected Vector2Int BestLineDirection(List<Vector2Int> charactersPositions, Vector2Int attackerPosition)
     {
         int[] matches = new int[4];
         foreach (var pos in charactersPositions)
@@ -294,8 +310,8 @@ public class LineAttack : ShapeAttack
     }
     
 
-    private Vector2Int rd = Vector2Int.zero;
-    private Vector2Int RandomDirection {
+    protected Vector2Int rd = Vector2Int.zero;
+    protected Vector2Int RandomDirection {
         get
         {
             if (rd == Vector2Int.zero) return GameUtils.GetRandomDirection();
@@ -322,11 +338,41 @@ public class SquareAttack : ShapeAttack
     public override List<Vector2Int> GetShape()
     {
         List<Vector2Int> list = new List<Vector2Int>();
-        
+        for (int x = -power; x <= power; x++)
+        {
+            for (int y = -power; y <= power; y++)
+            {
+                Vector2Int pos = new Vector2Int(x, y);
+                if(IsValid(pos)) list.Add(pos);
+            }
+        }
         
         
         return list;
     }
+    private static readonly float range = 0.6f;
+    protected virtual bool IsValid(Vector2Int offset)
+    {
+        return (SquareDistance(Vector2Int.zero, offset) <= power);
+    }
+    protected int SquareDistance(Vector2 center, Vector2Int position)
+    {
+        float xDistance = Mathf.Abs(center.x - position.x);
+        float yDistance = Mathf.Abs(center.y - position.y);
+        return Mathf.Max(Mathf.CeilToInt(xDistance - range), Mathf.CeilToInt(yDistance - range));
+    }
+}
+
+public class WaveAttack : SquareAttack
+{
+    public WaveAttack(int power) : base(power)
+    {
+    }
+    protected override bool IsValid(Vector2Int offset)
+    {
+        return (SquareDistance(Vector2Int.zero, offset) == power);
+    }
+
 }
 
 public class CircleAttack : ShapeAttack
@@ -342,10 +388,21 @@ public class CircleAttack : ShapeAttack
     public override List<Vector2Int> GetShape()
     {
         List<Vector2Int> list = new List<Vector2Int>();
-        
+        for (int x = -power; x <= power; x++)
+        {
+            for (int y = -power; y <= power; y++)
+            {
+                Vector2Int pos = new Vector2Int(x, y);
+                if(IsValid(pos)) list.Add(pos);
+            }
+        }
         
         
         return list;
+    }
+    private bool IsValid(Vector2Int offset)
+    {
+        return offset.magnitude <= power;
     }
 }
 public class CrossAttack : ShapeAttack
@@ -364,6 +421,121 @@ public class CrossAttack : ShapeAttack
 
         for (int i = 1; i <= power; i++)
         {
+            list.Add((Vector2Int.up * i));
+            list.Add((Vector2Int.down * i));
+            list.Add((Vector2Int.left * i));
+            list.Add((Vector2Int.right * i));
+        }
+        
+        return list;
+    }
+}
+
+public class BeamAttack : LineAttack
+{
+    public BeamAttack(int power) : base(power)
+    {
+    }
+    public override int Size()
+    {
+        return power + 1;
+    }
+
+    public override List<Vector2Int> GetShape()
+    {
+        List<Vector2Int> list = new List<Vector2Int>();
+        Vector2Int direction = RandomDirection;
+        for (int i = 0; i < power + 1; i++)
+        {
+            list.Add((direction * (i)));
+        }
+        
+        return list;
+    }
+}
+public class TriangleAttack : LineAttack
+{
+    public TriangleAttack(int power) : base(power)
+    {
+    }
+    public override int Size()
+    {
+        return power * 3;
+    }
+
+    public override List<Vector2Int> GetShape()
+    {
+        List<Vector2Int> list = new List<Vector2Int>();
+        Vector2Int direction = RandomDirection;
+        bool isHorizontal = direction == Vector2Int.right || direction == Vector2Int.left;
+        list.Add(Vector2Int.zero);
+        for (int i = 1; i < power + 1; i++)
+        {
+            list.Add((direction * (i)));
+            if (isHorizontal)
+            {
+                list.Add((Vector2Int.up * i));
+                list.Add((Vector2Int.down * i));
+            }
+            else
+            {
+                list.Add((Vector2Int.right * i));
+                list.Add((Vector2Int.left * i));
+            }
+        }
+        
+        return list;
+    }
+}
+
+public class DiagonalAttack : ShapeAttack
+{
+    public DiagonalAttack(int power) : base(power)
+    {
+    }
+    public override int Size()
+    {
+        return power * 4;
+    }
+
+    public override List<Vector2Int> GetShape()
+    {
+        Vector2Int d = new Vector2Int(1, 1);
+        Vector2Int df = new Vector2Int(-1, 1);
+        List<Vector2Int> list = new List<Vector2Int>();
+        for (int i = 1; i < power + 1; i++)
+        {
+            list.Add(d * i);
+            list.Add(df * i);
+            list.Add(d * -i);
+            list.Add(df * -i);
+        }
+        
+        return list;
+    }
+}
+
+public class StarAttack : ShapeAttack
+{
+    public StarAttack(int power) : base(power)
+    {
+    }
+    public override int Size()
+    {
+        return power * 8;
+    }
+
+    public override List<Vector2Int> GetShape()
+    {
+        Vector2Int d = new Vector2Int(1, 1);
+        Vector2Int df = new Vector2Int(-1, 1);
+        List<Vector2Int> list = new List<Vector2Int>();
+        for (int i = 1; i < power + 1; i++)
+        {
+            list.Add(d * i);
+            list.Add(df * i);
+            list.Add(d * -i);
+            list.Add(df * -i);
             list.Add((Vector2Int.up * i));
             list.Add((Vector2Int.down * i));
             list.Add((Vector2Int.left * i));

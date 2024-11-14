@@ -55,9 +55,18 @@ public class AllFiller : GridFiller
 
 public class ExpandFiller : GridFiller
 {
+    private static readonly float range = 0.6f;
     public override Tile GetFillAt(int size, Vector2Int pos, FloorTile[] set)
     {
-        return Tile.GenerateRandomTile();
+        float centerPos = (size - 1) / 2.0f;
+        return TileAtIndex(Distance(new Vector2(centerPos, centerPos), pos), set);
+    }
+
+    private int Distance(Vector2 center, Vector2Int position)
+    {
+        float xDistance = Mathf.Abs(center.x - position.x);
+        float yDistance = Mathf.Abs(center.y - position.y);
+        return Mathf.Max(Mathf.CeilToInt(xDistance - range), Mathf.CeilToInt(yDistance - range));
     }
 }
 

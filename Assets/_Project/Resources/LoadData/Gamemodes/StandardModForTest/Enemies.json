@@ -16,8 +16,8 @@
       "AttackLayout":[
         {
           "Weight":1,
-          "Shape":"Line",
-          "Power":1,
+          "Shape":"Diagonal",
+          "Power":3,
           "Ability":{
             "Value": 1,
             "Target": "Opponent",

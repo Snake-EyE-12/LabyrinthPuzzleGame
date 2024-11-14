@@ -26,11 +26,22 @@
         "Value": 1,
         "Target": "Opponent",
         "Keys": ["Damage", "Stunted"]
+        },
+        {
+          "Value": 1,
+          "Target": "Team",
+          "Keys": ["Intangible"]
+        }
+      ,
+        {
+          "Value": 1,
+          "Target": "Team",
+          "Keys": ["Shield"]
         }
       ]
     },
     {
-      "Name":"Executer",
+      "Name":"Executioner",
       "Type":"Offensive",
       "Degree":1,
       "Health":[

@@ -13,6 +13,18 @@ public class ActiveEffectList
             AddEffect(aed.Type, aed.Value);
         }
     }
+    
+    public int[] GetDOTArray()
+    {
+        int[] poisonBurnBleed = new int[3];
+        foreach (var aet in effectBar)
+        {
+            if (aet is PoisonActiveEffect) poisonBurnBleed[0] = aet.value;
+            if (aet is BurnActiveEffect) poisonBurnBleed[1] = aet.value;
+            if (aet is BleedActiveEffect) poisonBurnBleed[2] = aet.value;
+        }
+        return poisonBurnBleed;
+    }
 
     public void ApplyDamage(Targetable t)
     {
@@ -27,6 +39,11 @@ public class ActiveEffectList
         {
             aet.OnEndOfTurn(t);
         }
+    }
+
+    public void Reset()
+    {
+        effectBar = new List<ActiveEffectType>();
     }
 
     public void AddEffect(string type, int value)
@@ -45,11 +62,26 @@ public class ActiveEffectList
             case "Bleed":
                 AddEffect(new BleedActiveEffect(value));
                 break;
+            case "Shield":
+                AddEffect(new ShieldActiveEffect(value));
+                break;
+            case "Immunity":
+                AddEffect(new ImmunityActiveEffect(value));
+                break;
             default:
                 break;
         }
     }
 
+    public T GetEffect<T>() where T : ActiveEffectType
+    {
+        foreach (var aet in effectBar)
+        {
+            if(aet is T) return aet as T;
+        }
+
+        return null;
+    }
     public void AddEffect(ActiveEffectType effect)
     {
         int indexOfEffect = GetIndexOfActiveEffectType(effect);
@@ -155,6 +187,10 @@ public class FreezeActiveEffect : ActiveEffectType
     public FreezeActiveEffect(int value) : base(value)
     {
     }
+    public override void OnEndOfTurn(Targetable u)
+    {
+        value = 0;
+    }
 }
 public class BleedActiveEffect : ActiveEffectType
 {
@@ -173,5 +209,26 @@ public class BleedActiveEffect : ActiveEffectType
     {
         this.value = Mathf.Clamp(this.value + value, 0, 1);
 
+    }
+}
+
+public class ShieldActiveEffect : ActiveEffectType
+{
+    public ShieldActiveEffect(int value) : base(value)
+    {
+    }
+    public override void OnEndOfTurn(Targetable u)
+    {
+        value = 0;
+    }
+}
+public class ImmunityActiveEffect : ActiveEffectType
+{
+    public ImmunityActiveEffect(int value) : base(value)
+    {
+    }
+    public override void OnEndOfTurn(Targetable u)
+    {
+        value = 0;
     }
 }

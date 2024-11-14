@@ -310,7 +310,7 @@ public class GameManager : Singleton<GameManager>
     {
         foreach (var member in team)
         {
-            member.health.Reset(DataHolder.currentMode.PostBattleHealPercent);
+            member.health.Reset(DataHolder.currentMode.PostBattleHealPercent, member.health.isDead);
         }
     }
 

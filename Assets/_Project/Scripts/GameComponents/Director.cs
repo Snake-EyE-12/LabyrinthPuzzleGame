@@ -1,6 +1,6 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
+using Guymon.DesignPatterns;
 using UnityEngine;
 using EventArgs = Guymon.DesignPatterns.EventArgs;
 
@@ -14,6 +14,7 @@ public class Director : MonoBehaviour
     {
         //Guymon.DesignPatterns.EventHandler.AddListener("Round/FightOver", Hide);
         Guymon.DesignPatterns.EventHandler.AddListener("CardPlaced", Hide);
+        //DontDestroyOnLoad(this.gameObject);
     }
 
     private void SetSize(int size)
@@ -87,5 +88,10 @@ public class Director : MonoBehaviour
     public void ChangeRotation(CardinalDirection direction)
     {
         if(isSlider) Display(direction, lastSize, lastPos, true);
+    }
+
+    private void OnDisable()
+    {
+        EventHandler.RemoveListener("CardPlaced", Hide);
     }
 }

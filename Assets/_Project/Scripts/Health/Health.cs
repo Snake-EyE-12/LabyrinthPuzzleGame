@@ -13,11 +13,12 @@ public class Health
     public Health(HealthData[] hd)
     {
         resetData = hd;
-        Reset(100);
+        Reset(100, false);
     }
 
-    public void Reset(int percent)
+    public void Reset(int percent, bool hadDied)
     {
+        //if(GetHealthValue() * 100.0f / maxHealth >= percent) return;
         maxHealth = 0;
         healthBar = new List<HealthType>();
         foreach (var hp in resetData)
@@ -25,7 +26,7 @@ public class Health
             AddHealthType(hp.Type, hp.Value);
             maxHealth += hp.Value;
         }
-        if(percent != 100) Damage(Mathf.CeilToInt(maxHealth * (percent / 100.0f)));
+        if(percent != 100 && hadDied) Damage(Mathf.FloorToInt(maxHealth * (percent / 100.0f)));
     }
     public List<HealthType> GetHealthBarSegments()
     {
