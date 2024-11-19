@@ -1,15 +1,17 @@
 {
-  "Description": "Intended Play",
-  "GridSize": 5,
+  "Active": true,
+  "Description": "A hearty battle of 5 with wits and skill to the death!",
+  "DisplayColor": {"r":0.45,"g":0.7,"b":0.9,"a":1.0},
+  "GridSize": 3,
   "CharacterSelection":
   {
-    "Type": "Draft",
+    "Type": "Choose",
     "Choices": 3,
     "Default": "Standard",
     "Total": 5,
     "InitialDegree": 1
   },
-  "Rounds": 20,
+  "Rounds": 3,
   "EventLayout":
   [
     {
@@ -32,10 +34,57 @@
         "Size": 1,
         "Repeated": 1
       }
+    },
+    {
+      "IncludeChance": 100,
+      "Events": 
+      [
+        {
+          "Type": "Shop",
+          "Weight": 20
+        }
+      ],
+      "Sequence":
+      {
+        "Range":
+        {
+          "Min": 1,
+          "Max": 20
+        },
+        "Begin": 2,
+        "Size": 1,
+        "Repeated": 2
+      }
+    },
+    {
+      "IncludeChance": 100,
+      "Events":
+      [
+        {
+          "Type": "Challenge",
+          "Weight": 20
+        }
+      ],
+      "Sequence":
+      {
+        "Range":
+        {
+          "Min": 1,
+          "Max": 20
+        },
+        "Begin": 1,
+        "Size": 1,
+        "Repeated": 1
+      }
     }
   ],
   "LowHealthPercent": 25,
   "MaximumIQ": 100,
   "CardsToPlacePerTurn": 2,
-  "HandSize": 4
+  "HandSize": 4,
+  "MaxChallengeAdditions": 4,
+  "ChallengeRange": {"Min": -1, "Max": 1},
+  "PostBattleHealPercent": 50,
+  "ProductsPerShop": 3,
+  "MaxCharacterDegree": 3
 }

@@ -7,7 +7,7 @@ public class PostBattleAbilityDisplay : Display<Ability>
     [SerializeField] private TMP_Text textbox;
     public override void Render()
     {
-        var descriptionBuilder = item.value + " ";
+        var descriptionBuilder = item.GetValue() + " ";
         foreach (var vk in item.keys)
         {
             descriptionBuilder += vk.GetKeywordName().ConvertToString() + ", ";

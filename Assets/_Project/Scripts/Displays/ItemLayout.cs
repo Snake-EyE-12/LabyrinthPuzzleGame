@@ -1,5 +1,6 @@
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,11 +26,12 @@ public class ItemLayout : MonoBehaviour
     {
         for (int i = 0; i < gridItems.Count; i++)
         {
-            gridItems[i].MoveVisually(Vector3.Lerp(transform.position + initPoint,
-                transform.position + finalPoint, i * 1.0f / gridItems.Count));
+            Vector3 finalPos = Vector3.Lerp(transform.position + initPoint,
+                transform.position + finalPoint, i * 1.0f / gridItems.Count);
+            gridItems[i].MoveVisually(finalPos);
         }
     }
-
+    
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;

@@ -7,13 +7,19 @@ using UnityEngine;
 
 public class Ability
 {
-    public int value;
+    private int value;
     private Target target;
     public string targetDescription;
     public List<ValueKey> keys = new List<ValueKey>();
     public string owner;
     public bool usedThisCombat;
-    
+    public bool isPenetrative;
+    public int growthValue = 0;
+
+    public int GetValue()
+    {
+        return value + growthValue;
+    }
     public string GetKeywordsString()
     {
         string output = "";
@@ -22,6 +28,11 @@ public class Ability
             output += key.GetKeywordName().name + ",";
         }
         return output.Substring(0, output.Length - 1);
+    }
+
+    public void AddToValue(int amount)
+    {
+        value += amount;
     }
 
 
@@ -55,6 +66,41 @@ public class Ability
         keywords.Sort((a, b) => a.GetOrder().CompareTo(b.GetOrder()));
     }
 
+    public bool ContainsKeyword(string keyword)
+    {
+        foreach (var vk in keys)
+        {
+            if (vk.GetKeywordName().name.Equals(keyword)) return true;
+        }
+
+        return false;
+    }
+    public bool RemoveKeyword(string keyword)
+    {
+        foreach (var vk in keys)
+        {
+            if (vk.GetKeywordName().name.Equals(keyword))
+            {
+                keys.Remove(vk);
+                return true;
+            }
+        }
+        return false;
+    }
+    public bool AddKeyword(string keyword)
+    {
+        foreach (var vk in keys)
+        {
+            
+            if (vk.GetKeywordName().name.Equals(keyword)) return false;
+            
+        }
+        KeywordName keyName = new KeywordName(){color = DataHolder.keywordColorEquivalenceTable.GetColor(keyword), name = keyword};
+        keys.Add(GetNewValueKeyOfType(keyName));
+        OrderAbilityKeywords(keys);
+        return true;
+    }
+
     
     public void PrepareTarget()
     {
@@ -63,24 +109,55 @@ public class Ability
     public void Use(Targetable target)
     {
         CommandHandler.Clear();
-        if (IsImmune(target)) return;
         int startingAbilityValue = value;
-        foreach (var key in keys)
+        if (!IsImmune(target))
         {
-            key.ModifyAction(target, this);
-            if (key is SingularKeyword) usedThisCombat = true;
+            foreach (var key in keys)
+            {
+                key.ModifyAction(target, this);
+                if (key is SingularKeyword) usedThisCombat = true;
+                int valueBeforeAreaUse = value;
+                if (key is AreaKeyword) AreaUse(target, startingAbilityValue);
+                value = valueBeforeAreaUse;
+            }
         }
+
         if (GameManager.Instance.Phase == GamePhase.UsingActiveAbility)
         {
             GameManager.Instance.EndUseOfAbility();
         }
         value = startingAbilityValue;
+        isPenetrative = false;
         target.CheckForDeath();
+    }
+
+    private void AreaUse(Targetable target, int value)
+    {
+        int startingGrowthValue = growthValue;
+        List<Targetable> cTargets = new List<Targetable>(GameManager.Instance.GetActiveCharacters());
+        List<Targetable> eTargets = new List<Targetable>(GameManager.Instance.GetActiveEnemies());
+        cTargets.AddRange(eTargets);
+        foreach (var t in cTargets)
+        {
+            growthValue = startingGrowthValue;
+            if (t.GetGridPosition() == target.GetGridPosition() && !IsImmune(t) && t != target)
+            {
+                int startValue = value;
+                foreach (var key in keys)
+                {
+                    key.ModifyAction(t, this);
+                }
+
+                this.value = startValue;
+            }
+            t.CheckForDeath();
+        }
+        growthValue = startingGrowthValue;
     }
 
     private bool IsImmune(Targetable t)
     {
-        foreach (var aet in t.GetEffects())
+        foreach (var aet in t.GetEffects().GetActiveEffects())
         {
             if(aet is ImmunityActiveEffect)
                 if (aet.value > 0)
@@ -131,6 +208,8 @@ public class Ability
             {
                 case "Stunted":
                     return new StuntedKeyword(keyword);
+                case "Melee":
+                    return new MeleeKeyword(keyword);
                 case "Knockback":
                     return new KnockbackKeyword(keyword);
                 case "Damage":
@@ -175,9 +254,11 @@ public class Ability
                     return new EffectedKeyword(keyword);
                 case "Cleanse":
                     return new CleanseKeyword(keyword);
+                case "Wash":
+                    return new WashKeyword(keyword);
                 case "Wounded":
                     return new WoundedKeyword(keyword);
-                case "Fix":
+                case "Build":
                     return new FixKeyword(keyword);
                 case "Break":
                     return new BreakKeyword(keyword);
@@ -221,7 +302,8 @@ public enum KeywordOrder
     Effect,
     Self,
     Board,
-    Post
+    Post,
+    Increment
 }
 
 
@@ -259,7 +341,7 @@ public class RotateKeyword : ValueKey
 {
     public override void ModifyAction(Targetable t, Ability abilityInUse)
     {
-        t.GetMap().RotateTile(t.GetGridPosition(), abilityInUse.value);
+        t.GetMap().RotateTile(t.GetGridPosition(), abilityInUse.GetValue());
         //Transform owner = GameManager.Instance.AbilityUser != null ? GameManager.Instance.AbilityUser.GetTransform() : null;
         EffectHolder.Instance.SpawnEffect(keywordName.name, t.GetTransform());
     }
@@ -301,10 +383,34 @@ public class StuntedKeyword : ValueKey
     {
         return KeywordOrder.Selection;
     }
+    public override int GetLayerOrder()
+    {
+        return 1;
+    }
 
     public override void ModifyRange(int value)
     {
         GameManager.Instance.TargetRadius = new TargetRadius() { radius = 1, squareRadius = 1, center = GameManager.Instance.AbilityUser.GetGridPosition()};
+    }
+}
+public class MeleeKeyword : ValueKey
+{
+    public MeleeKeyword(KeywordName keyName) : base(keyName)
+    {
+    }
+    public override KeywordOrder GetKeyOrder()
+    {
+        return KeywordOrder.Selection;
+    }
+
+    public override int GetLayerOrder()
+    {
+        return 2;
+    }
+
+    public override void ModifyRange(int value)
+    {
+        GameManager.Instance.TargetRadius = new TargetRadius() { radius = 0, squareRadius = 0, center = GameManager.Instance.AbilityUser.GetGridPosition()};
     }
 }
 public class KnockbackKeyword : ValueKey
@@ -326,8 +432,8 @@ public class DamageKeyword : ValueKey
 {
     public override void ModifyAction(Targetable t, Ability abilityInUse)
     {
-        t.ChangeHealth(-abilityInUse.value);
-        EffectHolder.Instance.SpawnEffect(keywordName.name, t.GetTransform());
+        t.ChangeHealth(-abilityInUse.GetValue(), abilityInUse.isPenetrative);
+        if(abilityInUse.GetValue() > 0) EffectHolder.Instance.SpawnEffect(keywordName.name, t.GetTransform());
         
     }
 
@@ -343,7 +449,8 @@ public class HealKeyword : ValueKey
 {
     public override void ModifyAction(Targetable t, Ability abilityInUse)
     {
-        t.ChangeHealth(abilityInUse.value);
+        t.ChangeHealth(abilityInUse.GetValue());
+        EffectHolder.Instance.SpawnEffect(keywordName.name, t.GetTransform());
     }
 
     public HealKeyword(KeywordName keyName) : base(keyName)
@@ -363,7 +470,8 @@ public class ChargeKeyword : ValueKey
 {
     public override void ModifyAction(Targetable t, Ability abilityInUse)
     {
-        t.GainXP(abilityInUse.value);
+        t.GainXP(abilityInUse.GetValue());
+        EffectHolder.Instance.SpawnEffect(keywordName.name, t.GetTransform());
     }
 
     public ChargeKeyword(KeywordName keyName) : base(keyName)
@@ -386,7 +494,7 @@ public class BleedKeyword : ValueKey
 
     public override void ModifyAction(Targetable t, Ability abilityInUse)
     {
-        t.ApplyEffect(new BleedActiveEffect(abilityInUse.value));
+        t.ApplyEffect(new BleedActiveEffect(abilityInUse.GetValue()));
     }
 }
 
@@ -403,7 +511,8 @@ public class PoisonKeyword : ValueKey
 
     public override void ModifyAction(Targetable t, Ability abilityInUse)
     {
-        t.ApplyEffect(new PoisonActiveEffect(abilityInUse.value));
+        t.ApplyEffect(new PoisonActiveEffect(abilityInUse.GetValue()));
+        EffectHolder.Instance.SpawnEffect(keywordName.name, t.GetTransform());
     }
 
 }
@@ -420,7 +529,8 @@ public class BurnKeyword : ValueKey
 
     public override void ModifyAction(Targetable t, Ability abilityInUse)
     {
-        t.ApplyEffect(new BurnActiveEffect(abilityInUse.value));
+        t.ApplyEffect(new BurnActiveEffect(abilityInUse.GetValue()));
+        EffectHolder.Instance.SpawnEffect(keywordName.name, t.GetTransform());
     }
 }
 
@@ -437,7 +547,8 @@ public class FreezeKeyword : ValueKey
 
     public override void ModifyAction(Targetable t, Ability abilityInUse)
     {
-        t.ApplyEffect(new FreezeActiveEffect(abilityInUse.value));
+        t.ApplyEffect(new FreezeActiveEffect(abilityInUse.GetValue()));
+        EffectHolder.Instance.SpawnEffect(keywordName.name, t.GetTransform());
     }
 }
 public class RangedKeyword : ValueKey // TODO
@@ -475,7 +586,8 @@ public class ShieldKeyword : ValueKey
     }
     public override void ModifyAction(Targetable t, Ability abilityInUse)
     {
-        t.ApplyEffect(new ShieldActiveEffect(abilityInUse.value));
+        t.ApplyEffect(new ShieldActiveEffect(abilityInUse.GetValue()));
+        EffectHolder.Instance.SpawnEffect(keywordName.name, t.GetTransform());
     }
 
     public override int GetLayerOrder()
@@ -503,7 +615,12 @@ public class InspireKeyword : ValueKey // TODO
     {
         return KeywordOrder.Self;
     }
-    
+
+    public override void ModifyAction(Targetable t, Ability abilityInUse)
+    {
+        t.SetUsed(false);
+        EffectHolder.Instance.SpawnEffect(keywordName.name, t.GetTransform());
+    }
 }
 public class IntangibleKeyword : ValueKey // TODO
 {
@@ -516,7 +633,8 @@ public class IntangibleKeyword : ValueKey // TODO
     }
     public override void ModifyAction(Targetable t, Ability abilityInUse)
     {
-        t.ApplyEffect(new ImmunityActiveEffect(abilityInUse.value));
+        t.ApplyEffect(new ImmunityActiveEffect(abilityInUse.GetValue()));
+        EffectHolder.Instance.SpawnEffect(keywordName.name, t.GetTransform());
     }
 }
 public class PenetrateKeyword : ValueKey // TODO
@@ -528,6 +646,11 @@ public class PenetrateKeyword : ValueKey // TODO
     {
         return KeywordOrder.Selection;
     }
+
+    public override void ModifyAction(Targetable t, Ability abilityInUse)
+    {
+        abilityInUse.isPenetrative = true;
+    }
 }
 public class TeleportKeyword : ValueKey // TODO
 {
@@ -537,6 +660,12 @@ public class TeleportKeyword : ValueKey // TODO
     public override KeywordOrder GetKeyOrder()
     {
         return KeywordOrder.Movement;
+    }
+
+    public override void ModifyAction(Targetable t, Ability abilityInUse)
+    {
+        GameManager.Instance.AbilityUser.Teleport(t.GetGridPosition());
+        EffectHolder.Instance.SpawnEffect(keywordName.name, t.GetTransform());
     }
 }
 public class ProvokeKeyword : ValueKey // TODO
@@ -548,6 +677,12 @@ public class ProvokeKeyword : ValueKey // TODO
     {
         return KeywordOrder.Post;
     }
+
+    public override void ModifyAction(Targetable t, Ability abilityInUse)
+    {
+        if (t is EnemyDisplay) (t as EnemyDisplay).UseAttackNow();
+        EffectHolder.Instance.SpawnEffect(keywordName.name, t.GetTransform());
+    }
 }
 public class ChargedKeyword : ValueKey // TODO
 {
@@ -557,6 +692,11 @@ public class ChargedKeyword : ValueKey // TODO
     public override KeywordOrder GetKeyOrder()
     {
         return KeywordOrder.Addition;
+    }
+
+    public override void ModifyAction(Targetable t, Ability abilityInUse)
+    {
+        abilityInUse.AddToValue(GameManager.Instance.AbilityUser.GetXPValue());
     }
 }
 public class EffectedKeyword : ValueKey // TODO
@@ -572,12 +712,12 @@ public class EffectedKeyword : ValueKey // TODO
     public override void ModifyAction(Targetable t, Ability abilityInUse)
     {
         int count = 0;
-        foreach (var aet in GameManager.Instance.AbilityUser.GetEffects())
+        foreach (var aet in GameManager.Instance.AbilityUser.GetEffects().GetActiveEffects())
         {
-            if (aet.IsDOT()) count++; // Using amount of DOT effects vs total value
+            if (aet.IsDOT() && aet.value > 0) count++; // Using amount of DOT effects vs total value
         }
 
-        abilityInUse.value += count;
+        abilityInUse.AddToValue(count);
     }
 }
 public class CleanseKeyword : ValueKey // TODO
@@ -589,6 +729,31 @@ public class CleanseKeyword : ValueKey // TODO
     {
         return KeywordOrder.Effect;
     }
+
+    public override void ModifyAction(Targetable t, Ability abilityInUse)
+    {
+        t.GetEffects().Clear<PoisonActiveEffect>(abilityInUse.GetValue());
+        t.ApplyEffect(null);
+        EffectHolder.Instance.SpawnEffect(keywordName.name, t.GetTransform());
+    }
+}
+public class WashKeyword : ValueKey // TODO
+{
+    public WashKeyword(KeywordName keyName) : base(keyName)
+    {
+        
+    }
+    public override KeywordOrder GetKeyOrder()
+    {
+        return KeywordOrder.Effect;
+    }
+
+    public override void ModifyAction(Targetable t, Ability abilityInUse)
+    {
+        t.GetEffects().Clear<BurnActiveEffect>(abilityInUse.GetValue());
+        t.ApplyEffect(null);
+        EffectHolder.Instance.SpawnEffect(keywordName.name, t.GetTransform());
+    }
 }
 public class WoundedKeyword : ValueKey // TODO
 {
@@ -598,6 +763,13 @@ public class WoundedKeyword : ValueKey // TODO
     public override KeywordOrder GetKeyOrder()
     {
         return KeywordOrder.Addition;
+    }
+
+    public override void ModifyAction(Targetable t, Ability abilityInUse)
+    {
+        Health h = t.GetHealthBar();
+        int missingHealth = h.GetMaxHealthValue() - h.GetHealthValue();
+        abilityInUse.AddToValue(missingHealth);
     }
 }
 public class FixKeyword : ValueKey // TODO
@@ -609,6 +781,12 @@ public class FixKeyword : ValueKey // TODO
     {
         return KeywordOrder.Board;
     }
+    public override void ModifyAction(Targetable t, Ability abilityInUse)
+    {
+        t.GetMap().GetTileAtPosition(t.GetGridPosition()).Build(abilityInUse.GetValue());
+        EffectHolder.Instance.SpawnEffect("Hammer", t.GetTransform());
+        
+    }
 }
 public class BreakKeyword : ValueKey // TODO
 {
@@ -619,6 +797,13 @@ public class BreakKeyword : ValueKey // TODO
     {
         return KeywordOrder.Board;
     }
+
+    public override void ModifyAction(Targetable t, Ability abilityInUse)
+    {
+        t.GetMap().GetTileAtPosition(t.GetGridPosition()).Break(abilityInUse.GetValue());
+        EffectHolder.Instance.SpawnEffect("Hammer", t.GetTransform());
+        AudioManager.Instance.Play("Break");
+    }
 }
 public class GrowKeyword : ValueKey // TODO
 {
@@ -627,7 +812,12 @@ public class GrowKeyword : ValueKey // TODO
     }
     public override KeywordOrder GetKeyOrder()
     {
-        return KeywordOrder.Post;
+        return KeywordOrder.Increment;
+    }
+
+    public override void ModifyAction(Targetable t, Ability abilityInUse)
+    {
+        abilityInUse.growthValue++;
     }
 }
 public class ShiftKeyword : ValueKey // TODO
@@ -638,6 +828,26 @@ public class ShiftKeyword : ValueKey // TODO
     public override KeywordOrder GetKeyOrder()
     {
         return KeywordOrder.Board;
+    }
+
+    public override void ModifyAction(Targetable t, Ability abilityInUse)
+    {
+        bool row = abilityInUse.GetValue() % 2 == 1;
+        bool positive = abilityInUse.GetValue() % 4 >= 1;
+        int number = row ? t.GetGridPosition().y : t.GetGridPosition().x;
+        t.GetMap().Slide(row, positive, number, FindFallOffTile(row, positive, number, t.GetMap()));
+    }
+
+    private Tile FindFallOffTile(bool row, bool positive, int number, Map map)
+    {
+        if (row)
+        {
+            return map.GetTileAtPosition(new Vector2Int(positive ? map.GetSize() - 1 : 0, number)).GetTile();
+        }
+        else
+        {
+            return map.GetTileAtPosition(new Vector2Int(number, positive ? map.GetSize() - 1 : 0)).GetTile();
+        }
     }
 }
 public class StunKeyword : ValueKey // TODO
@@ -683,7 +893,7 @@ public abstract class Target
     {
         foreach (var k in currentAbility.keys)
         {
-            k.ModifyRange(currentAbility.value);
+            k.ModifyRange(currentAbility.GetValue());
         }
     }
 }
@@ -710,7 +920,7 @@ public class TileTarget : Target
 {
     public override void Locate(Ability currentAbility)
     {
-        
+        TestRange(currentAbility);
     }
 }
 
@@ -718,6 +928,7 @@ public class TeamTarget : Target
 {
     public override void Locate(Ability currentAbility)
     {
+        TestRange(currentAbility);
         GameManager.Instance.SetSelectionMode(SelectableGroupType.Team);
     }
 }
@@ -726,6 +937,9 @@ public class AnyTarget : Target
 {
     public override void Locate(Ability currentAbility)
     {
-        
+        TestRange(currentAbility);
+        GameManager.Instance.SetSelectionMode(SelectableGroupType.None);
     }
+    
+    
 }

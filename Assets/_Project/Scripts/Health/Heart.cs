@@ -26,6 +26,8 @@ public class Heart : MonoBehaviour
     public void Empty()
     {
         heartImage.sprite = emptyHeart;
+        fire.enabled = false;
+        bleed.enabled = false;
         heartImage.color = Color.white;
 
     }

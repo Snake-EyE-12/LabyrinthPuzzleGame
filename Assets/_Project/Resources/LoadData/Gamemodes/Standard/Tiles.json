@@ -8,6 +8,20 @@
       }
     },
     {
+      "Symbol":".2C",
+      "Tile":{
+        "Path":"",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":2,
+        "Target":"Any",
+        "Keys":[
+          "Charge"
+        ]
+      }
+    },
+    {
       "Symbol":"!",
       "Tile":{
         "Path":"N",
@@ -19,6 +33,13 @@
       "Tile":{
         "Path":"NE",
         "Type":"Slide"
+      }
+    },
+    {
+      "Symbol":"~L",
+      "Tile":{
+        "Path":"NE",
+        "Type":"Swap"
       }
     },
     {
@@ -43,6 +64,20 @@
       }
     },
     {
+      "Symbol":"|1D-",
+      "Tile":{
+        "Path":"NS",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Damage", "Singular"
+        ]
+      }
+    },
+    {
       "Symbol":"|1D",
       "Tile":{
         "Path":"NS",
@@ -57,7 +92,287 @@
       }
     },
     {
-      "Symbol":"T1R",
+      "Symbol":"L1D-",
+      "Tile":{
+        "Path":"NE",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Damage", "Singular"
+        ]
+      }
+    },
+    {
+      "Symbol":"L1D",
+      "Tile":{
+        "Path":"NE",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Damage"
+        ]
+      }
+    },
+    {
+      "Symbol":"+1D",
+      "Tile":{
+        "Path":"NESW",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Damage"
+        ]
+      }
+    },
+    {
+      "Symbol":"|1B-",
+      "Tile":{
+        "Path":"NS",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Burn", "Singular"
+        ]
+      }
+    },
+    {
+      "Symbol":"|1R",
+      "Tile":{
+        "Path":"NS",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Rotate"
+        ]
+      }
+    },
+    {
+      "Symbol":"!2R",
+      "Tile":{
+        "Path":"N",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":2,
+        "Target":"Any",
+        "Keys":[
+          "Rotate"
+        ]
+      }
+    },
+    {
+      "Symbol":"L1P-",
+      "Tile":{
+        "Path":"NE",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Poison", "Singular"
+        ]
+      }
+    },
+    {
+      "Symbol":"|1DP-",
+      "Tile":{
+        "Path":"NS",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Damage", "Poison", "Singular"
+        ]
+      }
+    },
+    {
+      "Symbol":"!1B-",
+      "Tile":{
+        "Path":"N",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Burn", "Singular"
+        ]
+      }
+    },
+    {
+      "Symbol":"!1P-",
+      "Tile":{
+        "Path":"N",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Poison", "Singular"
+        ]
+      }
+    },
+    {
+      "Symbol":"!1H-",
+      "Tile":{
+        "Path":"N",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Heal", "Singular"
+        ]
+      }
+    },
+    {
+      "Symbol":"!1C-",
+      "Tile":{
+        "Path":"N",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Charge", "Singular"
+        ]
+      }
+    },
+    {
+      "Symbol":"!1DP-",
+      "Tile":{
+        "Path":"N",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Damage", "Poison", "Singular"
+        ]
+      }
+    },
+    {
+      "Symbol":"|1H-",
+      "Tile":{
+        "Path":"NS",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Heal", "Singular"
+        ]
+      }
+    },
+    {
+      "Symbol":"|1C-",
+      "Tile":{
+        "Path":"NS",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Charge", "Singular"
+        ]
+      }
+    },
+    {
+      "Symbol":"|1i-",
+      "Tile":{
+        "Path":"NS",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Intangible", "Singular"
+        ]
+      }
+    },
+    {
+      "Symbol":"+1i-",
+      "Tile":{
+        "Path":"NESW",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Intangible", "Singular"
+        ]
+      }
+    },
+    {
+      "Symbol":"L1H",
+      "Tile":{
+        "Path":"NE",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Heal"
+        ]
+      }
+    },
+    {
+      "Symbol":"L1H-",
+      "Tile":{
+        "Path":"NE",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Heal", "Singular"
+        ]
+      }
+    },
+    {
+      "Symbol":"L1C-",
+      "Tile":{
+        "Path":"NE",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Charge", "Singular"
+        ]
+      }
+    },
+    {
+      "Symbol":"~T1R",
       "Tile":{
         "Path":"NEW",
         "Type":"Swap"
@@ -81,6 +396,216 @@
         "Target":"Self",
         "Keys":[
           "Rotate"
+        ]
+      }
+    },
+    {
+      "Symbol":"+1S-",
+      "Tile":{
+        "Path":"NESW",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Shield", "Singular"
+        ]
+      }
+    },
+    {
+      "Symbol":"+1BF-",
+      "Tile":{
+        "Path":"NESW",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Burn", "Freeze", "Singular"
+        ]
+      }
+    },
+    {
+      "Symbol":"L1S-",
+      "Tile":{
+        "Path":"NE",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Shield", "Singular"
+        ]
+      }
+    },
+    {
+      "Symbol":"L1DS",
+      "Tile":{
+        "Path":"NE",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Damage", "Shield"
+        ]
+      }
+    },
+    {
+      "Symbol":"L1_-",
+      "Tile":{
+        "Path":"NE",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Discard", "Singular"
+        ]
+      }
+    },
+    {
+      "Symbol":"T3S-",
+      "Tile":{
+        "Path":"NES",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":3,
+        "Target":"Any",
+        "Keys":[
+          "Shield", "Singular"
+        ]
+      }
+    },
+    {
+      "Symbol":"T2S-",
+      "Tile":{
+        "Path":"NES",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":2,
+        "Target":"Any",
+        "Keys":[
+          "Shield", "Singular"
+        ]
+      }
+    },
+    {
+      "Symbol":"T3H-",
+      "Tile":{
+        "Path":"NES",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":3,
+        "Target":"Any",
+        "Keys":[
+          "Heal", "Singular"
+        ]
+      }
+    },
+    {
+      "Symbol":"|1DA-",
+      "Tile":{
+        "Path":"NS",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Damage", "Area", "Singular"
+        ]
+      }
+    },
+    {
+      "Symbol":"+2DA",
+      "Tile":{
+        "Path":"NESW",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":2,
+        "Target":"Any",
+        "Keys":[
+          "Damage", "Area"
+        ]
+      }
+    },
+    {
+      "Symbol":"+1>",
+      "Tile":{
+        "Path":"NESW",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Shift"
+        ]
+      }
+    },
+    {
+      "Symbol":"+1W-",
+      "Tile":{
+        "Path":"NESW",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Wash", "Singular"
+        ]
+      }
+    },
+    {
+      "Symbol":"T1DF-",
+      "Tile":{
+        "Path":"NES",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Damage", "Freeze", "Singular"
+        ]
+      }
+    },
+    {
+      "Symbol":"T1I-",
+      "Tile":{
+        "Path":"NES",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":1,
+        "Target":"Any",
+        "Keys":[
+          "Inspire", "Singular"
+        ]
+      }
+    },
+    {
+      "Symbol":".2HS",
+      "Tile":{
+        "Path":"",
+        "Type":"Slide"
+      },
+      "Ability":{
+        "Value":2,
+        "Target":"Any",
+        "Keys":[
+          "Heal", "Shield"
         ]
       }
     }

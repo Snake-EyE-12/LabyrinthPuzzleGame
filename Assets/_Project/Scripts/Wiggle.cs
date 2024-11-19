@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Wiggle : MonoBehaviour
 {
@@ -13,17 +14,26 @@ public class Wiggle : MonoBehaviour
     [SerializeField] private float maxAngle;
     [SerializeField] private float distanceSpeed;
     [SerializeField] private float angleSpeed;
+    [SerializeField] private float offsetAmount;
     
     private Vector3 startingPosition;
     [SerializeField] private float delayBeforeStart;
-    
+    [SerializeField] private bool useOffset;
+
+
+    private void Start()
+    {
+        thisTime -= delayBeforeStart;
+        if (!useOffset) return;
+        thisTime -= Random.Range(0, offsetAmount);
+    }
 
     private float thisTime;
     private bool canWiggle;
     private void Update()
     {
         thisTime += Time.deltaTime;
-        if (thisTime < delayBeforeStart) return;
+        if (thisTime < 0) return;
         else
         {
             if(!canWiggle) startingPosition = transform.position;

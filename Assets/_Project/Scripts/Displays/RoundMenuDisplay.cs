@@ -40,14 +40,14 @@ public class RoundMenuDisplay : Display<EventsForRound>
 
         coins.text = GameManager.Instance.CoinCount + "";
         UpdateCharms();
-        
+        ActivateButton();
     }
 
     public void UpdateCharms()
     {
         foreach (var c in charms)
         {
-            Destroy(c.gameObject);
+            if(c != null) Destroy(c.gameObject);
         }
         foreach (var iCharm in GameManager.Instance.GetAllInventoryCharms())
         {
@@ -94,9 +94,15 @@ public class RoundMenuDisplay : Display<EventsForRound>
         AudioManager.Instance.Play("ButtonClick");
         if (fightExists == null)
         {
+            
             GameManager.Instance.ContinueMission();
         }
-        else GameManager.Instance.BeginBoardFight();
+        else
+        {
+            AudioManager.Instance.Play("ButtonClick");
+            GameManager.Instance.LoadFight(fightExists.GetExtras());
+            GameManager.Instance.BeginBoardFight();
+        }
         Destroy(gameObject);
     }
 

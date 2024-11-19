@@ -38,6 +38,43 @@ public class TileDisplay : Display<Tile>, GridPositionable, Selectable
     {
         return item;
     }
+
+    public void Break(int amount)
+    {
+        if (amount >= 1)
+        {
+            item.OpenPath(Vector2Int.up);
+            EffectHolder.Instance.SpawnEffect("WallBreak", wallDisplays[0].transform.position);
+        }
+
+        if (amount >= 2)
+        {
+            item.OpenPath(Vector2Int.right);
+            EffectHolder.Instance.SpawnEffect("WallBreak", wallDisplays[1].transform.position);
+        }
+
+        if (amount >= 3)
+        {
+            item.OpenPath(Vector2Int.down);
+            EffectHolder.Instance.SpawnEffect("WallBreak", wallDisplays[2].transform.position);
+        }
+
+        if (amount >= 4)
+        {
+            item.OpenPath(Vector2Int.left);
+            EffectHolder.Instance.SpawnEffect("WallBreak", wallDisplays[3].transform.position);
+        }
+        Render();
+        
+    }
+    public void Build(int amount)
+    {
+        if (amount >= 1) item.ClosePath(Vector2Int.up);
+        if (amount >= 2) item.ClosePath(Vector2Int.right);
+        if (amount >= 3) item.ClosePath(Vector2Int.down);
+        if (amount >= 4) item.ClosePath(Vector2Int.left);
+        Render();
+    }
     private void Awake()
     {
         EventHandler.AddListener("Round/FightOver", OnBattleOver);
@@ -61,14 +98,19 @@ public class TileDisplay : Display<Tile>, GridPositionable, Selectable
         mappableOrganizer.Add(unit);
         if (unit is Targetable && item.ability != null && !item.ability.usedThisCombat)
         {
-            Targetable targeted = unit as Targetable;
-            item.ability.Use(targeted);
-            targeted.CheckForDeath();
-            if (item.ability.usedThisCombat) Render();
+            StartCoroutine(LandOnTile(0.26f, (unit as Targetable), item.ability, this));
         }
         unit.OnPassOverLoot(mappableOrganizer.GetLoot());
     }
-    
+
+    private IEnumerator LandOnTile(float delay, Targetable t, Ability ability, TileDisplay tile)
+    {
+        yield return new WaitForSeconds(delay);
+        
+        item.ability.Use(t);
+        t.CheckForDeath();
+        if (item.ability.usedThisCombat) Render();
+    }
 
     private Vector2Int gridPosition;
     public Vector2Int GetGridPosition()

@@ -38,7 +38,7 @@ public class PostBattleCharacterDisplay : Display<Character>
             tocd.Set(card.GetTile());
             cards.Add(tocd);
         }
-        upgradeButton.SetActive(item.XP.value >= item.XP.max);
+        upgradeButton.SetActive(item.XP.value >= item.XP.max && item.degree < DataHolder.currentMode.MaxCharacterDegree);
     }
 
     private List<TileOnCardDisplay> cards = new();

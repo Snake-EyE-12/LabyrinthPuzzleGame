@@ -1,7 +1,115 @@
 {
   "Characters":[
     {
+      "Name":"Boxer",
+      "Type":"Offensive",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":1
+        }
+      ],
+      "Charge":3,
+      "Inventory":{
+        "ItemSlots": 4,
+        "TilePieces":[
+          "L",
+          "!",
+          ".",
+          "."
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+        "Value": 1,
+        "Target": "Any",
+        "Keys": ["Damage", "Melee"]
+        }
+      ]
+    },
+    {
       "Name":"Executioner",
+      "Type":"Offensive",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":2
+        }
+      ],
+      "Charge":3,
+      "Inventory":{
+        "ItemSlots": 4,
+        "TilePieces":[
+          "L",
+          "L",
+          ".",
+          "."
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 1,
+          "Target": "Any",
+          "Keys": ["Damage", "Area", "Melee"]
+        }
+      ]
+    },
+    {
+      "Name":"Shifty",
+      "Type":"Offensive",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":1
+        }
+      ],
+      "Charge":5,
+      "Inventory":{
+        "ItemSlots": 4,
+        "TilePieces":[
+          "|1D-",
+          "L1D-",
+          "L1P-",
+          "."
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 0,
+          "Target": "Any",
+          "Keys": ["Stunted", "Knockback"]
+        }
+      ]
+    },
+    {
+      "Name":"Sideburns",
+      "Type":"Offensive",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":2
+        }
+      ],
+      "Charge":5,
+      "Inventory":{
+        "ItemSlots": 4,
+        "TilePieces":[
+          "|1B-",
+          "|1B-"
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": []
+    },
+    {
+      "Name":"Shooter",
       "Type":"Offensive",
       "Degree":1,
       "Health":[
@@ -12,63 +120,26 @@
       ],
       "Charge":5,
       "Inventory":{
-        "ItemSlots":[
-          {},
-          {},
-          {},
-          {}
-        ],
+        "ItemSlots": 4,
         "TilePieces":[
-          "|1D",
-          "!",
-          "."
+          "|1DP-",
+          "!1B-",
+          "!1P-"
         ]
       },
       "ActiveEffects":[],
       "Abilities": [
         {
-        "Value": 2,
-        "Target": "Opponent",
-        "Keys": ["Damage"]
+          "Value": 0,
+          "Target": "Any",
+          "Keys": ["Damage", "Effected"]
         }
       ]
     },
+    
     {
-      "Name":"Brute",
+      "Name":"Guard",
       "Type":"Defensive",
-      "Degree":1,
-      "Health":[
-        {
-          "Type":"Blood",
-          "Value":4
-        }
-      ],
-      "Charge":5,
-      "Inventory":{
-        "ItemSlots":[
-          {},
-          {},
-          {},
-          {}
-        ],
-        "TilePieces":[
-          "T",
-          "T",
-          "."
-        ]
-      },
-      "ActiveEffects":[],
-      "Abilities": [
-        {
-          "Value": 1,
-          "Target": "Opponent",
-          "Keys": ["Stunted", "Knockback"]
-        }
-      ]
-    },
-    {
-      "Name":"Mage",
-      "Type":"Magician",
       "Degree":1,
       "Health":[
         {
@@ -76,16 +147,177 @@
           "Value":2
         }
       ],
-      "Charge":7,
+      "Charge":3,
       "Inventory":{
-        "ItemSlots":[
-          {},
-          {},
-          {},
-          {}
-        ],
+        "ItemSlots":4,
         "TilePieces":[
+          "+1S-",
+          "."
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 1,
+          "Target": "Any",
+          "Keys": ["Damage", "Stunted", "Knockback"]
+        }
+      ]
+    },
+    {
+      "Name":"Avenger",
+      "Type":"Defensive",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":3
+        }
+      ],
+      "Charge":3,
+      "Inventory":{
+        "ItemSlots":4,
+        "TilePieces":[
+          "|1DA-",
+          "!",
+          "."
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 1,
+          "Target": "Any",
+          "Keys": ["Damage", "Area", "Singular"]
+        }
+      ]
+    },
+    {
+      "Name":"Gladiator",
+      "Type":"Defensive",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":2
+        }
+      ],
+      "Charge":3,
+      "Inventory":{
+        "ItemSlots":4,
+        "TilePieces":[
+          "|1D",
+          "L1S-",
+          "!"
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 1,
+          "Target": "Any",
+          "Keys": ["Damage", "Stunted", "Singular"]
+        }
+      ]
+    },
+    {
+      "Name":"Crusher",
+      "Type":"Defensive",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":3
+        }
+      ],
+      "Charge":5,
+      "Inventory":{
+        "ItemSlots":4,
+        "TilePieces":[
+          "L1D",
+          "L1S-",
+          "."
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 0,
+          "Target": "Any",
+          "Keys": ["Stunted", "Knockback"]
+        }
+      ]
+    },
+    {
+      "Name":"Timid",
+      "Type":"Defensive",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":1
+        }
+      ],
+      "Charge":1,
+      "Inventory":{
+        "ItemSlots":4,
+        "TilePieces":[
+          "+2DA",
+          "T3S-",
           "T",
+          "."
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": []
+    },
+    
+    {
+      "Name":"Dreamer",
+      "Type":"Magician",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":3
+        }
+      ],
+      "Charge":1,
+      "Inventory":{
+        "ItemSlots":4,
+        "TilePieces":[
+          "T1I-",
+          "|",
+          "L",
+          "!1C-",
+          "."
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 1,
+          "Target": "Any",
+          "Keys": ["Stunted", "Knockback"]
+        }
+      ]
+    },
+    {
+      "Name":"Voider",
+      "Type":"Magician",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":3
+        }
+      ],
+      "Charge":4,
+      "Inventory":{
+        "ItemSlots":4,
+        "TilePieces":[
+          "|1C-",
+          "|1i-",
           "|",
           "|"
         ]
@@ -94,8 +326,204 @@
       "Abilities": [
         {
           "Value": 1,
+          "Target": "Any",
+          "Keys": ["Stunted", "Knockback", "Intangible"]
+        },
+        {
+          "Value": 1,
+          "Target": "Any",
+          "Keys": ["Singular", "Intangible"]
+        }
+      ]
+    },
+    {
+      "Name":"Confused",
+      "Type":"Magician",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":2
+        }
+      ],
+      "Charge":2,
+      "Inventory":{
+        "ItemSlots":4,
+        "TilePieces":[
+          ".2C",
+          ".",
+          ".",
+          "."
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 0,
+          "Target": "Any",
+          "Keys": ["Melee", "Damage", "Charged"]
+        }
+      ]
+    },
+    {
+      "Name":"Confused",
+      "Type":"Magician",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":2
+        }
+      ],
+      "Charge":2,
+      "Inventory":{
+        "ItemSlots":4,
+        "TilePieces":[
+          ".2C",
+          ".",
+          ".",
+          "."
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 0,
+          "Target": "Any",
+          "Keys": ["Melee", "Damage", "Charged"]
+        }
+      ]
+    },
+    {
+      "Name":"Burster",
+      "Type":"Magician",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":1
+        }
+      ],
+      "Charge":3,
+      "Inventory":{
+        "ItemSlots":4,
+        "TilePieces":[
+          "+1S-",
+          "T",
+          "|",
+          "."
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 0,
+          "Target": "Any",
+          "Keys": ["Teleport"]
+        },
+        {
+          "Value": 1,
+          "Target": "Any",
+          "Keys": ["Charge", "Singular"]
+        },
+        {
+          "Value": 1,
+          "Target": "Any",
+          "Keys": ["Charge", "Singular"]
+        }
+      ]
+    },
+    {
+      "Name":"Frozone",
+      "Type":"Magician",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":3
+        }
+      ],
+      "Charge":1,
+      "Inventory":{
+        "ItemSlots":4,
+        "TilePieces":[
+          "T1DF-",
+          "!1DP-",
+          "!"
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 1,
+          "Target": "Any",
+          "Keys": ["Freeze", "Damage", "Singular"]
+        },
+        {
+          "Value": 0,
+          "Target": "Any",
+          "Keys": ["Charged", "Melee"]
+        }
+      ]
+    },
+    
+    {
+      "Name":"Zeus",
+      "Type":"Healer",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":3
+        }
+      ],
+      "Charge":3,
+      "Inventory":{
+        "ItemSlots": 4,
+        "TilePieces":[
+          "L1D-",
+          "!1H-",
+          "!"
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 2,
           "Target": "Team",
-          "Keys": ["Charge"]
+          "Keys": ["Charge", "Singular"]
+        }
+      ]
+    },
+    {
+      "Name":"Medic",
+      "Type":"Healer",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":3
+        }
+      ],
+      "Charge":3,
+      "Inventory":{
+        "ItemSlots": 4,
+        "TilePieces":[
+          "+1D",
+          "T"
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 1,
+          "Target": "Team",
+          "Keys": ["Charge", "Singular"]
+        },
+        {
+          "Value": 1,
+          "Target": "Team",
+          "Keys": ["Heal"]
         }
       ]
     },
@@ -106,32 +534,121 @@
       "Health":[
         {
           "Type":"Blood",
-          "Value":5
+          "Value":2
         }
       ],
       "Charge":5,
       "Inventory":{
-        "ItemSlots":[
-          {},
-          {},
-          {},
-          {}
-        ],
+        "ItemSlots": 4,
         "TilePieces":[
-          "|"
+          "L",
+          "|1H-",
+          "|1H-"
         ]
       },
       "ActiveEffects":[],
       "Abilities": [
         {
           "Value": 1,
-          "Target": "Team",
-          "Keys": ["Heal"]
+          "Target": "Opponent",
+          "Keys": ["Poison"]
         }
       ]
     },
     {
-      "Name":"Spy",
+      "Name":"Necro",
+      "Type":"Healer",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":1
+        }
+      ],
+      "Charge":4,
+      "Inventory":{
+        "ItemSlots": 4,
+        "TilePieces":[
+          "L1H",
+          "!",
+          "!",
+          "!",
+          ".",
+          "."
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 1,
+          "Target": "Opponent",
+          "Keys": ["Poison"]
+        }
+      ]
+    },
+    {
+      "Name":"Angel",
+      "Type":"Healer",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":4
+        }
+      ],
+      "Charge":5,
+      "Inventory":{
+        "ItemSlots": 4,
+        "TilePieces":[
+          "|1H-",
+          "L1H-"
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 1,
+          "Target": "Opponent",
+          "Keys": ["Damage", "Stunted", "Knockback"]
+        },
+        {
+          "Value": 2,
+          "Target": "Team",
+          "Keys": ["Heal", "Singular"]
+        }
+      ]
+    },
+    
+    {
+      "Name":"Trader",
+      "Type":"Informant",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":2
+        }
+      ],
+      "Charge":5,
+      "Inventory":{
+        "ItemSlots": 4,
+        "TilePieces":[
+          "L1_-",
+          "L1DS",
+          "L"
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 1,
+          "Target": "Any",
+          "Keys": ["Damage", "Inspire"]
+        }
+      ]
+    },
+    {
+      "Name":"Invisible",
       "Type":"Informant",
       "Degree":1,
       "Health":[
@@ -142,16 +659,101 @@
       ],
       "Charge":5,
       "Inventory":{
-        "ItemSlots":[
-          {},
-          {},
-          {},
-          {}
-        ],
+        "ItemSlots":4,
         "TilePieces":[
+          "+1i-",
+          "+1i-"
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 0,
+          "Target": "Any",
+          "Keys": ["Discard", "Singular"]
+        },
+        {
+          "Value": 0,
+          "Target": "Any",
+          "Keys": ["Teleport", "Singular"]
+        }
+      ]
+    },
+    {
+      "Name":"Jack",
+      "Type":"Informant",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":3
+        }
+      ],
+      "Charge":3,
+      "Inventory":{
+        "ItemSlots":4,
+        "TilePieces":[
+          "T3H-",
+          "T2S-",
+          "|1D-",
+          "."
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 0,
+          "Target": "Any",
+          "Keys": ["Teleport", "Melee"]
+        }
+      ]
+    },
+    {
+      "Name":"Surge",
+      "Type":"Informant",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":1
+        }
+      ],
+      "Charge":3,
+      "Inventory":{
+        "ItemSlots":4,
+        "TilePieces":[
+          "|1C-",
+          "|",
+          "|",
+          "L1C-",
           "L",
-          "!",
-          "!",
+          "L"
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 0,
+          "Target": "Any",
+          "Keys": ["Charge", "Charged", "Singular"]
+        }
+      ]
+    },
+    {
+      "Name":"Positioner",
+      "Type":"Informant",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":4
+        }
+      ],
+      "Charge":5,
+      "Inventory":{
+        "ItemSlots":4,
+        "TilePieces":[
+          "+1BF-",
           "."
         ]
       },
@@ -159,8 +761,88 @@
       "Abilities": [
         {
           "Value": 1,
-          "Target": "Self",
-          "Keys": ["Discard"]
+          "Target": "Any",
+          "Keys": ["Shield", "Heal", "Singular"]
+        },
+        {
+          "Value": 0,
+          "Target": "Any",
+          "Keys": ["Stunted", "Knockback"]
+        },
+        {
+          "Value": 1,
+          "Target": "Any",
+          "Keys": ["Inspire", "Melee", "Singular"]
+        }
+      ]
+    },
+    
+    {
+      "Name":"King",
+      "Type":"Mobilizer",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":4
+        }
+      ],
+      "Charge":4,
+      "Inventory":{
+        "ItemSlots":4,
+        "TilePieces":[
+          "+1W-",
+          "+",
+          "+",
+          "T",
+          "T"
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 1,
+          "Target": "Any",
+          "Keys": ["Knockback", "Stunted"]
+        },
+        {
+          "Value": 1,
+          "Target": "Any",
+          "Keys": ["Knockback", "Stunted", "Damage", "Singular"]
+        }
+      ]
+    },
+    {
+      "Name":"Sprinter",
+      "Type":"Mobilizer",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":2
+        }
+      ],
+      "Charge":6,
+      "Inventory":{
+        "ItemSlots":4,
+        "TilePieces":[
+          "T",
+          "T",
+          "T",
+          ".2HS"
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 0,
+          "Target": "Any",
+          "Keys": ["Teleport"]
+        },
+        {
+          "Value": 1,
+          "Target": "Any",
+          "Keys": ["Discard", "Singular"]
         }
       ]
     },
@@ -171,10 +853,106 @@
       "Health":[
         {
           "Type":"Blood",
-          "Value":5
+          "Value":2
         }
       ],
       "Charge":5,
+      "Inventory":{
+        "ItemSlots":4,
+        "TilePieces":[
+          "|1R",
+          "|",
+          "L1R",
+          "L",
+          "!2R"
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 1,
+          "Target": "Any",
+          "Keys": ["Break", "Inspire"]
+        }
+      ]
+    },
+    {
+      "Name":"Thief",
+      "Type":"Mobilizer",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":1
+        }
+      ],
+      "Charge":1,
+      "Inventory":{
+        "ItemSlots":4,
+        "TilePieces":[
+          "+",
+          "+",
+          "|",
+          "~L",
+          "~L",
+          "~L"
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 1,
+          "Target": "Any",
+          "Keys": ["Damage", "Bleed"]
+        },
+        {
+          "Value": 0,
+          "Target": "Any",
+          "Keys": ["Discard"]
+        }
+      ]
+    },
+    {
+      "Name":"Destructor",
+      "Type":"Mobilizer",
+      "Degree":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":3
+        }
+      ],
+      "Charge":3,
+      "Inventory":{
+        "ItemSlots":4,
+        "TilePieces":[
+          "+1>",
+          "."
+        ]
+      },
+      "ActiveEffects":[],
+      "Abilities": [
+        {
+          "Value": 1,
+          "Target": "Any",
+          "Keys": ["Break", "Grow"]
+        }
+      ]
+    },
+    
+    
+    
+    {
+      "Name":"Swordsman",
+      "Type":"Offensive",
+      "Degree":2,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":4
+        }
+      ],
+      "Charge":3,
       "Inventory":{
         "ItemSlots":[
           {},
@@ -183,17 +961,16 @@
           {}
         ],
         "TilePieces":[
-          "T1R",
-          "L1R",
-          "L"
+          "|1D",
+          "|"
         ]
       },
       "ActiveEffects":[],
       "Abilities": [
         {
-          "Value": 1,
-          "Target": "Team",
-          "Keys": ["Heal"]
+          "Value": 3,
+          "Target": "Opponent",
+          "Keys": ["Damage", "Stunted"]
         }
       ]
     }

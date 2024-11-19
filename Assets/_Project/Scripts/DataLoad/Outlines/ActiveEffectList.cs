@@ -14,6 +14,19 @@ public class ActiveEffectList
         }
     }
     
+    public void Clear<T>(int amount) where T : ActiveEffectType
+    {
+        T e = GetEffect<T>();
+        if (e != null)
+        {
+            e.value -= amount;
+            if (e.value < 0)
+            {
+                e.value = 0;
+            }
+        }
+    }
+    
     public int[] GetDOTArray()
     {
         int[] poisonBurnBleed = new int[3];

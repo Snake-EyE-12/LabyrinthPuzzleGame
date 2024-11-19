@@ -31,12 +31,21 @@
           "Value": 1,
           "Target": "Team",
           "Keys": ["Intangible"]
-        }
-      ,
+        },
+        {
+          "Value": 1,
+          "Target": "Any",
+          "Keys": ["Shield"]
+        },
+        {
+          "Value": 1,
+          "Target": "Any",
+          "Keys": ["Damage", "Penetrate"]
+        },
         {
           "Value": 1,
           "Target": "Team",
-          "Keys": ["Shield"]
+          "Keys": ["Inspire"]
         }
       ]
     },
@@ -65,7 +74,22 @@
         {
           "Value": 1,
           "Target": "Opponent",
-          "Keys": ["Damage", "Area"]
+          "Keys": ["Damage", "Area", "Grow", "Melee"]
+        },
+        {
+          "Value": 1,
+          "Target": "Any",
+          "Keys": ["Shield"]
+        },
+        {
+          "Value": 1,
+          "Target": "Any",
+          "Keys": ["Damage", "Penetrate", "Freeze"]
+        },
+        {
+          "Value": 1,
+          "Target": "Opponent",
+          "Keys": ["Damage", "Wounded"]
         }
       ]
     },
@@ -95,6 +119,16 @@
           "Value": 0,
           "Target": "Opponent",
           "Keys": ["Stunted", "Knockback"]
+        },
+        {
+          "Value": 0,
+          "Target": "Opponent",
+          "Keys": ["Provoke"]
+        },
+        {
+          "Value": 0,
+          "Target": "Opponent",
+          "Keys": ["Damage", "Charged"]
         }
       ]
     },
@@ -117,7 +151,23 @@
         ]
       },
       "ActiveEffects":[],
-      "Abilities": []
+      "Abilities": [
+        {
+          "Value": 1,
+          "Target": "Self",
+          "Keys": ["Break"]
+        },
+        {
+          "Value": 1,
+          "Target": "Self",
+          "Keys": ["Build"]
+        },
+        {
+          "Value": 1,
+          "Target": "Self",
+          "Keys": ["Shift"]
+        }
+      ]
     },
     {
       "Name":"Dartist",
@@ -144,6 +194,16 @@
           "Value": 0,
           "Target": "Opponent",
           "Keys": ["Damage", "Effected"]
+        },
+        {
+          "Value": 1,
+          "Target": "Team",
+          "Keys": ["Wash"]
+        },
+        {
+          "Value": 1,
+          "Target": "Team",
+          "Keys": ["Cleanse"]
         }
       ]
     },

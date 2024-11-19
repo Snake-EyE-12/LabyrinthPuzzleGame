@@ -15,18 +15,32 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
     private Damager damager;
 
 
+    public int GetXPValue()
+    {
+        return 0;
+    }
+    public void UseAttackNow()
+    {
+        AttackIndicator.Instance.UseSpecificEnemyAttack(this);
+    }
     public void ApplyDamagePhaseEffects()
     {
         item.ActiveEffectsList.ApplyDamage(this);
+        CheckForDeath();
     }
     public void ApplyEndOfTurnPhaseEffects()
     {
         item.ActiveEffectsList.EndOfTurn(this);
         SetHealthBar();
     }
-    public List<ActiveEffectType> GetEffects()
+    public ActiveEffectList GetEffects()
     {
-        return item.ActiveEffectsList.GetActiveEffects();
+        return item.ActiveEffectsList;
+    }
+
+    public Health GetHealthBar()
+    {
+        return item.health;
     }
     public override void Render()
     {
@@ -94,7 +108,7 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
         return gridPosition;
     }
 
-    public void BecomeUsed()
+    public void SetUsed(bool used)
     {
         
     }
@@ -150,7 +164,9 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
 
     public bool IsCurrentlySelectable()
     {
-        return GameManager.Instance.Phase == GamePhase.UsingActiveAbility && GameManager.Instance.InActiveSelectionRange(gridPosition) && CanBeTargeted(GameManager.Instance.AbilityInUse.targetDescription);
+        return GameManager.Instance.Phase == GamePhase.UsingActiveAbility && 
+               GameManager.Instance.InActiveSelectionRange(gridPosition) && 
+               CanBeTargeted(GameManager.Instance.AbilityInUse.targetDescription);
     }
 
     private bool CanBeTargeted(string targettingType)
@@ -188,13 +204,13 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
         return transform;
     }
 
-    public void ChangeHealth(int amount)
+    public void ChangeHealth(int amount, bool ignoreShield = false)
     {
         if (amount < 0)
         {
             amount *= -1;
             ShieldActiveEffect shield = item.ActiveEffectsList.GetEffect<ShieldActiveEffect>();
-            if (shield == null) damager.TakeDamage(amount);
+            if (shield == null || ignoreShield) damager.TakeDamage(amount);
             else if (shield.value > amount)
             {
                 shield.value -= amount;
@@ -217,11 +233,20 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
 
     public void MoveToPlace(Vector2Int direction)
     {
-        FreezeActiveEffect ice = item.ActiveEffectsList.GetEffect<FreezeActiveEffect>();
-        if (ice == null || ice.value == 0) return;
+        if(IsFrozen()) return;
         localMap.Move(this, direction);
     }
+    public void Teleport(Vector2Int pos)
+    {
+        //SetGridPosition(pos);
+        //destinator.MoveTo(new DestinationData(VisualDataHolder.Instance.CoordsToPosition(pos), 0.001f, true));
+    }
 
+    public bool IsFrozen()
+    {
+        FreezeActiveEffect ice = item.ActiveEffectsList.GetEffect<FreezeActiveEffect>();
+        return ice != null && ice.value > 0;
+    }
     public Vector2Int FindSmartDirectionToMove(Vector2Int center, Vector2Int closestOpponent, Vector2Int closestAlly, Vector2Int averageOpponent, Vector2Int averageAlly)
     {//                                          has big attacks           has small attacks            is low health      is big attacks & high health    is enemy helpful
         

@@ -52,6 +52,12 @@ public class Map
         CommandHandler.Execute(new SlideCommand(row, positive, number, this, GameManager.Instance.cardToPlace.GetCard(), GameManager.Instance.activeDeck));
         AudioManager.Instance.Play("HeavySlide");
     }
+    public void Slide(bool row, bool positive, int number, Tile tile)
+    {
+        if(row) SlideRow(number, positive, tile);
+        else SlideColumn(number, positive, tile);
+        AudioManager.Instance.Play("HeavySlide");
+    }
 
     public void Swap(Vector2Int gridPos, Tile tile)
     {
@@ -148,6 +154,13 @@ public class Map
             grid.Get(currentPos).GetTile().LoseControl(entity);
             grid.Get(newPosition).GetTile().GainControl(entity);
         }
+    }
+
+    public void TP(GridPositionable entity, Vector2Int newPosition)
+    {
+        Vector2Int currentPos = entity.GetGridPosition();
+        grid.Get(currentPos).GetTile().LoseControl(entity);
+        grid.Get(newPosition).GetTile().GainControl(entity);
     }
 
     public void RemoveGridPositionable(GridPositionable unit)

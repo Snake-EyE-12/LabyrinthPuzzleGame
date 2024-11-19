@@ -59,8 +59,8 @@ public class GameManager : Singleton<GameManager>
         {
             if (team[i] == c)
             {
-                team[i] = new Character(GameComponentDealer.GetCharacterData(c.characterType,
-                    c.degree + 1));
+                Debug.Log("Current Degree:" + c.degree);
+                team[i] = new Character(GameComponentDealer.GetCharacterData(c.characterType, c.degree + 1));
                 
                 return team[i];
             }
@@ -121,7 +121,7 @@ public class GameManager : Singleton<GameManager>
         Vector2Int averageEnemyPos = GetAverageEnemyPos();
         foreach (var enemy in activeEnemies)
         {
-            if(enemy)
+            if(enemy && !enemy.IsFrozen())
             enemy.MoveToPlace(enemy.FindSmartDirectionToMove(center, GetClosestUnit(enemy.GetGridPosition(), new List<GridPositionable>(activeTeam)), GetClosestUnit(enemy.GetGridPosition(), new List<GridPositionable>(activeEnemies)), averageTeamPos, averageEnemyPos));
         }
     }
@@ -238,11 +238,11 @@ public class GameManager : Singleton<GameManager>
         turnManager.NextPhase();
     }
 
-    public void PrepareTeamTurnStart()
+    public void SetCharactersUsable()
     {
         foreach (var member in activeTeam)
         {
-            member.BecomeAvailable();
+            member.SetUsed(false);
         }
     }
 
@@ -403,7 +403,7 @@ public class GameManager : Singleton<GameManager>
     public void SetSelectionMode(SelectableGroupType type)
     {
         selector.ChangeSelectionType(type);
-        Debug.Log("Selection Mode: " + type + " AbilityInUse: " + (Phase == GamePhase.UsingActiveAbility));
+        //Debug.Log("Selection Mode: " + type + " AbilityInUse: " + (Phase == GamePhase.UsingActiveAbility));
         
     }
     
@@ -452,7 +452,7 @@ public class GameManager : Singleton<GameManager>
     public void EndUseOfAbility()
     {
         EventHandler.Invoke("Ability/DestroyPanel", null);
-        if (AbilityUser != null) AbilityUser.BecomeUsed();
+        if (AbilityUser != null) AbilityUser.SetUsed(true);
         AbilityUser = null;
         TargetRadius = null;
         Phase = GamePhase.None;
@@ -500,16 +500,20 @@ public enum GamePhase
 public interface Targetable
 {
     public void HitByAbility(Ability ability);
-    public void ChangeHealth(int amount);
+    public void ChangeHealth(int amount, bool ignoreShield = false);
     public void ApplyEffect(ActiveEffectType effect);
-    public List<ActiveEffectType> GetEffects();
+    public ActiveEffectList GetEffects();
     public void MoveToPlace(Vector2Int direction);
     public Vector2Int GetGridPosition();
     public Transform GetTransform();
+    public void Teleport(Vector2Int pos);
 
-    public void BecomeUsed();
+    public Health GetHealthBar();
+
+    public void SetUsed(bool used);
     public void CheckForDeath();
     public Map GetMap();
     public void GainXP(int amount);
+    public int GetXPValue();
     public void Active(bool active);
 }

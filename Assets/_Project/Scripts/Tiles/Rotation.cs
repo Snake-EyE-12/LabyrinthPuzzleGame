@@ -22,6 +22,24 @@ public class Rotation
         ClampRotation();
     }
 
+    public Vector2Int RotateDirectionAccoundingly(Vector2Int direction)
+    {
+        switch (currentRotation)
+        {
+            case 0:
+                return direction;
+            case 1:
+                return new Vector2Int(-direction.y, direction.x);
+            case 2:
+                return new Vector2Int(-direction.x, -direction.y);
+            case 3:
+                return new Vector2Int(direction.y, -direction.x);
+            default:
+                return direction;
+        }
+        
+    }
+
     private void ClampRotation()
     {
         currentRotation = GameUtils.ModPositive(currentRotation, 4);

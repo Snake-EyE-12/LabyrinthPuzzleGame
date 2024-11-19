@@ -10,6 +10,7 @@ namespace Capstone.DataLoad
     [System.Serializable]
     public class Mode
     {
+        public bool Active;
         public string DisplayName;
         public Color DisplayColor;
         public string Description;
@@ -25,6 +26,7 @@ namespace Capstone.DataLoad
         public Range ChallengeRange;
         public int PostBattleHealPercent;
         public int ProductsPerShop;
+        public int MaxCharacterDegree;
         
         public void Load()
         {
@@ -415,6 +417,7 @@ namespace Capstone.DataLoad
     {
         public string Change;
         public string Condition;
+        public string Placement;
         public string Modification;
         public string With;
     }

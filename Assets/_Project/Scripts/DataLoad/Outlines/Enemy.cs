@@ -164,7 +164,7 @@ public class Attack : Weighted
 
     public int GetAbilityValue()
     {
-        return ability.value;
+        return ability.GetValue();
     }
 
     private int weight;
@@ -190,7 +190,7 @@ public class Attack : Weighted
             }
         }
 
-        hits *= ability.value;
+        hits *= ability.GetValue();
         int intel = hits * hits;
 
         currentIntelligenceWeightBonus = (int)(Mathf.Lerp(weight, intel, baseIQ * 1.0f / DataHolder.currentMode.MaximumIQ) * 100);
@@ -200,12 +200,12 @@ public class Attack : Weighted
         GameManager.Instance.AbilityUser = user;
         foreach (var tilePosition in GetActiveShape(user.GetGridPosition()))
         {
-            foreach (var character in GameManager.Instance.GetActiveCharacters())
+            List<CharacterDisplay> cd = GameManager.Instance.GetActiveCharacters();
+            for (int i = 0; i < cd.Count; i++)
             {
-                if(character == null) continue; //  THIS DOES NOT SOLVE THE ISSUE TODO
-                if(character.GetGridPosition() == tilePosition)
+                if(cd[i].GetGridPosition() == tilePosition)
                 {
-                    ability.Use(character);
+                    ability.Use(cd[i]);
                 }
             }
             // foreach enemy - self hitting

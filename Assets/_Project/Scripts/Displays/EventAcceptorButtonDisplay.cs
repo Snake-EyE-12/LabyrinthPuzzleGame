@@ -59,6 +59,10 @@ public abstract class EventAcceptor
 
 public class FightEvent : EventAcceptor
 {
+    public int GetExtras()
+    {
+        return additionalEnemyCount;
+    }
     private int additionalEnemyCount = 0;
     public void UpTheAnte(int value)
     {
@@ -70,10 +74,13 @@ public class FightEvent : EventAcceptor
 
     public override bool OnClick(EventAcceptorButtonDisplay button)
     {
-        displayBox.ActivateButton();
-        AudioManager.Instance.Play("ButtonClick");
-        GameManager.Instance.LoadFight(additionalEnemyCount);
+        EffectHolder.Instance.SpawnEffect("FightBurn", button.transform);
         return IsOver();
+    }
+
+    protected override bool IsOver()
+    {
+        return false;
     }
 }
 public class ShopEvent : EventAcceptor
@@ -105,6 +112,7 @@ public class ChallengeEvent : EventAcceptor
     public override bool OnClick(EventAcceptorButtonDisplay button)
     {
         AudioManager.Instance.Play("ButtonClick");
+        AudioManager.Instance.Play("Chomp");
         clickCount++;
         button.Burn(1 - (clickCount * 1.0f / DataHolder.currentMode.MaxChallengeAdditions));
         displayBox.UpTheAnte();

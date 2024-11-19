@@ -1,46 +1,59 @@
 {
   "Layouts":[
     {
-      "Name":"All",
+      "Name":"Test",
+      "Characters":[
+        "Mobilizer",
+        "Mobilizer",
+        "Mobilizer",
+        "Mobilizer",
+        "Mobilizer"
+      ],
+      "Weight": 100
+    },
+    {
+      "Name":"Power House",
+      "Characters":[
+        "Offensive",
+        "Magician",
+        "Magician",
+        "Healer",
+        "Healer"
+      ],
+      "Weight": 20
+    },
+    {
+      "Name":"Standard",
       "Characters":[
         "Offensive",
         "Defensive",
         "Magician",
         "Healer",
-        "Informant",
+        "Informant"
+      ],
+      "Weight": 10
+    },
+    {
+      "Name":"Magical",
+      "Characters":[
+        "Healer",
+        "Defensive",
+        "Magician",
         "Mobilizer",
-        "Agent"
-        ],
-      "Weight": 10
-    },
-    {
-      "Name":"MIB",
-      "Characters":[
-        "Agent",
-        "Agent",
-        "Agent",
-        "Agent"
+        "Informant"
       ],
       "Weight": 10
     },
     {
-      "Name":"Red",
-      "Characters":[
-        "Healer",
-        "Healer"
-      ],
-      "Weight": 1000
-    }
-  ,
-    {
-      "Name":"Test",
+      "Name":"Offenders",
       "Characters":[
         "Offensive",
         "Offensive",
-        "Healer",
-        "Healer"
+        "Defensive",
+        "Informant",
+        "Mobilizer"
       ],
-      "Weight": 1000
+      "Weight": 10
     }
   ]
 }

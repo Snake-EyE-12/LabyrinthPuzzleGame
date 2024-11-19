@@ -36,6 +36,7 @@ public class OpponentTurnPhase : RoundPhase
         GameManager.Instance.MoveEnemies();
         GameManager.Instance.PickEnemyAttacks();
         AttackIndicator.Instance.VisualizeAttacks();
+        GameManager.Instance.SetCharactersUsable();
     }
     
 }
@@ -110,7 +111,6 @@ public class TeamTurnPhase : RoundPhase
     {
         GameManager.Instance.SetSelectionMode(SelectableGroupType.Team);
         EventHandler.AddListener("Round/EndTurn", TryEndTurn);
-        GameManager.Instance.PrepareTeamTurnStart();
     }
 
     public override void UpdatePhase()

@@ -78,11 +78,24 @@ public class Card
     {
         this.tile = tile;
     }
+    public static Card Generate()
+    {
+        return new Card(Tile.GenerateRandomTile());
+    }
 
     public static Card Load(string symbol)
     {
         CardData cardData = DataHolder.availableTiles.FindCardBySymbol(symbol);
-        Card card = new Card(new Tile(cardData.Tile, cardData.Ability));
+        Card card = null;
+        try
+        {
+            card = new Card(new Tile(cardData.Tile, cardData.Ability));
+        }
+        catch (System.Exception e)
+        {
+            Debug.Log("Failed to find card of symbol: " + symbol);
+            card = Card.Generate();
+        }
         return card;
     }
 

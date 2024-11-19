@@ -18,6 +18,18 @@ public class Tile
         return (GetOrientation() & bitDirection) == bitDirection;
     }
 
+    public void OpenPath(Vector2Int direction)
+    {
+        
+        path.AddPathway((CardinalDirection)directionToBits(rotation.RotateDirectionAccoundingly(direction)));
+    }
+    public void ClosePath(Vector2Int direction)
+    {
+        
+        path.RemovePathway((CardinalDirection)directionToBits(rotation.RotateDirectionAccoundingly(direction)));
+    }
+    
+
     public static Tile Copy(Tile tile)
     {
         Tile newTile = new Tile();

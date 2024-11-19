@@ -23,6 +23,7 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
     public void ApplyDamagePhaseEffects()
     {
         item.ActiveEffectsList.ApplyDamage(this);
+        CheckForDeath();
     }
     public void ApplyEndOfTurnPhaseEffects()
     {
@@ -47,11 +48,7 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
         EventHandler.AddListener("Round/FightOver", OnBattleOver);
         GameManager.Instance.AddCharacter(this);
     }
-
-    public void BecomeAvailable()
-    {
-        used = false;
-    }
+    
 
     private void OnBattleOver(EventArgs args)
     {
@@ -59,15 +56,18 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
         foreach (var a in item.abilityList)
         {
             a.usedThisCombat = false;
+            a.growthValue = 0;
         }
 
         foreach (var card in item.inventory.GetCards())
         {
             card.GetTile().rotation.SetStringRotation("Reset");
+            if(card.GetTile().ability != null) card.GetTile().ability.growthValue = 0;
         }
         Vanish();
 
         item.health.isDead = false;
+        SetUsed(false);
         item.ActiveEffectsList.Reset();
 
     }
@@ -165,13 +165,24 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
         return false;
     }
 
+    [SerializeField] private GameObject usedCover;
+    private void Update()
+    {
+        usedCover.SetActive(used);
+    }
+
     public void Activate(SelectableActivatorData data)
     {
         if (data is DirectionalSelectableActivatorData)
         {
-            localMap.Move(this, (data as DirectionalSelectableActivatorData).direction);
-            AudioManager.Instance.Play("Footsteps");
-            CommandHandler.Clear();
+            FreezeActiveEffect fea = item.ActiveEffectsList.GetEffect<FreezeActiveEffect>();
+            if (fea == null && fea.value <= 0)
+            {
+                localMap.Move(this, (data as DirectionalSelectableActivatorData).direction);
+                AudioManager.Instance.Play("Footsteps");
+                CommandHandler.Clear();
+            }
+
             return;
         }
         else
@@ -217,13 +228,13 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
         return item;
     }
 
-    public void ChangeHealth(int amount)
+    public void ChangeHealth(int amount, bool ignoreShield = false)
     {
         if (amount < 0)
         {
             amount *= -1;
             ShieldActiveEffect shield = item.ActiveEffectsList.GetEffect<ShieldActiveEffect>();
-            if (shield == null) damager.TakeDamage(amount);
+            if (shield == null || ignoreShield) damager.TakeDamage(amount);
             else if (shield.value > amount)
             {
                 shield.value -= amount;
@@ -237,30 +248,49 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
         else damager.Heal(amount);
         healthBar.Render();
     }
+    
+    public Health GetHealthBar()
+    {
+        return item.health;
+    }
 
     public void ApplyEffect(ActiveEffectType effect)
     {
-        item.ActiveEffectsList.AddEffect(effect);
+        if(effect != null) item.ActiveEffectsList.AddEffect(effect);
         SetHealthBar();
     }
 
-    public List<ActiveEffectType> GetEffects()
+    public ActiveEffectList GetEffects()
     {
-        return item.ActiveEffectsList.GetActiveEffects();
+        return item.ActiveEffectsList;
     }
 
     public void MoveToPlace(Vector2Int direction)
     {
         FreezeActiveEffect ice = item.ActiveEffectsList.GetEffect<FreezeActiveEffect>();
-        if (ice == null || ice.value == 0) return;
+        if (ice != null && ice.value > 0) return;
         Vector2Int newPos = GetGridPosition() + direction;
         SetGridPosition(newPos);
         destinator.MoveTo(new DestinationData(VisualDataHolder.Instance.CoordsToPosition(newPos), 0.5f, true));
     }
-    public void BecomeUsed()
+
+    public void Teleport(Vector2Int pos)
     {
-        used = true;
+        FreezeActiveEffect ice = item.ActiveEffectsList.GetEffect<FreezeActiveEffect>();
+        if (ice != null && ice.value > 0) return;
+        localMap.TP(this, pos);
+        //SetGridPosition(pos);
+        //destinator.MoveTo(new DestinationData(VisualDataHolder.Instance.CoordsToPosition(pos), 0.001f, true));
+    }
+    public void SetUsed(bool used)
+    {
+        this.used = used;
         Active(false);
+    }
+
+    public int GetXPValue()
+    {
+        return item.XP.value;
     }
 
     public void CheckForDeath()

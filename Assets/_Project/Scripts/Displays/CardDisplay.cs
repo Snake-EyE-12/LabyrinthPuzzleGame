@@ -47,12 +47,12 @@ public class CardDisplay : Display<Card>, Selectable
             }
             descriptionTextbox.text = descriptionBuilder.Substring(0, descriptionBuilder.Length - 2);
             
-            valuePointsParent.gameObject.SetActive(a.value > 0);
+            valuePointsParent.gameObject.SetActive(a.GetValue() > 0);
             foreach (Transform child in valuePointsParent)
             {
                 Destroy(child.gameObject);
             }
-            for (int i = 0; i < a.value; i++)
+            for (int i = 0; i < a.GetValue(); i++)
             {
                 var valuePoint = Instantiate(valuePointPrefab, valuePointsParent);
             }

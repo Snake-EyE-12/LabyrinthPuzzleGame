@@ -14,7 +14,7 @@ public class GamemodeManager : Singleton<GamemodeManager>
         this.handler = handler;
         foreach (var mode in modes)
         {
-            CreateGamemode(mode);
+            if(mode.Active) CreateGamemode(mode);
         }
     }
 

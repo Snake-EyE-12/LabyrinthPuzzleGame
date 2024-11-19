@@ -42,9 +42,13 @@ public class Path
         openPathways = paths;
     }
 
-    private void AddPathway(CardinalDirection direction)
+    public void AddPathway(CardinalDirection direction)
     {
         openPathways |= direction;
+    }
+    public void RemovePathway(CardinalDirection direction)
+    {
+        openPathways &= ~direction;
     }
 
     public int GetOpenPathBits()

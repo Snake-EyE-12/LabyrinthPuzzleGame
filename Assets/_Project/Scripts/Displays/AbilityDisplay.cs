@@ -47,12 +47,12 @@ public class AbilityDisplay : Display<Ability>, Selectable
         }
         descriptionTextbox.text = descriptionBuilder.Substring(0, descriptionBuilder.Length - 2);
         
-        valuePointsParent.gameObject.SetActive(item.value > 0);
+        valuePointsParent.gameObject.SetActive(item.GetValue() > 0);
         foreach (Transform child in valuePointsParent)
         {
             Destroy(child.gameObject);
         }
-        for (int i = 0; i < item.value; i++)
+        for (int i = 0; i < item.GetValue(); i++)
         {
             var valuePoint = Instantiate(valuePointPrefab, valuePointsParent);
         }

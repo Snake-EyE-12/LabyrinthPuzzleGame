@@ -34,6 +34,13 @@ public class Character : Unit
     {
         inventory.Expand(index);
     }
+    public void AddAbilitySpaceUpTo(int index)
+    {
+        for (int i = abilityList.Count - 1; i < index; i++)
+        {
+            abilityList.Add(null);
+        }
+    }
     public void EquipCharm(Item charm)
     {
         charm.ApplyTo(this);
@@ -84,7 +91,6 @@ public class Inventory
 
     public void Expand(int index)
     {
-
         for (int i = tilePieces.Count - 1; i < index; i++)
         {
             tilePieces.Add(null);

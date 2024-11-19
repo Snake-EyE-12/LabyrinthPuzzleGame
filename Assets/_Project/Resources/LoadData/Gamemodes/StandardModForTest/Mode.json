@@ -1,7 +1,8 @@
 {
+  "Active": false,
   "Description": "5 Character Selection",
   "DisplayColor": {"r":0.8,"g":0.7,"b":0.1,"a":1.0},
-  "GridSize": 6,
+  "GridSize": 3,
   "CharacterSelection":
   {
     "Type": "Preset",
@@ -39,7 +40,7 @@
       "Events": 
       [
         {
-          "Type": "Challenge",
+          "Type": "Shop",
           "Weight": 4
         }
       ],

@@ -16,6 +16,16 @@
       "AttackLayout":[
         {
           "Weight":1,
+          "Shape":"Diagonal",
+          "Power":1,
+          "Ability":{
+            "Value": 1,
+            "Target": "Opponent",
+            "Keys": ["Damage"]
+          }
+        },
+        {
+          "Weight":1,
           "Shape":"Line",
           "Power":1,
           "Ability":{
@@ -28,16 +38,8 @@
       "ActiveEffects":[],
       "Loot":[
         {
-          "Type": "XP",
-          "Value": 1
-        },
-        {
           "Type": "Coin",
-          "Value": 1
-        },
-        {
-          "Type": "Coin",
-          "Value": 4
+          "Value": 5
         },
         {
           "Type": "Item",
@@ -56,12 +58,12 @@
         }
       ],
       "Type":"Simple",
-      "AttackIQ":5,
-      "MovementIQ":5,
+      "AttackIQ":50,
+      "MovementIQ":50,
       "AttackLayout":[
         {
           "Weight":1,
-          "Shape":"Cross",
+          "Shape":"Circle",
           "Power":1,
           "Ability":{
             "Value": 1,
@@ -71,10 +73,47 @@
         },
         {
           "Weight":1,
-          "Shape":"Line",
+          "Shape":"Beam",
           "Power":1,
           "Ability":{
             "Value": 3,
+            "Target": "Opponent",
+            "Keys": ["Damage"]
+          }
+        }
+      ],
+      "ActiveEffects":[]
+    },
+    {
+      "Name":"E3",
+      "Degree":2,
+      "Weight":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":6
+        }
+      ],
+      "Type":"Simple",
+      "AttackIQ":50,
+      "MovementIQ":50,
+      "AttackLayout":[
+        {
+          "Weight":1,
+          "Shape":"Circle",
+          "Power":2,
+          "Ability":{
+            "Value": 1,
+            "Target": "Opponent",
+            "Keys": ["Damage"]
+          }
+        },
+        {
+          "Weight":1,
+          "Shape":"Cross",
+          "Power":3,
+          "Ability":{
+            "Value": 4,
             "Target": "Opponent",
             "Keys": ["Damage"]
           }

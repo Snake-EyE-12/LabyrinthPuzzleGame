@@ -73,7 +73,20 @@ public class AttackIndicator : Singleton<AttackIndicator>
         abd.Set(eavList);
         visuals.Add(abd);
     }
-    
+
+    public void UseSpecificEnemyAttack(EnemyDisplay earlyAttacker)
+    {
+        foreach (var a in activeAttacks)
+        {
+            if (a.user == earlyAttacker)
+            {
+                a.attack.Use(a.user);
+                activeAttacks.Remove(a);
+                Recalculate();
+                return;
+            }
+        }
+    }
 
     public void ExecuteAttacks()
     {
