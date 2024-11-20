@@ -1,0 +1,32 @@
+{
+  "Equivalences":[
+    {
+      "Type":"Offensive",
+      "Color":{"r":1.0,"g":0.6,"b":0.0,"a":1.0}
+    },
+    {
+      "Type":"Defensive",
+      "Color":{"r":0.7,"g":0.5,"b":0.0,"a":1.0}
+    },
+    {
+      "Type":"Magician",
+      "Color":{"r":1.0,"g":0.0,"b":1.0,"a":1.0}
+    },
+    {
+      "Type":"Healer",
+      "Color":{"r":1.0,"g":0.0,"b":0.0,"a":1.0}
+    },
+    {
+      "Type":"Informant",
+      "Color":{"r":0.0,"g":1.0,"b":0.0,"a":1.0}
+    },
+    {
+      "Type":"Mobilizer",
+      "Color":{"r":0.0,"g":0.8,"b":0.3,"a":1.0}
+    },
+    {
+      "Type":"Agent",
+      "Color":{"r":0.0,"g":0.0,"b":0.0,"a":1.0}
+    }
+  ]
+}

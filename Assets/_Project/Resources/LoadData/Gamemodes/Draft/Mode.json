@@ -1,11 +1,11 @@
 {
   "Active": true,
-  "Description": "A hearty battle of 5 with wits and skill to the death!",
-  "DisplayColor": {"r":0.45,"g":0.7,"b":0.9,"a":1.0},
+  "Description": "A choice and fight for freedom!",
+  "DisplayColor": {"r":0.35,"g":0.6,"b":0.09,"a":1.0},
   "GridSize": 3,
   "CharacterSelection":
   {
-    "Type": "Choose",
+    "Type": "Draft",
     "Choices": 3,
     "Default": "Standard",
     "Total": 5,
@@ -53,11 +53,11 @@
         },
         "Begin": 1,
         "Size": 1,
-        "Repeated": 2
+        "Repeated": 1
       }
     },
     {
-      "IncludeChance": 100,
+      "IncludeChance": 0,
       "Events":
       [
         {

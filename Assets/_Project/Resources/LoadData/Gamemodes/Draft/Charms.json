@@ -20,25 +20,6 @@
       ]
     },
     {
-      "Name" : "Extra Heart",
-      "Description": "Add One Heart",
-      "Degree": 1,
-      "Price": {
-        "Min": 10,
-        "Max": 20
-      },
-      "Weight": 30,
-      "Manipulations": [
-        {
-          "Change": "Health",
-          "Condition": "None",
-          "Placement": "Post",
-          "Modification": "Add",
-          "With": "1"
-        }
-      ]
-    },
-    {
       "Name" : "Extra Range",
       "Description": "Convert Melee To Stunted",
       "Degree": 1,

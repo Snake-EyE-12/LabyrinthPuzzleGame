@@ -10,8 +10,10 @@ public class EventAcceptorButtonDisplay : Display<EventAcceptor>
     [SerializeField] private TMP_Text displayText;
     [SerializeField] private Image iconImage;
     [SerializeField] private Floater burnAfterImage;
+    [SerializeField] private GameObject button;
     public override void Render()
     {
+        button.SetActive(item is not FightEvent);
         Color color = DataHolder.eventColorEquivalenceTable.GetColor(item.data.Type);
         displayText.text = $"<color=#{ColorUtility.ToHtmlStringRGB(color)}FF>{item.data.Type}</color> ";
         iconImage.sprite = Resources.Load<Sprite>("KeynamedSprites/EventIcons/" + item.data.Type);

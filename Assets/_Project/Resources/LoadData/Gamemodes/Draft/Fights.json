@@ -1,0 +1,122 @@
+{
+  "Fights": [
+    {
+      "Degree": {
+        "Min": 1,
+        "Max": 1
+      },
+      "Weight": 20,
+      "Border": "Wrap",
+      "Enemies": [
+        "E1"
+      ],
+      "FloorLayout": {
+        "Fill": "Expand",
+        "AvailableTiles": [
+          {
+            "Tile": "+",
+            "Value": 100,
+            "Rotation": "Still"
+          },
+          {
+            "Tile": "|",
+            "Value": 100,
+            "Rotation": "Random"
+          }
+        ]
+      }
+    },
+    {
+      "Degree": {
+        "Min": 2,
+        "Max": 2
+      },
+      "Weight": 20,
+      "Border": "Wrap",
+      "Enemies": [
+        "E1",
+        "E1",
+        "E2"
+      ]
+    },
+    {
+      "Degree": {
+        "Min": 2,
+        "Max": 2
+      },
+      "Weight": 20,
+      "Border": "Wrap",
+      "Enemies": [
+        "E2",
+        "E2"
+      ],
+      "FloorLayout": {
+        "Fill": "Random",
+        "AvailableTiles": [
+          {
+            "Tile": "+",
+            "Value": 100,
+            "Rotation": "Random"
+          },
+          {
+            "Tile": "L",
+            "Value": 100,
+            "Rotation": "Random"
+          }
+        ]
+      }
+    },
+    {
+      "Degree": {
+        "Min": 3,
+        "Max": 3
+      },
+      "Weight": 20,
+      "Border": "Wrap",
+      "Enemies": [
+        "E3",
+        "E1"
+      ],
+      "FloorLayout": {
+        "Fill": "Random",
+        "AvailableTiles": [
+          {
+            "Tile": ".",
+            "Value": 100,
+            "Rotation": "Random"
+          },
+          {
+            "Tile": "!",
+            "Value": 100,
+            "Rotation": "Random"
+          }
+        ]
+      }
+    },
+    {
+      "Degree": {
+        "Min": 4,
+        "Max": 5
+      },
+      "Weight": 20,
+      "Border": "Wrap",
+      "Enemies": [
+        "Minotaur",
+        "Giant"
+      ],
+      "FloorLayout": {
+        "Fill": "Random",
+        "AvailableTiles": [
+          {
+            "Tile": "+",
+            "Value": 100
+          },
+          {
+            "Tile": "-",
+            "Value": 100
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -375,6 +375,7 @@ MonoBehaviour:
   displayText: {fileID: 9054625910043204029}
   iconImage: {fileID: 6737514296542935450}
   burnAfterImage: {fileID: 7531176371851818557, guid: 46e3a7ea114c87145b01c3e85699afe5, type: 3}
+  button: {fileID: 4413301556485648985}
 --- !u!1 &9160897809401269167
 GameObject:
   m_ObjectHideFlags: 0

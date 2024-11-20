@@ -130,6 +130,7 @@ public class CardDisplay : Display<Card>, Selectable
     [SerializeField] private float xDistanceToOffScreen;
     public void DiscardFromPlay()
     {
+        if (transform == null) return;
         MoveVisually(transform.position + Vector3.left * xDistanceToOffScreen, 1);
         RemoveCard(destinator.GetBaseTime());
     }

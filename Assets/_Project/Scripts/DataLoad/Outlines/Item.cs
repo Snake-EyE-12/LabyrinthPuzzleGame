@@ -40,11 +40,13 @@ public abstract class Manipulation
     protected Condition condition;
     protected Placement placer;
     protected Modification mod;
+    protected string withData;
     public Manipulation(ManipulationData data)
     {
         condition = Condition.Load(data);
         placer = Placement.Load(data);
         mod = Modification.Load(data);
+        withData = data.With;
     }
 
     protected List<int> indeces = new List<int>();
@@ -83,7 +85,7 @@ public class HealthManipulation : Manipulation
 
     public override void Apply(Character character)
     {
-        throw new System.NotImplementedException();
+        if(condition.Evaluate()) mod.Modify(withData, new HealthModificationData(character));
     }
 }
 public class XPManipulation : Manipulation
@@ -270,6 +272,12 @@ public class CardModificationData : ModificationData
     public int index;
     public CardModificationData(List<Card> cards, int i) => (cardList, index) = (cards, i);
 }
+
+public class HealthModificationData : ModificationData
+{
+    public Health characterHealthBar;
+    public HealthModificationData(Character character) => characterHealthBar = character.health;
+}
 public class AbilityKeywordModificationData : ModificationData
 {
     public string oldKey;
@@ -314,7 +322,15 @@ public class AddModification : Modification
         if (data is CardModificationData)
         {
             CardModificationData cardData = data as CardModificationData;
-            SetCardAt(cardData.cardList, cardData.index, Card.Load(withData));
+            Card c = Card.Load(withData);
+            c.owner = cardData.cardList[0].owner;
+            SetCardAt(cardData.cardList, cardData.index, c);
+        }
+        else if (data is HealthModificationData)
+        {
+            int value = int.Parse(withData);
+            HealthModificationData healthData = data as HealthModificationData;
+            healthData.characterHealthBar.AddHealthType("Blood", value);
         }
     }
 }

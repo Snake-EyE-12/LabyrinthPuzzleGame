@@ -1,0 +1,189 @@
+{
+  "Enemies":[
+    {
+      "Name":"E1",
+      "Degree":1,
+      "Weight":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":3
+        }
+      ],
+      "Type":"Simple",
+      "AttackIQ":5,
+      "MovementIQ":5,
+      "AttackLayout":[
+        {
+          "Weight":1,
+          "Shape":"Diagonal",
+          "Power":1,
+          "Ability":{
+            "Value": 1,
+            "Target": "Opponent",
+            "Keys": ["Damage"]
+          }
+        },
+        {
+          "Weight":1,
+          "Shape":"Line",
+          "Power":1,
+          "Ability":{
+            "Value": 1,
+            "Target": "Opponent",
+            "Keys": ["Damage"]
+          }
+        }
+      ],
+      "ActiveEffects":[],
+      "Loot":[
+        {
+          "Type": "Coin",
+          "Value": 5
+        },
+        {
+          "Type": "Item",
+          "Value": -1
+        }
+      ] 
+    },
+    {
+      "Name":"E2",
+      "Degree":2,
+      "Weight":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":4
+        }
+      ],
+      "Type":"Simple",
+      "AttackIQ":50,
+      "MovementIQ":50,
+      "AttackLayout":[
+        {
+          "Weight":1,
+          "Shape":"Circle",
+          "Power":1,
+          "Ability":{
+            "Value": 1,
+            "Target": "Opponent",
+            "Keys": ["Damage"]
+          }
+        },
+        {
+          "Weight":1,
+          "Shape":"Beam",
+          "Power":1,
+          "Ability":{
+            "Value": 3,
+            "Target": "Opponent",
+            "Keys": ["Damage"]
+          }
+        }
+      ],
+      "ActiveEffects":[]
+    },
+    {
+      "Name":"E3",
+      "Degree":2,
+      "Weight":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":6
+        }
+      ],
+      "Type":"Simple",
+      "AttackIQ":50,
+      "MovementIQ":50,
+      "AttackLayout":[
+        {
+          "Weight":1,
+          "Shape":"Circle",
+          "Power":2,
+          "Ability":{
+            "Value": 1,
+            "Target": "Opponent",
+            "Keys": ["Damage"]
+          }
+        },
+        {
+          "Weight":1,
+          "Shape":"Cross",
+          "Power":3,
+          "Ability":{
+            "Value": 4,
+            "Target": "Opponent",
+            "Keys": ["Damage"]
+          }
+        }
+      ],
+      "ActiveEffects":[]
+    },
+    {
+      "Name":"Minotaur",
+      "Degree":20,
+      "Weight":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":7
+        }
+      ],
+      "Type":"Boss",
+      "AttackIQ":5,
+      "MovementIQ":5,
+      "AttackLayout":[
+        {
+          "Weight":1,
+          "Shape":"Line",
+          "Power":2,
+          "Ability":{
+            "Value": 1,
+            "Target": "Opponent",
+            "Keys": ["Damage"]
+          }
+        }
+      ],
+      "ActiveEffects":[]
+    },
+    {
+      "Name":"Giant",
+      "Degree":20,
+      "Weight":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":9
+        }
+      ],
+      "Type":"Boss",
+      "AttackIQ":5,
+      "MovementIQ":5,
+      "AttackLayout":[
+        {
+          "Weight":1,
+          "Shape":"Cross",
+          "Power":5,
+          "Ability":{
+            "Value": 2,
+            "Target": "Opponent",
+            "Keys": ["Damage"]
+          }
+        },
+        {
+          "Weight":10,
+          "Shape":"Line",
+          "Power":1,
+          "Ability":{
+            "Value": 7,
+            "Target": "Opponent",
+            "Keys": ["Damage"]
+          }
+        }
+      ],
+      "ActiveEffects":[]
+    }
+  ]
+}
