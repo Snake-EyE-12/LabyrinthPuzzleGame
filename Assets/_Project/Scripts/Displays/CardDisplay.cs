@@ -13,6 +13,7 @@ public class CardDisplay : Display<Card>, Selectable
     [SerializeField] private Transform valuePointsParent;
     [SerializeField] private GameObject valuePointPrefab;
     [SerializeField] private TMP_Text descriptionTextbox;
+    [SerializeField] private TMP_Text valueTextbox;
     
     
     
@@ -36,6 +37,7 @@ public class CardDisplay : Display<Card>, Selectable
         colorRingImageRenderer.color = cardColor;
         iconImageRenderer.color = cardColor;
         iconImageRenderer.sprite = Resources.Load<Sprite>("KeynamedSprites/CharacterIcons/" + item.owner);
+        valueTextbox.text = item.GetTile().ability.GetValue() + "";
         Ability a = item.GetTile().ability;
         if (a != null)
         {

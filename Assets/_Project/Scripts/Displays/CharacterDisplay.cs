@@ -267,11 +267,18 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
 
     public void MoveToPlace(Vector2Int direction)
     {
-        FreezeActiveEffect ice = item.ActiveEffectsList.GetEffect<FreezeActiveEffect>();
-        if (ice != null && ice.value > 0) return;
-        Vector2Int newPos = GetGridPosition() + direction;
-        SetGridPosition(newPos);
-        destinator.MoveTo(new DestinationData(VisualDataHolder.Instance.CoordsToPosition(newPos), 0.5f, true));
+        
+        //Vector2Int newPos = GetGridPosition() + direction;
+        //SetGridPosition(newPos);
+        //destinator.MoveTo(new DestinationData(VisualDataHolder.Instance.CoordsToPosition(newPos), 0.5f, local));
+        
+        if(IsFrozen()) return;
+        localMap.Move(this, direction);
+    }
+    private bool IsFrozen()
+    {
+        FreezeActiveEffect fea = item.ActiveEffectsList.GetEffect<FreezeActiveEffect>();
+        return fea != null && fea.value > 0;
     }
 
     public void Teleport(Vector2Int pos)

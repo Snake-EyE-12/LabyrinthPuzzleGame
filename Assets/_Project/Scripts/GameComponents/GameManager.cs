@@ -288,7 +288,8 @@ public class GameManager : Singleton<GameManager>
     }
     private void CompleteGame()
     {
-        SceneChanger.LoadScene("Win");
+        DataHolder.defeatedRound = currentRound - 1;
+        EventHandler.Invoke("OnGameWin", null);
     }
 
     private void ResetGameManagerForNextGame()
