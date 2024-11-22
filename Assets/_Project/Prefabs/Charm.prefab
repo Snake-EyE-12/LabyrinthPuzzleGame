@@ -146,7 +146,7 @@ MonoBehaviour:
   m_text: A Very Large Descriptions that takes up the whole screen and still looks
     fine
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 857e505dc48e13a4d84085fa67f1202e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d8bff3ca65185f448896d32fc52e432d, type: 2}
   m_sharedMaterial: {fileID: -6170499945577141601, guid: 857e505dc48e13a4d84085fa67f1202e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_fontColor: {r: 0.32156864, g: 0.18039216, b: 0.41568628, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -210,7 +210,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &6922760277398947372
@@ -469,7 +469,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: '#'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 857e505dc48e13a4d84085fa67f1202e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ffbdcbc037a6c1a4e905781b8800ec10, type: 2}
   m_sharedMaterial: {fileID: -6170499945577141601, guid: 857e505dc48e13a4d84085fa67f1202e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -533,7 +533,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &8779723644596226422
@@ -603,7 +603,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Name
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 857e505dc48e13a4d84085fa67f1202e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ffbdcbc037a6c1a4e905781b8800ec10, type: 2}
   m_sharedMaterial: {fileID: -6170499945577141601, guid: 857e505dc48e13a4d84085fa67f1202e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -667,6 +667,6 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}

@@ -6,7 +6,8 @@ public static class GameDataReader
 {
     private static string ReadText(string path)
     {
-        return Resources.Load<TextAsset>(path).text;
+        string finalPath = Application.streamingAssetsPath + "/" + path + ".json";
+        return File.ReadAllText(finalPath);
     }
     private static T ReadJson<T>(string json)
     {
@@ -15,14 +16,14 @@ public static class GameDataReader
 
     public static T ConvertToJsonObject<T>(string path)
     {
-        return ReadJson<T>(GameDataReader.ReadText(path));
+        return ReadJson<T>(ReadText(path));
     }
     
     public static List<string> GetAllGamemodeNames()
     {
         string relativePath = "LoadData/Gamemodes";
         List<string> folderNames = new List<string>();
-        string fullPath = System.IO.Path.Combine(Application.dataPath, "_Project/Resources", relativePath);
+        string fullPath = System.IO.Path.Combine(Application.streamingAssetsPath, relativePath);
         fullPath = fullPath.Replace('\\', '/');
         
         if (Directory.Exists(fullPath))

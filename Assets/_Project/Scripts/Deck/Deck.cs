@@ -87,6 +87,7 @@ public class Card
     {
         CardData cardData = DataHolder.availableTiles.FindCardBySymbol(symbol);
         Card card = null;
+        #if UNITY_EDITOR
         try
         {
             card = new Card(new Tile(cardData.Tile, cardData.Ability));
@@ -96,6 +97,9 @@ public class Card
             Debug.Log("Failed to find card of symbol: " + symbol);
             card = Card.Generate();
         }
+        #else
+        card = new Card(new Tile(cardData.Tile, cardData.Ability));
+        #endif
         return card;
     }
 

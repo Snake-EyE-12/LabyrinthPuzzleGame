@@ -81,7 +81,7 @@
       "ActiveEffects":[],
       "Abilities": [
         {
-          "Value": 0,
+          "Value": 1,
           "Target": "Any",
           "Keys": ["Stunted", "Knockback"]
         }
@@ -242,7 +242,7 @@
       "ActiveEffects":[],
       "Abilities": [
         {
-          "Value": 0,
+          "Value": 1,
           "Target": "Any",
           "Keys": ["Stunted", "Knockback"]
         }
@@ -366,35 +366,6 @@
       ]
     },
     {
-      "Name":"Confused",
-      "Type":"Magician",
-      "Degree":1,
-      "Health":[
-        {
-          "Type":"Blood",
-          "Value":2
-        }
-      ],
-      "Charge":2,
-      "Inventory":{
-        "ItemSlots":4,
-        "TilePieces":[
-          ".2C",
-          ".",
-          ".",
-          "."
-        ]
-      },
-      "ActiveEffects":[],
-      "Abilities": [
-        {
-          "Value": 0,
-          "Target": "Any",
-          "Keys": ["Melee", "Damage", "Charged"]
-        }
-      ]
-    },
-    {
       "Name":"Burster",
       "Type":"Magician",
       "Degree":1,
@@ -417,7 +388,7 @@
       "ActiveEffects":[],
       "Abilities": [
         {
-          "Value": 0,
+          "Value": 1,
           "Target": "Any",
           "Keys": ["Teleport"]
         },
@@ -490,7 +461,7 @@
       "Abilities": [
         {
           "Value": 2,
-          "Target": "Team",
+          "Target": "Any",
           "Keys": ["Charge", "Singular"]
         }
       ]
@@ -517,12 +488,12 @@
       "Abilities": [
         {
           "Value": 1,
-          "Target": "Team",
+          "Target": "Any",
           "Keys": ["Charge", "Singular"]
         },
         {
           "Value": 1,
-          "Target": "Team",
+          "Target": "Any",
           "Keys": ["Heal"]
         }
       ]
@@ -550,8 +521,8 @@
       "Abilities": [
         {
           "Value": 1,
-          "Target": "Opponent",
-          "Keys": ["Poison"]
+          "Target": "Any",
+          "Keys": ["Poison", "Melee"]
         }
       ]
     },
@@ -581,8 +552,8 @@
       "Abilities": [
         {
           "Value": 1,
-          "Target": "Opponent",
-          "Keys": ["Poison"]
+          "Target": "Any",
+          "Keys": ["Poison", "Melee"]
         }
       ]
     },
@@ -608,12 +579,12 @@
       "Abilities": [
         {
           "Value": 1,
-          "Target": "Opponent",
+          "Target": "Any",
           "Keys": ["Damage", "Stunted", "Knockback"]
         },
         {
           "Value": 2,
-          "Target": "Team",
+          "Target": "Any",
           "Keys": ["Heal", "Singular"]
         }
       ]
@@ -668,12 +639,12 @@
       "ActiveEffects":[],
       "Abilities": [
         {
-          "Value": 0,
+          "Value": 1,
           "Target": "Any",
           "Keys": ["Discard", "Singular"]
         },
         {
-          "Value": 0,
+          "Value": 1,
           "Target": "Any",
           "Keys": ["Teleport", "Singular"]
         }
@@ -702,7 +673,7 @@
       "ActiveEffects":[],
       "Abilities": [
         {
-          "Value": 0,
+          "Value": 1,
           "Target": "Any",
           "Keys": ["Teleport", "Melee"]
         }
@@ -765,7 +736,7 @@
           "Keys": ["Shield", "Heal", "Singular"]
         },
         {
-          "Value": 0,
+          "Value": 1,
           "Target": "Any",
           "Keys": ["Stunted", "Knockback"]
         },
@@ -835,7 +806,7 @@
       "ActiveEffects":[],
       "Abilities": [
         {
-          "Value": 0,
+          "Value": 1,
           "Target": "Any",
           "Keys": ["Teleport"]
         },
@@ -906,7 +877,7 @@
           "Keys": ["Damage", "Bleed"]
         },
         {
-          "Value": 0,
+          "Value": 1,
           "Target": "Any",
           "Keys": ["Discard"]
         }

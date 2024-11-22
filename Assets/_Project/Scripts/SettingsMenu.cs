@@ -27,7 +27,6 @@ public class SettingsMenu : MonoBehaviour
         SetMasterVolume(PlayerPrefs.GetFloat("Master_Volume"));
         SetMusicVolume(PlayerPrefs.GetFloat("Music_Volume"));
         SetSFXVolume(PlayerPrefs.GetFloat("SFX_Volume"));
-        Debug.Log("Music Volume: " + PlayerPrefs.GetFloat("Music_Volume"));
     }
     public void SetMasterVolume(float volume)
     {

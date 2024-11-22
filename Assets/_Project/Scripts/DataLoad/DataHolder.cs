@@ -29,4 +29,16 @@ public static class DataHolder
     public static int enemiesKilled;
 
     public static int cardsPlacedThisRound;
+
+
+    public static void Clear()
+    {
+        finalDeckSize = 0;
+        itemsCollected = 0;
+        challengesTaken = 0;
+        defeatedRound = 0;
+        coinsSpent = 0;
+        enemiesKilled = 0;
+        cardsPlacedThisRound = 0;
+    }
 }

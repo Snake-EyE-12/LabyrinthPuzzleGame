@@ -11,6 +11,8 @@ public class GamemodeDisplay : Display<Mode>
     [SerializeField] private Button button;
     [SerializeField] private Image coloredImage;
     [SerializeField] private TMP_Text descriptionText;
+    [SerializeField] private Color darkColor;
+    [SerializeField] private Color lightColor;
 
     
     public override void Render()
@@ -25,7 +27,7 @@ public class GamemodeDisplay : Display<Mode>
     {
         float grayscale = 0.299f * color.r + 0.587f * color.g + 0.114f * color.b;
         
-        return grayscale > 0.5 ? Color.black : Color.white;
+        return grayscale > 0.5 ? darkColor : lightColor;
 
     }
 

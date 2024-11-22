@@ -37,7 +37,7 @@ public class CardDisplay : Display<Card>, Selectable
         colorRingImageRenderer.color = cardColor;
         iconImageRenderer.color = cardColor;
         iconImageRenderer.sprite = Resources.Load<Sprite>("KeynamedSprites/CharacterIcons/" + item.owner);
-        valueTextbox.text = item.GetTile().ability.GetValue() + "";
+        valueTextbox.text = (item.GetTile().ability != null) ? item.GetTile().ability.GetValue() + "" : "";
         Ability a = item.GetTile().ability;
         if (a != null)
         {

@@ -143,8 +143,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: '#'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 857e505dc48e13a4d84085fa67f1202e, type: 2}
-  m_sharedMaterial: {fileID: -6170499945577141601, guid: 857e505dc48e13a4d84085fa67f1202e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ffbdcbc037a6c1a4e905781b8800ec10, type: 2}
+  m_sharedMaterial: {fileID: -6170499945577141601, guid: ffbdcbc037a6c1a4e905781b8800ec10, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -466,8 +466,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Name
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 857e505dc48e13a4d84085fa67f1202e, type: 2}
-  m_sharedMaterial: {fileID: -6170499945577141601, guid: 857e505dc48e13a4d84085fa67f1202e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ffbdcbc037a6c1a4e905781b8800ec10, type: 2}
+  m_sharedMaterial: {fileID: -6170499945577141601, guid: ffbdcbc037a6c1a4e905781b8800ec10, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -679,15 +679,15 @@ MonoBehaviour:
   m_text: A Very Large Descriptions that takes up the whole screen and still looks
     fine
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 857e505dc48e13a4d84085fa67f1202e, type: 2}
-  m_sharedMaterial: {fileID: -6170499945577141601, guid: 857e505dc48e13a4d84085fa67f1202e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d8bff3ca65185f448896d32fc52e432d, type: 2}
+  m_sharedMaterial: {fileID: -7663537272626472222, guid: d8bff3ca65185f448896d32fc52e432d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4285148754
+  m_fontColor: {r: 0.32150546, g: 0.17882991, b: 0.41509432, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -704,7 +704,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 6.6
+  m_fontSize: 6.7
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -813,8 +813,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: '#'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 857e505dc48e13a4d84085fa67f1202e, type: 2}
-  m_sharedMaterial: {fileID: -6170499945577141601, guid: 857e505dc48e13a4d84085fa67f1202e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ffbdcbc037a6c1a4e905781b8800ec10, type: 2}
+  m_sharedMaterial: {fileID: -6170499945577141601, guid: ffbdcbc037a6c1a4e905781b8800ec10, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

@@ -21,7 +21,7 @@ public class PostBattleCharacterDisplay : Display<Character>
         RemoveExtras();
         Color color = DataHolder.characterColorEquivalenceTable.GetColor(item.characterType);
         colorRing.color = color;
-        nameText.text = $"<color=#{ColorUtility.ToHtmlStringRGB(color)}FF>{item.unitName}</color> ";
+        nameText.text = $"<color=#{ColorUtility.ToHtmlStringRGB(color * 0.6f)}FF>{item.unitName}</color> ";
         characterImage.sprite = Resources.Load<Sprite>("KeynamedSprites/Faces/Heros/" + item.unitName);
         healthBar.Set(new HealthBarHealthAndEffectsData(item.health, item.ActiveEffectsList));
         xpBar.Set(item.XP);

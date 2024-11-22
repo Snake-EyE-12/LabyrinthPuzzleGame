@@ -15,7 +15,7 @@ public class EventAcceptorButtonDisplay : Display<EventAcceptor>
     {
         button.SetActive(item is not FightEvent);
         Color color = DataHolder.eventColorEquivalenceTable.GetColor(item.data.Type);
-        displayText.text = $"<color=#{ColorUtility.ToHtmlStringRGB(color)}FF>{item.data.Type}</color> ";
+        displayText.text = $"<color=#{ColorUtility.ToHtmlStringRGB(color * 0.6f)}FF>{item.data.Type}</color> ";
         iconImage.sprite = Resources.Load<Sprite>("KeynamedSprites/EventIcons/" + item.data.Type);
         iconImage.color = color;
     }

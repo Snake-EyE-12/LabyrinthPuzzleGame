@@ -24,7 +24,6 @@ public class Health
         foreach (var hp in resetData)
         {
             AddHealthType(hp.Type, hp.Value);
-            maxHealth += hp.Value;
         }
         if(percent != 100 && hadDied) Damage(Mathf.FloorToInt(maxHealth * (percent / 100.0f)));
     }
@@ -55,6 +54,7 @@ public class Health
 
     public void AddHealthType(string type, int value)
     {
+        maxHealth += value;
         switch (type)
         {
             case "Blood":

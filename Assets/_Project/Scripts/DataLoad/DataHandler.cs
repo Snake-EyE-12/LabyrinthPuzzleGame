@@ -3,14 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using Capstone.DataLoad;
 using NaughtyAttributes;
+using TMPro;
 using UnityEngine;
 using Range = Capstone.DataLoad.Range;
 
 public class DataHandler : MonoBehaviour
 {
+    [SerializeField] private TMP_Text debugBox;
     private void Awake()
     {
         ReadData();
+        DataHolder.Clear();
     }
 
     [Button]

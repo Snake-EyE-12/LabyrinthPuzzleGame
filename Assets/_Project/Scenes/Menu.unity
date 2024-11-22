@@ -281,6 +281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d669ec37fcdace44a4a8f9d7cdecbeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debugBox: {fileID: 0}
 --- !u!1 &578217232
 GameObject:
   m_ObjectHideFlags: 0
@@ -972,6 +973,16 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 97e145025ed572f4dbecd68b1676a9a0, type: 3}
     volume: {x: 0.93124145, y: 1.1312418}
     pitch: {x: 0.65663606, y: 1.1583455}
+    audioType: 0
+  - audioName: Win
+    audioClip: {fileID: 8300000, guid: e4e9c7e270979ee48a456d8591510fcc, type: 3}
+    volume: {x: 1, y: 1}
+    pitch: {x: 1, y: 1}
+    audioType: 0
+  - audioName: Lose
+    audioClip: {fileID: 8300000, guid: a1ce56922a6f0ef478520d03e1a9236e, type: 3}
+    volume: {x: 1, y: 1}
+    pitch: {x: 1, y: 1}
     audioType: 0
 --- !u!82 &1334991259
 AudioSource:
@@ -1840,6 +1851,10 @@ PrefabInstance:
     - target: {fileID: 2010705494183516119, guid: 67a85c1d2dd8cc3429766b1f792457a9, type: 3}
       propertyPath: m_Name
       value: Settings
+      objectReference: {fileID: 0}
+    - target: {fileID: 2606604647485824640, guid: 67a85c1d2dd8cc3429766b1f792457a9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 197.9
       objectReference: {fileID: 0}
     - target: {fileID: 6306861532686155545, guid: 67a85c1d2dd8cc3429766b1f792457a9, type: 3}
       propertyPath: m_AnchorMax.y

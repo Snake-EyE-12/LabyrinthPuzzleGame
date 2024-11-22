@@ -41,26 +41,32 @@ public class TileDisplay : Display<Tile>, GridPositionable, Selectable
 
     public void Break(int amount)
     {
-        if (amount >= 1)
+        int breakages = 0;
+        
+        if (!item.IsOpen(Vector2Int.up) && amount > breakages)
         {
+            breakages++;
             item.OpenPath(Vector2Int.up);
             EffectHolder.Instance.SpawnEffect("WallBreak", wallDisplays[0].transform.position);
         }
 
-        if (amount >= 2)
+        if (!item.IsOpen(Vector2Int.right) && amount > breakages)
         {
+            breakages++;
             item.OpenPath(Vector2Int.right);
             EffectHolder.Instance.SpawnEffect("WallBreak", wallDisplays[1].transform.position);
         }
 
-        if (amount >= 3)
+        if (!item.IsOpen(Vector2Int.down) && amount > breakages)
         {
+            breakages++;
             item.OpenPath(Vector2Int.down);
             EffectHolder.Instance.SpawnEffect("WallBreak", wallDisplays[2].transform.position);
         }
 
-        if (amount >= 4)
+        if (!item.IsOpen(Vector2Int.left) && amount > breakages)
         {
+            breakages++;
             item.OpenPath(Vector2Int.left);
             EffectHolder.Instance.SpawnEffect("WallBreak", wallDisplays[3].transform.position);
         }
@@ -69,10 +75,30 @@ public class TileDisplay : Display<Tile>, GridPositionable, Selectable
     }
     public void Build(int amount)
     {
-        if (amount >= 1) item.ClosePath(Vector2Int.up);
-        if (amount >= 2) item.ClosePath(Vector2Int.right);
-        if (amount >= 3) item.ClosePath(Vector2Int.down);
-        if (amount >= 4) item.ClosePath(Vector2Int.left);
+        int placements = 0;
+        if (item.IsOpen(Vector2Int.up) && amount > placements)
+        {
+            placements++;
+            item.ClosePath(Vector2Int.up);
+        }
+
+        if (item.IsOpen(Vector2Int.right) && amount > placements)
+        {
+            placements++;
+            item.ClosePath(Vector2Int.right);
+        }
+
+        if (item.IsOpen(Vector2Int.down) && amount > placements)
+        {
+            placements++;
+            item.ClosePath(Vector2Int.down);
+        }
+
+        if (item.IsOpen(Vector2Int.left) && amount > placements)
+        {
+            placements++;
+            item.ClosePath(Vector2Int.left);
+        }
         Render();
     }
     private void Awake()

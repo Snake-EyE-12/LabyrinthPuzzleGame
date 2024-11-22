@@ -18,6 +18,7 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
     [SerializeField] private HealthbarDisplay healthBar;
     [SerializeField] private ExperienceDisplay xpBar;
     private Damager damager;
+    [SerializeField] private Image nameBackgroundImage;
 
 
     public void ApplyDamagePhaseEffects()
@@ -33,7 +34,9 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
     public override void Render()
     {
         Color solidColor = DataHolder.characterColorEquivalenceTable.GetColor(item.characterType);
-        coloredImage.color = new Color(solidColor.r, solidColor.g, solidColor.b, 200.0f/255.0f);
+        Color transparentColor = new Color(solidColor.r, solidColor.g, solidColor.b, 200.0f / 255.0f);
+        coloredImage.color = transparentColor;
+        nameBackgroundImage.color = transparentColor;
         nameText.text = item.unitName;
         characterFace.sprite = Resources.Load<Sprite>("KeynamedSprites/Faces/Heros/" + item.unitName);
         xpBar.Set(item.XP);

@@ -284,12 +284,15 @@ public class GameManager : Singleton<GameManager>
     {
         DataHolder.defeatedRound = currentRound;
         EventHandler.Invoke("OnGameLost", null);
+        AudioManager.Instance.Play("Lose");
         ResetGameManagerForNextGame();
     }
     private void CompleteGame()
     {
         DataHolder.defeatedRound = currentRound - 1;
         EventHandler.Invoke("OnGameWin", null);
+        AudioManager.Instance.Play("Win");
+        ResetGameManagerForNextGame();
     }
 
     private void ResetGameManagerForNextGame()

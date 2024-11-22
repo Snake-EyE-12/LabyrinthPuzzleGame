@@ -168,7 +168,7 @@ public class PoisonActiveEffect : ActiveEffectType
     }
     public override void OnDamagePhase(Targetable u)
     {
-        u.ChangeHealth(-value);
+        u.ChangeHealth(-value, true);
     }
     public override bool IsDOT()
     {
@@ -182,7 +182,7 @@ public class BurnActiveEffect : ActiveEffectType
     }
     public override void OnDamagePhase(Targetable u)
     {
-        u.ChangeHealth(-value);
+        u.ChangeHealth(-value, true);
     }
 
     public override void OnEndOfTurn(Targetable u)
@@ -212,7 +212,7 @@ public class BleedActiveEffect : ActiveEffectType
     }
     public override void OnDamagePhase(Targetable u)
     {
-        u.ChangeHealth(-1);
+        u.ChangeHealth(-1, true);
     }
     public override bool IsDOT()
     {

@@ -67,15 +67,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Textbox
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 857e505dc48e13a4d84085fa67f1202e, type: 2}
-  m_sharedMaterial: {fileID: -6170499945577141601, guid: 857e505dc48e13a4d84085fa67f1202e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d8bff3ca65185f448896d32fc52e432d, type: 2}
+  m_sharedMaterial: {fileID: -7663537272626472222, guid: d8bff3ca65185f448896d32fc52e432d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_fontColor: {r: 0.32156864, g: 0.18039216, b: 0.41568628, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -92,7 +92,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
+  m_fontSize: 19.2
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -456,15 +456,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Gamemode
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 857e505dc48e13a4d84085fa67f1202e, type: 2}
-  m_sharedMaterial: {fileID: -6170499945577141601, guid: 857e505dc48e13a4d84085fa67f1202e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4d908ad48ab65f4dbd5bc908c3e3a58, type: 2}
+  m_sharedMaterial: {fileID: -6170499945577141601, guid: f4d908ad48ab65f4dbd5bc908c3e3a58, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4290928807
+  m_fontColor: {r: 0.65469164, g: 0.37571684, b: 0.7610062, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -653,3 +653,5 @@ MonoBehaviour:
   button: {fileID: 4218388485350982287}
   coloredImage: {fileID: 8611729462905374847}
   descriptionText: {fileID: 2899343301491009078}
+  darkColor: {r: 0.23899364, g: 0.23899364, b: 0.23899364, a: 1}
+  lightColor: {r: 0.7798742, g: 0.7798742, b: 0.7798742, a: 1}

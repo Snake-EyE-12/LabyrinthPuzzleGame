@@ -104,7 +104,7 @@ Material:
     - _ColorMask: 15
     - _CullMode: 0
     - _Diffuse: 0.5
-    - _FaceDilate: -0.18
+    - _FaceDilate: 0.22
     - _FaceUVSpeedX: 0
     - _FaceUVSpeedY: 0
     - _GlowInner: 1
@@ -118,12 +118,12 @@ Material:
     - _OutlineSoftness: 0.15
     - _OutlineUVSpeedX: 0
     - _OutlineUVSpeedY: 0
-    - _OutlineWidth: 0.28
+    - _OutlineWidth: 0
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
     - _ScaleRatioA: 0.9
-    - _ScaleRatioB: 0.446625
-    - _ScaleRatioC: 0.89325
+    - _ScaleRatioB: 0.266625
+    - _ScaleRatioC: 0.53325
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0
@@ -166,11 +166,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: BaseballClubSolid-E4X69 SDF
+  m_Name: NoOutlineBaseballClubSolid-E4X69 SDF
   m_EditorClassIdentifier: 
-  hashCode: -296682967
+  hashCode: -1253962776
   material: {fileID: -6170499945577141601}
-  materialHashCode: -452075415
+  materialHashCode: -417733304
   m_Version: 1.1.0
   m_SourceFontFileGUID: 476b645b24dfa0f49851b4635d63b87f
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 476b645b24dfa0f49851b4635d63b87f, type: 3}
