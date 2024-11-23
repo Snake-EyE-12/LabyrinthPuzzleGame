@@ -222,7 +222,7 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
             }
         }
         else damager.Heal(amount);
-        healthBar.Render();
+        SetHealthBar();
     }
 
     public void ApplyEffect(ActiveEffectType effect)

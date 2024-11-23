@@ -86,5 +86,6 @@
   "ChallengeRange": {"Min": -1, "Max": 1},
   "PostBattleHealPercent": 50,
   "ProductsPerShop": 3,
-  "MaxCharacterDegree": 3
+  "MaxCharacterDegree": 3,
+  "StartingMoney": 10
 }

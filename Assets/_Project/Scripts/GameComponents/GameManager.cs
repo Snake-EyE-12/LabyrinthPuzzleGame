@@ -475,7 +475,7 @@ public class GameManager : Singleton<GameManager>
         }
     }
     public GamePhase Phase { get; set; }
-    private int money = 100;
+    private int money = 0;
     public int CoinCount
     {
         get { return money;}

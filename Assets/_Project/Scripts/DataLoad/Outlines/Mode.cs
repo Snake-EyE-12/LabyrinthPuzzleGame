@@ -27,6 +27,7 @@ namespace Capstone.DataLoad
         public int PostBattleHealPercent;
         public int ProductsPerShop;
         public int MaxCharacterDegree;
+        public int StartingMoney;
         
         public void Load()
         {
@@ -372,6 +373,7 @@ namespace Capstone.DataLoad
         public int Value;
         public string Target;
         public string[] Keys;
+        public AbilityData(int v, string t, string[] k) => (Value, Target, Keys) = (v, t, k);
     }
 
     [System.Serializable]

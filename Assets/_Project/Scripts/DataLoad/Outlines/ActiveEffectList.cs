@@ -187,7 +187,7 @@ public class BurnActiveEffect : ActiveEffectType
 
     public override void OnEndOfTurn(Targetable u)
     {
-        value--;
+        value = Mathf.Clamp(--value, 0, value);
     }
     public override bool IsDOT()
     {

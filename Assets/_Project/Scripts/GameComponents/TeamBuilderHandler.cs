@@ -93,6 +93,7 @@ public class TeamBuilderHandler : MonoBehaviour
     public void Finish()
     {
         GameManager.Instance.SetTeam(new List<string>(team));
+        GameManager.Instance.CoinCount = DataHolder.currentMode.StartingMoney;
         Destroy(gameObject);
     }
 }

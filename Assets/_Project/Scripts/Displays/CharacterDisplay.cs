@@ -249,7 +249,7 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
             }
         }
         else damager.Heal(amount);
-        healthBar.Render();
+        SetHealthBar();
     }
     
     public Health GetHealthBar()

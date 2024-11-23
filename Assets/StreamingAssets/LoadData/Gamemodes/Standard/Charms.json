@@ -1,6 +1,25 @@
 {
   "Charms":[
     {
+      "Name" : "Additional Discard",
+      "Description": "Add 1 Discard to All Empty Tiles",
+      "Degree": 1,
+      "Price": {
+        "Min": 10,
+        "Max": 10
+      },
+      "Weight": 30,
+      "Manipulations": [
+        {
+          "Change": "Tile",
+          "Condition": "Empty",
+          "Placement": "All",
+          "Modification": "Add",
+          "With": "V1-Discard"
+        }
+      ]
+    },
+    {
       "Name" : "Extra Pathing",
       "Description": "Append an Intersection Pathway",
       "Degree": 1,

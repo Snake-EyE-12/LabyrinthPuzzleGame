@@ -20,6 +20,7 @@ public class RoundMenuDisplay : Display<EventsForRound>
     [SerializeField] private InventoryCharmDisplay inventoryCharmDisplayPrefab;
     [SerializeField] private Transform inventoryCharmParent;
     [SerializeField] private LayoutDisable layoutDisabler;
+    [SerializeField] private TMP_Text roundNumberTextbox;
     
     public override void Render()
     {
@@ -28,7 +29,7 @@ public class RoundMenuDisplay : Display<EventsForRound>
             EventAcceptor ea = CreateEventAcceptor(e);
             if(ea != null) Instantiate(eventAcceptorButtonDisplayPrefab, buttonParent.transform).Set(ea);
         }
-
+        roundNumberTextbox.text = GameManager.Instance.currentRound + "/" + DataHolder.currentMode.Rounds;
         layoutDisabler.AllowDisable();
 
         //buttonParent.enabled = false;
