@@ -37,6 +37,23 @@ public class Path
         }
     }
 
+    public bool Equals(string pathways)
+    {
+        return (openPathways == new Path(pathways).openPathways);
+    }
+
+    public int GetOpenPathCount()
+    {
+        int x = (int)openPathways;
+        int count = 0;
+        while(x > 0){   
+            count += x & 1;
+            x = x >> 1;
+        }
+
+        return count;
+    }
+
     public void SetOpenPaths(CardinalDirection paths)
     {
         openPathways = paths;

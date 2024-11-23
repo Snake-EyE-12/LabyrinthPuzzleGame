@@ -29,6 +29,76 @@ public class Tile
         path.RemovePathway((CardinalDirection)directionToBits(rotation.RotateDirectionAccoundingly(direction)));
     }
     
+    public bool Break(int amount)
+    {
+        int breakages = 0;
+        bool brokeSomething = false;
+        if (!IsOpen(Vector2Int.up) && amount > breakages)
+        {
+            breakages++;
+            OpenPath(Vector2Int.up);
+            brokeSomething = true;
+        }
+
+        if (!IsOpen(Vector2Int.right) && amount > breakages)
+        {
+            breakages++;
+            OpenPath(Vector2Int.right);
+            brokeSomething = true;
+        }
+
+        if (!IsOpen(Vector2Int.down) && amount > breakages)
+        {
+            breakages++;
+            OpenPath(Vector2Int.down);
+            brokeSomething = true;
+        }
+
+        if (!IsOpen(Vector2Int.left) && amount > breakages)
+        {
+            breakages++;
+            OpenPath(Vector2Int.left);
+            brokeSomething = true;
+        }
+
+        return brokeSomething;
+    }
+    
+    public bool Build(int amount)
+    {
+        int placements = 0;
+        bool placedSomething = false;
+        if (IsOpen(Vector2Int.up) && amount > placements)
+        {
+            placements++;
+            ClosePath(Vector2Int.up);
+            placedSomething = true;
+        }
+
+        if (IsOpen(Vector2Int.right) && amount > placements)
+        {
+            placements++;
+            ClosePath(Vector2Int.right);
+            placedSomething = true;
+        }
+
+        if (IsOpen(Vector2Int.down) && amount > placements)
+        {
+            placements++;
+            ClosePath(Vector2Int.down);
+            placedSomething = true;
+        }
+
+        if (IsOpen(Vector2Int.left) && amount > placements)
+        {
+            placements++;
+            ClosePath(Vector2Int.left);
+            placedSomething = true;
+        }
+
+        return placedSomething;
+    }
+    
 
     public static Tile Copy(Tile tile)
     {

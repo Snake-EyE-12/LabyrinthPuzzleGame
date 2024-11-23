@@ -140,7 +140,13 @@ namespace Capstone.DataLoad
         public int Size;
         public int Repeated;
 
-        
+        public Sequence(Range r, int begin, int size, int repeated)
+        {
+            Range = r;
+            Begin = begin;
+            Size = size;
+            Repeated = repeated;
+        }
         public bool alignsAt(int value)
         {
             if (!Range.inRange(value)) return false;
@@ -417,12 +423,35 @@ namespace Capstone.DataLoad
     [System.Serializable]
     public class ManipulationData
     {
-        public string Change;
-        public string Condition;
-        public string Placement;
-        public string Modification;
-        public string With;
+        public string Asset;
+        public string Method;
+        public ModificationData Modification;
+        public ConditionData Condition;
+        public PositionData Position;
+    }
+
+    [System.Serializable]
+    public class ModificationData
+    {
+        public string Type;
+        public int Value;
+        public string Name;
     }
     
+    [System.Serializable]
+    public class ConditionData
+    {
+        public string Type;
+        public int Value;
+        public string Name;
+        public string Operation;
+    }
+    [System.Serializable]
+    public class PositionData
+    {
+        public string Type;
+        public int Value;
+        public string Operation;
+    }
     
 }

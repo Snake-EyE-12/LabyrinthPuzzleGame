@@ -16,6 +16,10 @@ public class Ability
     public bool isPenetrative;
     public int growthValue = 0;
 
+    public void SetValue(int amount)
+    {
+        value = amount;
+    }
     public int GetValue()
     {
         return value + growthValue;
@@ -99,6 +103,17 @@ public class Ability
         keys.Add(GetNewValueKeyOfType(keyName));
         OrderAbilityKeywords(keys);
         return true;
+    }
+
+    public bool SetKeywords(string[] keywords)
+    {
+        keys.Clear();
+        foreach (var keyword in keywords)
+        {
+            AddKeyword(keyword);
+        }
+        return true;
+        
     }
 
     

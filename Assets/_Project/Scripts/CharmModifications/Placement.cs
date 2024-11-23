@@ -7,26 +7,84 @@ namespace Manipulations
 {
     public abstract class Placement
     {
-        public abstract List<int> GetAllIndecesToPlace(int max);
-    
+        public abstract List<int> GetAllIndexesToPlace(int max);
+
+        protected int value;
+        protected Formula formula;
+        public Placement(PositionData data)
+        {
+            value = data.Value - 1;
+            formula = Formula.Load(data.Operation);
+        }
+
+        public Placement()
+        {
+        }
+
         public static Placement Load(ManipulationData data)
         {
-            switch (data.Placement)
+            switch (data.Position.Type)
             {
-                case "Post":
-                    return new PostPlacement();
+                case "Even":
+                    return new SequencePlacement(data.Position, new Sequence(new Range(0, int.MaxValue), 0, 1, 2));
+                case "Odd":
+                    return new SequencePlacement(data.Position, new Sequence(new Range(0, int.MaxValue), 1, 1, 2));
                 case "All":
-                    return new AllPlacement();
-                case "First":
-                    return new FirstPlacement();
+                    return new AllPlacement(data.Position);
+                case "Post":
+                    return new PostPlacement(data.Position);
+                case "Before":
+                case "After":
+                case "Number":
+                case "Formula":
+                    return new FormulaPlacement(data.Position);
                 default:
                     return new NullPlacement();
             }
         }
     }
+
+    public class FormulaPlacement : Placement
+    {
+        public FormulaPlacement(PositionData data) : base(data)
+        {
+        }
+
+        public override List<int> GetAllIndexesToPlace(int max)
+        {
+            List<int> indeces = new List<int>();
+            for (int i = 0; i < max; i++)
+            {
+                if (formula.Evaluate(i, value)) indeces.Add(i);
+            }
+            return indeces;
+        }
+    }
+    public class SequencePlacement : Placement
+    {
+        protected Sequence sequence;
+        public SequencePlacement(PositionData data, Sequence sequence) : base(data)
+        {
+            this.sequence = sequence;
+        }
+
+        public override List<int> GetAllIndexesToPlace(int max)
+        {
+            List<int> indeces = new List<int>();
+            for(int i = 0; i < max; i++)
+            {
+                if (sequence.alignsAt(i)) indeces.Add(i);
+            }
+            return indeces;
+        }
+    }
     public class PostPlacement : Placement
     {
-        public override List<int> GetAllIndecesToPlace(int max)
+        public PostPlacement(PositionData data) : base(data)
+        {
+        }
+
+        public override List<int> GetAllIndexesToPlace(int max)
         {
             List<int> indeces = new List<int>();
             indeces.Add(max);
@@ -35,25 +93,20 @@ namespace Manipulations
     }
     public class AllPlacement : Placement
     {
-        public override List<int> GetAllIndecesToPlace(int max)
+        public AllPlacement(PositionData data) : base(data)
+        {
+        }
+
+        public override List<int> GetAllIndexesToPlace(int max)
         {
             List<int> indeces = new List<int>();
             for (int i = 0; i < max; i++) indeces.Add(i);
             return indeces;
         }
     }
-    public class FirstPlacement : Placement
-    {
-        public override List<int> GetAllIndecesToPlace(int max)
-        {
-            List<int> indeces = new List<int>();
-            indeces.Add(0);
-            return indeces;
-        }
-    }
     public class NullPlacement : Placement
     {
-        public override List<int> GetAllIndecesToPlace(int max)
+        public override List<int> GetAllIndexesToPlace(int max)
         {
             return new List<int>();
         }

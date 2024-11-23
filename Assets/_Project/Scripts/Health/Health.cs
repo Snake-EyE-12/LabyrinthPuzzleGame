@@ -16,6 +16,10 @@ public class Health
         Reset(100, false);
     }
 
+    public int GetIntPercentage()
+    {
+        return GetHealthValue() * 100 / GetMaxHealthValue();
+    }
     public void Reset(int percent, bool hadDied)
     {
         //if(GetHealthValue() * 100.0f / maxHealth >= percent) return;
@@ -65,6 +69,12 @@ public class Health
         }
     }
 
+    public void RemoveHealth(int amount)
+    {
+        Damage(amount - GetMissingHealthValue());
+        maxHealth = Mathf.Clamp(maxHealth - amount, 1, maxHealth);
+    }
+
     public void Heal(HealthType health)
     {
         health.value = Mathf.Min(health.value, GetMissingHealthValue());
@@ -74,6 +84,7 @@ public class Health
 
     public void Damage(int amount)
     {
+        if(amount <= 0) return;
         int damage = amount;
         for(int i = healthBar.Count - 1; i >= 0; i--)
         {

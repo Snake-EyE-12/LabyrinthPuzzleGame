@@ -47,6 +47,7 @@ public class ExperienceDisplay : Display<XPBar>
         }
     }
 
+    
     private void Clear()
     {
         for (int i = 0; i < nodes.Count; i++)
@@ -66,4 +67,8 @@ public class XPBar
     }
     public int value;
     public int max;
+    public int GetIntPercentage()
+    {
+        return (value * 100) / max;
+    }
 }
