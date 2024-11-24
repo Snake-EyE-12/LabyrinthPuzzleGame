@@ -24,7 +24,7 @@ public class MapDisplay : Display<Map>
 
     private void OnBattleOver(EventArgs args)
     {
-        EventHandler.RemoveListenerLate("Round/FightOver", OnBattleOver);
+        EventHandler.RemoveListener("Round/FightOver", OnBattleOver);
         GameManager.Instance.ActiveMap = null;
         Destroy(this.gameObject);
     }

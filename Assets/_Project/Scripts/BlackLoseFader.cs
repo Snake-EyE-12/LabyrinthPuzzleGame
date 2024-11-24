@@ -20,7 +20,7 @@ public class BlackLoseFader : MonoBehaviour
 
     private void Fade(EventArgs args)
     {
-        EventHandler.RemoveListenerLate(eventName, Fade);
+        EventHandler.RemoveListener(eventName, Fade);
         destinator.MoveTo(finalPos.position, false);
         shifter.enabled = true;
     }

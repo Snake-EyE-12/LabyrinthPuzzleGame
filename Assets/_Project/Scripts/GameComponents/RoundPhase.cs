@@ -49,7 +49,6 @@ public class DrawCardsPhase : RoundPhase
     public override void StartPhase()
     {
         Debug.Log("UNDOING SYSTEM: STARTING DRAW PHASE");
-        EventHandler.Invoke("Ability/DestroyPanel", null);
         EventHandler.AddListener("DrawCards/LimitReached", OnLimitReached);
         EventHandler.Invoke("Phase/DrawCards", null);
     }
@@ -63,7 +62,7 @@ public class DrawCardsPhase : RoundPhase
     public override void EndPhase()
     {
         Debug.Log("UNDOING SYSTEM: ENDING DRAW PHASE");
-        EventHandler.RemoveListenerLate("DrawCards/LimitReached", OnLimitReached);
+        EventHandler.RemoveListener("DrawCards/LimitReached", OnLimitReached);
     }
 }
 public class PlayCardsPhase : RoundPhase
@@ -105,7 +104,7 @@ public class PlayCardsPhase : RoundPhase
     {
         Debug.Log("UNDOING SYSTEM: ENDING PLAYING PHASE");
         GameManager.Instance.HideSliderDisplay();
-        EventHandler.RemoveListenerLate("CardPlaced", CardPlaced);
+        EventHandler.RemoveListener("CardPlaced", CardPlaced);
     }
 }
 public class TeamTurnPhase : RoundPhase
@@ -139,7 +138,7 @@ public class TeamTurnPhase : RoundPhase
 
     private void TryEndTurn(EventArgs args)
     {
-        EventHandler.RemoveListenerLate("Round/EndTurn", TryEndTurn);
+        EventHandler.RemoveListener("Round/EndTurn", TryEndTurn);
         EndTurn(null);
     }
 

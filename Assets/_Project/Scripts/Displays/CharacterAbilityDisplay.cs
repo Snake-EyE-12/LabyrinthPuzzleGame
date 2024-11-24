@@ -38,7 +38,7 @@ public class CharacterAbilityDisplay : Display<List<Ability>>
     private void OnRemove(EventArgs args)
     {
         Destroy(this.gameObject);
-        EventHandler.RemoveListenerLate("Ability/DestroyPanel", OnRemove);
+        EventHandler.RemoveListener("Ability/DestroyPanel", OnRemove);
     }
 
     private void ImmediateRemove()

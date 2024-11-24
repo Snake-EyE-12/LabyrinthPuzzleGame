@@ -108,7 +108,7 @@ public class TileDisplay : Display<Tile>, GridPositionable, Selectable
 
     private void OnBattleOver(EventArgs args)
     {
-        EventHandler.RemoveListenerLate("Round/FightOver", OnBattleOver);
+        EventHandler.RemoveListener("Round/FightOver", OnBattleOver);
         GameManager.Instance.RemoveSelectable(this, selectionIndicator.type);
         Destroy(this.gameObject);
     }

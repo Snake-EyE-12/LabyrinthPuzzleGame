@@ -24,7 +24,7 @@ public class ShopDisplay : Display<ShopData>
     private void RemoveShop(EventArgs args)
     {
         Destroy(this.gameObject);
-        EventHandler.RemoveListenerLate("Round/FightOver", RemoveShop);
+        EventHandler.RemoveListener("Round/FightOver", RemoveShop);
     }
 
     private void OnDisable()

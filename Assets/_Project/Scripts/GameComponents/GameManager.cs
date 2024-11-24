@@ -323,7 +323,7 @@ public class GameManager : Singleton<GameManager>
     private void FightOver()
     {
         EventHandler.Invoke("Round/FightOver", null);
-        EventHandler.Invoke("Ability/DestroyPanel", null);
+        //EventHandler.Invoke("Ability/DestroyPanel", null);
         AttackIndicator.Instance.ClearAttacks();
         selector.Empty();
         Phase = GamePhase.None;

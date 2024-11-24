@@ -8,97 +8,41 @@
       "Weight": 20,
       "Border": "Wrap",
       "Enemies": [
+        "Mikron"
+      ],
+      "FloorLayout": {
+        "Fill": "All",
+        "AvailableTiles": [
+          {
+            "Tile": "+",
+            "Value": 10,
+            "Rotation": "Still"
+          }
+        ]
+      }
+    },
+    {
+      "Degree": {
+        "Min": 2,
+        "Max": 2
+      },
+      "Weight": 20,
+      "Border": "Wrap",
+      "Enemies": [
         "Mikron",
-        "Kryxis",
-        "Zephyr",
-        "Krivor",
-        "Pyrosku",
-        "Blitzar",
-        "Vornix",
-        "Toxis",
-        "Scarrith",
-        "Geomix",
-        "Geogmik",
-        "Celestra",
-        "Contiler"
-      ],
-      "FloorLayout": {
-        "Fill": "Expand",
-        "AvailableTiles": [
-          {
-            "Tile": "+",
-            "Value": 100,
-            "Rotation": "Still"
-          },
-          {
-            "Tile": "|",
-            "Value": 100,
-            "Rotation": "Random"
-          }
-        ]
-      }
-    },
-    {
-      "Degree": {
-        "Min": 2,
-        "Max": 2
-      },
-      "Weight": 20,
-      "Border": "Wrap",
-      "Enemies": [
-        "E1"
-      ],
-      "FloorLayout": {
-        "Fill": "Expand",
-        "AvailableTiles": [
-          {
-            "Tile": "+",
-            "Value": 100,
-            "Rotation": "Still"
-          },
-          {
-            "Tile": "|",
-            "Value": 100,
-            "Rotation": "Random"
-          }
-        ]
-      }
-    },
-    {
-      "Degree": {
-        "Min": 2,
-        "Max": 2
-      },
-      "Weight": 20,
-      "Border": "Wrap",
-      "Enemies": [
-        "E1",
-        "E1",
-        "E2"
-      ]
-    },
-    {
-      "Degree": {
-        "Min": 2,
-        "Max": 2
-      },
-      "Weight": 20,
-      "Border": "Wrap",
-      "Enemies": [
-        "E2",
-        "E2"
+        "Kryxis"
       ],
       "FloorLayout": {
         "Fill": "Random",
         "AvailableTiles": [
           {
             "Tile": "+",
-            "Value": 100,
-            "Rotation": "Random"
+            "Value": 10,
+            "Rotation": "Still"
           },
           {
             "Tile": "L",
-            "Value": 100,
+            "Value": 1,
             "Rotation": "Random"
           }
         ]
@@ -112,20 +56,27 @@
       "Weight": 20,
       "Border": "Wrap",
       "Enemies": [
-        "E3",
-        "E1"
+        "Mikron",
+        "Mikron",
+        "Kryxis",
+        "Kryxis"
       ],
       "FloorLayout": {
         "Fill": "Random",
         "AvailableTiles": [
           {
-            "Tile": ".",
-            "Value": 100,
+            "Tile": "+",
+            "Value": 10,
+            "Rotation": "Still"
+          },
+          {
+            "Tile": "L",
+            "Value": 5,
             "Rotation": "Random"
           },
           {
-            "Tile": "!",
-            "Value": 100,
+            "Tile": "|",
+            "Value": 5,
             "Rotation": "Random"
           }
         ]
@@ -134,26 +85,175 @@
     {
       "Degree": {
         "Min": 4,
+        "Max": 4
+      },
+      "Weight": 20,
+      "Border": "Wrap",
+      "Enemies": [
+        "Zephyr",
+        "Krivor"
+      ],
+      "FloorLayout": {
+        "Fill": "Column",
+        "AvailableTiles": [
+          {
+            "Tile": "|",
+            "Value": 5,
+            "Rotation": "Still"
+          }
+        ]
+      }
+    },
+    {
+      "Degree": {
+        "Min": 5,
         "Max": 5
       },
       "Weight": 20,
       "Border": "Wrap",
       "Enemies": [
-        "Minotaur",
-        "Giant"
+        "Zephyr",
+        "Blitzar"
+      ],
+      "FloorLayout": {
+        "Fill": "Row",
+        "AvailableTiles": [
+          {
+            "Tile": ".",
+            "Value": 1,
+            "Rotation": "Still"
+          },
+          {
+            "Tile": "!",
+            "Value": 1,
+            "Rotation": "Random"
+          }
+        ]
+      }
+    },
+    {
+      "Degree": {
+        "Min": 6,
+        "Max": 6
+      },
+      "Weight": 20,
+      "Border": "Wrap",
+      "Enemies": [
+        "Toxis",
+        "Pyrosku",
+        "Zephyr"
       ],
       "FloorLayout": {
         "Fill": "Random",
         "AvailableTiles": [
           {
             "Tile": "+",
-            "Value": 100
+            "Value": 10,
+            "Rotation": "Still"
           },
           {
-            "Tile": "-",
-            "Value": 100
+            "Tile": "!",
+            "Value": 2,
+            "Rotation": "Random"
           }
         ]
+      }
+    },
+    {
+      "Degree": {
+        "Min": 7,
+        "Max": 7
+      },
+      "Weight": 20,
+      "Border": "Wrap",
+      "Enemies": [
+        "Vornix",
+        "Vornix",
+        "Geomix"
+      ],
+      "FloorLayout": {
+        "Fill": "All",
+        "AvailableTiles": [
+          {
+            "Tile": "+",
+            "Value": 10,
+            "Rotation": "Still"
+          }
+        ]
+      }
+    },
+    {
+      "Degree": {
+        "Min": 8,
+        "Max": 8
+      },
+      "Weight": 20,
+      "Border": "Wrap",
+      "Enemies": [
+        "Scarrith",
+        "Toxis",
+        "Celestra"
+      ],
+      "FloorLayout": {
+        "Fill": "Random",
+        "AvailableTiles": [
+          {
+            "Tile": "+",
+            "Value": 5,
+            "Rotation": "Still"
+          },
+          {
+            "Tile": "T",
+            "Value": 10,
+            "Rotation": "Random"
+          }
+        ]
+      }
+    },
+    {
+      "Degree": {
+        "Min": 9,
+        "Max": 9
+      },
+      "Weight": 20,
+      "Border": "Wrap",
+      "Enemies": [
+        "Blitzar",
+        "Vornix",
+        "Geomix"
+      ],
+      "FloorLayout": {
+        "Fill": "Expand",
+        "AvailableTiles": [
+          {
+            "Tile": "+",
+            "Value": 1,
+            "Rotation": "Still"
+          },
+          {
+            "Tile": "!",
+            "Value": 1,
+            "Rotation": "Random"
+          }
+        ]
+      }
+    },
+    {
+      "Degree": {
+        "Min": 10,
+        "Max": 10
+      },
+      "Weight": 20,
+      "Border": "Wrap",
+      "Enemies": [
+        "Contiler",
+        "Celestra",
+        "Toxis",
+        "Geogmik"
+      ],
+      "FloorLayout": {
+        "Fill": "Chaos",
+        "AvailableTiles": []
       }
     }
   ]

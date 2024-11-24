@@ -13,6 +13,7 @@ public class DeckDisplay : Display<Deck>
     
     private void Awake()
     {
+        Debug.Log("DECK AWAKE");
         EventHandler.AddListener("Phase/DrawCards", DrawToLimit);
         EventHandler.AddListener("CardPlaced", DiscardSpecificCard);
         EventHandler.AddListener("Round/FightOver", OnBattleOver);
@@ -20,7 +21,7 @@ public class DeckDisplay : Display<Deck>
     }
     private void OnBattleOver(EventArgs args)
     {
-        EventHandler.RemoveListenerLate("Round/FightOver", OnBattleOver);
+        EventHandler.RemoveListener("Round/FightOver", OnBattleOver);
         Destroy(this.gameObject);
     }
     private void OnDisable()
@@ -44,6 +45,7 @@ public class DeckDisplay : Display<Deck>
     }
     private void DrawToLimit(EventArgs args)
     {
+        Debug.Log("DRAWING TO LIMIT IN DECK");
         int count = GetHandLimit() - item.GetHandSize();
         item.Draw(count);
         for (int i = 0; i < count; i++)

@@ -55,7 +55,7 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
 
     private void OnBattleOver(EventArgs args)
     {
-        EventHandler.RemoveListenerLate("Round/FightOver", OnBattleOver);
+        EventHandler.RemoveListener("Round/FightOver", OnBattleOver);
         foreach (var a in item.abilityList)
         {
             a.usedThisCombat = false;
