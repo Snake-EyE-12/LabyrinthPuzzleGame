@@ -35,6 +35,10 @@ public class Item
     {
         return DataHolder.availableItems.RandomByDegree(degree);
     }
+    public static ItemData Load(Range degreeRange)
+    {
+        return DataHolder.availableItems.RandomOfDegreeRange(degreeRange);
+    }
 }
 
 

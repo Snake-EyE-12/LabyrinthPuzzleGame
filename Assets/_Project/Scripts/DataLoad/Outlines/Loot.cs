@@ -7,7 +7,7 @@ public class PickupItem : Loot
 {
     public override void Collect(CharacterDisplay collector)
     {
-        GameManager.Instance.GainCharm(val);
+        GameManager.Instance.GainCharm(GetValue());
     }
 
     public override string GetImageName()
@@ -25,7 +25,7 @@ public class PickupItem : Loot
         return val == -1 ? GameManager.Instance.currentRound : val;
     }
 
-    public PickupItem(int value) : base(value)
+    public PickupItem(LootData data) : base(data)
     {
     }
 }
@@ -47,7 +47,7 @@ public class XP : Loot
         return "" + val;
     }
 
-    public XP(int value) : base(value)
+    public XP(LootData data) : base(data)
     {
     }
 }
@@ -72,7 +72,7 @@ public class Coin : Loot
         return val > 2 ? "Large" : "Small";
     }
 
-    public Coin(int value) : base(value)
+    public Coin(LootData data) : base(data)
     {
     }
 }
@@ -80,21 +80,28 @@ public class Coin : Loot
 public abstract class Loot : Collectable
 {
     protected int val;
-    public Loot(int value) => this.val = value;
+    protected int dropChance;
+    public Loot(LootData data)
+    {
+        this.val = data.Value;
+        this.dropChance = data.DropChance;
+    }
+
     public abstract void Collect(CharacterDisplay collector);
     public abstract string GetImageName();
     public abstract string GetDisplayValue();
+    public bool PassDropChance() => Random.Range(0, 100) < dropChance;
 
     public static Loot Load(LootData data)
     {
         switch (data.Type)
         {
             case "XP":
-                return new XP(data.Value);
+                return new XP(data);
             case "Coin":
-                return new Coin(data.Value);
+                return new Coin(data);
             default:
-                return new PickupItem(data.Value);
+                return new PickupItem(data);
         }
     }
 }

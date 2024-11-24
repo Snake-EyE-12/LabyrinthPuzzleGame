@@ -32,13 +32,13 @@ public class OpponentTurnPhase : RoundPhase
 
     public override void StartPhase()
     {
+        GameManager.Instance.enemyMovingRightNow = true;
         AttackIndicator.Instance.ClearAttacks();
         GameManager.Instance.MoveEnemies();
         GameManager.Instance.PickEnemyAttacks();
         AttackIndicator.Instance.VisualizeAttacks();
         GameManager.Instance.SetCharactersUsable();
     }
-    
 }
 public class DrawCardsPhase : RoundPhase
 {
@@ -48,6 +48,7 @@ public class DrawCardsPhase : RoundPhase
 
     public override void StartPhase()
     {
+        Debug.Log("UNDOING SYSTEM: STARTING DRAW PHASE");
         EventHandler.Invoke("Ability/DestroyPanel", null);
         EventHandler.AddListener("DrawCards/LimitReached", OnLimitReached);
         EventHandler.Invoke("Phase/DrawCards", null);
@@ -55,11 +56,13 @@ public class DrawCardsPhase : RoundPhase
 
     public void OnLimitReached(EventArgs args)
     {
+        Debug.Log("UNDOING SYSTEM: CARD LIMIT REACHED");
         tm.NextPhase();
     }
 
     public override void EndPhase()
     {
+        Debug.Log("UNDOING SYSTEM: ENDING DRAW PHASE");
         EventHandler.RemoveListenerLate("DrawCards/LimitReached", OnLimitReached);
     }
 }
@@ -72,6 +75,7 @@ public class PlayCardsPhase : RoundPhase
 
     public override void StartPhase()
     {
+        Debug.Log("UNDOING SYSTEM: STARTING PLAYING PHASE");
         CommandHandler.Clear();
         GameManager.Instance.SetSelectionMode(SelectableGroupType.Card);
         DataHolder.cardsPlacedThisRound = 0;
@@ -80,6 +84,7 @@ public class PlayCardsPhase : RoundPhase
 
     private void CardPlaced(EventArgs args)
     {
+        Debug.Log("UNDOING SYSTEM: CARD PLACED");
         DataHolder.cardsPlacedThisRound++;
         if (DataHolder.cardsPlacedThisRound >= DataHolder.currentMode.CardsToPlacePerTurn)
         {
@@ -91,12 +96,14 @@ public class PlayCardsPhase : RoundPhase
 
     public override void ReturnToThis()
     {
+        Debug.Log("UNDOING SYSTEM: RETURN TO PLAYING CARDS PHASE");
         GameManager.Instance.SetSelectionMode(SelectableGroupType.Card);
         EventHandler.AddListener("CardPlaced", CardPlaced);
     }
 
     public override void EndPhase()
     {
+        Debug.Log("UNDOING SYSTEM: ENDING PLAYING PHASE");
         GameManager.Instance.HideSliderDisplay();
         EventHandler.RemoveListenerLate("CardPlaced", CardPlaced);
     }
@@ -109,6 +116,8 @@ public class TeamTurnPhase : RoundPhase
 
     public override void StartPhase()
     {
+        Debug.Log("UNDOING SYSTEM: STARTING TEAM PHASE");
+        GameManager.Instance.enemyMovingRightNow = false;
         GameManager.Instance.SetSelectionMode(SelectableGroupType.Team);
         EventHandler.AddListener("Round/EndTurn", TryEndTurn);
     }
@@ -124,6 +133,7 @@ public class TeamTurnPhase : RoundPhase
 
     public override void OnQuickLeave()
     {
+        Debug.Log("UNDOING SYSTEM: QUICK LEAVE");
         EventHandler.RemoveListener("Round/EndTurn", TryEndTurn);
     }
 
@@ -135,6 +145,7 @@ public class TeamTurnPhase : RoundPhase
 
     private void EndTurn(EventArgs args)
     {
+        Debug.Log("UNDOING SYSTEM: ENDING TEAM PHASE");
         AudioManager.Instance.Play("ButtonClick");
         AudioManager.Instance.Play("Whoosh");
         tm.NextPhase();

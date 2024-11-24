@@ -34,9 +34,6 @@ namespace Manipulations
         }
         protected string[] GetKeywords(string keywordList)
         {
-            int indexOfDash = keywordList.IndexOf('-');
-            if (indexOfDash == -1) indexOfDash = 0;
-            keywordList = keywordList.Substring(indexOfDash + 1);
             return keywordList.Split(',');
         }
         protected bool HasCardAt(Character character, int index) => character.inventory.GetCards().Count > index;
@@ -249,6 +246,7 @@ namespace Manipulations
         {
             character.AddInventoryCardSpaceUpTo(index);
             Card newCard = Card.Load(name);
+            Debug.Log("Loading Card to Add" + name);
             newCard.owner = character.characterType;
             character.inventory.GetCards()[index] = newCard;
         }

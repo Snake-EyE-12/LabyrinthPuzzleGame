@@ -47,11 +47,11 @@ public class Map
         tileAtPos.Render();
     }
     
-    public void Slide(bool row, bool positive, int number)
-    {
-        CommandHandler.Execute(new SlideCommand(row, positive, number, this, GameManager.Instance.cardToPlace.GetCard(), GameManager.Instance.activeDeck));
-        AudioManager.Instance.Play("HeavySlide");
-    }
+    // public void Slide(bool row, bool positive, int number)
+    // {
+    //     CommandHandler.Execute(new SlideCommand(row, positive, number, this, GameManager.Instance.cardToPlace.GetCard(), GameManager.Instance.activeDeck));
+    //     AudioManager.Instance.Play("HeavySlide");
+    // }
     public void Slide(bool row, bool positive, int number, Tile tile)
     {
         if(row) SlideRow(number, positive, tile);

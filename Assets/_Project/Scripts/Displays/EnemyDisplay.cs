@@ -94,10 +94,13 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
     {
         foreach (var loot in item.loot)
         {
-            var lootDisplay = Instantiate(lootDisplayPrefab, transform.position, Quaternion.identity);
-            lootDisplay.Set(loot);
-            lootDisplay.SetLocalMap(localMap);
-            localMap.SpawnLoot(lootDisplay, gridPosition);
+            if(loot.PassDropChance())
+            {
+                var lootDisplay = Instantiate(lootDisplayPrefab, transform.position, Quaternion.identity);
+                lootDisplay.Set(loot);
+                lootDisplay.SetLocalMap(localMap);
+                localMap.SpawnLoot(lootDisplay, gridPosition);
+            }
         }
     }
     

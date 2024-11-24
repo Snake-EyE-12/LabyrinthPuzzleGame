@@ -33,9 +33,6 @@ namespace Manipulations
                     return new AllPlacement(data.Position);
                 case "Post":
                     return new PostPlacement(data.Position);
-                case "Before":
-                case "After":
-                case "Number":
                 case "Formula":
                     return new FormulaPlacement(data.Position);
                 default:

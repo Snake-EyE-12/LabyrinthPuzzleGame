@@ -17,10 +17,11 @@ namespace Manipulations
             looker = Placement.Load(data);
             method = Method.Load(data);
         }
-        
+
+        protected abstract int GetMaxAmount(Character character);
         public virtual void Apply(Character character)
         {
-            foreach (var index in looker.GetAllIndexesToPlace(character.health.GetMaxHealthValue()))
+            foreach (var index in looker.GetAllIndexesToPlace(GetMaxAmount(character)))
             {
                 if (condition.Evaluate(character, index))
                 {
@@ -60,12 +61,22 @@ namespace Manipulations
         {
             mod = Modification.LoadHealthChange(data.Modification);
         }
+
+        protected override int GetMaxAmount(Character character)
+        {
+            return character.health.GetMaxHealthValue();
+        }
     }
     public class XPManipulation : Manipulation
     {
         public XPManipulation(ManipulationData data) : base(data)
         {
             mod = Modification.LoadXPChange(data.Modification);
+        }
+
+        protected override int GetMaxAmount(Character character)
+        {
+            return character.XP.max;
         }
     }
     public class CardManipulation : Manipulation
@@ -75,6 +86,11 @@ namespace Manipulations
         {
             mod = Modification.LoadCardChange(data.Modification);
         }
+
+        protected override int GetMaxAmount(Character character)
+        {
+            return character.inventory.GetCards().Count;
+        }
     }
     public class AbilityManipulation : Manipulation
     {
@@ -82,6 +98,11 @@ namespace Manipulations
         public AbilityManipulation(ManipulationData data) : base(data)
         {
             mod = Modification.LoadAbilityChange(data.Modification);
+        }
+
+        protected override int GetMaxAmount(Character character)
+        {
+            return character.abilityList.Count;
         }
     }
 }

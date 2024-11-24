@@ -41,8 +41,9 @@ public class GameManager : Singleton<GameManager>
     }
     public void GainCharm(int degree)
     {
-        if (degree == -1) degree = currentRound;
-        GainCharm(new Item(Item.Load(degree)));
+        ItemData itemData = Item.Load(degree);
+        if (itemData == null) return;
+        GainCharm(new Item(itemData));
     }
 
     public List<Item> GetAllInventoryCharms()
@@ -126,6 +127,7 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    public bool enemyMovingRightNow = false;
     private Vector2Int GetClosestUnit(Vector2Int pos, List<GridPositionable> units)
     {
         if(units.Count <= 0) return pos;
@@ -498,7 +500,8 @@ public class GameManager : Singleton<GameManager>
 public enum GamePhase
 {
     None,
-    UsingActiveAbility
+    UsingActiveAbility,
+    EnemyTurn
 }
 
 public interface Targetable

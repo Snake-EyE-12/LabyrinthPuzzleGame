@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Capstone.DataLoad;
 using Guymon.DesignPatterns;
 using TMPro;
 using UnityEngine;
@@ -67,9 +68,10 @@ public class ShopData
 
     public ShopData(int round)
     {
+        Range tierRange = DataHolder.currentMode.ShopTierRange + round;
         for (int i = 0; i < DataHolder.currentMode.ProductsPerShop; i++)
         {
-            products.Add(new Item(Item.Load(round)));
+            products.Add(new Item(Item.Load(tierRange)));
         }
     }
 }

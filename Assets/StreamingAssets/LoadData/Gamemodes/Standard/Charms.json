@@ -2,20 +2,65 @@
   "Charms":[
     {
       "Name" : "Additional Discard",
-      "Description": "Add 1 Discard to All Empty Tiles",
-      "Degree": 1,
+      "Description": "Add Discard to All Empty Tiles",
+      "Degree": 2,
       "Price": {
         "Min": 10,
-        "Max": 10
+        "Max": 15
       },
-      "Weight": 30,
+      "Weight": 10,
       "Manipulations": [
         {
-          "Change": "Tile",
-          "Condition": "Empty",
-          "Placement": "All",
-          "Modification": "Add",
-          "With": "V1-Discard"
+          "Asset": "Cards",
+          "Method": "Add",
+          "Modification": {
+            "Type": "Ability",
+            "Value": "1",
+            "Name": "Discard,Singular" 
+          },
+          "Condition": {
+            "Type": "MissingCardAbility",
+            "Value": "",
+            "Name": "",
+            "Operation": ""
+          },
+          "Position": {
+            "Type": "All",
+            "Value": "",
+            "Operation": ""
+          }
+        }
+      ]
+    },
+    {
+      "Name" : "Plus 1",
+      "Description": "Add 1 to all Abilities",
+      "Degree": 3,
+      "Price": {
+        "Min": 10,
+        "Max": 20
+      },
+      "Weight": 10,
+      "Manipulations": [
+        {
+          "Asset": "Abilities",
+          "Method": "Add",
+          "Modification": {
+            "Type": "Value",
+            "Value": "1",
+            "Name": ""
+          },
+          "Condition": {
+            "Type": "",
+            "Value": "",
+            "Name": "",
+            "Operation": ""
+          },
+          "Position": {
+            "Type": "All",
+            "Value": "",
+            "Operation": ""
+          }
         }
       ]
     },
@@ -24,17 +69,30 @@
       "Description": "Append an Intersection Pathway",
       "Degree": 1,
       "Price": {
-        "Min": 10,
+        "Min": 5,
         "Max": 10
       },
       "Weight": 10,
       "Manipulations": [
         {
-          "Change": "Card",
-          "Condition": "None",
-          "Placement": "Post",
-          "Modification": "Add",
-          "With": "+"
+          "Asset": "Cards",
+          "Method": "Add",
+          "Modification": {
+            "Type": "Amount",
+            "Value": "",
+            "Name": "+"
+          },
+          "Condition": {
+            "Type": "None",
+            "Value": "",
+            "Name": "",
+            "Operation": ""
+          },
+          "Position": {
+            "Type": "Post",
+            "Value": "",
+            "Operation": ""
+          }
         }
       ]
     },
@@ -46,14 +104,59 @@
         "Min": 10,
         "Max": 20
       },
-      "Weight": 30,
+      "Weight": 10,
       "Manipulations": [
         {
-          "Change": "Health",
-          "Condition": "None",
-          "Placement": "Post",
-          "Modification": "Add",
-          "With": "1"
+          "Asset": "Health",
+          "Method": "Add",
+          "Modification": {
+            "Type": "Amount",
+            "Value": "1",
+            "Name": "Blood"
+          },
+          "Condition": {
+            "Type": "None",
+            "Value": "",
+            "Name": "",
+            "Operation": ""
+          },
+          "Position": {
+            "Type": "Post",
+            "Value": "",
+            "Operation": ""
+          }
+        }
+      ]
+    },
+    {
+      "Name" : "Power Up",
+      "Description": "Lower Needed XP by 1",
+      "Degree": 1,
+      "Price": {
+        "Min": 5,
+        "Max": 15
+      },
+      "Weight": 10,
+      "Manipulations": [
+        {
+          "Asset": "XP",
+          "Method": "Remove",
+          "Modification": {
+            "Type": "Amount",
+            "Value": "1",
+            "Name": ""
+          },
+          "Condition": {
+            "Type": "Amount",
+            "Value": "1",
+            "Name": "",
+            "Operation": "Greater"
+          },
+          "Position": {
+            "Type": "Formula",
+            "Value": "1",
+            "Operation": "Equal"
+          }
         }
       ]
     },
@@ -63,16 +166,49 @@
       "Degree": 1,
       "Price": {
         "Min": 10,
-        "Max": 10
+        "Max": 20
       },
       "Weight": 10,
       "Manipulations": [
         {
-          "Change": "AbilityKeyword",
-          "Condition": "Melee",
-          "Placement": "All",
-          "Modification": "Replace",
-          "With": "Stunted"
+          "Asset": "Abilities",
+          "Method": "Add",
+          "Modification": {
+            "Type": "Keyword",
+            "Value": "",
+            "Name": "Stunted"
+          },
+          "Condition": {
+            "Type": "AbilityKeyword",
+            "Value": "",
+            "Name": "Melee",
+            "Operation": ""
+          },
+          "Position": {
+            "Type": "All",
+            "Value": "",
+            "Operation": ""
+          }
+        },
+        {
+          "Asset": "Abilities",
+          "Method": "Remove",
+          "Modification": {
+            "Type": "Keyword",
+            "Value": "",
+            "Name": "Melee"
+          },
+          "Condition": {
+            "Type": "None",
+            "Value": "",
+            "Name": "",
+            "Operation": ""
+          },
+          "Position": {
+            "Type": "All",
+            "Value": "",
+            "Operation": ""
+          }
         }
       ]
     },
@@ -81,55 +217,30 @@
       "Description": "+1 Value to Abilities with the Break & Build Keyword",
       "Degree": 1,
       "Price": {
-        "Min": 10,
-        "Max": 10
+        "Min": 1,
+        "Max": 5
       },
       "Weight": 10,
       "Manipulations": [
         {
-          "Change": "Ability",
-          "Condition": "Break",
-          "Placement": "All",
-          "Modification": "ValueAddition",
-          "With": "1"
-        }
-      ]
-    },
-    {
-      "Name" : "Extra Pathing",
-      "Description": "Append an Intersection Pathway",
-      "Degree": 2,
-      "Price": {
-        "Min": 10,
-        "Max": 10
-      },
-      "Weight": 10,
-      "Manipulations": [
-        {
-          "Change": "Card",
-          "Condition": "None",
-          "Placement": "Append",
-          "Modification": "Add",
-          "With": "+"
-        }
-      ]
-    },
-    {
-      "Name" : "Extra Pathing",
-      "Description": "Append an Intersection Pathway",
-      "Degree": 3,
-      "Price": {
-        "Min": 10,
-        "Max": 10
-      },
-      "Weight": 10,
-      "Manipulations": [
-        {
-          "Change": "Card",
-          "Condition": "None",
-          "Placement": "Append",
-          "Modification": "Add",
-          "With": "+"
+          "Asset": "Abilities",
+          "Method": "Add",
+          "Modification": {
+            "Type": "Value",
+            "Value": "1",
+            "Name": ""
+          },
+          "Condition": {
+            "Type": "AbilityKeyword",
+            "Value": "",
+            "Name": "Break,Build",
+            "Operation": ""
+          },
+          "Position": {
+            "Type": "All",
+            "Value": "",
+            "Operation": ""
+          }
         }
       ]
     }

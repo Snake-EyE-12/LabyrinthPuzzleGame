@@ -24,12 +24,16 @@ public class SlideCommand : Command
     }
     public void Execute()
     {
+        Debug.Log("Count:" + CommandHandler.Count());
+        Debug.Log("Slide ---------");
         if(rowOrColumn) onBoardTile = mapOfTiles.SlideRow(number, upwardsOrRight, Tile.Copy(playedCard.GetTile()));
         else onBoardTile = mapOfTiles.SlideColumn(number, upwardsOrRight, Tile.Copy(playedCard.GetTile()));
     }
 
     public void Undo()
     {
+        Debug.Log("Count:" + CommandHandler.Count());
+        Debug.Log("UNDO: Slide ---------");
         deck.GetDeck().UnplayCard(playedCard);
         deck.Render();
         DataHolder.cardsPlacedThisRound--;
@@ -59,12 +63,14 @@ public class SwapCommand : Command
 
     public void Execute()
     {
+        Debug.Log("Swap ---------");
         onBoardTile = mapOfTiles.GetTileAtPosition(newTilePosition).GetTile();
         mapOfTiles.Swap(newTilePosition, playedCard.GetTile());
     }
 
     public void Undo()
     {
+        Debug.Log("UNDO: SWAP ---------");
         deck.GetDeck().UnplayCard(playedCard);
         deck.Render();
         DataHolder.cardsPlacedThisRound--;
@@ -87,11 +93,13 @@ public class ConvertToTeamPhaseCommand : Command
     }
     public void Execute()
     {
+        Debug.Log("Convert ---------");
         nextPhase = tm.NextPhase();
     }
 
     public void Undo()
     {
+        Debug.Log("UNDO: Convert ---------");
         if (nextPhase == null) return;
         nextPhase.OnQuickLeave();
         rp.ReturnToThis();

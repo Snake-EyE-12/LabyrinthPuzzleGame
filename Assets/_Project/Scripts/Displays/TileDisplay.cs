@@ -236,7 +236,8 @@ public class TileDisplay : Display<Tile>, GridPositionable, Selectable
         {
             bool onRow = GameUtils.IsDirectionRow(GameManager.Instance.DirectionToSlide);
             bool posDirection = GameUtils.IsDirectionPositive(GameManager.Instance.DirectionToSlide);
-            localMap.Slide(onRow, posDirection, ((onRow) ? gridPosition.y : gridPosition.x));
+            //localMap.Slide(onRow, posDirection, ((onRow) ? gridPosition.y : gridPosition.x));
+            CommandHandler.Execute(new SlideCommand(onRow, posDirection, ((onRow) ? gridPosition.y : gridPosition.x), localMap, GameManager.Instance.cardToPlace.GetCard(), GameManager.Instance.activeDeck));
         }
         else
         {

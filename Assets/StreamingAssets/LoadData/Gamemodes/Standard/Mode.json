@@ -11,7 +11,7 @@
     "Total": 5,
     "InitialDegree": 1
   },
-  "Rounds": 10,
+  "Rounds": 3,
   "EventLayout":
   [
     {
@@ -53,7 +53,7 @@
         },
         "Begin": 1,
         "Size": 1,
-        "Repeated": 2
+        "Repeated": 1
       }
     },
     {
@@ -84,8 +84,9 @@
   "HandSize": 4,
   "MaxChallengeAdditions": 4,
   "ChallengeRange": {"Min": -1, "Max": 1},
+  "ShopTierRange": {"Min": -1, "Max": 0},
   "PostBattleHealPercent": 50,
   "ProductsPerShop": 3,
-  "MaxCharacterDegree": 3,
-  "StartingMoney": 10
+  "MaxCharacterDegree": 1,
+  "StartingMoney": 30
 }

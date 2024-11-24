@@ -5,8 +5,8 @@
       "Description": "Append an Intersection Pathway",
       "Degree": 1,
       "Price": {
-        "Min": 10,
-        "Max": 10
+        "Min": 5,
+        "Max": 15
       },
       "Weight": 10,
       "Manipulations": [
@@ -24,8 +24,8 @@
       "Description": "Convert Melee To Stunted",
       "Degree": 1,
       "Price": {
-        "Min": 10,
-        "Max": 10
+        "Min": 15,
+        "Max": 20
       },
       "Weight": 10,
       "Manipulations": [
@@ -43,7 +43,7 @@
       "Description": "+1 Value to Abilities with the Break & Build Keyword",
       "Degree": 1,
       "Price": {
-        "Min": 10,
+        "Min": 5,
         "Max": 10
       },
       "Weight": 10,
@@ -54,44 +54,6 @@
           "Placement": "All",
           "Modification": "ValueAddition",
           "With": "1"
-        }
-      ]
-    },
-    {
-      "Name" : "Extra Pathing",
-      "Description": "Append an Intersection Pathway",
-      "Degree": 2,
-      "Price": {
-        "Min": 10,
-        "Max": 10
-      },
-      "Weight": 10,
-      "Manipulations": [
-        {
-          "Change": "Card",
-          "Condition": "None",
-          "Placement": "Append",
-          "Modification": "Add",
-          "With": "+"
-        }
-      ]
-    },
-    {
-      "Name" : "Extra Pathing",
-      "Description": "Append an Intersection Pathway",
-      "Degree": 3,
-      "Price": {
-        "Min": 10,
-        "Max": 10
-      },
-      "Weight": 10,
-      "Manipulations": [
-        {
-          "Change": "Card",
-          "Condition": "None",
-          "Placement": "Append",
-          "Modification": "Add",
-          "With": "+"
         }
       ]
     }

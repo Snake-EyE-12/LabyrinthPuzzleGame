@@ -1,5 +1,5 @@
 {
-  "Active": true,
+  "Active": false,
   "Description": "A choice and fight for freedom!",
   "DisplayColor": {"r":0.35,"g":0.6,"b":0.09,"a":1.0},
   "GridSize": 3,

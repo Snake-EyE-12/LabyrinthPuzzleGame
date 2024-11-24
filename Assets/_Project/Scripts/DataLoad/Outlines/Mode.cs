@@ -24,6 +24,7 @@ namespace Capstone.DataLoad
         public int HandSize;
         public int MaxChallengeAdditions;
         public Range ChallengeRange;
+        public Range ShopTierRange;
         public int PostBattleHealPercent;
         public int ProductsPerShop;
         public int MaxCharacterDegree;
@@ -353,6 +354,7 @@ namespace Capstone.DataLoad
     {
         public string Type;
         public int Value;
+        public int DropChance;
     }
     
     

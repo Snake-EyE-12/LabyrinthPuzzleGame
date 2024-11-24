@@ -27,6 +27,7 @@ public class DeckDisplay : Display<Deck>
     {
         EventHandler.RemoveListener("Phase/DrawCards", DrawToLimit);
         EventHandler.RemoveListener("CardPlaced", DiscardSpecificCard);
+        EventHandler.RemoveListener("Deck/DiscardFirst", DiscardOldest);
         //handLayout.Clear();
     }
 

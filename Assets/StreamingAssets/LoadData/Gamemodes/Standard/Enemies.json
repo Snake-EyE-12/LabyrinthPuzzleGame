@@ -39,13 +39,20 @@
       "Loot":[
         {
           "Type": "Coin",
-          "Value": 5
+          "Value": 5,
+          "DropChance": 80
         },
         {
           "Type": "Item",
-          "Value": -1
+          "Value": -1,
+          "DropChance": 80
+        },
+        {
+          "Type": "XP",
+          "Value": 1,
+          "DropChance": 80
         }
-      ] 
+      ]
     },
     {
       "Name":"E2",
@@ -82,7 +89,24 @@
           }
         }
       ],
-      "ActiveEffects":[]
+      "ActiveEffects":[],
+      "Loot":[
+        {
+          "Type": "Coin",
+          "Value": 5,
+          "DropChance": 80
+        },
+        {
+          "Type": "Item",
+          "Value": -1,
+          "DropChance": 80
+        },
+        {
+          "Type": "XP",
+          "Value": 1,
+          "DropChance": 80
+        }
+      ]
     },
     {
       "Name":"E3",
@@ -119,7 +143,24 @@
           }
         }
       ],
-      "ActiveEffects":[]
+      "ActiveEffects":[],
+      "Loot":[
+        {
+          "Type": "Coin",
+          "Value": 10,
+          "DropChance": 60
+        },
+        {
+          "Type": "Item",
+          "Value": -1,
+          "DropChance": 100
+        },
+        {
+          "Type": "XP",
+          "Value": 1,
+          "DropChance": 60
+        }
+      ]
     },
     {
       "Name":"Minotaur",

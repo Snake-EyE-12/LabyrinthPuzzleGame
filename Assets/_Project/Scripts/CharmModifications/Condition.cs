@@ -26,6 +26,10 @@ namespace Manipulations
             if(character.inventory.GetCards()[index].GetTile().ability == null) return false;
             return true;
         }
+        protected string[] GetKeywords(string keywordList)
+        {
+            return keywordList.Split(',');
+        }
         protected bool HasCardAt(Character character, int index) => character.inventory.GetCards().Count > index;
     
         public static Condition Load(ManipulationData data)
@@ -167,7 +171,11 @@ namespace Manipulations
         public override bool Evaluate(Character character, int index)
         {
             if (!HasCardWithAbilityAt(character, index)) return false;
-            return character.inventory.GetCards()[index].GetTile().ability.ContainsKeyword(name);
+            foreach (string key in GetKeywords(name))
+            {
+                if (character.inventory.GetCards()[index].GetTile().ability.ContainsKeyword(key)) return true;
+            }
+            return false;
         }
     }
     public class AbilityAmountCondition : Condition
@@ -202,7 +210,11 @@ namespace Manipulations
         public override bool Evaluate(Character character, int index)
         {
             if(character.abilityList.Count <= index) return false;
-            return character.abilityList[index].ContainsKeyword(name);
+            foreach (string key in GetKeywords(name))
+            {
+                if (character.abilityList[index].ContainsKeyword(key)) return true;
+            }
+            return false;
         }
     }
     public class CardAbilityExistsCondition : BoolCondition

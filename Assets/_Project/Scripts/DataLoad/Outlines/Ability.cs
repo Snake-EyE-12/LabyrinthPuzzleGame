@@ -384,8 +384,10 @@ public class DiscardKeyword : ValueKey
 
     public override void ModifyAction(Targetable t, Ability abilityInUse)
     {
+        Debug.Log("Phase: " + GameManager.Instance.enemyMovingRightNow);
+        if (GameManager.Instance.enemyMovingRightNow) return;
         EventHandler.Invoke("Deck/DiscardFirst", null);
-        EffectHolder.Instance.SpawnEffect(keywordName.name, GameManager.Instance.AbilityUser.GetTransform());
+        EffectHolder.Instance.SpawnEffect(keywordName.name, t.GetTransform());
     }
 }
 
