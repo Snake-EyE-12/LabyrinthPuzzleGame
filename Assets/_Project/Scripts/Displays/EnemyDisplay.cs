@@ -28,7 +28,7 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
         item.ActiveEffectsList.ApplyDamage(this);
         CheckForDeath();
     }
-    public void ApplyEndOfTurnPhaseEffects()
+    public void ApplyEndOfTurnEffectChanges()
     {
         item.ActiveEffectsList.EndOfTurn(this);
         SetHealthBar();
@@ -230,7 +230,7 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
 
     public void ApplyEffect(ActiveEffectType effect)
     {
-        item.ActiveEffectsList.AddEffect(effect);
+        if(effect != null) item.ActiveEffectsList.AddEffect(effect);
         SetHealthBar();
     }
 

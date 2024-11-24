@@ -29,6 +29,7 @@ public class DataHandler : MonoBehaviour
         DataHolder.characterColorEquivalenceTable = GameDataReader.ConvertToJsonObject<StringColorEquivalenceTable>("LoadData/Gamemodes/" + mode.DisplayName + "/CharacterEquivalence");
         DataHolder.keywordColorEquivalenceTable = GameDataReader.ConvertToJsonObject<StringColorEquivalenceTable>("LoadData/Gamemodes/" + mode.DisplayName + "/KeywordColorEquivalence");
         DataHolder.eventColorEquivalenceTable = GameDataReader.ConvertToJsonObject<StringColorEquivalenceTable>("LoadData/Gamemodes/" + mode.DisplayName + "/EventColorEquivalence");
+        DataHolder.attackColorEquivalenceTable = GameDataReader.ConvertToJsonObject<StringColorEquivalenceTable>("LoadData/Gamemodes/" + mode.DisplayName + "/AttackColorEquivalence");
         DataHolder.characterLayoutTable = GameDataReader.ConvertToJsonObject<CharacterLayoutTable>("LoadData/Gamemodes/" + mode.DisplayName + "/CharacterLayouts");
 
         DataHolder.availableCharacters = GameDataReader.ConvertToJsonObject<CharacterList>("LoadData/Gamemodes/" + mode.DisplayName + "/Characters");

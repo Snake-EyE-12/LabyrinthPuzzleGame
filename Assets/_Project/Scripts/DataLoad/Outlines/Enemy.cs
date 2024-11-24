@@ -41,7 +41,7 @@ public class Enemy : Unit
 
     public bool IsInBackLine()
     {
-        return type == "Healer" || type == "Ranged" || type == "Backline";
+        return type == "Help" || type == "Healer" || type == "Ranged" || type == "Backline";
     }
     public static EnemyData Generate(string type, int degree)
     {
@@ -101,8 +101,10 @@ public class AttackLayout
 
 public class Attack : Weighted
 {
+    public Color color;
     public Attack(AttackData data)
     {
+        color = DataHolder.attackColorEquivalenceTable.GetColor(data.Color);
         weight = data.Weight;
         ability = new Ability(data.Ability);
         switch (data.Shape)
@@ -134,7 +136,9 @@ public class Attack : Weighted
             case "Wave":
                 shape = new WaveAttack(data.Power);
                 break;
-
+            default:
+                shape = new NoAttack(data.Power);
+                break;
         }
     }
 
@@ -200,19 +204,46 @@ public class Attack : Weighted
         GameManager.Instance.AbilityUser = user;
         foreach (var tilePosition in GetActiveShape(user.GetGridPosition()))
         {
-            List<CharacterDisplay> cd = GameManager.Instance.GetActiveCharacters();
-            for (int i = 0; i < cd.Count; i++)
+            // foreach team member - attack
+            if(TargetsTeam(ability.targetDescription))
             {
-                if(cd[i].GetGridPosition() == tilePosition)
+                List<CharacterDisplay> cd = GameManager.Instance.GetActiveCharacters();
+                for (int i = 0; i < cd.Count; i++)
                 {
-                    ability.Use(cd[i]);
+                    if (cd[i].GetGridPosition() == tilePosition)
+                    {
+                        ability.Use(cd[i]);
+                    }
                 }
             }
             // foreach enemy - self hitting
+            if(TargetsEnemies(ability.targetDescription))
+            {
+                List<EnemyDisplay> cd = GameManager.Instance.GetActiveEnemies();
+                for (int i = 0; i < cd.Count; i++)
+                {
+                    if (cd[i].GetGridPosition() == tilePosition)
+                    {
+                        ability.Use(cd[i]);
+                    }
+                }
+            }
             // foreach item - destruction
         }
         GameManager.Instance.AbilityInUse = null;
         GameManager.Instance.AbilityUser = null;
+    }
+    private bool TargetsTeam(string targettingType)
+    {
+        if(targettingType == "Team") return true;
+        if(targettingType == "Any") return true;
+        return false;
+    }
+    private bool TargetsEnemies(string targettingType)
+    {
+        if(targettingType == "Opponent") return true;
+        if(targettingType == "Any") return true;
+        return false;
     }
 }
 
@@ -233,6 +264,22 @@ public abstract class ShapeAttack
 
 }
 
+public class NoAttack : ShapeAttack
+{
+    public NoAttack(int power) : base(power)
+    {
+    }
+
+    public override int Size()
+    {
+        return 1;
+    }
+
+    public override List<Vector2Int> GetShape()
+    {
+        return new List<Vector2Int>();
+    }
+}
 public class LineAttack : ShapeAttack
 {
     public LineAttack(int power) : base(power)

@@ -26,7 +26,7 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
         item.ActiveEffectsList.ApplyDamage(this);
         CheckForDeath();
     }
-    public void ApplyEndOfTurnPhaseEffects()
+    public void ApplyEndOfTurnEffectChanges()
     {
         item.ActiveEffectsList.EndOfTurn(this);
         SetHealthBar();
@@ -78,6 +78,8 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
     public void Vanish()
     {
         GameManager.Instance.RemoveCharacter(this);
+        EventHandler.Invoke("Ability/DestroyPanel", null);
+        GameManager.Instance.SetSelectionMode(SelectableGroupType.Team);
         localMap.RemoveGridPositionable(this);
         GameManager.Instance.RemoveSelectable(this, selectionIndicator.type);
         if(this != null && this.gameObject != null) Destroy(this.gameObject);

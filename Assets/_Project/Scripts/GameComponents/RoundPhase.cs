@@ -160,49 +160,72 @@ public class DamagePhase : RoundPhase
 
     public override void StartPhase()
     {
-        // Enemy Damage
+        EffectTeam();
+        AlterTeamEffects();
+        EffectEnemies();
+        AlterEnemyEffects();
+        HaveEnemiesAttack();
+        CheckEnemyDeaths();
+        CheckTeamDeaths();
+        tm.NextPhase();
+    }
+
+    private void HaveEnemiesAttack()
+    {
         AttackIndicator.Instance.ExecuteAttacks();
+    }
+
+    private void CheckTeamDeaths()
+    {
         List<CharacterDisplay> characterList = GameManager.Instance.GetActiveCharacters();
         for (int i = characterList.Count - 1; i >= 0; i--)
         {
             characterList[i].CheckForDeath();
         }
-        // Enemy Effects
+    }
+
+    private void CheckEnemyDeaths()
+    {
+        List<EnemyDisplay> activeEnemies = GameManager.Instance.GetActiveEnemies();
+        for (int i = activeEnemies.Count - 1; i >= 0; i--)
+        {
+            activeEnemies[i].CheckForDeath();
+        }
+    }
+
+    private void EffectEnemies()
+    {
         List<EnemyDisplay> activeEnemies = GameManager.Instance.GetActiveEnemies();
         for (int i = activeEnemies.Count - 1; i >= 0; i--)
         {
             activeEnemies[i].ApplyDamagePhaseEffects();
         }
-        // Team Effects
-        characterList = GameManager.Instance.GetActiveCharacters();
+    }
+
+    private void EffectTeam()
+    {
+        List<CharacterDisplay> characterList = GameManager.Instance.GetActiveCharacters();
         for (int i = characterList.Count - 1; i >= 0; i--)
         {
             characterList[i].ApplyDamagePhaseEffects();
         }
-        // Enemy Die From Effects
+    }
+    private void AlterEnemyEffects()
+    {
+        List<EnemyDisplay> activeEnemies = GameManager.Instance.GetActiveEnemies();
         for (int i = activeEnemies.Count - 1; i >= 0; i--)
         {
-            activeEnemies[i].CheckForDeath();
+            activeEnemies[i].ApplyEndOfTurnEffectChanges();
         }
-        // Team Die From Effects
+    }
+
+    private void AlterTeamEffects()
+    {
+        List<CharacterDisplay> characterList = GameManager.Instance.GetActiveCharacters();
         for (int i = characterList.Count - 1; i >= 0; i--)
         {
-            characterList[i].CheckForDeath();
+            characterList[i].ApplyEndOfTurnEffectChanges();
         }
-        // Enemy Effects Altering
-        activeEnemies = GameManager.Instance.GetActiveEnemies();
-        for (int i = activeEnemies.Count - 1; i >= 0; i--)
-        {
-            activeEnemies[i].ApplyEndOfTurnPhaseEffects();
-        }
-        // Team Effects Altering
-        characterList = GameManager.Instance.GetActiveCharacters();
-        for (int i = characterList.Count - 1; i >= 0; i--)
-        {
-            characterList[i].ApplyEndOfTurnPhaseEffects();
-        }
-        
-        tm.NextPhase();
     }
 }
 public class CompletionPhase : RoundPhase

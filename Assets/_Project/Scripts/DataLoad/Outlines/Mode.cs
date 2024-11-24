@@ -372,6 +372,7 @@ namespace Capstone.DataLoad
         public int Weight;
         public string Shape;
         public int Power;
+        public string Color;
         public AbilityData Ability;
     }
 

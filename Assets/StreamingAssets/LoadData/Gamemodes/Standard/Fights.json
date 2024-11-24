@@ -8,6 +8,44 @@
       "Weight": 20,
       "Border": "Wrap",
       "Enemies": [
+        "Mikron",
+        "Kryxis",
+        "Zephyr",
+        "Krivor",
+        "Pyrosku",
+        "Blitzar",
+        "Vornix",
+        "Toxis",
+        "Scarrith",
+        "Geomix",
+        "Geogmik",
+        "Celestra",
+        "Contiler"
+      ],
+      "FloorLayout": {
+        "Fill": "Expand",
+        "AvailableTiles": [
+          {
+            "Tile": "+",
+            "Value": 100,
+            "Rotation": "Still"
+          },
+          {
+            "Tile": "|",
+            "Value": 100,
+            "Rotation": "Random"
+          }
+        ]
+      }
+    },
+    {
+      "Degree": {
+        "Min": 2,
+        "Max": 2
+      },
+      "Weight": 20,
+      "Border": "Wrap",
+      "Enemies": [
         "E1"
       ],
       "FloorLayout": {

@@ -19,11 +19,11 @@ public class AttackBoxHitPointDisplay : Display<HitPointData>
             case HitPointState.End:
                 box.enabled = false;
                 end.enabled = true;
-                end.color = emptyColor;
+                end.color = GetEmptyColor();
                 break;
             case HitPointState.Empty:
                 box.enabled = true;
-                box.color = emptyColor;
+                box.color = GetEmptyColor();
                 end.enabled = false;
                 separator.enabled = false;
                 break;
@@ -39,7 +39,13 @@ public class AttackBoxHitPointDisplay : Display<HitPointData>
 
     private Color GetFullColor()
     {
-        return new Color(1f, 0f, 0f, 150f / 255f);
+        return item.Attack.color;
+        //return new Color(1f, 0f, 0f, 150f / 255f);
+    }
+
+    private Color GetEmptyColor()
+    {
+        return emptyColor;
     }
 }
 
