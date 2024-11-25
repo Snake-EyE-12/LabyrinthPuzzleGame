@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -12,6 +13,7 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField] private Slider sfxVolume;
     [SerializeField] private Slider musicVolume;
     [SerializeField] private GameObject menu;
+    [SerializeField] private TMP_Dropdown resolutionDropdown;
 
     private void Start()
     {
@@ -20,8 +22,21 @@ public class SettingsMenu : MonoBehaviour
         sfxVolume.onValueChanged.AddListener(SetSFXVolume);
         SetSliderValues();
         SetVolumes();
+        resolutionDropdown.options = new List<TMP_Dropdown.OptionData>();
+        foreach (var resolution in Screen.resolutions)
+        {
+            if(resolution.height * 1.0f / resolution.width != 0.75f)
+                continue;
+            resolutionDropdown.options.Add(new TMP_Dropdown.OptionData(resolution.width + " x " + resolution.height));
+        }
+        resolutionDropdown.onValueChanged.AddListener(SetResolution);
     }
 
+    public void SetResolution(int resolutionIndex)
+    {
+        Resolution resolution = Screen.resolutions[resolutionIndex];
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+    }
     private void SetVolumes()
     {
         SetMasterVolume(PlayerPrefs.GetFloat("Master_Volume"));

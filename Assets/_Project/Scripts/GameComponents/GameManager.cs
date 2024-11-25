@@ -282,7 +282,7 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    private void Lose()
+    public void Lose()
     {
         DataHolder.defeatedRound = currentRound;
         EventHandler.Invoke("OnGameLost", null);

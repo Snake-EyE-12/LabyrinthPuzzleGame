@@ -11,6 +11,6 @@ public class Flee : MonoBehaviour
     public void FleeGame()
     {
         menu.SetActive(false);
-        EventHandler.Invoke("OnGameLost", null);
+        GameManager.Instance.Lose();
     }
 }

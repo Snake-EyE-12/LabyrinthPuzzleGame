@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 269498367}
   - component: {fileID: 269498366}
   - component: {fileID: 269498369}
+  - component: {fileID: 269498370}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -237,6 +238,18 @@ MonoBehaviour:
   maxAngle: 21.11
   distanceSpeed: 0.0553
   angleSpeed: 0.0711
+--- !u!114 &269498370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 269498365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d8fd6e51e7449d41827cd94211eac6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &522048788
 GameObject:
   m_ObjectHideFlags: 0
@@ -1354,7 +1367,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 2
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
