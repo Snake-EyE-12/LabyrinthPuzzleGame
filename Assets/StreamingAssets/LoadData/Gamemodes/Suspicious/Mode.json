@@ -1,0 +1,92 @@
+{
+  "Active": true,
+  "Description": "Who Knows?",
+  "DisplayColor": {"r":0.01,"g":0.01,"b":0.01,"a":1.0},
+  "GridSize": 4,
+  "CharacterSelection":
+  {
+    "Type": "Preset",
+    "Choices": 3,
+    "Default": "Agent",
+    "Total": 5,
+    "InitialDegree": 1
+  },
+  "Rounds": 1,
+  "EventLayout":
+  [
+    {
+      "IncludeChance": 100,
+      "Events":
+      [
+        {
+          "Type": "Fight",
+          "Weight": 20
+        }
+      ],
+      "Sequence":
+      {
+        "Range":
+        {
+          "Min": 1,
+          "Max": 20
+        },
+        "Begin": 1,
+        "Size": 1,
+        "Repeated": 1
+      }
+    },
+    {
+      "IncludeChance": 0,
+      "Events": 
+      [
+        {
+          "Type": "Shop",
+          "Weight": 20
+        }
+      ],
+      "Sequence":
+      {
+        "Range":
+        {
+          "Min": 1,
+          "Max": 20
+        },
+        "Begin": 1,
+        "Size": 1,
+        "Repeated": 1
+      }
+    },
+    {
+      "IncludeChance": 0,
+      "Events":
+      [
+        {
+          "Type": "Challenge",
+          "Weight": 20
+        }
+      ],
+      "Sequence":
+      {
+        "Range":
+        {
+          "Min": 1,
+          "Max": 20
+        },
+        "Begin": 1,
+        "Size": 1,
+        "Repeated": 1
+      }
+    }
+  ],
+  "LowHealthPercent": 25,
+  "MaximumIQ": 100,
+  "CardsToPlacePerTurn": 1,
+  "HandSize": 4,
+  "MaxChallengeAdditions": 4,
+  "ChallengeRange": {"Min": -3, "Max": 1},
+  "ShopTierRange": {"Min": -1, "Max": 0},
+  "PostBattleHealPercent": 50,
+  "ProductsPerShop": 3,
+  "MaxCharacterDegree": 1,
+  "StartingMoney": 999
+}

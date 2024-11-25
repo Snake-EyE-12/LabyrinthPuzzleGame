@@ -1,0 +1,248 @@
+{
+  "Charms":[
+    {
+      "Name" : "Additional Discard",
+      "Description": "Add Discard to All Empty Tiles",
+      "Degree": 2,
+      "Price": {
+        "Min": 10,
+        "Max": 15
+      },
+      "Weight": 10,
+      "Manipulations": [
+        {
+          "Asset": "Cards",
+          "Method": "Add",
+          "Modification": {
+            "Type": "Ability",
+            "Value": "1",
+            "Name": "Discard,Singular" 
+          },
+          "Condition": {
+            "Type": "MissingCardAbility",
+            "Value": "",
+            "Name": "",
+            "Operation": ""
+          },
+          "Position": {
+            "Type": "All",
+            "Value": "",
+            "Operation": ""
+          }
+        }
+      ]
+    },
+    {
+      "Name" : "Plus 1",
+      "Description": "Add 1 to all Abilities",
+      "Degree": 3,
+      "Price": {
+        "Min": 10,
+        "Max": 20
+      },
+      "Weight": 10,
+      "Manipulations": [
+        {
+          "Asset": "Abilities",
+          "Method": "Add",
+          "Modification": {
+            "Type": "Value",
+            "Value": "1",
+            "Name": ""
+          },
+          "Condition": {
+            "Type": "",
+            "Value": "",
+            "Name": "",
+            "Operation": ""
+          },
+          "Position": {
+            "Type": "All",
+            "Value": "",
+            "Operation": ""
+          }
+        }
+      ]
+    },
+    {
+      "Name" : "Extra Pathing",
+      "Description": "Append an Intersection Pathway",
+      "Degree": 1,
+      "Price": {
+        "Min": 5,
+        "Max": 10
+      },
+      "Weight": 10,
+      "Manipulations": [
+        {
+          "Asset": "Cards",
+          "Method": "Add",
+          "Modification": {
+            "Type": "Amount",
+            "Value": "",
+            "Name": "+"
+          },
+          "Condition": {
+            "Type": "None",
+            "Value": "",
+            "Name": "",
+            "Operation": ""
+          },
+          "Position": {
+            "Type": "Post",
+            "Value": "",
+            "Operation": ""
+          }
+        }
+      ]
+    },
+    {
+      "Name" : "Extra Heart",
+      "Description": "Add One Heart",
+      "Degree": 1,
+      "Price": {
+        "Min": 10,
+        "Max": 20
+      },
+      "Weight": 10,
+      "Manipulations": [
+        {
+          "Asset": "Health",
+          "Method": "Add",
+          "Modification": {
+            "Type": "Amount",
+            "Value": "1",
+            "Name": "Blood"
+          },
+          "Condition": {
+            "Type": "None",
+            "Value": "",
+            "Name": "",
+            "Operation": ""
+          },
+          "Position": {
+            "Type": "Post",
+            "Value": "",
+            "Operation": ""
+          }
+        }
+      ]
+    },
+    {
+      "Name" : "Power Up",
+      "Description": "Lower Needed XP by 1",
+      "Degree": 1,
+      "Price": {
+        "Min": 5,
+        "Max": 15
+      },
+      "Weight": 10,
+      "Manipulations": [
+        {
+          "Asset": "XP",
+          "Method": "Remove",
+          "Modification": {
+            "Type": "Amount",
+            "Value": "1",
+            "Name": ""
+          },
+          "Condition": {
+            "Type": "Amount",
+            "Value": "1",
+            "Name": "",
+            "Operation": "Greater"
+          },
+          "Position": {
+            "Type": "Formula",
+            "Value": "1",
+            "Operation": "Equal"
+          }
+        }
+      ]
+    },
+    {
+      "Name" : "Extra Range",
+      "Description": "Convert Melee To Stunted",
+      "Degree": 1,
+      "Price": {
+        "Min": 10,
+        "Max": 20
+      },
+      "Weight": 10,
+      "Manipulations": [
+        {
+          "Asset": "Abilities",
+          "Method": "Add",
+          "Modification": {
+            "Type": "Keyword",
+            "Value": "",
+            "Name": "Stunted"
+          },
+          "Condition": {
+            "Type": "AbilityKeyword",
+            "Value": "",
+            "Name": "Melee",
+            "Operation": ""
+          },
+          "Position": {
+            "Type": "All",
+            "Value": "",
+            "Operation": ""
+          }
+        },
+        {
+          "Asset": "Abilities",
+          "Method": "Remove",
+          "Modification": {
+            "Type": "Keyword",
+            "Value": "",
+            "Name": "Melee"
+          },
+          "Condition": {
+            "Type": "None",
+            "Value": "",
+            "Name": "",
+            "Operation": ""
+          },
+          "Position": {
+            "Type": "All",
+            "Value": "",
+            "Operation": ""
+          }
+        }
+      ]
+    },
+    {
+      "Name" : "+1 Build",
+      "Description": "+1 Value to Abilities with the Break & Build Keyword",
+      "Degree": 1,
+      "Price": {
+        "Min": 1,
+        "Max": 5
+      },
+      "Weight": 10,
+      "Manipulations": [
+        {
+          "Asset": "Abilities",
+          "Method": "Add",
+          "Modification": {
+            "Type": "Value",
+            "Value": "1",
+            "Name": ""
+          },
+          "Condition": {
+            "Type": "AbilityKeyword",
+            "Value": "",
+            "Name": "Break,Build",
+            "Operation": ""
+          },
+          "Position": {
+            "Type": "All",
+            "Value": "",
+            "Operation": ""
+          }
+        }
+      ]
+    }
+  ]
+}

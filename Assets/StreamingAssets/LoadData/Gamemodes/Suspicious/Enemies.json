@@ -1,0 +1,1081 @@
+{
+  "Enemies":[
+    {
+      "Name":"SPECTRE",
+      "Degree":1,
+      "Weight":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":15
+        }
+      ],
+      "Type":"None",
+      "AttackIQ":100,
+      "MovementIQ":100,
+      "AttackLayout":[
+        {
+          "Weight":1,
+          "Shape":"Star",
+          "Power":3,
+          "Color": "Red",
+          "Ability":{
+            "Value": 20,
+            "Target": "Team",
+            "Keys": ["Damage"]
+          }
+        },
+        {
+          "Weight":1,
+          "Shape":"Wave",
+          "Power":3,
+          "Color": "Red",
+          "Ability":{
+            "Value": 20,
+            "Target": "Team",
+            "Keys": ["Damage"]
+          }
+        },
+        {
+          "Weight":1,
+          "Shape":"Wave",
+          "Power":2,
+          "Color": "Red",
+          "Ability":{
+            "Value": 20,
+            "Target": "Team",
+            "Keys": ["Damage"]
+          }
+        },
+        {
+          "Weight":1,
+          "Shape":"Square",
+          "Power":2,
+          "Color": "Red",
+          "Ability":{
+            "Value": 20,
+            "Target": "Team",
+            "Keys": ["Damage"]
+          }
+        }
+      ],
+      "ActiveEffects":[],
+      "Loot":[
+        {
+          "Type": "Coin",
+          "Value": 5,
+          "DropChance": 80
+        },
+        {
+          "Type": "Item",
+          "Value": -1,
+          "DropChance": 80
+        },
+        {
+          "Type": "XP",
+          "Value": 1,
+          "DropChance": 80
+        }
+      ]
+    },
+    {
+      "Name":"E2",
+      "Degree":2,
+      "Weight":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":4
+        }
+      ],
+      "Type":"Simple",
+      "AttackIQ":50,
+      "MovementIQ":50,
+      "AttackLayout":[
+        {
+          "Weight":1,
+          "Shape":"Circle",
+          "Power":1,
+          "Ability":{
+            "Value": 1,
+            "Target": "Team",
+            "Keys": ["Damage"]
+          }
+        },
+        {
+          "Weight":1,
+          "Shape":"Beam",
+          "Power":1,
+          "Ability":{
+            "Value": 3,
+            "Target": "Team",
+            "Keys": ["Damage"]
+          }
+        }
+      ],
+      "ActiveEffects":[],
+      "Loot":[
+        {
+          "Type": "Coin",
+          "Value": 5,
+          "DropChance": 80
+        },
+        {
+          "Type": "Item",
+          "Value": -1,
+          "DropChance": 80
+        },
+        {
+          "Type": "XP",
+          "Value": 1,
+          "DropChance": 80
+        }
+      ]
+    },
+    {
+      "Name":"E3",
+      "Degree":2,
+      "Weight":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":6
+        }
+      ],
+      "Type":"Simple",
+      "AttackIQ":50,
+      "MovementIQ":50,
+      "AttackLayout":[
+        {
+          "Weight":1,
+          "Shape":"Circle",
+          "Power":2,
+          "Ability":{
+            "Value": 1,
+            "Target": "Team",
+            "Keys": ["Damage"]
+          }
+        },
+        {
+          "Weight":1,
+          "Shape":"Cross",
+          "Power":3,
+          "Ability":{
+            "Value": 4,
+            "Target": "Team",
+            "Keys": ["Damage"]
+          }
+        }
+      ],
+      "ActiveEffects":[],
+      "Loot":[
+        {
+          "Type": "Coin",
+          "Value": 10,
+          "DropChance": 60
+        },
+        {
+          "Type": "Item",
+          "Value": -1,
+          "DropChance": 100
+        },
+        {
+          "Type": "XP",
+          "Value": 1,
+          "DropChance": 60
+        }
+      ]
+    },
+    {
+      "Name":"Minotaur",
+      "Degree":20,
+      "Weight":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":7
+        }
+      ],
+      "Type":"Boss",
+      "AttackIQ":5,
+      "MovementIQ":5,
+      "AttackLayout":[
+        {
+          "Weight":1,
+          "Shape":"Line",
+          "Power":2,
+          "Ability":{
+            "Value": 1,
+            "Target": "Team",
+            "Keys": ["Damage"]
+          }
+        }
+      ],
+      "ActiveEffects":[]
+    },
+    {
+      "Name":"Giant",
+      "Degree":20,
+      "Weight":1,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":9
+        }
+      ],
+      "Type":"Boss",
+      "AttackIQ":5,
+      "MovementIQ":5,
+      "AttackLayout":[
+        {
+          "Weight":1,
+          "Shape":"Cross",
+          "Power":5,
+          "Ability":{
+            "Value": 2,
+            "Target": "Team",
+            "Keys": ["Damage"]
+          }
+        },
+        {
+          "Weight":10,
+          "Shape":"Line",
+          "Power":1,
+          "Ability":{
+            "Value": 7,
+            "Target": "Team",
+            "Keys": ["Damage"]
+          }
+        }
+      ],
+      "ActiveEffects":[]
+    },
+
+    {
+      "Name":"Mikron",
+      "Degree":1,
+      "Weight":10,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":3
+        }
+      ],
+      "Type":"Simple",
+      "AttackIQ":50,
+      "MovementIQ":50,
+      "AttackLayout":[
+        {
+          "Weight":10,
+          "Shape":"Beam",
+          "Power":1,
+          "Color": "Red",
+          "Ability":{
+            "Value": 1,
+            "Target": "Team",
+            "Keys": ["Damage"]
+          }
+        },
+        {
+          "Weight":10,
+          "Shape":"Line",
+          "Power":1,
+          "Color": "Red",
+          "Ability":{
+            "Value": 1,
+            "Target": "Team",
+            "Keys": ["Damage"]
+          }
+        },
+        {
+          "Weight":10,
+          "Shape":"Cross",
+          "Power":1,
+          "Color": "Red",
+          "Ability":{
+            "Value": 1,
+            "Target": "Team",
+            "Keys": ["Damage"]
+          }
+        }
+      ],
+      "ActiveEffects":[],
+      "Loot":[
+        {
+          "Type": "Coin",
+          "Value": 5,
+          "DropChance": 80
+        },
+        {
+          "Type": "Item",
+          "Value": -1,
+          "DropChance": 80
+        },
+        {
+          "Type": "XP",
+          "Value": 1,
+          "DropChance": 80
+        }
+      ]
+    },
+    {
+      "Name":"Kryxis",
+      "Degree":2,
+      "Weight":10,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":3
+        }
+      ],
+      "Type":"Simple",
+      "AttackIQ":50,
+      "MovementIQ":50,
+      "AttackLayout":[
+        {
+          "Weight":10,
+          "Shape":"Beam",
+          "Power":2,
+          "Color": "Red",
+          "Ability":{
+            "Value": 1,
+            "Target": "Team",
+            "Keys": ["Damage"]
+          }
+        },
+        {
+          "Weight":10,
+          "Shape":"Cross",
+          "Power":1,
+          "Color": "Red",
+          "Ability":{
+            "Value": 1,
+            "Target": "Team",
+            "Keys": ["Damage"]
+          }
+        }
+      ],
+      "ActiveEffects":[],
+      "Loot":[
+        {
+          "Type": "Coin",
+          "Value": 5,
+          "DropChance": 80
+        },
+        {
+          "Type": "Item",
+          "Value": -1,
+          "DropChance": 80
+        },
+        {
+          "Type": "XP",
+          "Value": 1,
+          "DropChance": 80
+        }
+      ]
+    },
+    {
+      "Name":"Zephyr",
+      "Degree":2,
+      "Weight":10,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":5
+        }
+      ],
+      "Type":"Effect",
+      "AttackIQ":10,
+      "MovementIQ":90,
+      "AttackLayout":[
+        {
+          "Weight":10,
+          "Shape":"Circle",
+          "Power":1,
+          "Color": "Blue",
+          "Ability":{
+            "Value": 1,
+            "Target": "Team",
+            "Keys": ["Damage", "Freeze"]
+          }
+        },
+        {
+          "Weight":10,
+          "Shape":"Line",
+          "Power":1,
+          "Color": "Blue",
+          "Ability":{
+            "Value": 2,
+            "Target": "Team",
+            "Keys": ["Damage", "Freeze"]
+          }
+        }
+      ],
+      "ActiveEffects":[],
+      "Loot":[
+        {
+          "Type": "Coin",
+          "Value": 10,
+          "DropChance": 80
+        },
+        {
+          "Type": "XP",
+          "Value": 1,
+          "DropChance": 80
+        }
+      ]
+    },
+    {
+      "Name":"Krivor",
+      "Degree":3,
+      "Weight":10,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":5
+        }
+      ],
+      "Type":"Tower",
+      "AttackIQ":10,
+      "MovementIQ":10,
+      "AttackLayout":[
+        {
+          "Weight":30,
+          "Shape":"Line",
+          "Power":1,
+          "Color": "Red",
+          "Ability":{
+            "Value": 5,
+            "Target": "Team",
+            "Keys": ["Damage"]
+          }
+        },
+        {
+          "Weight":10,
+          "Shape":"Wave",
+          "Power":1,
+          "Color": "Red",
+          "Ability":{
+            "Value": 2,
+            "Target": "Team",
+            "Keys": ["Damage"]
+          }
+        },
+        {
+          "Weight":20,
+          "Shape":"Circle",
+          "Power":1,
+          "Color": "Brown",
+          "Ability":{
+            "Value": 4,
+            "Target": "Any",
+            "Keys": ["Break"]
+          }
+        }
+      ],
+      "ActiveEffects":[],
+      "Loot":[
+        {
+          "Type": "Coin",
+          "Value": 10,
+          "DropChance": 80
+        },
+        {
+          "Type": "XP",
+          "Value": 1,
+          "DropChance": 80
+        }
+      ]
+    },
+    {
+      "Name":"Pyrosku",
+      "Degree":3,
+      "Weight":10,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":2
+        }
+      ],
+      "Type":"Effect",
+      "AttackIQ":90,
+      "MovementIQ":60,
+      "AttackLayout":[
+        {
+          "Weight":10,
+          "Shape":"Circle",
+          "Power":2,
+          "Color": "Orange",
+          "Ability":{
+            "Value": 1,
+            "Target": "Team",
+            "Keys": ["Burn"]
+          }
+        },
+        {
+          "Weight":10,
+          "Shape":"Diagonal",
+          "Power":1,
+          "Color": "Orange",
+          "Ability":{
+            "Value": 1,
+            "Target": "Team",
+            "Keys": ["Damage", "Burn"]
+          }
+        }
+      ],
+      "ActiveEffects":[],
+      "Loot":[
+        {
+          "Type": "Coin",
+          "Value": 15,
+          "DropChance": 50
+        },
+        {
+          "Type": "XP",
+          "Value": 2,
+          "DropChance": 80
+        }
+      ,
+        {
+          "Type": "Item",
+          "Value": -1,
+          "DropChance": 100
+        }
+      ]
+    },
+    {
+      "Name":"Blitzar",
+      "Degree":4,
+      "Weight":10,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":3
+        }
+      ],
+      "Type":"Simple",
+      "AttackIQ":90,
+      "MovementIQ":90,
+      "AttackLayout":[
+        {
+          "Weight":10,
+          "Shape":"Star",
+          "Power":2,
+          "Color": "Red",
+          "Ability":{
+            "Value": 1,
+            "Target": "Team",
+            "Keys": ["Damage"]
+          }
+        },
+        {
+          "Weight":50,
+          "Shape":"Square",
+          "Power":1,
+          "Color": "Red",
+          "Ability":{
+            "Value": 1,
+            "Target": "Team",
+            "Keys": ["Damage"]
+          }
+        }
+      ],
+      "ActiveEffects":[],
+      "Loot":[
+        {
+          "Type": "Coin",
+          "Value": 10,
+          "DropChance": 50
+        },
+        {
+          "Type": "Coin",
+          "Value": 10,
+          "DropChance": 50
+        },
+        {
+          "Type": "Coin",
+          "Value": 10,
+          "DropChance": 50
+        },
+        {
+          "Type": "XP",
+          "Value": 1,
+          "DropChance": 50
+        },
+        {
+          "Type": "XP",
+          "Value": 1,
+          "DropChance": 80
+        },
+        {
+          "Type": "Item",
+          "Value": -1,
+          "DropChance": 100
+        }
+      ]
+    },
+    {
+      "Name":"Vornix",
+      "Degree":4,
+      "Weight":10,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":3
+        }
+      ],
+      "Type":"Tower",
+      "AttackIQ":70,
+      "MovementIQ":80,
+      "AttackLayout":[
+        {
+          "Weight":10,
+          "Shape":"Circle",
+          "Power":1,
+          "Color": "Red",
+          "Ability":{
+            "Value": 2,
+            "Target": "Team",
+            "Keys": ["Damage", "Build"]
+          }
+        },
+        {
+          "Weight":20,
+          "Shape":"Beam",
+          "Power":3,
+          "Color": "Red",
+          "Ability":{
+            "Value": 1,
+            "Target": "Team",
+            "Keys": ["Damage", "Build"]
+          }
+        }
+      ],
+      "ActiveEffects":[],
+      "Loot":[
+        {
+          "Type": "XP",
+          "Value": 1,
+          "DropChance": 60
+        },{
+          "Type": "XP",
+          "Value": 1,
+          "DropChance": 60
+        },
+        {
+          "Type": "Item",
+          "Value": -1,
+          "DropChance": 100
+        }
+      ]
+    },
+    {
+      "Name":"Toxis",
+      "Degree":6,
+      "Weight":10,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":5
+        }
+      ],
+      "Type":"Effect",
+      "AttackIQ":40,
+      "MovementIQ":30,
+      "AttackLayout":[
+        {
+          "Weight":10,
+          "Shape":"Wave",
+          "Power":1,
+          "Color": "Green",
+          "Ability":{
+            "Value": 1,
+            "Target": "Team",
+            "Keys": ["Damage", "Poison"]
+          }
+        },
+        {
+          "Weight":10,
+          "Shape":"Cross",
+          "Power":1,
+          "Color": "Green",
+          "Ability":{
+            "Value": 1,
+            "Target": "Team",
+            "Keys": ["Damage", "Poison"]
+          }
+        }
+      ],
+      "ActiveEffects": [
+        {
+          "Type": "Poison",
+          "Value": 1
+        }
+      ],
+      "Loot":[
+        {
+          "Type": "Item",
+          "Value": -1,
+          "DropChance": 100
+        },
+        {
+          "Type": "Item",
+          "Value": -1,
+          "DropChance": 50
+        }
+      ]
+    },
+    {
+      "Name":"Scarrith",
+      "Degree":6,
+      "Weight":10,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":3
+        }
+      ],
+      "Type":"Effect",
+      "AttackIQ":10,
+      "MovementIQ":50,
+      "AttackLayout":[
+        {
+          "Weight":30,
+          "Shape":"Circle",
+          "Power":2,
+          "Color": "Maroon",
+          "Ability":{
+            "Value": 1,
+            "Target": "Team",
+            "Keys": ["Bleed"]
+          }
+        },
+        {
+          "Weight":30,
+          "Shape":"Triangle",
+          "Power":3,
+          "Color": "Maroon",
+          "Ability":{
+            "Value": 1,
+            "Target": "Team",
+            "Keys": ["Bleed"]
+          }
+        },
+        {
+          "Weight":10,
+          "Shape":"Circle",
+          "Power":0,
+          "Color": "Maroon",
+          "Ability":{
+            "Value": 1,
+            "Target": "Team",
+            "Keys": ["Bleed"]
+          }
+        }
+      ],
+      "ActiveEffects": [],
+      "Loot":[
+        {
+          "Type": "XP",
+          "Value": 1,
+          "DropChance": 30
+        },
+        {
+          "Type": "XP",
+          "Value": 1,
+          "DropChance": 30
+        },
+        {
+          "Type": "XP",
+          "Value": 1,
+          "DropChance": 30
+        },
+        {
+          "Type": "Coin",
+          "Value": 10,
+          "DropChance": 40
+        },
+        {
+          "Type": "Coin",
+          "Value": 10,
+          "DropChance": 40
+        },
+        {
+          "Type": "Coin",
+          "Value": 10,
+          "DropChance": 40
+        },
+        {
+          "Type": "Item",
+          "Value": -1,
+          "DropChance": 50
+        }
+      ]
+    },
+    {
+      "Name":"Geomix",
+      "Degree":5,
+      "Weight":10,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":2
+        }
+      ],
+      "Type":"Swift",
+      "AttackIQ":90,
+      "MovementIQ":60,
+      "AttackLayout":[
+        {
+          "Weight":10,
+          "Shape":"Circle",
+          "Power":0,
+          "Color": "Black",
+          "Ability":{
+            "Value": 0,
+            "Target": "Any",
+            "Keys": ["Shift"]
+          }
+        },
+        {
+          "Weight":10,
+          "Shape":"Circle",
+          "Power":0,
+          "Color": "Black",
+          "Ability":{
+            "Value": 1,
+            "Target": "Any",
+            "Keys": ["Shift"]
+          }
+        },
+        {
+          "Weight":10,
+          "Shape":"Circle",
+          "Power":0,
+          "Color": "Black",
+          "Ability":{
+            "Value": 2,
+            "Target": "Any",
+            "Keys": ["Shift"]
+          }
+        },
+        {
+          "Weight":10,
+          "Shape":"Circle",
+          "Power":0,
+          "Color": "Black",
+          "Ability":{
+            "Value": 3,
+            "Target": "Any",
+            "Keys": ["Shift"]
+          }
+        }
+      ],
+      "ActiveEffects": [],
+      "Loot":[]
+    },
+    {
+      "Name":"Geogmik",
+      "Degree":8,
+      "Weight":10,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":2
+        }
+      ],
+      "Type":"Swift",
+      "AttackIQ":90,
+      "MovementIQ":60,
+      "AttackLayout":[
+        {
+          "Weight":10,
+          "Shape":"Circle",
+          "Power":0,
+          "Color": "Black",
+          "Ability":{
+            "Value": 0,
+            "Target": "Any",
+            "Keys": ["Shift"]
+          }
+        },
+        {
+          "Weight":10,
+          "Shape":"Circle",
+          "Power":0,
+          "Color": "Black",
+          "Ability":{
+            "Value": 1,
+            "Target": "Any",
+            "Keys": ["Shift"]
+          }
+        },
+        {
+          "Weight":10,
+          "Shape":"Circle",
+          "Power":0,
+          "Color": "Black",
+          "Ability":{
+            "Value": 2,
+            "Target": "Any",
+            "Keys": ["Shift"]
+          }
+        },
+        {
+          "Weight":10,
+          "Shape":"Circle",
+          "Power":0,
+          "Color": "Black",
+          "Ability":{
+            "Value": 3,
+            "Target": "Any",
+            "Keys": ["Shift"]
+          }
+        },
+        {
+          "Weight":10,
+          "Shape":"Circle",
+          "Power":0,
+          "Color": "Red",
+          "Ability":{
+            "Value": 1,
+            "Target": "Team",
+            "Keys": ["Damage"]
+          }
+        }
+      ],
+      "ActiveEffects": [],
+      "Loot":[]
+    },
+    {
+      "Name":"Celestra",
+      "Degree":7,
+      "Weight":10,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":7
+        }
+      ],
+      "Type":"Help",
+      "AttackIQ":90,
+      "MovementIQ":90,
+      "AttackLayout":[
+        {
+          "Weight":30,
+          "Shape":"Cross",
+          "Power":1,
+          "Color": "Pink",
+          "Ability":{
+            "Value": 2,
+            "Target": "Opponent",
+            "Keys": ["Heal"]
+          }
+        },
+        {
+          "Weight":10,
+          "Shape":"Wave",
+          "Power":1,
+          "Color": "White",
+          "Ability":{
+            "Value": 1,
+            "Target": "Opponent",
+            "Keys": ["Cleanse", "Wash"]
+          }
+        },
+        {
+          "Weight":20,
+          "Shape":"Blank",
+          "Power":1,
+          "Color": "",
+          "Ability":{
+            "Value": 0,
+            "Target": "",
+            "Keys": []
+          }
+        }
+      ],
+      "ActiveEffects": [],
+      "Loot":[
+        {
+          "Type": "Coin",
+          "Value": 5,
+          "DropChance": 80
+        },
+        {
+          "Type": "Item",
+          "Value": -1,
+          "DropChance": 80
+        },
+        {
+          "Type": "XP",
+          "Value": 1,
+          "DropChance": 80
+        }
+      ]
+    },
+    {
+      "Name":"Contiler",
+      "Degree":15,
+      "Weight":10,
+      "Health":[
+        {
+          "Type":"Blood",
+          "Value":10
+        }
+      ],
+      "Type":"Boss",
+      "AttackIQ":90,
+      "MovementIQ":90,
+      "AttackLayout":[
+        {
+          "Weight":30,
+          "Shape":"Cross",
+          "Power":3,
+          "Color": "Red",
+          "Ability":{
+            "Value": 4,
+            "Target": "Team",
+            "Keys": ["Damage"]
+          }
+        },
+        {
+          "Weight":30,
+          "Shape":"Star",
+          "Power":3,
+          "Color": "Red",
+          "Ability":{
+            "Value": 1,
+            "Target": "Team",
+            "Keys": ["Damage"]
+          }
+        },
+        {
+          "Weight":20,
+          "Shape":"Wave",
+          "Power":1,
+          "Color": "Green",
+          "Ability":{
+            "Value": 2,
+            "Target": "Team",
+            "Keys": ["Poison"]
+          }
+        },
+        {
+          "Weight":10,
+          "Shape":"Square",
+          "Power":1,
+          "Color": "Gray",
+          "Ability":{
+            "Value": 5,
+            "Target": "Opponent",
+            "Keys": ["Shield"]
+          }
+        }
+      ],
+      "ActiveEffects": [],
+      "Loot":[]
+    }
+  ]
+}
