@@ -235,8 +235,8 @@ public class Ability
                     return new DiscardKeyword(keyword);
                 case "Rotate":
                     return new RotateKeyword(keyword);
-                case "Charge":
-                    return new ChargeKeyword(keyword);
+                case "Train":
+                    return new TrainKeyword(keyword);
                 case "Bleed":
                     return new BleedKeyword(keyword);
                 case "Poison":
@@ -263,8 +263,8 @@ public class Ability
                     return new TeleportKeyword(keyword);
                 case "Provoke":
                     return new ProvokeKeyword(keyword);
-                case "Charged":
-                    return new ChargedKeyword(keyword);
+                case "Expert":
+                    return new ExpertKeyword(keyword);
                 case "Effected":
                     return new EffectedKeyword(keyword);
                 case "Cleanse":
@@ -483,7 +483,7 @@ public class HealKeyword : ValueKey
         return 0;
     }
 }
-public class ChargeKeyword : ValueKey
+public class TrainKeyword : ValueKey
 {
     public override void ModifyAction(Targetable t, Ability abilityInUse)
     {
@@ -491,7 +491,7 @@ public class ChargeKeyword : ValueKey
         EffectHolder.Instance.SpawnEffect(keywordName.name, t.GetTransform());
     }
 
-    public ChargeKeyword(KeywordName keyName) : base(keyName)
+    public TrainKeyword(KeywordName keyName) : base(keyName)
     {
     }
     public override KeywordOrder GetKeyOrder()
@@ -701,9 +701,9 @@ public class ProvokeKeyword : ValueKey // TODO
         EffectHolder.Instance.SpawnEffect(keywordName.name, t.GetTransform());
     }
 }
-public class ChargedKeyword : ValueKey // TODO
+public class ExpertKeyword : ValueKey // TODO
 {
-    public ChargedKeyword(KeywordName keyName) : base(keyName)
+    public ExpertKeyword(KeywordName keyName) : base(keyName)
     {
     }
     public override KeywordOrder GetKeyOrder()

@@ -984,6 +984,21 @@ MonoBehaviour:
     volume: {x: 1, y: 1}
     pitch: {x: 1, y: 1}
     audioType: 0
+  - audioName: Purchase
+    audioClip: {fileID: 8300000, guid: 0c21095b05076024889d499577532dd0, type: 3}
+    volume: {x: 0.8711063, y: 1.1288936}
+    pitch: {x: 0.9427139, y: 1.1575367}
+    audioType: 0
+  - audioName: Collect
+    audioClip: {fileID: 8300000, guid: 61ceae4ffd596e144aad610d2e05e7f5, type: 3}
+    volume: {x: 0.8711063, y: 1.1288936}
+    pitch: {x: 0.9427139, y: 1.1575367}
+    audioType: 0
+  - audioName: MonsterDie
+    audioClip: {fileID: 8300000, guid: 93c9fca2359c7fe4fbe0d55ab1b9069e, type: 3}
+    volume: {x: 0.8711063, y: 1.1288936}
+    pitch: {x: 0.9427139, y: 1.1575367}
+    audioType: 0
 --- !u!82 &1334991259
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1748,6 +1763,8 @@ MonoBehaviour:
     prefab: {fileID: 7161436230720126369, guid: 8be95d9afb98355449fa907378203bac, type: 3}
   - name: FightBurn
     prefab: {fileID: 7161436230720126369, guid: 9db365cb1e681ad46a45fab74a8090a1, type: 3}
+  - name: EnemyDefeated
+    prefab: {fileID: 7161436230720126369, guid: 1c9cbf5ccdd1f7c4bac24321f00a627d, type: 3}
 --- !u!1001 &2934516607275146362
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1844,6 +1861,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1267744856135272551, guid: 67a85c1d2dd8cc3429766b1f792457a9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1743790405410538933, guid: 67a85c1d2dd8cc3429766b1f792457a9, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1851,6 +1872,10 @@ PrefabInstance:
     - target: {fileID: 2010705494183516119, guid: 67a85c1d2dd8cc3429766b1f792457a9, type: 3}
       propertyPath: m_Name
       value: Settings
+      objectReference: {fileID: 0}
+    - target: {fileID: 2010705494183516119, guid: 67a85c1d2dd8cc3429766b1f792457a9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2071096971637709838, guid: 67a85c1d2dd8cc3429766b1f792457a9, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1945,7 +1970,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8801776968544743008, guid: 67a85c1d2dd8cc3429766b1f792457a9, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67a85c1d2dd8cc3429766b1f792457a9, type: 3}

@@ -25,6 +25,7 @@ public class ProductDisplay : Display<Item>
             DataHolder.coinsSpent += item.price;
             GameManager.Instance.CoinCount -= item.price;
             GameManager.Instance.GainCharm(item);
+            AudioManager.Instance.Play("Purchase");
             Destroy(this.gameObject);
         }
     }

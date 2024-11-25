@@ -86,6 +86,7 @@ public class EnemyDisplay : Display<Enemy>, GridPositionable, Selectable, Target
         AttackIndicator.Instance.RemoveAttack(choosenAttack);
         GameManager.Instance.RemoveSelectable(this, selectionIndicator.type);
         SpawnLootDrop();
+        EffectHolder.Instance.SpawnEffect("EnemyDefeated", transform.position);
         Destroy(this.gameObject);
     }
 

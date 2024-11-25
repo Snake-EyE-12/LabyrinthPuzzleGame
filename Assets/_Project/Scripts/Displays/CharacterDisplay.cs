@@ -132,6 +132,7 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
 
     public void OnPassOverLoot(List<LootDisplay> loot)
     {
+        if(loot.Count > 0) AudioManager.Instance.Play("Collect");
         foreach (var collectable in loot)
         {
             collectable.Collect(this);

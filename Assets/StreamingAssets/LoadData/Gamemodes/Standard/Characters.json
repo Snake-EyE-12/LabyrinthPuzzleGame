@@ -361,7 +361,7 @@
         {
           "Value": 0,
           "Target": "Any",
-          "Keys": ["Melee", "Damage", "Charged"]
+          "Keys": ["Melee", "Damage", "Expert"]
         }
       ]
     },
@@ -395,12 +395,12 @@
         {
           "Value": 1,
           "Target": "Any",
-          "Keys": ["Charge", "Singular"]
+          "Keys": ["Train", "Singular"]
         },
         {
           "Value": 1,
           "Target": "Any",
-          "Keys": ["Charge", "Singular"]
+          "Keys": ["Train", "Singular"]
         }
       ]
     },
@@ -433,7 +433,7 @@
         {
           "Value": 1,
           "Target": "Any",
-          "Keys": ["Charge", "Melee"]
+          "Keys": ["Train", "Melee"]
         }
       ]
     },
@@ -462,7 +462,7 @@
         {
           "Value": 2,
           "Target": "Any",
-          "Keys": ["Charge", "Singular"]
+          "Keys": ["Train", "Singular"]
         }
       ]
     },
@@ -489,7 +489,7 @@
         {
           "Value": 1,
           "Target": "Any",
-          "Keys": ["Charge", "Singular"]
+          "Keys": ["Train", "Singular"]
         },
         {
           "Value": 1,
@@ -706,7 +706,7 @@
         {
           "Value": 0,
           "Target": "Any",
-          "Keys": ["Charge", "Charged", "Singular"]
+          "Keys": ["Train", "Expert", "Singular"]
         }
       ]
     },
