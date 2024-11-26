@@ -131,11 +131,14 @@ public class TileDisplay : Display<Tile>, GridPositionable, Selectable
 
     private IEnumerator LandOnTile(float delay, Targetable t, Ability ability, TileDisplay tile)
     {
-        yield return new WaitForSeconds(delay);
-        
-        item.ability.Use(t);
-        t.CheckForDeath();
-        if (item.ability.usedThisCombat) Render();
+        if (!t.GetHealthBar().isDead)
+        {
+            yield return new WaitForSeconds(delay);
+
+            item.ability.Use(t);
+            t.CheckForDeath();
+            if (item.ability.usedThisCombat) Render();
+        }
     }
 
     private Vector2Int gridPosition;

@@ -111,19 +111,27 @@ public class AbilityGameInput : GameInput
         if (Input.GetKeyDown(KeyCode.Space)) selector.Activate(new ConfirmSelectableActivatorData());
         if (Input.GetKeyDown(KeyCode.W))
         {
-            GameManager.Instance.AbilityUser.GetMap().Move(GameManager.Instance.AbilityUser as GridPositionable, Vector2Int.up);
+            (GameManager.Instance.AbilityUser as CharacterDisplay).Activate(new DirectionalSelectableActivatorData(Vector2Int.up));
+            //selector.Activate(new DirectionalSelectableActivatorData(Vector2Int.up));
+            //GameManager.Instance.AbilityUser.GetMap().Move(GameManager.Instance.AbilityUser as GridPositionable, Vector2Int.up);
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
-            GameManager.Instance.AbilityUser.GetMap().Move(GameManager.Instance.AbilityUser as GridPositionable, Vector2Int.down);
+            (GameManager.Instance.AbilityUser as CharacterDisplay).Activate(new DirectionalSelectableActivatorData(Vector2Int.down));
+            //selector.Activate(new DirectionalSelectableActivatorData(Vector2Int.down));
+            //GameManager.Instance.AbilityUser.GetMap().Move(GameManager.Instance.AbilityUser as GridPositionable, Vector2Int.down);
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
-            GameManager.Instance.AbilityUser.GetMap().Move(GameManager.Instance.AbilityUser as GridPositionable, Vector2Int.right);
+            (GameManager.Instance.AbilityUser as CharacterDisplay).Activate(new DirectionalSelectableActivatorData(Vector2Int.right));
+            //selector.Activate(new DirectionalSelectableActivatorData(Vector2Int.right));
+            //GameManager.Instance.AbilityUser.GetMap().Move(GameManager.Instance.AbilityUser as GridPositionable, Vector2Int.right);
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
-            GameManager.Instance.AbilityUser.GetMap().Move(GameManager.Instance.AbilityUser as GridPositionable, Vector2Int.left);
+            (GameManager.Instance.AbilityUser as CharacterDisplay).Activate(new DirectionalSelectableActivatorData(Vector2Int.left));
+            //selector.Activate(new DirectionalSelectableActivatorData(Vector2Int.left));
+            //GameManager.Instance.AbilityUser.GetMap().Move(GameManager.Instance.AbilityUser as GridPositionable, Vector2Int.left);
         }
     }
 }

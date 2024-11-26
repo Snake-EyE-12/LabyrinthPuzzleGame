@@ -181,12 +181,12 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
     {
         if (data is DirectionalSelectableActivatorData)
         {
-            FreezeActiveEffect fea = item.ActiveEffectsList.GetEffect<FreezeActiveEffect>();
-            if (fea == null && fea.value <= 0)
+            if (!IsFrozen())
             {
+                CommandHandler.Clear();
+                Debug.Log("Commands: " + CommandHandler.Count());
                 localMap.Move(this, (data as DirectionalSelectableActivatorData).direction);
                 AudioManager.Instance.Play("Footsteps");
-                CommandHandler.Clear();
             }
 
             return;
@@ -318,7 +318,7 @@ public class CharacterDisplay : Display<Character>, GridPositionable, Selectable
 
     public void GainXP(int amount)
     {
-        item.XP.value += amount;
+        item.XP.value = Mathf.Clamp(item.XP.value + amount, 0, item.XP.max);
         xpBar.Render();
     }
 
