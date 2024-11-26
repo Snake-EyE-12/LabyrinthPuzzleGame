@@ -18,6 +18,7 @@ public class CharacterAbilityDisplay : Display<List<Ability>>
 
     public override void Render()
     {
+        transform.SetSiblingIndex(3);
         if(item.Count > 0) TutorialManager.Instance.Teach("AbilityUsage");
         else TutorialManager.Instance.Teach("CancelAbility");
         foreach (var a in item)
