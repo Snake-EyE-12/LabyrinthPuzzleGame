@@ -74,6 +74,7 @@ public class PlayCardsPhase : RoundPhase
 
     public override void StartPhase()
     {
+        TutorialManager.Instance.Teach("PlaceCards");
         Debug.Log("UNDOING SYSTEM: STARTING PLAYING PHASE");
         CommandHandler.Clear();
         GameManager.Instance.SetSelectionMode(SelectableGroupType.Card);
@@ -85,6 +86,7 @@ public class PlayCardsPhase : RoundPhase
     {
         Debug.Log("UNDOING SYSTEM: CARD PLACED");
         DataHolder.cardsPlacedThisRound++;
+        TutorialManager.Instance.Teach("UndoSystem");
         if (DataHolder.cardsPlacedThisRound >= DataHolder.currentMode.CardsToPlacePerTurn)
         {
             CommandHandler.Execute(new ConvertToTeamPhaseCommand(tm, this));
@@ -115,6 +117,7 @@ public class TeamTurnPhase : RoundPhase
 
     public override void StartPhase()
     {
+        TutorialManager.Instance.Teach("MoveCharacters");
         Debug.Log("UNDOING SYSTEM: STARTING TEAM PHASE");
         GameManager.Instance.enemyMovingRightNow = false;
         GameManager.Instance.SetSelectionMode(SelectableGroupType.Team);

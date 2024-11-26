@@ -8,6 +8,7 @@ public class TileOnCardDisplay : Display<Tile>
     [SerializeField] private List<WallDisplay> wallDisplays = new List<WallDisplay>();
     [SerializeField] private Image abilityIcon;
     [SerializeField] private GameObject fire;
+    [SerializeField] private bool canShowRotateTutorial;
 
     public override void Render()
     {
@@ -27,5 +28,18 @@ public class TileOnCardDisplay : Display<Tile>
             abilityIcon.gameObject.SetActive(false);
         }
         fire.SetActive(item.type != "Slide");
+    }
+
+    public void TryShowRotateTutorial()
+    {
+        if (!canShowRotateTutorial) return;
+        int orientation = item.GetOrientation();
+        bool lastVisible = false;
+        for (int i = 0, j = 1; i < 4; i++, j *= 2)
+        {
+            bool visible = (orientation & j) == 0;
+            if(i != 0 && visible != lastVisible) TutorialManager.Instance.Teach("CardRotation");
+            lastVisible = visible;
+        }
     }
 }

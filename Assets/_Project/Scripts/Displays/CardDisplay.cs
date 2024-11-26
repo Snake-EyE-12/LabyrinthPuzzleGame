@@ -122,6 +122,7 @@ public class CardDisplay : Display<Card>, Selectable
     {
         AudioManager.Instance.Play("ButtonClick");
         GameManager.Instance.SetCardToPlace(this);
+        tileForDisplay.TryShowRotateTutorial();
     }
     private void Start()
     {

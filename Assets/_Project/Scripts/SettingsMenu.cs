@@ -14,6 +14,7 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField] private Slider musicVolume;
     [SerializeField] private GameObject menu;
     [SerializeField] private TMP_Dropdown resolutionDropdown;
+    [SerializeField] private GameObject keywordsMenu;
 
     private void Start()
     {
@@ -30,6 +31,15 @@ public class SettingsMenu : MonoBehaviour
             resolutionDropdown.options.Add(new TMP_Dropdown.OptionData(resolution.width + " x " + resolution.height));
         }
         resolutionDropdown.onValueChanged.AddListener(SetResolution);
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Close();
+            keywordsMenu.SetActive(false);
+        }
     }
 
     public void SetResolution(int resolutionIndex)
@@ -57,6 +67,11 @@ public class SettingsMenu : MonoBehaviour
     {
         PlayerPrefs.SetFloat("SFX_Volume", volume);
         masterMixer.SetFloat("SFX_Volume", Mathf.Log10(volume) * 20);
+    }
+
+    public void ResetTutorial()
+    {
+        TutorialManager.Instance.Reset();
     }
 
     public void Open()

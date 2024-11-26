@@ -1472,6 +1472,10 @@ PrefabInstance:
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1528885266228290872, guid: 9d444485ba6f4014c83068ffe43780f7, type: 3}
+      propertyPath: canShowRotateTutorial
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3626041062672951862, guid: 9d444485ba6f4014c83068ffe43780f7, type: 3}
       propertyPath: m_RaycastTarget
       value: 0

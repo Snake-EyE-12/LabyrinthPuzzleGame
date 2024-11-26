@@ -35,6 +35,7 @@ public class AbilityDisplay : Display<Ability>, Selectable
             disabledGray.gameObject.SetActive(true);
             wiggle.enabled = false;
             shadow.SetActive(false);
+            TutorialManager.Instance.Teach("GrayAbilities");
         }
         colorRingImageRenderer.color = DataHolder.characterColorEquivalenceTable.GetColor(item.owner);
         
@@ -87,6 +88,7 @@ public class AbilityDisplay : Display<Ability>, Selectable
 
     public void Activate(SelectableActivatorData data)
     {
+        TutorialManager.Instance.Teach("CancelAbility");
         AudioManager.Instance.Play("ButtonClick");
         selectionIndicator.Activated(true);
         GameManager.Instance.AbilityInUse = item;

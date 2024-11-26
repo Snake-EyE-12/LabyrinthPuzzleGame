@@ -29,7 +29,12 @@ public class Health
         {
             AddHealthType(hp.Type, hp.Value);
         }
-        if(percent != 100 && hadDied) Damage(Mathf.FloorToInt(maxHealth * (percent / 100.0f)));
+
+        if (percent != 100 && hadDied)
+        {
+            Damage(Mathf.FloorToInt(maxHealth * (percent / 100.0f)));
+            TutorialManager.Instance.Teach("DamagedCharacters");
+        }
     }
     public List<HealthType> GetHealthBarSegments()
     {

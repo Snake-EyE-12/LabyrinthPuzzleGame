@@ -24,6 +24,7 @@ public class RoundMenuDisplay : Display<EventsForRound>
     
     public override void Render()
     {
+        TutorialManager.Instance.Teach("CharacterHover");
         foreach (var e in item.events)
         {
             EventAcceptor ea = CreateEventAcceptor(e);
